@@ -1,6 +1,6 @@
 <template>
     <div>
-        main입니다.
+        내정보페이지입니다.
     </div>
 </template>
 

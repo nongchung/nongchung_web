@@ -1,6 +1,6 @@
 <template>
     <div>
-        main입니다.
+        찜한목롭입니다.
     </div>
 </template>
 

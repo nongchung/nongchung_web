@@ -1,6 +1,6 @@
 <template>
     <div>
-        main입니다.
+        내 농활히스토리입니다.
     </div>
 </template>
 

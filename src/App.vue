@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+     <ul>
+        <router-link to="/" tag="li" exact activeClass="select">Home</router-link>
+        <router-link to="/register" tag="li" activeClass="select" v-if="!isAuthenticated">Register</router-link>
+        <router-link to="/mypage" tag="li" activeClass="select">mypage</router-link>
+      </ul>
     <router-view/>
   </div>
 </template>
@@ -11,13 +15,23 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+    }
+    li {
+      flex: 1;
+      background-color: #495057;
+      display: flex;
+      padding: 1rem;
+      justify-content: center;
+      font-weight: bold;
+      color: #fff;
+    }
+    li.select {
+      background-color: #212529;
+    }
 </style>
