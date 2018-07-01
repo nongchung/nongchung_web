@@ -2,7 +2,8 @@
   <div id="app">
      <ul>
         <router-link to="/" tag="li" exact activeClass="select">Home</router-link>
-        <router-link to="/register" tag="li" activeClass="select" v-if="!isAuthenticated">Register</router-link>
+        <router-link to="/register" tag="li" activeClass="select" >Register</router-link>
+        <!-- <router-link to="/register" tag="li" activeClass="select" v-if="!isAuthenticated">Register</router-link> -->
         <router-link to="/mypage" tag="li" activeClass="select">mypage</router-link>
       </ul>
     <router-view/>
