@@ -1,5 +1,5 @@
-export const popularListGetters = {
-  allPopularList (state, getters) {
+export const nonghwalGetters = {
+  getPopularList (state) {
     return state.popularList
   }
 }
