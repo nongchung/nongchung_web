@@ -12,14 +12,14 @@ export const store = new Vuex.Store({
         detail: '20000원',
         // star: 5,
         // like: true,
-        img: '../../assets/logo.png'
+        img: '../assets/logo.png'
       },
       {
         title: '시발 농활',
         detail: '20000원',
         // star: 5,
         // like: true,
-        img: '../../assets/logo.png'
+        img: '../assets/logo.png'
       }
     ]
   },
