@@ -4,7 +4,6 @@
       <v-flex xs12 sm10 md8 lg8 xl3>
         <search-bar></search-bar>
         <advertisement></advertisement>
-        <approaching-list></approaching-list>
         <popular-list></popular-list>
       </v-flex>
     </v-layout>
