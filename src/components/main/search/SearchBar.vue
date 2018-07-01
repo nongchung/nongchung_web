@@ -7,7 +7,13 @@
             single-line
             append-icon="search"
             clearable
+            v-on:focus="searchFilter=true"
           ></v-text-field>
+          <div id="search_filter" v-if="searchFilter">
+            <v-btn color="success">날짜</v-btn>
+            <v-btn color="success">인원</v-btn>
+            <v-btn color="success">위치</v-btn>
+            </div>
         </v-flex>
 </template>
 

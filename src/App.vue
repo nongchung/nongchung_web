@@ -1,12 +1,16 @@
 <template>
-  <div id="app">
-     <ul>
-        <router-link to="/" tag="li" exact activeClass="select">Home</router-link>
-        <router-link to="/register" tag="li" activeClass="select" v-if="!isAuthenticated">Register</router-link>
-        <router-link to="/mypage" tag="li" activeClass="select">mypage</router-link>
-      </ul>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-toolbar app flat>
+      <v-toolbar-title>농활</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <router-link to="/" tag="li" exact activeClass="select">Home</router-link>
+      <router-link to="/register" tag="li" activeClass="select" v-if="!isAuthenticated">Register</router-link>
+      <router-link to="/mypage" tag="li" activeClass="select">mypage</router-link>
+    </v-toolbar>
+    <v-content>
+      <router-view/>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
@@ -23,15 +27,12 @@ export default {
         list-style: none;
     }
     li {
-      flex: 1;
-      background-color: #495057;
+      flex: .5;
       display: flex;
-      padding: 1rem;
       justify-content: center;
       font-weight: bold;
-      color: #fff;
     }
     li.select {
-      background-color: #212529;
+      color: green;
     }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid>
+  <v-container fulid>
     <v-layout row wrap justify-center>
-      <v-flex xs12 sm10 md8 lg8 xl3>
+      <v-flex xs12 sm12 md12 lg12 xl12>
         <search-bar></search-bar>
         <advertisement></advertisement>
         <popular-list></popular-list>
