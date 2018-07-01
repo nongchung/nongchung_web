@@ -4,5 +4,8 @@ export const nonghwalGetters = {
   },
   isAuthenticated (state) {
     return state.token
+  },
+  isDupCheck (state) {
+    return state.isDup
   }
 }
