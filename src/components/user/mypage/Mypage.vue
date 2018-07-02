@@ -2,15 +2,27 @@
     <div id="app">
       <ul>
         <router-link to="/myprofile" tag="li" exact activeClass="select">정보수정하기</router-link>
-        <router-link to="/like" tag="li" activeClass="select" v-if="!isAuthenticated">찜한목록보기</router-link>
+        <router-link to="/like" tag="li" activeClass="select" v-if="isAuthenticated">찜한목록보기</router-link>
         <router-link to="/myhistory" tag="li" activeClass="select">농활 히스토리</router-link>
       </ul>
   </div>
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex'
 
+export default {
+  name: 'Mypage',
+  data () {
+    return {
+
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'isAuthenticated'
+    ])
+  }
 }
 </script>
 

@@ -49,5 +49,8 @@ export const nonghwalActions = {
       commit('loginSuccess', res.data.token)
       router.push('/')
     })
+  },
+  logout ({ commit }) {
+    commit('logoutClear')
   }
 }
