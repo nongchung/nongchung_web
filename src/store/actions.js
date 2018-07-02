@@ -13,7 +13,9 @@ export const nonghwalActions = {
         alert('사용가능한 이메일입니다.')
         commit('dupEmailCheckSuccess', true)
       }
-    }).catch()
+    }).catch((error) => {
+      console.log(error)
+    })
   },
   dupNickname ({ commit }, payload) {
     const nickname = payload.nickname
@@ -26,14 +28,18 @@ export const nonghwalActions = {
         alert('사용가능한 닉네임입니다.')
         commit('dupNicknameCheckSuccess', true)
       }
-    }).catch()
+    }).catch((error) => {
+      console.log(error)
+    })
   },
   register ({ commit }, { email, password, nickname, name, sex, handphone, birth }) {
     axios.post('http://13.125.216.198:3000/api/signup', { email, password, nickname, name, sex, handphone, birth }).then(res => {
       console.log(res.data.message)
       commit('regSuccess')
       router.push('/Login')
-    }).catch()
+    }).catch((error) => {
+      console.log(error)
+    })
   },
   login ({ commit }, { email, password }) {
     axios.post('http://13.125.216.198:3000/api/signin', { email, password }).then((res) => {
@@ -56,6 +62,8 @@ export const nonghwalActions = {
   getLike ({ commit }) {
     axios.get('http://13.125.216.198:3000/api/bookmark').then(res => {
       console.log(res.data)
+    }).catch((error) => {
+      console.log(error)
     })
   }
 }
