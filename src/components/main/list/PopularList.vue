@@ -1,9 +1,13 @@
 <template>
   <v-container fluid grid-list-xl>
-    <div>인기농활목록</div>
+    <v-layout row justify-space-between>
+      <span class="subheading">인기농활목록</span>
+      <v-spacer></v-spacer>
+      <span class="subheading">모두보기> </span>
+      </v-layout>
     <v-layout row wrap>
-      <v-flex v-for="item in popularList" :key="item.title" lg3 md3 sm4 xs4>
-        <v-card id="popular_list_item" height="35vh">
+      <v-flex v-for="item in popularList" :key="item.nhIndex" lg3 md3 sm4 xs4>
+        <v-card height="32vh">
           <v-card-media :src="item.img" height="150px">
             <!-- <v-container fill-height fluid pa-2>
           <v-layout fill-height>
@@ -15,10 +19,11 @@
         </v-layout>
         </v-container> -->
           </v-card-media>
-          <v-card-title primary-title>
+          <v-card-title primary-title class="pb-0">
             <div>
-              <h3 class="headline mb-0">{{item.title}}</h3>
-              <div>{{item.detail}}</div>
+              <h3 class="title mb-0">{{item.name}}</h3>
+              <span class="body-1">{{item.price}}원, </span>
+              <span class="body-1">{{item.period}}</span>
             </div>
           </v-card-title>
           <v-card-actions>
@@ -45,17 +50,9 @@ export default {
       isAuthenticated: 'isAuthenticated'
     })
   },
-  methods: {},
-  created () {
-    console.log('hello')
-    console.log(this.popularList)
-  }
+  methods: {}
 }
 </script>
 
 <style scoped>
-#popular_list_item{
-  overflow-y: auto;
-  max-height: 30vh;
-}
 </style>

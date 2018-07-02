@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/components/main/Main'
+// import NonghwalInfo from '@/components/main/nonghwal/NonghwalInfo'
 import Register from '@/components/user/auth/Register'
 import Login from '@/components/user/auth/Login'
 import Mypage from '@/components/user/mypage/Mypage'
 import Like from '@/components/user/mypage/Like'
 import Myprofile from '@/components/user/mypage/Myprofile'
 import Myhistory from '@/components/user/mypage/Myhistory'
+import Search from '@/components/main/search/SearchResult'
 
 Vue.use(Router)
 
@@ -46,6 +48,11 @@ export default new Router({
       path: '/Myprofile',
       name: 'Myprofile',
       component: Myprofile
+    },
+    {
+      path: '/Search',
+      name: 'Search',
+      component: Search
     }
   ]
 })
