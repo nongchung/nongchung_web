@@ -3,9 +3,7 @@ import router from '../router/index'
 
 export const nonghwalActions = {
   dupEmail ({ commit }, payload) {
-    commit('dupCheckStart')
     const email = payload.email
-    console.log('hello' + payload.email)
     axios.post('http://13.125.216.198:3000/api/dup-email', { email }).then(res => {
       // commit('dupCheckSuccess', res)
       if (res.data.message === 'duplication') {
@@ -18,10 +16,8 @@ export const nonghwalActions = {
     }).catch()
   },
   dupNickname ({ commit }, payload) {
-    commit('dupCheckStart')
     const nickname = payload.nickname
     axios.post('http://13.125.216.198:3000/api/dup-nickname', { nickname }).then(res => {
-      // commit('dupCheckSuccess', res)
       console.log(res.data.message)
       if (res.data.message === 'duplication') {
         alert('중복된 닉네임입니다. 새로운 닉네임을 입력하세요')
@@ -33,7 +29,6 @@ export const nonghwalActions = {
     }).catch()
   },
   register ({ commit }, { email, password, nickname, name, sex, handphone, birth }) {
-    commit('registerStart')
     axios.post('http://13.125.216.198:3000/api/signup', { email, password, nickname, name, sex, handphone, birth }).then(res => {
       console.log(res.data.message)
       commit('regSuccess')
@@ -41,7 +36,6 @@ export const nonghwalActions = {
     }).catch()
   },
   login ({ commit }, { email, password }) {
-    commit('loginStart')
     axios.post('http://13.125.216.198:3000/api/signin', { email, password }).then(res => {
       console.log(res.data.message)
       console.log(res.data.token)
@@ -62,7 +56,6 @@ export const nonghwalActions = {
     router.push('/')
   },
   getLike ({ commit }) {
-    commit('getLike Start')
     axios.get('http://13.125.216.198:3000/api/bookmark').then(res => {
       console.log(res.data)
     })
