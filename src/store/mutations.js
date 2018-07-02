@@ -28,6 +28,7 @@ export const nonghwalMutations = {
   loginSuccess (state, payload) {
     console.log('loginSuccess!')
     localStorage.accessToken = payload
+    state.accessToken = state.accessToken || localStorage.accessToken
   },
   logoutClear (state) {
     state.accessToken = null

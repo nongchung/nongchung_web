@@ -6,7 +6,6 @@
       <router-link to="/" tag="li" exact activeClass="select">Home</router-link>
       <!-- <router-link to="/register" tag="li" activeClass="select" v-if="!isAuthenticated">Register</router-link> -->
       <router-link to="/login" tag="li" activeClass="select" v-if="!isAuthenticated">Login</router-link>
-      <!-- <router-link to="/logout" tag="li" activeClass="select" v-if="isAuthenticated">Logout</router-link> -->
       <router-link to="/mypage" tag="li" activeClass="select">mypage</router-link>
       <button @click="logout" v-if="isAuthenticated">로그아웃</button>
     </v-toolbar>

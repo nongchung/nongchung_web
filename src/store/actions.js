@@ -45,12 +45,26 @@ export const nonghwalActions = {
     axios.post('http://13.125.216.198:3000/api/signin', { email, password }).then(res => {
       console.log(res.data.message)
       console.log(res.data.token)
-
-      commit('loginSuccess', res.data.token)
-      router.push('/')
-    })
+      if (res.data.token) {
+        commit('loginSuccess', res.data.token)
+        router.push('/')
+      } else if (res.data.message === 'Null Value') {
+        alert('아이디와 패스워드를 모두 입력하세요')
+      } else if (res.data.message === 'Fail To Sign In') {
+        alert('아이디 또는 패스워드가 틀렸습니다. 다시 입력해주세요')
+      } else {
+        alert('로그인에 실패하였습니다. 다시 시도해주세요')
+      }
+    }).catch()
   },
   logout ({ commit }) {
     commit('logoutClear')
+    router.push('/')
+  },
+  getLike ({ commit }) {
+    commit('getLike Start')
+    axios.get('http://13.125.216.198:3000/api/bookmark').then(res => {
+      console.log(res.data)
+    })
   }
 }
