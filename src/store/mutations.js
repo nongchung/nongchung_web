@@ -21,5 +21,12 @@ export const nonghwalMutations = {
   },
   regSuccess (state) {
     console.log('registerSuccess!')
+  },
+  loginStart () {
+    console.log('loginStart!')
+  },
+  loginSuccess (state, payload) {
+    console.log('loginSuccess!')
+    localStorage.accessToken = payload
   }
 }

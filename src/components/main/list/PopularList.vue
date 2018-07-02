@@ -47,7 +47,6 @@ export default {
   },
   methods: {},
   created () {
-    console.log('hello')
     console.log(this.popularList)
   }
 }

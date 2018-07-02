@@ -3,7 +3,8 @@ export const nonghwalGetters = {
     return state.popularList
   },
   isAuthenticated (state) {
-    return state.token
+    state.accessToken = state.accessToken || localStorage.accessToken
+    return state.accessToken
   },
   isDupCheck (state) {
     return state.isDup

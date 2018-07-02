@@ -4,7 +4,8 @@
       <v-toolbar-title>농활</v-toolbar-title>
       <v-spacer></v-spacer>
       <router-link to="/" tag="li" exact activeClass="select">Home</router-link>
-      <router-link to="/register" tag="li" activeClass="select" v-if="!isAuthenticated">Register</router-link>
+      <!-- <router-link to="/register" tag="li" activeClass="select" v-if="!isAuthenticated">Register</router-link> -->
+      <router-link to="/login" tag="li" activeClass="select" >Login</router-link>
       <router-link to="/mypage" tag="li" activeClass="select">mypage</router-link>
     </v-toolbar>
     <v-content>
