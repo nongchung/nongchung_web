@@ -65,5 +65,27 @@ export const nonghwalActions = {
     }).catch((error) => {
       console.log(error)
     })
+  },
+  // 검색 서버에서 바꿨다고함, 수정필요
+  search ({ commit }, payload) {
+    console.log(payload)
+    commit('searchStart')
+    axios.get('http://13.125.216.198:3000/api/home/search' + '?start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent)
+      .then(res => {
+        console.log(res.data.message)
+        commit('searchSuccess', res.data.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
+  },
+  getMain ({ commit }) {
+    commit('mainStart')
+    axios.get('http://13.125.216.198:3000/api/home')
+      .then(res => {
+        console.log(res.data.message)
+        commit('mainSuccess', res.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
   }
 }
