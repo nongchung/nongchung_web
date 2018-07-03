@@ -5,6 +5,7 @@
         <router-link to="/like" tag="li" activeClass="select" v-if="isAuthenticated">찜한목록보기</router-link>
         <router-link to="/myhistory" tag="li" activeClass="select">농활 히스토리</router-link>
       </ul>
+
   </div>
 </template>
 
@@ -19,9 +20,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'isAuthenticated'
-    ])
+    ...mapGetters({
+      userInfo: 'getUserInfo',
+      isAuthenticated: 'isAuthenticated'
+    })
+  },
+  created () {
+    this.$store.dispatch('getMyInfo')
   }
 }
 </script>

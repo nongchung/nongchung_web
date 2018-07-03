@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
   state: {
     // user state
     isDup: [null, null],
+    userInfo: [null, null, null, null],
     // main state
     ads: [],
     popularList: [],
