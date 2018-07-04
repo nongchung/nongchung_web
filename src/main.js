@@ -7,7 +7,9 @@ import Vuex from 'vuex'
 import { store } from './store/store'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import VueAgile from 'vue-agile'
 
+Vue.use(VueAgile)
 Vue.use(Vuetify)
 Vue.use(Vuex)
 Vue.config.productionTip = false

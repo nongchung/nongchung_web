@@ -2,10 +2,10 @@
   <v-layout class="popularlist_layout" row justify-center>
     <v-flex xs12 sm11 md10 lg8 xl8>
       <div class="subheading">인기농활목록</div>
-      <v-container fluid grid-list-xl>
-        <v-layout row wrap class="popularlist_layout_content">
-          <v-flex v-for="item in popularList" :key="item.idx" xs6 sm4 md4 lg4 xl3>
-            <v-card flat height="30vh">
+      <v-container fluid>
+        <v-layout row wrap>
+          <v-flex v-for="item in popularList" :key="item.idx" xs6 sm4 md4 lg4 xl3 id="card_gutter">
+            <v-card flat height="40vh">
               <v-card-media src="http://www.ijejutoday.com/news/photo/201707/203893_161637_1345.jpg" height="50%">
                 <v-spacer></v-spacer>
                 <span class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}</span>
@@ -74,14 +74,14 @@ export default {
 .container{
   padding: 0;
 }
-.popularlist_layout_content{
-  padding-top: 10px;
-}
 .card_title{
   font-size: 1.3rem;
 }
 .card_tip{
   height: 1.3rem;
   color: white;
+}
+#card_gutter{
+  padding: 1.5vw !important;
 }
 </style>

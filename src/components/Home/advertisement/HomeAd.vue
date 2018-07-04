@@ -1,7 +1,7 @@
 <template>
 <!-- <v-container fluid> -->
   <v-layout row justify-center class="ads_layout">
-    <v-flex xs12 sm11 md10 lg8 xl8>
+    <v-flex xs12 sm12 md12 lg12 xl12>
   <v-carousel flat>
     <v-carousel-item v-for="(item,i) in ads" :key="i" src="http://img.kbs.co.kr/cms/2tv/enter/happysunday/1n2days/gallery/__icsFiles/artimage/2016/10/20/hpday091/2_14.jpg">
       <div class="ads_text">

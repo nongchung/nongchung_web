@@ -4,36 +4,28 @@
   <div class="subheading">인기 농장</div>
     <v-container fluid grid-list-xl>
     <v-layout row wrap class="popularfarm_layout_content">
-      <v-flex v-for="item in popularFarm" :key="item.name" xs6 sm4 md4 lg4 xl3>
-        <v-card>
-          <!-- <v-card-media :src="item.img" height="150px">
-            <v-container fill-height fluid pa-2>
-          <v-layout fill-height>
-            <v-flex lg4 align-end flexbox>
-        <v-card-actions>
-        <v-btn icon><v-icon>favorite_border</v-icon></v-btn>
-        </v-card-actions>
-        </v-flex>
-        </v-layout>
-        </v-container>
-          </v-card-media> -->
-          <v-card-title primary-title class="pb-0">
-            <div>
-              <h3 class="mb-0">{{item.name}}</h3>
+      <v-flex v-for="item in popularFarm" :key="item.name" xs6 sm4 md4 lg4 xl3 class="card_gutter">
+        <v-card flat ripple>
+          <v-card-media src="http://media.graytvinc.com/images/810*569/Potato+Farm1.jpg" height="150px">
+        <v-card-title>
+          <h3 style="color:white;">{{item.name}}</h3>
               <span>{{item.address}} </span>
-            </div>
-          </v-card-title>
-          <v-card-actions>
-            <v-btn icon v-if="!isAuthenticated">
-              <v-icon>favorite_border</v-icon>
-            </v-btn>
-            <v-btn flat color="orange">상세보기</v-btn>
-          </v-card-actions>
+        </v-card-title>
+          </v-card-media>
         </v-card>
       </v-flex>
     </v-layout>
   </v-container>
   </v-flex>
+  <!-- 슬라이더 추가 -->
+  <!-- <agile>
+            <div class="slide slide__1"><h3>slide 1</h3></div>
+    <div class="slide slide--2"><h3>slide 2</h3></div>
+    <div class="slide slide--3"><h3>slide 3</h3></div>
+    <div class="slide slide--4"><h3>slide 4</h3></div>
+    <div class="slide slide--5"><h3>slide 5</h3></div>
+    <div class="slide slide--6"><h3>slide 6</h3></div>
+        </agile> -->
   </v-layout>
 </template>
 
@@ -62,5 +54,8 @@ export default {
 }
 .popularfarm_layout_content{
   padding-top: 10px;
+}
+.card_gutter{
+  padding: 1vw !important;
 }
 </style>

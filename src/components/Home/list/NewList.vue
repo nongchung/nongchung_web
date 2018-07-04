@@ -2,10 +2,10 @@
   <v-layout class="newlist_layout" row justify-center>
     <v-flex xs12 sm11 md10 lg8 xl8>
   <div class="subheading">인기농활목록</div>
-  <v-container fluid grid-list-xl>
-    <v-layout row wrap class="newlist_layout_content">
-      <v-flex v-for="item in newList" :key="item.img" xs6 sm4 md4 lg4 xl3>
-        <v-card flat height="30vh">
+  <v-container fluid>
+    <v-layout row wrap >
+      <v-flex v-for="item in newList" :key="item.img" xs6 sm4 md4 lg4 xl3 class="card_gutter">
+        <v-card flat height="40vh">
           <v-card-media src="http://www.ijejutoday.com/news/photo/201707/203893_161637_1345.jpg" height="50%">
           <v-spacer></v-spacer>
           <span class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}</span>
@@ -68,9 +68,6 @@ export default {
 .container{
   padding: 0;
 }
-.newlist_layout_content{
-  padding-top: 10px;
-}
 .card_title{
   font-size: 1.3rem;
 }
@@ -78,4 +75,10 @@ export default {
   height: 1.3rem;
   color: white;
 }
+.card_gutter{
+  padding: 1vw !important;
+}
+/* .container.grid-list-xl .layout .flex{
+  padding: 20px !important;
+} */
 </style>

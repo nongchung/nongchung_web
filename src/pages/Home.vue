@@ -3,8 +3,7 @@
     <v-layout column>
         <!-- <search-bar></search-bar> -->
         <home-ad></home-ad>
-        <popular-list></popular-list>
-        <new-list></new-list>
+        <home-tab-list></home-tab-list>
         <popular-farm></popular-farm>
     </v-layout>
     <!-- </v-container> -->
@@ -16,13 +15,15 @@ import HomeAd from '../components/Home/advertisement/HomeAd'
 import PopularList from '../components/Home/list/PopularList'
 import NewList from '../components/Home/list/NewList'
 import PopularFarm from '../components/Home/list/PopularFarm'
+import HomeTabList from '../components/Home/list/HomeTabList'
 export default {
   components: {
     SearchBar,
     HomeAd,
     PopularList,
     NewList,
-    PopularFarm
+    PopularFarm,
+    HomeTabList
   },
   created () {
     this.$store.dispatch('getMain')
