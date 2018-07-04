@@ -1,24 +1,32 @@
 <template>
   <v-app>
     <!-- navigation -->
-    <v-toolbar app flat color="white">
+    <v-toolbar app flat fixed color="white">
       <router-link to="/" tag="a">
         <img src="./assets/logo_ex.png" height="30px" style="margin-top: 10px;">
       </router-link>
       <v-toolbar-title id="toolbar_title">농활청춘</v-toolbar-title>
-      <v-toolbar-items>
-        <span class="toolbar_text">
-          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="./" color="grey lighten-1" active-class="black">
-            홈
+
+        <!-- <div class="toolbar_text"> -->
+          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#1" color="grey lighten-1" active-class="black">
+            농활청춘소개
           </v-btn>
-          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#" color="grey lighten-1" active-class="black">
+          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#2" color="grey lighten-1" active-class="black">
+            포인트샵
+          </v-btn>
+          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#3" color="grey lighten-1" active-class="black">
             이용안내
           </v-btn>
-        </span>
-      </v-toolbar-items>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <span class="toolbar_text">
+
+          <v-text-field
+            label="Append"
+            append-icon="search"
+          ></v-text-field>
+          <!-- <v-btn top :ripple="false" flat class="toolbar_list" exact router to="/login" color="grey lighten-1" active-class="black"
+          v-if="!isAuthenticated">
+            <v-icon>search</v-icon>
+          </v-btn> -->
           <v-btn top :ripple="false" flat class="toolbar_list" exact router to="/login" color="grey lighten-1" active-class="black"
           v-if="!isAuthenticated">
             로그인
@@ -35,8 +43,8 @@
           v-if="isAuthenticated">
             로그아웃
           </v-btn>
-        </span>
-      </v-toolbar-items>
+        <!-- </div> -->
+
     </v-toolbar>
     <!-- content -->
     <v-content>
@@ -89,6 +97,7 @@ export default {
     }
     .toolbar_text{
       margin-top: 1rem;
+      font-weight:800;
     }
     /* .application.theme--light{
       background: #fff !important;

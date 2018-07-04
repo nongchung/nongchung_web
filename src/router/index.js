@@ -1,16 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '@/components/pages/Home'
-import NonghwalDetail from '@/components/pages/NonghwalDetail'
-import Search from '@/components/pages/SearchResult'
+import Home from '@/pages/Home'
+import NonghwalDetail from '@/pages/NonghwalDetail'
+import Search from '@/pages/SearchResult'
 
-import Register from '@/components/pages/Register'
-import Login from '@/components/pages/Login'
-import Mypage from '@/components/pages/Mypage/Mypage'
-import Like from '@@/components/pages/Mypage/Like'
-import Myprofile from '@/components/pages/Mypage/Myprofile'
-import Myhistory from '@/components/pages/Mypage/Myhistory'
+import Register from '@/pages/Register'
+import Login from '@/pages/Login'
+import Mypage from '@/pages/Mypage/Mypage'
+
+// 지원아 여기 세 줄이 계속 오류떠서 보니까
+// 니가 pages에 만들어둔 Mypage폴더에 Like, Myprofile, Myhistory가 없어서 그렇다고 해서
+// 일단 내가 저 세개 컴포넌트 임의로 만들었거던 , 너가 보고 수정해줘!
+import Like from '@/pages/Mypage/Like'
+import Myprofile from '@/pages/Mypage/Myprofile'
+import Myhistory from '@/pages/Mypage/Myhistory'
 
 Vue.use(Router)
 

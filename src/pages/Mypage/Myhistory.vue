@@ -1,5 +1,5 @@
 <template>
-  <div>농활청춘이란....</div>
+  <div></div>
 </template>
 
 <script>
