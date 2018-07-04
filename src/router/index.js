@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Main from '@/components/main/Main'
-import NonghwalDetail from '@/components/main/nonghwal/NonghwalDetail'
+import Home from '@/components/pages/Home'
+import NonghwalDetail from '@/components/pages/NonghwalDetail'
 import Register from '@/components/user/auth/Register'
 import Login from '@/components/user/auth/Login'
 import Mypage from '@/components/user/mypage/Mypage'
 import Like from '@/components/user/mypage/Like'
 import Myprofile from '@/components/user/mypage/Myprofile'
 import Myhistory from '@/components/user/mypage/Myhistory'
-import Search from '@/components/main/search/SearchResult'
+import Search from '@/components/pages/SearchResult'
 
 Vue.use(Router)
 
@@ -16,8 +16,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Main',
-      component: Main
+      name: 'Home',
+      component: Home
     },
     {
       path: '/Register',

@@ -1,5 +1,5 @@
 <template>
-  <div>농활청춘에 대해서.... 히릿!</div>
+
 </template>
 
 <script>

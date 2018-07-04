@@ -2,7 +2,7 @@
 <!-- <v-container fluid> -->
     <v-layout column>
         <!-- <search-bar></search-bar> -->
-        <main-ad></main-ad>
+        <home-ad></home-ad>
         <popular-list></popular-list>
         <new-list></new-list>
         <popular-farm></popular-farm>
@@ -11,15 +11,15 @@
 </template>
 
 <script>
-import SearchBar from './search/SearchBar'
-import MainAd from './advertisement/MainAd'
-import PopularList from './list/PopularList'
-import NewList from './list/NewList'
-import PopularFarm from './list/PopularFarm'
+import SearchBar from '../components/Home/search/SearchBar'
+import HomeAd from '../components/Home/advertisement/HomeAd'
+import PopularList from '../components/Home/list/PopularList'
+import NewList from '../components/Home/list/NewList'
+import PopularFarm from '../components/Home/list/PopularFarm'
 export default {
   components: {
     SearchBar,
-    MainAd,
+    HomeAd,
     PopularList,
     NewList,
     PopularFarm
