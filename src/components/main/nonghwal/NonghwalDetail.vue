@@ -38,7 +38,7 @@ export default {
       this.$store.dispatch('nonghwalLocation', idx)
     },
     bookmarkNh: function (idx) {
-      this.$store.dispatch('nonghwalBookmark')
+      this.$store.dispatch('nonghwalBookmark', {idx})
     }
   }
 }
