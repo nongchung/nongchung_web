@@ -1,10 +1,10 @@
 <template>
-  <v-container fluid grid-list-{xs through xl}>
-    <v-layout row justify-space-between>
+  <v-container fluid grid-list-xl>
+    <v-layout>
       <span class="subheading">검색결과</span>
     </v-layout>
     <v-layout>
-      <v-flex xs12 sm6 md4 lg3 offset-sm3 v-for="item in searchResult" :key="item.img">
+      <v-flex xs12 sm6 md4 lg3 offset-sm3 v-for="item in searchResult" :key="item.idx">
         <v-card>
           <v-card-media class="black--text" height="200px" :src="item.img">
             <v-container fill-height fluid>

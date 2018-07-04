@@ -1,15 +1,13 @@
 <template>
-  <v-container fulid>
-    <v-layout row wrap justify-center>
-      <v-flex xs12 sm12 md12 lg12 xl12>
-        <search-bar></search-bar>
+<!-- <v-container fluid> -->
+    <v-layout column>
+        <!-- <search-bar></search-bar> -->
         <main-ad></main-ad>
         <popular-list></popular-list>
         <new-list></new-list>
         <popular-farm></popular-farm>
-      </v-flex>
     </v-layout>
-  </v-container>
+    <!-- </v-container> -->
 </template>
 
 <script>

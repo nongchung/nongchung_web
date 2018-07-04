@@ -1,12 +1,10 @@
 <template>
+<v-layout class="popularfarm_layout" row justify-center>
+  <v-flex xs12 sm11 md10 lg8 xl8>
+  <div class="subheading">인기 농장</div>
     <v-container fluid grid-list-xl>
-    <v-layout row justify-space-between>
-      <span class="subheading">인기농장</span>
-      <v-spacer></v-spacer>
-      <span class="subheading">모두보기> </span>
-      </v-layout>
-    <v-layout row wrap>
-      <v-flex v-for="item in popularFarm" :key="item.name" lg3 md3 sm4 xs4>
+    <v-layout row wrap class="popularfarm_layout_content">
+      <v-flex v-for="item in popularFarm" :key="item.name" xs6 sm4 md4 lg4 xl3>
         <v-card>
           <!-- <v-card-media :src="item.img" height="150px">
             <v-container fill-height fluid pa-2>
@@ -21,8 +19,8 @@
           </v-card-media> -->
           <v-card-title primary-title class="pb-0">
             <div>
-              <h3 class="title mb-0">{{item.name}}</h3>
-              <span class="body-1">{{item.address}} </span>
+              <h3 class="mb-0">{{item.name}}</h3>
+              <span>{{item.address}} </span>
             </div>
           </v-card-title>
           <v-card-actions>
@@ -35,6 +33,8 @@
       </v-flex>
     </v-layout>
   </v-container>
+  </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -53,6 +53,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.popularfarm_layout{
+  padding: 15px 0;
+}
+.container{
+  padding: 0;
+}
+.popularfarm_layout_content{
+  padding-top: 10px;
+}
 </style>

@@ -1,16 +1,26 @@
 <template>
-  <v-carousel hide-delimiters style="height:30vh">
-    <v-carousel-item v-for="(item,i) in ads" :key="i" src="http://farm.hansalim.or.kr/wp/wp-content/uploads/2017/06/%ED%8F%AC%EC%8A%A4%ED%84%B0-%EC%82%AC%EC%A7%84-1024x768.jpg">
-      <span class="white--text headline">{{item.comment}}</span>{
+<!-- <v-container fluid> -->
+  <v-layout row justify-center class="ads_layout">
+    <v-flex xs12 sm11 md10 lg8 xl8>
+  <v-carousel flat>
+    <v-carousel-item v-for="(item,i) in ads" :key="i" src="http://img.kbs.co.kr/cms/2tv/enter/happysunday/1n2days/gallery/__icsFiles/artimage/2016/10/20/hpday091/2_14.jpg">
+      <div class="ads_text">
+      <div class="white--text ads_theme">농활 테마기획전</div>
+      <div class="white--text ads_title">"{{item.comment}}"</div>
+      </div>
     </v-carousel-item>
   </v-carousel>
+  </v-flex>
+  </v-layout>
+<!-- </v-container> -->
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 export default {
   data () {
-    return {}
+    return {
+    }
   },
   computed: {
     ...mapGetters({
@@ -20,5 +30,25 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.ads_layout{
+  padding: 15px 0;
+  background-color:white;
+}
+.v-carousel{
+  height: 30vh;
+}
+.ads_text{
+  margin: 5vh 10vh;
+}
+.ads_theme{
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: underline;
+  font-family: sans-serif;
+  }
+.ads_title{
+  font-size: 2rem;
+  font-family: sans-serif;
+}
 </style>

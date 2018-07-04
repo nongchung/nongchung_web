@@ -1,48 +1,45 @@
 <template>
+  <v-layout class="newlist_layout" row justify-center>
+    <v-flex xs12 sm11 md10 lg8 xl8>
+  <div class="subheading">인기농활목록</div>
   <v-container fluid grid-list-xl>
-    <v-layout row justify-space-between>
-      <span class="subheading">새로운농활목록</span>
-      <v-spacer></v-spacer>
-      <span class="subheading">모두보기> </span>
-    </v-layout>
-    <v-layout row wrap>
-      <v-flex v-for="item in newList" :key="item.nhIndex" lg3 md3 sm4 xs4>
-        <v-card id="popular_list_item" height="32vh">
-          <v-card-media :src="item.img" height="150px">
-            <!-- <v-container fill-height fluid pa-2>
-          <v-layout fill-height>
-            <v-flex lg4 align-end flexbox>
-        <v-card-actions>
-        <v-btn icon><v-icon>favorite_border</v-icon></v-btn>
-        </v-card-actions>
-        </v-flex>
-        </v-layout>
-        </v-container> -->
+    <v-layout row wrap class="newlist_layout_content">
+      <v-flex v-for="item in newList" :key="item.img" xs6 sm4 md4 lg4 xl3>
+        <v-card flat height="30vh">
+          <v-card-media src="http://www.ijejutoday.com/news/photo/201707/203893_161637_1345.jpg" height="50%">
+          <v-spacer></v-spacer>
+          <span class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}</span>
           </v-card-media>
           <v-card-title primary-title class="pb-0">
-            <div>
-              <h3 class="title mb-0">{{item.name}}</h3>
-              <span class="body-1">{{item.price}}원, </span>
-              <span class="body-1">{{item.period}}</span>
+            <div style="width:100%">
+            <div class="card_title">{{item.name}}</div>
+            <div style="overflow:hidden">
+            <span class="card_detail" style="float:left">{{item.addr}}</span>
+            <span class="card_detail" style="float:right">{{item.price}}원</span>
+            </div>
             </div>
           </v-card-title>
           <v-card-actions>
             <v-btn icon v-if="!isAuthenticated">
               <v-icon>favorite_border</v-icon>
             </v-btn>
-            <v-btn flat color="orange">상세보기</v-btn>
+            <v-btn flat>상세보기</v-btn>
           </v-card-actions>
         </v-card>
+        </v-flex>
+        </v-layout>
+        </v-container>
       </v-flex>
-    </v-layout>
-  </v-container>
+  </v-layout>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 export default {
   data () {
-    return {}
+    return {
+      backgroundColor: 'black'
+    }
   },
   computed: {
     ...mapGetters({
@@ -50,9 +47,35 @@ export default {
       isAuthenticated: 'isAuthenticated'
     })
   },
-  methods: {}
+  methods: {
+    getColorPeriod (item) {
+      if (item.period === '1박2일') {
+        return 'lightgreen'
+      } else if (item.period === '2박3일') {
+        return 'palevioletred'
+      } else if (item.period === '당일치기') {
+        return 'lightblue'
+      } else { return 'yellow' }
+    }
+  }
 }
 </script>
 
 <style scoped>
+.newlist_layout{
+  padding: 15px 0;
+}
+.container{
+  padding: 0;
+}
+.newlist_layout_content{
+  padding-top: 10px;
+}
+.card_title{
+  font-size: 1.3rem;
+}
+.card_tip{
+  height: 1.3rem;
+  color: white;
+}
 </style>

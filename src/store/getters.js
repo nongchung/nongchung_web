@@ -4,6 +4,7 @@ export const nonghwalGetters = {
     return state.ads
   },
   getPopularList (state) {
+    console.log('ff ')
     return state.popularList
   },
   getNewList (state) {
@@ -21,5 +22,12 @@ export const nonghwalGetters = {
   },
   getSearchResult (state) {
     return state.searchResult
+  },
+  getNonghwalDetail (state) {
+    console.log('getget')
+    return state.nhDetail
+  },
+  getNonghwalLocation (state) {
+    return state.nhLocation
   }
 }

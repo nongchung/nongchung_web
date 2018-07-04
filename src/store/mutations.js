@@ -43,5 +43,23 @@ export const nonghwalMutations = {
     state.newList = payload.newNh
     state.popularFarm = payload.populFarm
     console.log('mainSuccess')
+  },
+  nonghwalDetailStart (state) {
+    console.log('nonghwalDetailStart!')
+  },
+  nonghwalDetailSuccess (state, payload) {
+    state.nhDetail.nhInfo = payload.nhInfo
+    state.nhDetail.farmerInfo = payload.farmerInfo
+    state.nhDetail.schedule = payload.schedule
+    console.log('nonghwalDetailSuccess')
+  },
+  nonghwalLocationStart (state) {
+    console.log('nonghwalLocationStart!')
+  },
+  nonghwalLocationSuccess (state, payload) {
+    console.log(payload)
+    state.nhLocation.location = payload.location
+    state.nhLocation.geoLocation = payload.geoLocation
+    console.log('nonghwalLocationSuccess')
   }
 }

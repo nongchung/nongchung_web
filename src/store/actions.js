@@ -66,11 +66,9 @@ export const nonghwalActions = {
       console.log(error)
     })
   },
-  // 검색 서버에서 바꿨다고함, 수정필요
   search ({ commit }, payload) {
-    console.log(payload)
     commit('searchStart')
-    axios.get('http://13.125.216.198:3000/api/home/search' + '?start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent)
+    axios.get('http://13.125.216.198:3000/api/home/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent)
       .then(res => {
         console.log(res.data.message)
         commit('searchSuccess', res.data.data)
@@ -84,6 +82,27 @@ export const nonghwalActions = {
       .then(res => {
         console.log(res.data.message)
         commit('mainSuccess', res.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
+  },
+  nonghwalDetail ({commit}, payload) {
+    commit('nonghwalDetailStart')
+    axios.get('http://13.125.216.198:3000/api/home/detail/nh?idx=' + payload)
+      .then(res => {
+        console.log(res.data.message)
+        commit('nonghwalDetailSuccess', res.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
+  },
+  nonghwalLocation ({commit}, payload) {
+    commit('nonghwalLocationStart')
+    axios.get('http://13.125.216.198:3000/api/home/detail/location?idx=' + payload)
+      .then(res => {
+        console.log(res.data.message)
+        console.log(res.data)
+        commit('nonghwalLocationSuccess', res.data)
       }).catch(err => {
         console.log('ERROR! :' + err)
       })

@@ -17,7 +17,9 @@ export const store = new Vuex.Store({
     popularFarm: [],
     accessToken: null,
     // search state
-    searchResult: []
+    searchResult: [],
+    nhDetail: {nhInfo: null, farmerInfo: null, scheduleInfo: null},
+    nhLocation: {location: null, geoLocation: null}
   },
   getters: Object.assign({}, nonghwalGetters),
   actions: Object.assign({}, nonghwalActions),

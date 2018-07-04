@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '@/components/main/Main'
-// import NonghwalInfo from '@/components/main/nonghwal/NonghwalInfo'
+import NonghwalDetail from '@/components/main/nonghwal/NonghwalDetail'
 import Register from '@/components/user/auth/Register'
 import Login from '@/components/user/auth/Login'
 import Mypage from '@/components/user/mypage/Mypage'
@@ -53,6 +53,12 @@ export default new Router({
       path: '/Search',
       name: 'Search',
       component: Search
+    },
+    {
+      path: '/Detail/:idx',
+      name: 'Detail',
+      component: NonghwalDetail,
+      prop: true
     }
   ]
 })
