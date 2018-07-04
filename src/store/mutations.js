@@ -20,11 +20,20 @@ export const nonghwalMutations = {
   loginSuccess (state, payload) {
     console.log('loginSuccess!')
     localStorage.accessToken = payload
-    state.accessToken = state.accessToken || localStorage.accessToken
+    state.accessToken = localStorage.accessToken
   },
   logoutClear (state) {
     state.accessToken = null
     delete localStorage.accessToken
+  },
+  getMyInfoSuccess (state, payload) {
+    console.log(payload.mail)
+    state.userInfo[0] = { 'mail': payload.mail }
+    state.userInfo[1] = { 'name': payload.name }
+    state.userInfo[2] = { 'point': payload.point }
+    state.userInfo[3] = { 'img': payload.img }
+
+    console.log(state.userInfo)
   },
   searchStart (state) {
     console.log('searchStart!')

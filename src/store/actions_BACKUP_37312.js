@@ -66,8 +66,6 @@ export const nonghwalActions = {
       console.log(error)
     })
   },
-<<<<<<< HEAD
-=======
   getMyInfo ({ state, commit }) {
     axios.get('http://13.125.216.198:3000/api/mypage', {
       headers: {
@@ -80,7 +78,6 @@ export const nonghwalActions = {
     })
   },
   // 검색 서버에서 바꿨다고함, 수정필요
->>>>>>> af6d31dcba4bfde2d952f389ed77bba61ffb2895
   search ({ commit }, payload) {
     commit('searchStart')
     axios.get('http://13.125.216.198:3000/api/home/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent)

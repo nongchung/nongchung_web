@@ -61,26 +61,11 @@ export const nonghwalActions = {
   },
   getLike ({ commit }) {
     axios.get('http://13.125.216.198:3000/api/bookmark').then(res => {
-      console.log(res)
+      console.log(res.data)
     }).catch((error) => {
       console.log(error)
     })
   },
-<<<<<<< HEAD
-=======
-  getMyInfo ({ state, commit }) {
-    axios.get('http://13.125.216.198:3000/api/mypage', {
-      headers: {
-        token: state.accessToken
-      }
-    }).then(res => {
-      commit('getMyInfoSuccess', res.data.data[0])
-    }).catch(err => {
-      console.log(err.message)
-    })
-  },
-  // 검색 서버에서 바꿨다고함, 수정필요
->>>>>>> af6d31dcba4bfde2d952f389ed77bba61ffb2895
   search ({ commit }, payload) {
     commit('searchStart')
     axios.get('http://13.125.216.198:3000/api/home/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent)
