@@ -36,7 +36,7 @@ export default {
   background-color:white;
 }
 .v-carousel{
-  height: 30vh;
+  height: 40vh;
 }
 .ads_text{
   margin: 5vh 10vh;
