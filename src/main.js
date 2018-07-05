@@ -8,10 +8,12 @@ import { store } from './store/store'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import VueAgile from 'vue-agile'
+import VeeValidate from 'vee-validate'
 
 Vue.use(VueAgile)
 Vue.use(Vuetify)
 Vue.use(Vuex)
+Vue.use(VeeValidate)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -19,6 +21,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  VeeValidate,
   components: { App },
   template: '<App/>'
 })

@@ -77,6 +77,9 @@ export const nonghwalActions = {
       console.log(err.message)
     })
   },
+  exitMain () {
+    router.push('/')
+  },
   // 검색 서버에서 바꿨다고함, 수정필요
   search ({ commit }, payload) {
     commit('searchStart')
@@ -98,7 +101,7 @@ export const nonghwalActions = {
         console.log('ERROR! :' + err)
       })
   },
-  nonghwalDetail ({commit}, payload) {
+  nonghwalDetail ({ commit }, payload) {
     commit('nonghwalDetailStart')
     axios.get('http://13.125.216.198:3000/api/home/detail/nh?idx=' + payload)
       .then(res => {
@@ -108,7 +111,7 @@ export const nonghwalActions = {
         console.log('ERROR! :' + err)
       })
   },
-  nonghwalLocation ({commit}, payload) {
+  nonghwalLocation ({ commit }, payload) {
     commit('nonghwalLocationStart')
     axios.get('http://13.125.216.198:3000/api/home/detail/location?idx=' + payload)
       .then(res => {
