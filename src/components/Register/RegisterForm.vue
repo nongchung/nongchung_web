@@ -35,56 +35,93 @@
       <v-stepper-content step="2">
         <v-card
           class="mb-5"
-          color="grey lighten-1"
+          color="lighten-1"
           height="500px"
         >
-        <form>
-          <v-card>
-            닉네임
-          </v-card>
-    <v-text-field
-      v-validate="'required|max:10'"
-      v-model="nickname"
+      <v-form ref="form" v-model="valid" lazy-validation>
+  <v-container fluid>
+    <v-layout row>
+      <v-flex xs3>
+        <v-card color="grey lighten-1">
+          <v-card-text>닉네임</v-card-text>
+        </v-card>
+      </v-flex>
+      <v-flex xs6>
+           <v-text-field
+      v-model="name"
+      :rules="nameRules"
       :counter="10"
-      :error-messages="errors.collect('nickname')"
-      label="Nickname"
-      data-vv-name="nickname"
+      label="Name"
       required
     ></v-text-field>
-    <v-text-field
-      v-validate="'required|email'"
-      v-model="email"
-      :error-messages="errors.collect('email')"
-      label="E-mail"
-      data-vv-name="email"
+      </v-flex>
+      <v-flex xs3>
+        <v-btn>중복확인</v-btn>
+      </v-flex>
+    </v-layout>
+    <v-layout row>
+      <v-flex xs3>
+        <v-card color="grey lighten-1">
+          <v-card-text>이메일</v-card-text>
+        </v-card>
+      </v-flex>
+      <v-flex xs2>
+        <v-text-field
+      v-model="mailID"
+      :rules="emailRules"
+      label="이메일 계정"
+      v-bind="select"
+      required
+    ></v-text-field>
+      </v-flex>
+
+      <v-flex xs2>
+        <v-text-field
+      v-model="mailAddress"
+      :rules="emailRules"
+      label="이메일 주소"
       required
     >
-    <v-spacer></v-spacer>
-    <v-btn>중복확인</v-btn>
-    </v-text-field>
-    <v-select
-      v-validate="'required'"
-      :items="items"
+    {{select}}</v-text-field>
+      </v-flex>
+      <v-flex xs2>
+        <v-select
       v-model="select"
-      :error-messages="errors.collect('select')"
-      label="Select"
-      data-vv-name="select"
+      :items="items"
+      :rules="[v => !!v || 'Item is required']"
+      label="이메일 주소 선택"
       required
     ></v-select>
-    <v-checkbox
-      v-validate="'required'"
-      v-model="checkbox"
-      :error-messages="errors.collect('checkbox')"
-      value="1"
-      label="Option"
-      data-vv-name="checkbox"
-      type="checkbox"
-      required
-    ></v-checkbox>
+      </v-flex>
+      <v-flex xs3>
+        <v-btn>중복확인</v-btn>
+      </v-flex>
+    </v-layout>
 
-    <v-btn @click="submit">submit</v-btn>
-    <v-btn @click="clear">clear</v-btn>
-  </form>
+    <v-layout row wrap>
+      <v-flex xs12 sm6 md3 order-md4 order-sm2>
+        <v-card dark tile flat color="red darken-2">
+          <v-card-text>#1</v-card-text>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 sm6 md3 order-md3 order-sm1>
+        <v-card dark tile flat color="deep-orange lighten-1">
+          <v-card-text>#2</v-card-text>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 sm6 md3 order-md2 order-sm4>
+        <v-card dark tile flat color="deep-orange darken-3">
+          <v-card-text>#3</v-card-text>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 sm6 md3 order-md1 order-sm3>
+        <v-card dark tile flat color="deep-orange">
+          <v-card-text>#4</v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
+</v-form>
         </v-card>
 
         <v-btn
@@ -119,14 +156,19 @@
 
 <script>
 export default {
-  $_veeValidate: {
-    validator: 'new'
-  },
-
   data: () => ({
-    e1: 0,
-    nickname: '',
+    el: 1,
+    valid: true,
+    name: '',
+    nameRules: [
+      v => !!v || 'Name is required',
+      v => (v && v.length <= 10) || 'Name must be less than 10 characters'
+    ],
     email: '',
+    emailRules: [
+      v => !!v || 'E-mail is required',
+      v => /.+@.+/.test(v) || 'E-mail must be valid'
+    ],
     select: null,
     items: [
       'Item 1',
@@ -134,39 +176,23 @@ export default {
       'Item 3',
       'Item 4'
     ],
-    checkbox: null,
-    dictionary: {
-      attributes: {
-        email: 'E-mail Address'
-        // custom attributes
-      },
-      custom: {
-        nickname: {
-          required: () => 'Name can not be empty',
-          max: 'The name field may not be greater than 10 characters'
-          // custom messages
-        },
-        select: {
-          required: 'Select field is required'
-        }
-      }
-    }
+    checkbox: false
   }),
-
-  mounted () {
-    this.$validator.localize('en', this.dictionary)
-  },
 
   methods: {
     submit () {
-      this.$validator.validateAll()
+      if (this.$refs.form.validate()) {
+        // Native form submission is not yet supported
+        // axios.post('/api/submit', {
+        //   name: this.name,
+        //   email: this.email,
+        //   select: this.select,
+        //   checkbox: this.checkbox
+        // })
+      }
     },
     clear () {
-      this.name = ''
-      this.email = ''
-      this.select = null
-      this.checkbox = null
-      this.$validator.reset()
+      this.$refs.form.reset()
     },
     cancel () {
       this.$store.dispatch('exitMain')
