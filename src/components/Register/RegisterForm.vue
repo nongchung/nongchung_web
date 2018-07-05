@@ -41,7 +41,7 @@
       <v-form ref="form" v-model="valid" lazy-validation>
   <v-container fluid>
     <v-layout row>
-      <v-flex xs3>
+      <v-flex xs2>
         <v-card color="grey lighten-1">
           <v-card-text>닉네임</v-card-text>
         </v-card>
@@ -60,29 +60,22 @@
       </v-flex>
     </v-layout>
     <v-layout row>
-      <v-flex xs3>
+      <v-flex xs2>
         <v-card color="grey lighten-1">
           <v-card-text>이메일</v-card-text>
         </v-card>
       </v-flex>
       <v-flex xs2>
         <v-text-field
-      v-model="mailID"
-      :rules="emailRules"
-      label="이메일 계정"
-      v-bind="select"
-      required
-    ></v-text-field>
+          label="Email ID"
+          value="example"
+        ></v-text-field>
       </v-flex>
-
       <v-flex xs2>
         <v-text-field
-      v-model="mailAddress"
-      :rules="emailRules"
-      label="이메일 주소"
-      required
-    >
-    {{select}}</v-text-field>
+          label="Email address"
+          value="@example"
+        ></v-text-field>
       </v-flex>
       <v-flex xs2>
         <v-select
@@ -157,7 +150,7 @@
 <script>
 export default {
   data: () => ({
-    el: 1,
+    e1: 0,
     valid: true,
     name: '',
     nameRules: [
@@ -169,16 +162,20 @@ export default {
       v => !!v || 'E-mail is required',
       v => /.+@.+/.test(v) || 'E-mail must be valid'
     ],
+    emailID: '',
+    emailAddr: '',
     select: null,
     items: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
-      'Item 4'
+      '직접입력하기',
+      'naver.com',
+      'gmail.com',
+      'daum.net'
     ],
     checkbox: false
   }),
-
+  computed () {
+    this.emailAddr = this.select
+  },
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
