@@ -3,32 +3,36 @@
   <v-flex sm10 md9 lg8>
   <v-layout column>
     <v-flex mt-4 class="text-md-center">
-      <div style="font-size:2rem; font-weight:700;">{{getNonghwalDetail.nhInfo.name}}</div>
+      <div style="font-size:2rem; font-weight:700; font-family:sans-serif;">농활제목:{{getNonghwalDetail.nhInfo.name}}</div>
       </v-flex>
 
-    <v-layout mt-5>
-      <v-flex md8 style="height:25vw; width:40vw; background:gray;">
+    <v-layout mt-5 >
+      <v-flex md7>
+      <div style="height:20rem; width:40vw; background:white;">
     <img id="nhdetail_img" src="http://farm.hansalim.or.kr/wp/wp-content/uploads/2017/06/%ED%8F%AC%EC%8A%A4%ED%84%B0-%EC%82%AC%EC%A7%84-1024x768.jpg">
+    </div>
     </v-flex>
-    <v-flex ml-5 md4 style="background:yellow;">
-      <v-flex ma-4>
-      <div style="font-size:2rem;">20000원</div>
+    <v-flex ml-5 md4 style="background:white; height: 20rem;">
+      <v-flex ma-4 sm10 md12 lg12>
+      <div style="font-size:2rem; font-family:sans-serif;">20000원</div>
       <div>
-        <el-select v-model="value" placeholder="Select">
-    <el-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
-    </el-option>
-  </el-select>
+        <v-select
+          :items="items"
+          label="날짜 선택"
+          solo
+          flat
+          dense
+          style="border: 1px solid grey; height:2.7rem; margin-bottom:1rem; font-family:sans-serif !important;"
+        ></v-select>
       </div>
-      <div>총인원 | 최소인원</div>
-      <div>{{getNonghwalDetail.nhInfo.addr}}</div>
-      <div>마감일시</div>
+      <div style="margin:1rem 0;">총인원 | 최소인원</div>
+      <div style="margin:1rem 0;">{{getNonghwalDetail.nhInfo.addr}}</div>
+      <div style="margin:1rem 0;">마감일시</div>
+      <v-btn block color="primary">신청하기</v-btn>
       </v-flex>
     </v-flex>
     </v-layout>
+<div><p></p></div>
     <div>{{getNonghwalDetail.farmerInfo}}</div>
     <div>{{getNonghwalDetail.schedule}}</div>
     <button @click="showMap(getPath)">지도보기</button>
@@ -45,23 +49,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      options: [{
-        value: 'Option1',
-        label: 'Option1'
-      }, {
-        value: 'Option2',
-        label: 'Option2'
-      }, {
-        value: 'Option3',
-        label: 'Option3'
-      }, {
-        value: 'Option4',
-        label: 'Option4'
-      }, {
-        value: 'Option5',
-        label: 'Option5'
-      }],
-      value: ''
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz']
     }
   },
   computed: {
@@ -91,16 +79,15 @@ export default {
 }
 </script>
 
-<style scopde>
-*{
-  font-family: sans-serif;
-}
+<style scoped>
 #nhdetail_img{
   max-width:100%;
   max-height:100%;
   margin:auto;
   display:block;
 }
-.day_select{
+
+.v-text-field.v-text-field--enclosed .v-text-field__details{
+  margin-bottom: -40px !important;
 }
 </style>
