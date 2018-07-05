@@ -1,27 +1,30 @@
 <template>
- <div>
+  <div>
     <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="cyan" id="home_tab">
       <v-flex sm1 md1 lg2 xl2></v-flex>
-            <v-tab :ripple="false" v-for="i in 3" :key="i" :href="`#tab-${i}`">
+      <v-tab :ripple="false" v-for="i in 3" :key="i" :href="`#tab-${i}`">
         <span style="font-size:1.2rem; font-family:san-serif; font-weight:700;">{{tabname[i-1]}}</span>
       </v-tab>
     </v-tabs>
     <v-tabs-items v-model="tabnumber">
+      <search-bar></search-bar>
       <v-tab-item v-for="i in 3" :id="`tab-${i}`" :key="i" color="white">
-        <v-layout gray>
-          <all-list v-if="firsttab()"></all-list>
-          <popular-list v-if="secondtab()"></popular-list>
-          <new-list v-if="thirdtab()"></new-list>
+        <v-layout column>
+          <all-list v-show="firsttab()"></all-list>
+          <popular-list v-show="secondtab()"></popular-list>
+          <new-list v-show="thirdtab()"></new-list>
         </v-layout>
       </v-tab-item>
     </v-tabs-items>
-      </div>
+  </div>
 </template>
 
 <script>
+import SearchBar from '../search/SearchBar'
 import AllList from './AllList'
 import PopularList from './PopularList'
 import NewList from './NewList'
+
 export default {
   data () {
     return {
@@ -45,7 +48,8 @@ export default {
   components: {
     PopularList,
     NewList,
-    AllList
+    AllList,
+    SearchBar
   }
 }
 </script>

@@ -9,11 +9,7 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import VueAgile from 'vue-agile'
 import VeeValidate from 'vee-validate'
-import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-chalk/index.css'
-import '../static/css/element-variable.scss'
 
-Vue.use(ElementUI)
 Vue.use(VueAgile)
 Vue.use(Vuex)
 Vue.use(VeeValidate)

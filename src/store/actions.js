@@ -41,8 +41,12 @@ export const nonghwalActions = {
       console.log(error)
     })
   },
-  login ({ commit }, { email, password }) {
-    axios.post('http://13.125.216.198:3000/api/signin', { email, password }).then((res) => {
+  login ({ state, commit }, { email, password }) {
+    axios.post('http://13.125.216.198:3000/api/signin', { headers: {
+      token: state.accessToken
+    },
+    email,
+    password }).then((res) => {
       console.log(res.data.message)
       if (res.data.token) {
         commit('loginSuccess', res.data.token)
@@ -79,9 +83,6 @@ export const nonghwalActions = {
   },
   exitMain () {
     router.push('/')
-  },
-  goLogin () {
-    router.push('/Login')
   },
   // 검색 서버에서 바꿨다고함, 수정필요
   search ({ commit }, payload) {

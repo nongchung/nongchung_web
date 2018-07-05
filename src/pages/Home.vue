@@ -1,7 +1,6 @@
 <template>
 <!-- <v-container fluid> -->
     <v-layout column>
-        <!-- <search-bar></search-bar> -->
         <home-ad></home-ad>
         <home-tab-list></home-tab-list>
         <popular-farm></popular-farm>
