@@ -32,7 +32,7 @@ export default {
 
 <style scoped>
 .ads_layout{
-  padding: 15px 0;
+  padding-top: 5px;
   background-color:white;
 }
 .v-carousel{

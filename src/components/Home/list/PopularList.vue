@@ -1,7 +1,7 @@
 <template>
   <v-layout class="popularlist_layout" row justify-center>
     <v-flex xs12 sm11 md10 lg8 xl8>
-      <div class="subheading">인기농활목록</div>
+      <!-- <div class="subheading">인기농활목록</div> -->
       <v-container fluid>
         <v-layout row wrap>
           <v-flex v-for="item in popularList" :key="item.idx" xs6 sm4 md4 lg4 xl3 id="card_gutter">
@@ -76,12 +76,14 @@ export default {
 }
 .card_title{
   font-size: 1.3rem;
+  font-family: sans-serif;
+  font-weight: 700;
 }
 .card_tip{
   height: 1.3rem;
   color: white;
 }
 #card_gutter{
-  padding: 1.5vw !important;
+  padding: 1.8vw !important;
 }
 </style>
