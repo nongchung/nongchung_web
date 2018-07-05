@@ -355,13 +355,13 @@
 
                 <v-card class="mb-5" color="grey lighten-1" height="200px"></v-card>
 
-                <v-btn color="primary" @click="e1 = 1">
+                <v-btn color="primary" @click="exitMain">
 
                     초기화면 이동
 
                 </v-btn>
 
-                <v-btn flat>로그인하기</v-btn>
+                <v-btn flat @click="goLogin">로그인하기</v-btn>
 
             </v-stepper-content>
 
@@ -491,6 +491,9 @@ export default {
       this.agree1 = 'success'
 
       this.agree2 = 'success'
+    },
+    goLogin () {
+      this.$store.dispatch('goLogin')
     }
 
   }

@@ -80,6 +80,9 @@ export const nonghwalActions = {
   exitMain () {
     router.push('/')
   },
+  goLogin () {
+    router.push('/Login')
+  },
   // 검색 서버에서 바꿨다고함, 수정필요
   search ({ commit }, payload) {
     commit('searchStart')
