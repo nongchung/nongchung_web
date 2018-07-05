@@ -131,7 +131,7 @@
 
             <v-stepper-content step="2">
 
-                <v-card class="mb-5" color="lighten-1" height="600px">
+                <v-card class="mb-5" color="lighten-1" height="800px">
 
                     <v-form ref="form" v-model="valid" lazy-validation>
 
@@ -157,7 +157,7 @@
 
                                 <v-flex xs3>
 
-                                    <v-btn>중복확인</v-btn>
+                                    <v-btn @click="dupCheckNickname">중복확인</v-btn>
 
                                 </v-flex>
 
@@ -177,25 +177,25 @@
 
                                 <v-flex xs2>
 
-                                    <v-text-field label="Email address" value="example"></v-text-field>
+                                    <v-text-field v-model="emailID" label="이메일 계정" placeholder="example" suffix="@"></v-text-field>
 
                                 </v-flex>
 
                                 <v-flex xs2>
 
-                                    <v-text-field v-model="select" label="Email address" value="@example"></v-text-field>
+                                    <v-text-field v-model="emailAddr" label="Email address" placeholder="example.com"></v-text-field>
 
                                 </v-flex>
 
                                 <v-flex xs2>
 
-                                    <v-select v-model="select" :items="items" :rules="[v => !!v || 'Item is required']" label="이메일 주소 선택" required></v-select>
+                                    <v-select @change="inputAddr" v-model="select" :items="items" :rules="[v => !!v || 'Item is required']" label="이메일 주소 선택" required></v-select>
 
                                 </v-flex>
 
                                 <v-flex xs3>
 
-                                    <v-btn>중복확인</v-btn>
+                                    <v-btn @click="validateMail">중복확인</v-btn>
 
                                 </v-flex>
 
@@ -355,13 +355,13 @@
 
                 <v-card class="mb-5" color="grey lighten-1" height="200px"></v-card>
 
-                <v-btn color="primary" @click="exitMain">
+                <v-btn color="primary" @click="goRoute('/')">
 
                     초기화면 이동
 
                 </v-btn>
 
-                <v-btn flat @click="goLogin">로그인하기</v-btn>
+                <v-btn flat @click="goRoute('/Login')">로그인하기</v-btn>
 
             </v-stepper-content>
 
@@ -458,14 +458,13 @@ export default {
     menu (val) {
       val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
     }
-
   },
 
   methods: {
 
     cancel () {
       if (confirm('회원가입을 취소하시겠습니까?')) {
-        this.$store.dispatch('exitMain')
+        this.$router.push('/')
       }
     },
 
@@ -492,8 +491,37 @@ export default {
 
       this.agree2 = 'success'
     },
-    goLogin () {
-      this.$store.dispatch('goLogin')
+    goRoute (path) {
+      this.$router.push(path)
+    },
+    validateMail () {
+      this.email = this.emailID + '@' + this.emailAddr
+      console.log(this.email)
+      const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+      if (this.email.match(regExp) != null) {
+        this.dupCheckEmail(this.email)
+      } else {
+        alert('올바른 이메일 형식을 입력하세요')
+      }
+    },
+    dupCheckEmail (email) {
+      this.$store.dispatch('dupEmail', {email})
+    },
+    dupCheckNickname () {
+      const nickname = this.nickname
+      this.$store.dispatch('dupNickname', {nickname})
+    },
+    register () {
+      console.log(this)
+      const {email, password, nickname, name, sex, handphone, birth} = this
+      this.$store.dispatch('register', {email, password, nickname, name, sex, handphone, birth})
+    },
+    inputAddr () {
+      if (this.select === '직접입력하기') {
+        this.emailAddr = ''
+      } else {
+        this.emailAddr = this.select
+      }
     }
 
   }
