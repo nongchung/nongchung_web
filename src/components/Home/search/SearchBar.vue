@@ -178,15 +178,15 @@ export default {
       if (hdpkrInput && hdpkrInput.style) {
         hdpkrInput.style.display = 'none'
       }
-    },
-    updateDateRange: function (newDateRange, datePickerId) {
-      Object.keys(this.$data).map(key => {
-        if (typeof (this.$data[key]) === 'object') {
-          if (this.$data[key].datePickerId === datePickerId) {
-            this.$data[key].value = newDateRange
-          }
-        }
-      })
+    // },
+    // updateDateRange: function (newDateRange, datePickerId) {
+    //   Object.keys(this.$data).map(key => {
+    //     if (typeof (this.$data[key]) === 'object') {
+    //       if (this.$data[key].datePickerId === datePickerId) {
+    //         this.$data[key].value = newDateRange
+    //       }
+    //     }
+    //   })
     },
     clearDate: function (datePickerId) {
       this.dpkr16.value = ''
