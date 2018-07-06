@@ -1,4 +1,6 @@
 <template>
+ <v-layout justify-center my-5>
+     <v-flex lg10>
     <v-stepper v-model="e1">
         <v-stepper-header>
             <v-stepper-step :complete="e1 > 1" step="1">
@@ -198,6 +200,8 @@
             </v-stepper-content>
         </v-stepper-items>
     </v-stepper>
+    </v-flex>
+    </v-layout>
 </template>
 
 <script>

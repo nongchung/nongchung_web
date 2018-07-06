@@ -2,66 +2,70 @@
    <div class="header">
      <v-spacer></v-spacer>
      <v-flex xs12>
-        <v-card height="300px">
+        <v-card height="250px">
           <v-card-text class="px-0">
-            <h2 class="content" style="margin-top:40px">님</h2>
+            <h2 class="content" style="margin-top:40px"> 님</h2>
             <p class="content">
               회원으로 가입하기 위해서는 먼저, 이용약관 및 개인정보 처리방침을 읽어보시고 동의 후, 개인정보를 입력하시면 됩니다.
                 <v-avatar right
-          :tile="tile"
-          :size="avatarSize"
-          color="grey lighten-4"
-        >
-          <img src="/apple-touch-icon-180x180.png" alt="avatar">
-        </v-avatar>
+                  color="grey lighten-4">
+                <img src="" alt="avatar">
+              </v-avatar>
             </p>
               </v-card-text>
               <v-btn outline class="content">프로필 편집</v-btn>
-              <v-tabs class="content">
-
-    <v-tab
-      v-for="n in 3"
-      :key="n"
-    >
-      Item {{ n }}
-    </v-tab>
-  </v-tabs>
         </v-card>
+         <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="cyan" id="home_tab">
+      <v-flex sm1 md1 lg2 xl2></v-flex>
+      <v-tab :ripple="false" v-for="i in 3" :key="i" :href="`#tab-${i}`">
+        <span style="font-size:1.2rem; font-family:san-serif; font-weight:700;">{{tabname[i-1]}}</span>
+      </v-tab>
+    </v-tabs>
       </v-flex>
-
-      <v-flex xs3 offset-xs4 style="margin-top:40px">
-         <v-text-field
-            label="email"
-            v-model="email"
-            placeholder="이메일 입력"
-            solo
-          ></v-text-field>
-      </v-flex>
-      <v-flex xs3 offset-xs4>
-        <v-text-field
-            type="password"
-            label="password"
-            v-model="password"
-            placeholder="비밀번호 입력"
-            solo
-          ></v-text-field>
-      </v-flex>
-      <v-flex xs3 offset-xs4>
-        <v-btn @click="login" block color="primary" dark>로그인</v-btn>
-      </v-flex>
-      <v-flex xs3 offset-xs4>
-        <p class="find">아이디 찾기 | 비밀번호 찾기</p>
-      </v-flex>
-      <v-flex xs3 offset-xs4>
-        <p class="find">아직 농활청춘 회원이 아니신가요? <router-link to="/register" activeClass="select" >회원가입</router-link></p>
-      </v-flex>
+      <v-tabs-items v-model="tabnumber">
+      <v-tab-item v-for="i in 3" :id="`tab-${i}`" :key="i" color="white">
+        <v-layout column>
+          <myhistory v-show="firsttab()"></myhistory>
+          <mylike v-show="secondtab()"></mylike>
+        </v-layout>
+      </v-tab-item>
+    </v-tabs-items>
    </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import Mylike from './Mylike'
+import Myhistory from './Myhistory'
+
 export default {
   name: 'Mypage',
-  created: ''
+  data () {
+    return {
+      tabnumber: '',
+      tabname: [
+        '다녀온 농활', '찜한 농활'
+      ]
+    }
+  },
+  methods: {
+    firsttab () {
+      console.log(this.userInfo)
+      if (this.tabnumber === 'tab-1') { return true } else return false
+    },
+    secondtab () {
+      if (this.tabnumber === 'tab-2') { return true } else return false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      userInfo: 'userInfo'
+    })
+  },
+  components: {
+    Myhistory,
+    Mylike
+  }
 }
 </script>
 
@@ -76,4 +80,10 @@ export default {
     text-align:center;
     margin-top: 10px;
   }
+  #home_tab{
+  font-family: sans-serif !important;
+  border-bottom: 2px inset;
+  border-bottom-color: rgba(0,0,0,.08);
+  /* box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12) !important; */
+}
 </style>
