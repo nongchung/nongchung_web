@@ -36,20 +36,23 @@ export const nonghwalActions = {
     axios.post('http://13.125.216.198:3000/api/signup', { email, password, nickname, name, sex, handphone, birth }).then(res => {
       console.log(res.data.message)
       commit('regSuccess')
-      router.push('/Login')
+    //   router.push('/Login')
     }).catch((error) => {
-      console.log(error)
+      if (error.response.data.message === 'Null Value') alert('모든 값을 채워주세요')
+      else {
+        console.log(error.response.data.message)
+        alert('잠시후 다시 시도해주세요')
+      }
     })
   },
   login ({ state, commit }, { email, password }) {
-    axios.post('http://13.125.216.198:3000/api/signin', { headers: {
-      token: state.accessToken
-    },
-    email,
-    password }).then((res) => {
+    axios.post('http://13.125.216.198:3000/api/signin', {
+      email,
+      password
+    }).then((res) => {
       console.log(res.data.message)
       if (res.data.token) {
-        commit('loginSuccess', res.data.token)
+        commit('loginSuccess', res.data)
         router.push('/')
       } else {
         alert('아이디 또는 패스워드가 틀렸습니다. 다시 입력해주세요')
