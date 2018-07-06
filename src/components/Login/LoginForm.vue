@@ -42,7 +42,8 @@
         <p class="find">아이디 찾기 | 비밀번호 찾기</p>
       </v-flex>
       <v-flex xs3 offset-xs4>
-        <p class="find">아직 농활청춘 회원이 아니신가요?</p>
+        <p class="find">아직 농활청춘 회원이 아니신가요? <router-link to="/register" activeClass="select" >회원가입</router-link></p>
+
       </v-flex>
 
    </div>
