@@ -67,7 +67,7 @@
 
             <!-- 회원정보 입력 회원가입 두번째 페이지 -->
             <v-stepper-content step="2">
-                <v-card class="mb-5" color="lighten-1" height="800px">
+                <v-card class="mb-5" color="lighten-1" height="680px">
                     <v-form ref="form" v-model="valid" lazy-validation>
                         <v-container fluid>
                             <v-layout row>
@@ -182,7 +182,7 @@
                         </v-container>
                     </v-form>
                 </v-card>
-                <v-btn color="primary" @click="e1 = 3">
+                <v-btn color="primary" @click="register">
                     Continue
                 </v-btn>
                 <v-btn @click="cancel" flat>Cancel</v-btn>
@@ -201,10 +201,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-
   name: 'RegisterForm',
-
   data: () => ({
 
     e1: 0,
@@ -230,31 +229,32 @@ export default {
       'gmail.com',
       'daum.net'
     ],
-
     nameRules: [
       v => !!v || 'Name is required',
       v => (v && v.length <= 10) || 'Name must be less than 10 characters'
     ],
-
     passRules: [
-        v => !!v || 'password is required',     
-        v => (v && v.length <= 12 && 8 <= v.length ) || 'Name must be more than 8  less than 12 characters'
+      v => !!v || 'password is required',
+      v => (v && v.length <= 12 && v.length >= 8) || 'Name must be more than 8  less than 12 characters'
     ],
     hpRules: [
-        v => !!v || 'HP number is required',
-        v => /^\d{3}-\d{3,4}-\d{4}$/.test(v) || 'HP number must be valid'
+      v => !!v || 'HP number is required',
+      v => /^\d{3}-\d{3,4}-\d{4}$/.test(v) || 'HP number must be valid'
     ]
   }),
-
-  watch: {   
-      menu (val) {
+  watch: {
+    menu (val) {
       val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
     }
   },
-
+  computed: {
+    ...mapGetters({
+      isDup: 'isDupCheck'
+    })
+  },
   methods: {
-
     cancel () {
+      console.log(this.birth)
       if (confirm('회원가입을 취소하시겠습니까?')) {
         this.$router.push('/')
       }
@@ -304,9 +304,16 @@ export default {
       this.$store.dispatch('dupNickname', {nickname})
     },
     register () {
-      console.log(this)
-      const {email, password, nickname, name, sex, handphone, birth} = this
-      this.$store.dispatch('register', {email, password, nickname, name, sex, handphone, birth})
+    //   console.log(this)
+      console.log(this.isDup[0])
+      console.log(this.isDup[1])
+
+      if (this.isDup[0] && this.isDup[1]) {
+        const {email, password, nickname, name, sex, handphone, birth} = this
+        this.$store.dispatch('register', {email, password, nickname, name, sex, handphone, birth})
+      } else {
+        alert('중복체크를 해 주세요')
+      }
     },
     inputAddr () {
       if (this.select === '직접입력하기') {
