@@ -20,28 +20,32 @@ export const nonghwalMutations = {
   loginSuccess (state, payload) {
     console.log('loginSuccess!')
     console.log(payload)
-    localStorage.accessToken = payload.token
+    localStorage.accessToken = payload
     state.accessToken = localStorage.accessToken
-    console.log(payload.mail)
-    state.userInfo[0] = { 'mail': payload.mail }
-    state.userInfo[1] = { 'name': payload.name }
-    state.userInfo[2] = { 'point': payload.point }
-    state.userInfo[3] = { 'img': payload.img }
+    // console.log(payload.data[0].mail)
+    // state.userInfo[0] = { 'mail': payload.data[0].mail }
+    // state.userInfo[1] = { 'name': payload.data[0].name }
+    // state.userInfo[2] = { 'point': payload.data[0].point }
+    // state.userInfo[3] = { 'img': payload.data[0].img }
 
-    console.log(state.userInfo)
+    // console.log(state.userInfo)
   },
   logoutClear (state) {
     state.accessToken = null
     delete localStorage.accessToken
   },
   getMyInfoSuccess (state, payload) {
-    console.log(payload.mail)
-    state.userInfo[0] = { 'mail': payload.mail }
-    state.userInfo[1] = { 'name': payload.name }
-    state.userInfo[2] = { 'point': payload.point }
-    state.userInfo[3] = { 'img': payload.img }
-
-    console.log(state.userInfo)
+    state.userInfo[0] = payload.mail
+    state.userInfo[1] = payload.name
+    state.userInfo[2] = payload.point
+    state.userInfo[3] = payload.img
+  },
+  getMyhistorySuccess (state, payload) {
+    state.myHistory[1] = payload.data
+    state.myHistory[0] = payload.total
+  },
+  getLikeSuccess (state, payload) {
+    state.myLike = payload
   },
   searchStart (state) {
     console.log('searchStart!')

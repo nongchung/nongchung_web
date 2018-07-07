@@ -4,7 +4,6 @@ export const nonghwalGetters = {
     return state.ads
   },
   getPopularList (state) {
-    console.log('ff ')
     return state.popularList
   },
   getNewList (state) {
@@ -20,6 +19,12 @@ export const nonghwalGetters = {
   },
   getUserInfo (state) {
     return state.userInfo
+  },
+  getMyhistory (state) {
+    return state.myHistory
+  },
+  getMylike (state) {
+    return state.myLike
   },
   isDupCheck (state) {
     return state.isDup

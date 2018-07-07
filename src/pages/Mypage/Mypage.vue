@@ -10,6 +10,9 @@ export default {
   name: 'MyPage',
   components: {
     Mypage
+  },
+  created () {
+    this.$store.dispatch('getLike')
   }
 }
 </script>
