@@ -13,6 +13,7 @@ export const store = new Vuex.Store({
     isDup: [null, null],
     userInfo: [],
     myHistory: [],
+    myLike: [],
     // main state
     ads: [],
     popularList: [],

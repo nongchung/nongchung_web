@@ -28,7 +28,7 @@ export const nonghwalMutations = {
     // state.userInfo[2] = { 'point': payload.data[0].point }
     // state.userInfo[3] = { 'img': payload.data[0].img }
 
-    console.log(state.userInfo)
+    // console.log(state.userInfo)
   },
   logoutClear (state) {
     state.accessToken = null
@@ -39,11 +39,13 @@ export const nonghwalMutations = {
     state.userInfo[1] = payload.name
     state.userInfo[2] = payload.point
     state.userInfo[3] = payload.img
-    console.log('통신 잘하고있다고!')
   },
   getMyhistorySuccess (state, payload) {
     state.myHistory[1] = payload.data
     state.myHistory[0] = payload.total
+  },
+  getLikeSuccess (state, payload) {
+    state.myLike = payload
   },
   searchStart (state) {
     console.log('searchStart!')
