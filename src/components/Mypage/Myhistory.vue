@@ -24,7 +24,7 @@
                   <v-icon>favorite_border</v-icon>
                 </v-btn>
                 <v-btn flat @click="goNonghwalDetail(item.idx)">상세보기</v-btn>
-                <v-btn flat v-if="item.rState!=0" @click="goNonghwalDetail(item.idx)">후기작성</v-btn>
+                <v-btn flat v-if="item.rState!=0" @click="writeReview">후기작성</v-btn>
                 <v-btn flat v-if="item.rState===0">후기작성 완료</v-btn>
               </v-card-actions>
             </v-card>
@@ -61,6 +61,9 @@ export default {
     },
     goNonghwalDetail (idx) {
       this.$router.push({name: 'Detail', params: { idx: idx }})
+    },
+    writeReview () {
+      this.$router.push('/Writereview')
     }
   }
 }

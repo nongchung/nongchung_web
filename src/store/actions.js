@@ -80,7 +80,6 @@ export const nonghwalActions = {
     axios.get('http://13.125.216.198:3000/api/bookmark', {
       headers: {token: state.accessToken}
     }).then(res => {
-      console.log(res.data.bmList)
       commit('getLikeSuccess', res.data.bmList)
     }).catch((error) => {
       console.log(error)
