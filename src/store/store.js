@@ -9,14 +9,15 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     // user state
+    accessToken: null,
     isDup: [null, null],
-    userInfo: [null, null, null, null],
+    userInfo: [],
+    myHistory: [],
     // main state
     ads: [],
     popularList: [],
     newList: [],
     popularFarm: [],
-    accessToken: null,
     // search state
     searchResult: [],
     nhDetail: {nhInfo: null, farmerInfo: null, scheduleInfo: null},

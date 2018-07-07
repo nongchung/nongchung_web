@@ -2,18 +2,19 @@
    <div class="header">
      <v-spacer></v-spacer>
      <v-flex xs12>
-        <v-card height="250px">
-          <v-card-text class="px-0">
-            <h2 class="content" style="margin-top:40px"> 님</h2>
+        <v-card height="260px">
+          <v-card-text>
+            <h2 class="content" style="margin-top:40px">{{userInfo[1]}}님</h2>
             <p class="content">
-              회원으로 가입하기 위해서는 먼저, 이용약관 및 개인정보 처리방침을 읽어보시고 동의 후, 개인정보를 입력하시면 됩니다.
-                <v-avatar right
-                  color="grey lighten-4">
-                <img src="" alt="avatar">
-              </v-avatar>
+              농활청춘과 함께한 {{myHistory[0][0].tcount}} 번 {{myHistory[0][0].ttime}} 시간
             </p>
-              </v-card-text>
               <v-btn outline class="content">프로필 편집</v-btn>
+              </v-card-text>
+              <v-avatar style="margin-left:50%"
+                  size="104px"
+                  color="grey lighten-4">
+                <img :src="userInfo[3]" alt="avatar">
+              </v-avatar>
         </v-card>
          <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="cyan" id="home_tab">
       <v-flex sm1 md1 lg2 xl2></v-flex>
@@ -50,16 +51,20 @@ export default {
   },
   methods: {
     firsttab () {
-      console.log(this.userInfo)
       if (this.tabnumber === 'tab-1') { return true } else return false
     },
     secondtab () {
       if (this.tabnumber === 'tab-2') { return true } else return false
     }
   },
+  created () {
+    this.$store.dispatch('getMyhistory')
+    this.$store.dispatch('getMyInfo')
+  },
   computed: {
     ...mapGetters({
-      userInfo: 'userInfo'
+      userInfo: 'getUserInfo',
+      myHistory: 'getMyhistory'
     })
   },
   components: {

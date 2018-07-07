@@ -21,6 +21,9 @@ export const nonghwalGetters = {
   getUserInfo (state) {
     return state.userInfo
   },
+  getMyhistory (state) {
+    return state.myHistory
+  },
   isDupCheck (state) {
     return state.isDup
   },

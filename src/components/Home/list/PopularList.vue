@@ -47,6 +47,9 @@ export default {
       isAuthenticated: 'isAuthenticated'
     })
   },
+  created () {
+    this.$store.dispatch('getMyhistory')
+  },
   methods: {
     getColorPeriod (item) {
       if (item.period === '1박2일') {

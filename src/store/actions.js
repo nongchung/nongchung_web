@@ -50,9 +50,8 @@ export const nonghwalActions = {
       email,
       password
     }).then((res) => {
-      console.log(res.data.message)
       if (res.data.token) {
-        commit('loginSuccess', res.data)
+        commit('loginSuccess', res.data.token)
         router.push('/')
       } else {
         alert('아이디 또는 패스워드가 틀렸습니다. 다시 입력해주세요')
@@ -65,6 +64,17 @@ export const nonghwalActions = {
   logout ({ commit }) {
     commit('logoutClear')
     router.push('/')
+  },
+  getMyhistory ({state, commit}) {
+    axios.get('http://13.125.216.198:3000/api/activity/complete', {
+      headers: {
+        token: state.accessToken
+      }
+    }).then(res => {
+      commit('getMyhistorySuccess', res.data)
+    }).catch(err => {
+      console.log(err.message)
+    })
   },
   getLike ({ commit }) {
     axios.get('http://13.125.216.198:3000/api/bookmark').then(res => {
@@ -83,9 +93,6 @@ export const nonghwalActions = {
     }).catch(err => {
       console.log(err.message)
     })
-  },
-  exitMain () {
-    router.push('/')
   },
   // 검색 서버에서 바꿨다고함, 수정필요
   search ({ commit }, payload) {
