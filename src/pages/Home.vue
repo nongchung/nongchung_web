@@ -3,7 +3,6 @@
     <v-layout column>
         <home-ad></home-ad>
         <home-tab-list></home-tab-list>
-        <popular-farm></popular-farm>
     </v-layout>
     <!-- </v-container> -->
 </template>

@@ -65,9 +65,13 @@ export const nonghwalMutations = {
     console.log('nonghwalDetailStart!')
   },
   nonghwalDetailSuccess (state, payload) {
+    state.nhDetail.image = payload.image
     state.nhDetail.nhInfo = payload.nhInfo
+    state.nhDetail.friendsInfo = payload.friendsInfo
     state.nhDetail.farmerInfo = payload.farmerInfo
     state.nhDetail.schedule = payload.schedule
+    state.nhDetail.nearestStartDate = payload.nearestStartDate
+    state.nhDetail.allStartDate = payload.allStartDate
     console.log('nonghwalDetailSuccess')
   },
   nonghwalLocationStart (state) {

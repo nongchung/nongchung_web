@@ -1,31 +1,13 @@
 <template>
-  <v-footer
-    dark
-    height="auto"
-  >
-    <v-card
-      class="flex"
-      flat
-      tile
-    >
-      <v-card-title class="teal">
-        <v-layout ma-4 px-5>
-        <strong class="subheading ma-2 px-5">농촌에서 활짝피는 청춘, 농활청춘<br>&copy;2018 — <strong>nonghwal</strong></strong>
-
-        <v-spacer></v-spacer>
-
-        <v-btn
-          v-for="icon in icons"
-          :key="icon"
-          class="mx-2"
-          dark
-          icon
-        >
-          <v-icon size="24px">{{ icon }}</v-icon>
-        </v-btn>
-</v-layout>
-      </v-card-title>
-    </v-card>
+  <v-footer class="footer" height="7rem">
+    <v-layout column pl-5 ml-5>
+    <div>농촌에서 활짝 피는 청춘, 농활청춘</div>
+    <div>&copy;Chungchoon Corp</div>
+    </v-layout>
+    <v-layout row justify-end mr-5 pr-5>
+        <v-btn flat large fab><v-icon>android</v-icon></v-btn>
+        <v-btn flat large fab><v-icon>fab fa-apple</v-icon></v-btn>
+    </v-layout>
   </v-footer>
 </template>
 
@@ -42,6 +24,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.footer{
+  background: #0ABD9D;
+}
 
 </style>

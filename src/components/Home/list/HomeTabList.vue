@@ -1,19 +1,24 @@
 <template>
   <div>
-    <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="cyan" id="home_tab">
+    <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="primary" height="60vh" id="home_tab">
       <v-flex sm1 md1 lg2 xl2></v-flex>
-      <v-tab :ripple="false" v-for="i in 3" :key="i" :href="`#tab-${i}`">
-        <span style="font-size:1.2rem; font-family:san-serif; font-weight:700;">{{tabname[i-1]}}</span>
+      <v-tab :ripple="false" v-for="i in 4" :key="i" :href="`#tab-${i}`">
+        <span style="font-size:1.1rem; font-family:san-serif; font-weight:bold;">{{tabname[i-1]}}</span>
       </v-tab>
     </v-tabs>
+    <search-bar></search-bar>
     <v-tabs-items v-model="tabnumber">
-      <search-bar></search-bar>
-      <v-tab-item v-for="i in 3" :id="`tab-${i}`" :key="i" color="white">
-        <v-layout column>
-          <all-list v-show="firsttab()"></all-list>
-          <popular-list v-show="secondtab()"></popular-list>
-          <new-list v-show="thirdtab()"></new-list>
-        </v-layout>
+      <v-tab-item id="tab-1" color="white">
+          <new-list ></new-list>
+      </v-tab-item>
+      <v-tab-item id="tab-2" color="white">
+          <popular-list></popular-list>
+      </v-tab-item>
+      <v-tab-item id="tab-3" color="white">
+          <region-list></region-list>
+      </v-tab-item>
+      <v-tab-item id="tab-4" color="white">
+          <theme-list></theme-list>
       </v-tab-item>
     </v-tabs-items>
   </div>
@@ -24,32 +29,36 @@ import SearchBar from '../search/SearchBar'
 import AllList from './AllList'
 import PopularList from './PopularList'
 import NewList from './NewList'
+import RegionList from './RegionList'
+import ThemeList from './ThemeList'
 
 export default {
   data () {
     return {
       tabnumber: '',
       tabname: [
-        '전체', '인기', '신규'
+        '최신농활', '인기농활', '지역농활', '테마농활'
       ]
     }
   },
   methods: {
-    firsttab () {
-      if (this.tabnumber === 'tab-1') { return true } else return false
-    },
-    secondtab () {
-      if (this.tabnumber === 'tab-2') { return true } else return false
-    },
-    thirdtab () {
-      if (this.tabnumber === 'tab-3') { return true } else return false
-    }
+    // firsttab () {
+    //   if (this.tabnumber === 'tab-1') { return true } else return false
+    // },
+    // secondtab () {
+    //   if (this.tabnumber === 'tab-2') { return true } else return false
+    // },
+    // thirdtab () {
+    //   if (this.tabnumber === 'tab-3') { return true } else return false
+    // }
   },
   components: {
     PopularList,
     NewList,
     AllList,
-    SearchBar
+    SearchBar,
+    RegionList,
+    ThemeList
   }
 }
 </script>

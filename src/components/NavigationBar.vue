@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar app flat fixed color="white" height="80px;">
+  <v-toolbar app flat fixed color="white" height="74px">
       <router-link to="/" tag="a" class="hidden-sm-and-up">
                 <img src="../assets/logo_ex.png" height="30px" style="margin-top: 10px;">
       </router-link>
@@ -27,10 +27,12 @@
         placeholder="농활 검색"
         solo
         color="black"
+        autofocus
         v-if="searchbar"
+        @blur="searchicon=true, searchbar=false"
       ></v-text-field></v-flex>
           <v-btn top :ripple="false" flat class="toolbar_list" color="grey lighten-1" active-class="black"
-          v-if="searchicon" @click="showSearch()">
+          v-if="searchicon" @click="searchicon=false, searchbar=true">
             <v-icon>search</v-icon>
           </v-btn>
           <v-btn top :ripple="false" flat class="toolbar_list" exact router to="/login" color="grey lighten-1" active-class="black"
@@ -73,10 +75,6 @@ export default {
       if (isOut) {
         this.$store.dispatch('logout')
       }
-    },
-    showSearch () {
-      this.searchicon = false
-      this.searchbar = true
     }
   }
 }
@@ -85,8 +83,8 @@ export default {
 <style scoped>
  #toolbar_title{
       font-weight: 900;
-      font-size: 42px;
-      margin-top: 9px;
+      font-size: 2.3rem;
+      /* margin-top: 9px; */
       overflow: visible;
     }
     .toolbar_list{

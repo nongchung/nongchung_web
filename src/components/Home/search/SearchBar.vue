@@ -1,5 +1,5 @@
 <template>
-  <v-layout row justify-center style="height: 70px;">
+  <v-layout row justify-center style="height: 70px; margin:0 2vw;">
     <!-- 인원 -->
     <v-flex xs12 sm11 md10 lg8 xl8 mt-4>
       <v-layout row>
@@ -24,7 +24,6 @@
                   </v-list-tile-action>
                 </v-list-tile>
               </v-list>
-
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="primary" small depressed @click="menu = false" style="min-width:55px; font-size: .7rem;">Close</v-btn>
@@ -34,39 +33,31 @@
           <a tag="button" @click="clearPerson()" v-show="person" style="color:grey;">
             <i class="fas fa-times-circle"></i>
           </a>
-
         </span>
+
         <!-- 지역 -->
         <span>
           <v-menu v-model="menu2" :close-on-content-click="false" :nudge-width="200" transition="slide-y-transition" bottom>
             <v-btn slot="activator" :color="this.pushRegion" depressed>
-              지역
+              {{regionValue}}
             </v-btn>
             <v-card>
-              <v-list>
-                <v-list-tile>
-                  <v-list-tile-action>
-                    <v-switch v-model="message" color="purple"></v-switch>
-                  </v-list-tile-action>
-                  <v-list-tile-title>Enable messages</v-list-tile-title>
-                </v-list-tile>
-
-                <v-list-tile>
-                  <v-list-tile-action>
-                    <v-switch v-model="hints" color="purple"></v-switch>
-                  </v-list-tile-action>
-                  <v-list-tile-title>Enable hints</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
-
+              <v-layout row pa-3 justify-center>
+              <v-layout column style="border-right:1px solid black;">
+                <v-checkbox height="1.2rem" style="flex: none !important;" v-model="regionSelected" v-for="(i,a) in regions.slice(0,8)" :key="a" :label="i.name" :value="i.name"></v-checkbox>
+              </v-layout>
+              <v-layout column px-3>
+                <v-checkbox height="1.2rem" v-model="regionSelected" v-for="(k,b) in regions.slice(8,16)" :key="b" :label="k.name" :value="k.name"></v-checkbox>
+              </v-layout>
+              </v-layout>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn flat @click="menu2 = false">Cancel</v-btn>
-                <v-btn color="primary" flat @click="menu2 = false">Save</v-btn>
+                  <v-btn color="primary" small depressed @click="menu2=false" style="min-width:55px; font-size: .7rem;">Close</v-btn>
               </v-card-actions>
             </v-card>
           </v-menu>
         </span>
+
         <!-- 날짜 -->
         <span sm3>
           <VueHotelDatepicker style="height:0; width: 10px;" :ref="dpkr16.datePickerId" :datePickerId="dpkr16.datePickerId" :autoClose="dpkr16.autoClose"
@@ -97,7 +88,6 @@ export default {
       end: '',
       scontent: '',
       person: '',
-      region: '',
       dpkr16: {
         value: '',
         datePickerId: 'datePickerId',
@@ -109,9 +99,28 @@ export default {
       button2: '인원',
       fav: true,
       menu: false,
-      message: false,
-      hints: true,
-      menu2: false
+      menu2: false,
+      button3: '지역',
+      region: '',
+      regionSelected: [],
+      regions:
+       [{name: '서울특별시', value: 0},
+         {name: '부산광역시', value: 1},
+         {name: '대구광역시', value: 2},
+         {name: '인천광역시', value: 3},
+         {name: '광주광역시', value: 4},
+         {name: '대전광역시', value: 5},
+         {name: '울산광역시', value: 6},
+         {name: '경기도', value: 7},
+         {name: '강원도', value: 8},
+         {name: '충청남도', value: 9},
+         {name: '충청북도', value: 10},
+         {name: '경상남도', value: 11},
+         {name: '경상북도', value: 12},
+         {name: '전라남도', value: 13},
+         {name: '전라북도', value: 14},
+         {name: '제주도', value: 15}
+       ]
     }
   },
   computed: {
@@ -141,9 +150,32 @@ export default {
       } else {
         return this.person
       }
+    },
+    regionValue: function () {
+      let re = ''
+      if (this.regionSelected.length === 0) {
+        console.log(this.regionSelected)
+        this.regionre(re)
+        return this.button3
+      } else {
+        console.log(this.regionSelected)
+        for (let i = 0; i < this.regionSelected.length; i++) {
+          re = re.concat(this.regionSelected[i] + ',')
+        }
+        this.regionre(re)
+        return re
+      }
     }
   },
   methods: {
+    regionre (re) {
+      this.region = re
+    },
+    transfer (num) {
+      for (let i = 0; i < this.regions.length; i++) {
+        if (num === this.regions[i].value) { return this.regions[i].name }
+      }
+    },
     searchGo () {
       const {start, end, person, scontent} = this
       this.$store.dispatch('search', {start, end, person, scontent})
@@ -178,15 +210,15 @@ export default {
       if (hdpkrInput && hdpkrInput.style) {
         hdpkrInput.style.display = 'none'
       }
-    // },
-    // updateDateRange: function (newDateRange, datePickerId) {
-    //   Object.keys(this.$data).map(key => {
-    //     if (typeof (this.$data[key]) === 'object') {
-    //       if (this.$data[key].datePickerId === datePickerId) {
-    //         this.$data[key].value = newDateRange
-    //       }
-    //     }
-    //   })
+    },
+    updateDateRange: function (newDateRange, datePickerId) {
+      Object.keys(this.$data).map(key => {
+        if (typeof (this.$data[key]) === 'object') {
+          if (this.$data[key].datePickerId === datePickerId) {
+            this.$data[key].value = newDateRange
+          }
+        }
+      })
     },
     clearDate: function (datePickerId) {
       this.dpkr16.value = ''
@@ -224,4 +256,10 @@ export default {
 .primary--text{
   color: black !important;
 } */
+.v-input{
+  margin-top: 0;
+}
+.v-input--selection-controls{
+  padding: 0 0;
+}
 </style>

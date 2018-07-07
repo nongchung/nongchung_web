@@ -28,7 +28,6 @@ export const nonghwalGetters = {
     return state.searchResult
   },
   getNonghwalDetail (state) {
-    console.log('getget')
     return state.nhDetail
   },
   getNonghwalLocation (state) {

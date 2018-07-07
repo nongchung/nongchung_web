@@ -19,7 +19,7 @@ export const store = new Vuex.Store({
     accessToken: null,
     // search state
     searchResult: [],
-    nhDetail: {nhInfo: null, farmerInfo: null, scheduleInfo: null},
+    nhDetail: {image: null, nhInfo: null, friendsInfo: null, farmerInfo: null, schedule: null, nearestStartDate: null, allStartDate: null},
     nhLocation: {location: null, geoLocation: null}
   },
   getters: Object.assign({}, nonghwalGetters),
