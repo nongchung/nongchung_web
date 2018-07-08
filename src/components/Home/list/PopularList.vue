@@ -85,8 +85,10 @@ export default {
   color:gray;
 }
 .card_tip{
-  height: 1.3rem;
+  height: 1.9rem;
+  padding: .25rem;
   color: white;
+  font-family: sans-serif;
 }
 #card_gutter{
   padding: 1.8vw !important;

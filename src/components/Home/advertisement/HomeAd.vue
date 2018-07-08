@@ -2,7 +2,7 @@
 <!-- <v-container fluid> -->
   <v-layout row justify-center class="ads_layout">
     <v-flex xs12 sm12 md12 lg12 xl12>
-  <v-carousel flat>
+  <v-carousel flat interval="4000">
     <v-carousel-item v-for="item in ads" :key="item.idx" :src="item.img">
       <div class="ads_text">
       <div class="white--text ads_theme">농활 테마기획전</div>

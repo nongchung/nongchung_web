@@ -6,7 +6,7 @@
         <span style="font-size:1.1rem; font-family:san-serif; font-weight:bold;">{{tabname[i-1]}}</span>
       </v-tab>
     </v-tabs>
-    <search-bar></search-bar>
+    <search-bar v-if="tab12()"></search-bar>
     <v-tabs-items v-model="tabnumber">
       <v-tab-item id="tab-1" color="white">
           <new-list ></new-list>
@@ -42,6 +42,11 @@ export default {
     }
   },
   methods: {
+    tab12 () {
+      if (this.tabnumber === 'tab-1' || this.tabnumber === 'tab-2') {
+        return true
+      } else { return false }
+    }
     // firsttab () {
     //   if (this.tabnumber === 'tab-1') { return true } else return false
     // },
