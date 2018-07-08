@@ -20,7 +20,10 @@ export const nonghwalGetters = {
   getUserInfo (state) {
     return state.userInfo
   },
-  getMyhistory (state) {
+  getTotalHistory (state) {
+    return state.totalHistory
+  },
+  getMyHistory (state) {
     return state.myHistory
   },
   getMylike (state) {

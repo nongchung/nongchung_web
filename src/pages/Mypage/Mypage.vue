@@ -12,6 +12,7 @@ export default {
     Mypage
   },
   created () {
+    // this.$forceUpdate()
     this.$store.dispatch('getLike')
     this.$store.dispatch('getMyhistory')
     this.$store.dispatch('getMyInfo')
