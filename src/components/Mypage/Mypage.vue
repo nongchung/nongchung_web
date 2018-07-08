@@ -3,17 +3,17 @@
      <v-spacer></v-spacer>
      <v-flex xs12>
         <v-card height="260px">
-          <v-card-text>
-            <h2 class="content" style="margin-top:40px">{{userInfo[1]}}님</h2>
+          <v-card-text xs12>
+            <h2 class="content" style="margin-top:40px">{{userInfo.name}}님</h2>
             <p class="content">
-              농활청춘과 함께한 {{myHistory[0][0].tcount}} 번 {{myHistory[0][0].ttime}} 시간
+              농활청춘과 함께한 {{myhistory[0][0].tcount}} 번 {{myhistory[0][0].ttime}} 시간
             </p>
               <v-btn outline class="content">프로필 편집</v-btn>
               </v-card-text>
               <v-avatar style="margin-left:50%"
                   size="104px"
                   color="grey lighten-4">
-                <img :src="userInfo[3]" alt="avatar">
+                <img :src="userInfo.img" alt="avatar">
               </v-avatar>
         </v-card>
          <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="cyan" id="home_tab">
@@ -58,14 +58,19 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('getMyhistory')
-    this.$store.dispatch('getMyInfo')
+    console.log(this.userInfo)
   },
   computed: {
     ...mapGetters({
       userInfo: 'getUserInfo',
       myHistory: 'getMyhistory'
-    })
+    }),
+    userInfo () {
+      return !this.$store.getters.getUserInfo ? false : this.$store.getters.getUserInfo
+    },
+    myhistory () {
+      return !this.$store.getters.getMyhistory ? false : this.$store.getters.getMyhistory
+    }
   },
   components: {
     Myhistory,

@@ -4,7 +4,7 @@
       <!-- <div class="subheading">다녀온 농활 목록</div> -->
       <v-container fluid>
           <v-layout row wrap>
-             <v-flex v-for="item in myHistory[1]" :key="item.idx" xs6 sm4 md4 lg4 xl3 id="card_gutter">
+             <v-flex v-for="item in myhistory[1]" :key="item.idx" xs6 sm4 md4 lg4 xl3 id="card_gutter">
             <v-card flat height="40vh">
               <v-card-media :src="item.img" height="50%">
                 <v-spacer></v-spacer>
@@ -47,7 +47,10 @@ export default {
     ...mapGetters({
       myHistory: 'getMyhistory',
       isAuthenticated: 'isAuthenticated'
-    })
+    }),
+    myhistory () {
+      return !this.$store.getters.getMyhistory ? false : this.$store.getters.getMyhistory
+    }
   },
   methods: {
     getColorPeriod (item) {

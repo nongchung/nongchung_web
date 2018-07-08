@@ -11,7 +11,8 @@ export const store = new Vuex.Store({
     // user state
     accessToken: null,
     isDup: [null, null],
-    userInfo: [],
+    // userInfo: [],
+    userInfo: null,
     myHistory: [],
     myLike: [],
     // main state

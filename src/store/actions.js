@@ -51,7 +51,7 @@ export const nonghwalActions = {
       password
     }).then((res) => {
       if (res.data.token) {
-        commit('loginSuccess', res.data.token)
+        commit('loginSuccess', res.data)
         router.push('/')
       } else {
         alert('아이디 또는 패스워드가 틀렸습니다. 다시 입력해주세요')

@@ -13,6 +13,8 @@ export default {
   },
   created () {
     this.$store.dispatch('getLike')
+    this.$store.dispatch('getMyhistory')
+    this.$store.dispatch('getMyInfo')
   }
 }
 </script>

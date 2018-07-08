@@ -20,14 +20,14 @@ export const nonghwalMutations = {
   loginSuccess (state, payload) {
     console.log('loginSuccess!')
     console.log(payload)
-    localStorage.accessToken = payload
+    // state.userInfo = payload.data[0]
+    localStorage.accessToken = payload.token
     state.accessToken = localStorage.accessToken
     // console.log(payload.data[0].mail)
     // state.userInfo[0] = { 'mail': payload.data[0].mail }
     // state.userInfo[1] = { 'name': payload.data[0].name }
     // state.userInfo[2] = { 'point': payload.data[0].point }
     // state.userInfo[3] = { 'img': payload.data[0].img }
-
     // console.log(state.userInfo)
   },
   logoutClear (state) {
@@ -35,14 +35,15 @@ export const nonghwalMutations = {
     delete localStorage.accessToken
   },
   getMyInfoSuccess (state, payload) {
-    state.userInfo[0] = payload.mail
-    state.userInfo[1] = payload.name
-    state.userInfo[2] = payload.point
-    state.userInfo[3] = payload.img
+    // state.userInfo[0] = payload.mail
+    // state.userInfo[1] = payload.name
+    // state.userInfo[2] = payload.point
+    // state.userInfo[3] = payload.img
+    state.userInfo = payload
   },
   getMyhistorySuccess (state, payload) {
-    state.myHistory[1] = payload.data
     state.myHistory[0] = payload.total
+    state.myHistory[1] = payload.data
   },
   getLikeSuccess (state, payload) {
     state.myLike = payload

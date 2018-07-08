@@ -11,7 +11,7 @@ import Mypage from '@/pages/Mypage/Mypage'
 import Like from '@/pages/Mypage/Like'
 import Myprofile from '@/pages/Mypage/Myprofile'
 import Myhistory from '@/pages/Mypage/Myhistory'
-import Writereview from '@/pages/Mypage/Writereview'
+import Writereview from '@/pages/Review/Writereview'
 
 Vue.use(Router)
 
