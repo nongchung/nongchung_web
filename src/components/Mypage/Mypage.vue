@@ -6,7 +6,7 @@
           <v-card-text xs12>
             <h2 class="content" style="margin-top:40px">{{userInfo.name}}님</h2>
             <p class="content">
-              농활청춘과 함께한 {{myhistory[0][0].tcount}} 번 {{myhistory[0][0].ttime}} 시간
+              농활청춘과 함께한 {{getTotalHistory.tcount}} 번 {{getTotalHistory.ttime}}시간
             </p>
               <v-btn outline class="content">프로필 편집</v-btn>
               </v-card-text>
@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import Mylike from './Mylike'
 import Myhistory from './Myhistory'
 
@@ -57,19 +56,12 @@ export default {
       if (this.tabnumber === 'tab-2') { return true } else return false
     }
   },
-  created () {
-    console.log(this.userInfo)
-  },
   computed: {
-    ...mapGetters({
-      userInfo: 'getUserInfo',
-      myHistory: 'getMyhistory'
-    }),
     userInfo () {
       return !this.$store.getters.getUserInfo ? false : this.$store.getters.getUserInfo
     },
-    myhistory () {
-      return !this.$store.getters.getMyhistory ? false : this.$store.getters.getMyhistory
+    getTotalHistory () {
+      return !this.$store.getters.getTotalHistory ? false : this.$store.getters.getTotalHistory
     }
   },
   components: {

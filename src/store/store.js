@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
   state: {
     // user state
     accessToken: null,
+    totalHistory: null,
     isDup: [null, null],
     // userInfo: [],
     userInfo: null,

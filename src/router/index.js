@@ -8,9 +8,7 @@ import Search from '@/pages/SearchResult'
 import Register from '@/pages/Register'
 import Login from '@/pages/Login'
 import Mypage from '@/pages/Mypage/Mypage'
-import Like from '@/pages/Mypage/Like'
 import Myprofile from '@/pages/Mypage/Myprofile'
-import Myhistory from '@/pages/Mypage/Myhistory'
 import Writereview from '@/pages/Review/Writereview'
 
 Vue.use(Router)
@@ -35,16 +33,6 @@ export default new Router({
     path: '/Mypage',
     name: 'Mypage',
     component: Mypage
-  },
-  {
-    path: '/Like',
-    name: 'Like',
-    component: Like
-  },
-  {
-    path: '/Myhistory',
-    name: 'Myhistory',
-    component: Myhistory
   },
   {
     path: '/Myprofile',

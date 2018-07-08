@@ -2,7 +2,7 @@
    <div class="header">
      <v-spacer></v-spacer>
      <v-flex xs12>
-        <v-card height="230px">
+        <v-card height="200px">
           <v-card-text xs12>
             <h2 class="content" style="margin-top:40px">후기작성
                 <v-avatar style="margin-left:50%"
@@ -25,11 +25,11 @@ export default {
   name: 'WriteHeader',
   computed: {
     ...mapGetters({
-      userInfo: 'userInfo'
+      userInfo: 'getUserInfo'
     })
-    // userInfo () {
-    //   return !this.$store.getters.userInfo ? false : this.$store.getters.user
-    // }
+  },
+  created () {
+    console.log(this.userInfo)
   }
 }
 </script>
