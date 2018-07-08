@@ -30,7 +30,7 @@
               </v-card-actions>
             </v-card>
           </v-menu>
-          <a tag="button" @click="clearPerson()" v-show="person" style="color:grey;">
+          <a tag="button" @click="clearPerson()" v-show="person" style="color:grey; margin-left:-3px;">
             <i class="fas fa-times-circle"></i>
           </a>
         </span>
@@ -42,8 +42,8 @@
               {{regionValue}}
             </v-btn>
             <v-card>
-              <v-layout row pa-3 justify-center>
-              <v-layout column style="border-right:1px solid black;">
+              <v-layout row pt-3 justify-center>
+              <v-layout column pl-3 style="border-right:1px solid black;">
                 <v-checkbox height="1.2rem" style="flex: none !important;" v-model="regionSelected" v-for="(i,a) in regions.slice(0,8)" :key="a" :label="i.name" :value="i.name"></v-checkbox>
               </v-layout>
               <v-layout column px-3>
@@ -56,8 +56,11 @@
               </v-card-actions>
             </v-card>
           </v-menu>
+          <a tag="button" @click="clearRegion()" v-show="region" style="color:grey; margin-left:-3px;">
+            <i class="fas fa-times-circle"></i>
+          </a>
         </span>
-
+        <!-- <button @click="transfer()">변환하기</button> -->
         <!-- 날짜 -->
         <span sm3>
           <VueHotelDatepicker style="height:0; width: 10px;" :ref="dpkr16.datePickerId" :datePickerId="dpkr16.datePickerId" :autoClose="dpkr16.autoClose"
@@ -65,7 +68,7 @@
           <v-btn depressed :color="this.pushDate" @click="toggle(dpkr16.datePickerId)">
             {{dateValue}}
           </v-btn>
-          <a tag="button" @click="clearDate(dpkr16.datePickerId)" v-show="dpkr16.value" style="color:grey;">
+          <a tag="button" @click="clearDate(dpkr16.datePickerId)" v-show="dpkr16.value" style="color:grey; margin-left:-3px;">
             <i class="fas fa-times-circle"></i>
           </a>
         </span>
@@ -97,7 +100,6 @@ export default {
       backgroundColor: 'white',
       separator: ' ~ ',
       button2: '인원',
-      fav: true,
       menu: false,
       menu2: false,
       button3: '지역',
@@ -120,7 +122,8 @@ export default {
          {name: '전라남도', value: 13},
          {name: '전라북도', value: 14},
          {name: '제주도', value: 15}
-       ]
+       ],
+      regionTransfer: []
     }
   },
   computed: {
@@ -154,7 +157,6 @@ export default {
     regionValue: function () {
       let re = ''
       if (this.regionSelected.length === 0) {
-        console.log(this.regionSelected)
         this.regionre(re)
         return this.button3
       } else {
@@ -171,10 +173,15 @@ export default {
     regionre (re) {
       this.region = re
     },
-    transfer (num) {
-      for (let i = 0; i < this.regions.length; i++) {
-        if (num === this.regions[i].value) { return this.regions[i].name }
+    transfer () {
+      for (let j = 0; j < this.regionSelected.length; j++) {
+        for (let i = 0; i < this.regions.length; i++) {
+          if (this.regionSelected[j] === this.regions[i].name) {
+            this.regionTransfer.push(this.regions[i].value)
+          }
+        }
       }
+      console.log(this.regionTransfer)
     },
     searchGo () {
       const {start, end, person, scontent} = this
@@ -236,6 +243,11 @@ export default {
     },
     clearPerson () {
       this.person = 0
+    },
+    clearRegion () {
+      this.region = ''
+      this.regionSelected = []
+      this.regionTransfer = []
     }
   },
   components: {

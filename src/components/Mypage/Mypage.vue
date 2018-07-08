@@ -60,6 +60,7 @@ export default {
   created () {
     this.$store.dispatch('getMyhistory')
     this.$store.dispatch('getMyInfo')
+    console.log(this.myHistory[0][0])
   },
   computed: {
     ...mapGetters({

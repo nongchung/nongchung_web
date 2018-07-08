@@ -48,9 +48,6 @@ export default {
       isAuthenticated: 'isAuthenticated'
     })
   },
-  created () {
-    this.$store.dispatch('getMyhistory')
-  },
   methods: {
     getColorPeriod (item) {
       if (item.period === '1박 2일') {
@@ -64,9 +61,6 @@ export default {
     goNonghwalDetail (idx) {
       this.$router.push({name: 'Detail', params: { idx: idx }})
     }
-  },
-  created () {
-    console.log(this.popularList)
   }
 }
 </script>
@@ -91,8 +85,10 @@ export default {
   color:gray;
 }
 .card_tip{
-  height: 1.3rem;
+  height: 1.9rem;
+  padding: .25rem;
   color: white;
+  font-family: sans-serif;
 }
 #card_gutter{
   padding: 1.8vw !important;

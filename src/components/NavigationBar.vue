@@ -1,14 +1,15 @@
 <template>
   <v-toolbar app flat fixed color="white" height="74px">
-      <router-link to="/" tag="a" class="hidden-sm-and-up">
-                <img src="../assets/logo_ex.png" height="30px" style="margin-top: 10px;">
-      </router-link>
-      <v-toolbar-title id="toolbar_title" style="margin-right: 1vw;" class="hidden-xs-only">
+      <v-toolbar-title id="toolbar_title" style="margin-right: 1vw;">
+        <!-- <router-link to="/" tag="a" class="hidden-sm-and-up">
+                <img src="../assets/logo_ex.png" height="30px" style="margin-top: 10px;">농활청춘
+      </router-link> -->
         <router-link to="/" tag="a" >
                 <img src="../assets/logo_ex.png" height="35px" style="margin-top: 10px;">
       농활청춘
       </router-link>
       </v-toolbar-title>
+      <v-layout class="hidden-xs-only">
           <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#1" color="grey lighten-1" active-class="black" style="padding-left: 20px !important;">
             농활청춘소개
           </v-btn>
@@ -50,7 +51,9 @@
           <v-btn top :ripple="false" flat class="toolbar_list" exact @click="logout" color="grey lighten-1" active-class="black"
           v-if="isAuthenticated">
             로그아웃
-          </v-btn>
+          </v-btn></v-layout>
+          <v-spacer class="hidden-sm-and-up"></v-spacer>
+          <v-icon @click="navdrawer=!navdrawer" class="hidden-sm-and-up">menu</v-icon>
 
     </v-toolbar>
 </template>
@@ -61,7 +64,8 @@ export default {
   data () {
     return {
       searchicon: true,
-      searchbar: false
+      searchbar: false,
+      navdrawer: false
     }
   },
   computed: {
