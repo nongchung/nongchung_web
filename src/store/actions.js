@@ -96,7 +96,6 @@ export const nonghwalActions = {
       console.log(err.message)
     })
   },
-  // 검색 서버에서 바꿨다고함, 수정필요
   search ({ commit }, payload) {
     commit('searchStart')
     axios.get('http://13.125.216.198:3000/api/home/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent)
@@ -113,6 +112,18 @@ export const nonghwalActions = {
       .then(res => {
         console.log(res.data.message)
         commit('mainSuccess', res.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
+  },
+  getMainLogin ({ state, commit }) {
+    commit('mainloginStart')
+    axios.get('http://13.125.216.198:3000/api/home', {
+      headers: {token: state.accessToken}
+    })
+      .then(res => {
+        console.log(res.data.message)
+        commit('mainloginSuccess', res.data)
       }).catch(err => {
         console.log('ERROR! :' + err)
       })
@@ -137,5 +148,16 @@ export const nonghwalActions = {
       }).catch(err => {
         console.log('ERROR! :' + err)
       })
+  },
+  addnonghwalBookmark ({state, commit}, payload) {
+    commit('addnonghwalBookmarkStart')
+    axios.post('http://13.125.216.198:3000/api/bookmark', {
+      headers: {token: state.accesToken}, body: {payload}
+    }).then(res => {
+      console.log(res.data.message)
+      commit('addnonghwalBookmarkSuccess', res.data.message)
+    }).catch(err => {
+      console.log('ERROR! :' + err)
+    })
   }
 }

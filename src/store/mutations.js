@@ -66,6 +66,17 @@ export const nonghwalMutations = {
     state.popularFarm = payload.populFarm
     console.log('mainSuccess')
   },
+  mainloginStart (state) {
+    console.log('mainloginStart!')
+  },
+  mainloginSuccess (state, payload) {
+    state.ads = payload.ads
+    state.popularList = payload.populNh
+    state.newList = payload.newNh
+    state.popularFarm = payload.populFarm
+    state.isBooked = payload.isBooked
+    console.log('mainloginSuccess')
+  },
   nonghwalDetailStart (state) {
     console.log('nonghwalDetailStart!')
   },
@@ -87,5 +98,11 @@ export const nonghwalMutations = {
     state.nhLocation.location = payload.location
     state.nhLocation.geoLocation = payload.geoLocation
     console.log('nonghwalLocationSuccess')
+  },
+  addnonghwalBookmarkStart (state) {
+    console.log('addnonghwalBookmarkStart')
+  },
+  addnonghwalBookmarkSuccess (state, payload) {
+    console.log('addnonghwalBookmarkSuccess')
   }
 }

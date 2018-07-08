@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar app flat fixed color="white" height="74px">
+  <v-toolbar app flat fixed color="white">
       <v-toolbar-title id="toolbar_title" style="margin-right: 1vw;">
         <!-- <router-link to="/" tag="a" class="hidden-sm-and-up">
                 <img src="../assets/logo_ex.png" height="30px" style="margin-top: 10px;">농활청춘

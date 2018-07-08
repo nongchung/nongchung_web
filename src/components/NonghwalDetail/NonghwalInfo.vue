@@ -2,7 +2,7 @@
   <v-layout column>
     <!-- 농활이미지 -->
     <v-flex style="height:23rem; width:100%; background:white;">
-      <img id="nhdetail_img" src="http://farm.hansalim.or.kr/wp/wp-content/uploads/2017/06/%ED%8F%AC%EC%8A%A4%ED%84%B0-%EC%82%AC%EC%A7%84-1024x768.jpg">
+      <img id="nhdetail_img" :src="nonghwalDetail.image[0]">
     </v-flex>
     <!-- 주의사항 -->
     <v-flex my-4 pa-3 style="background:#bcbcbc; font-family:sans-serif; font-size:.8rem;">
@@ -22,19 +22,26 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
       items: ['Foo', 'Bar', 'Fizz', 'Buzz']}
+  },
+  computed: {
+    ...mapGetters({
+      userToken: 'isAuthenticated'
+    })
   },
   methods: {
     showMap: function (idx) {
       this.$store.dispatch('nonghwalLocation', idx)
     },
     bookmarkNh: function (idx) {
-      this.$store.dispatch('nonghwalBookmark', {idx})
+      this.$store.dispatch('addnonghwalBookmark', {nhIdx: idx})
     }
-  }
+  },
+  props: ['nonghwalDetail', 'nonghalLocation']
 }
 </script>
 

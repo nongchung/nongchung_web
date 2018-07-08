@@ -21,21 +21,21 @@
         <v-flex sm7 md6 lg5 xl5 pr-3>
       <v-tab-item id="tab-1" color="white">
           <!-- 농활정보 -->
-          <nonghwal-info></nonghwal-info>
+          <nonghwal-info :nonghwalDetail="getNonghwalDetail" :nonghwalLocation="getNonghwalLocation"></nonghwal-info>
       </v-tab-item>
       <v-tab-item id="tab-2" color="white">
           <!-- Q&A -->
-          <div>QandA</div>
+          <nonghwal-qanda></nonghwal-qanda>
       </v-tab-item>
       <v-tab-item id="tab-3" color="white">
           <!-- 농활후기 -->
-          <div>농활후기</div>
+          <nonghwal-review></nonghwal-review>
       </v-tab-item>
       </v-flex>
 
       <!-- 오른쪽라인 -->
       <v-flex sm5 md3 lg3 xl2 pl-4>
-        <apply-etc></apply-etc>
+        <apply-etc :isBooked="getNonghwalDetail.isBooked" :nhIdx="getPath"></apply-etc>
       </v-flex>
       </v-layout>
     </v-tabs-items>
@@ -67,8 +67,7 @@ export default {
   computed: {
     ...mapGetters({
       getNonghwalDetail: 'getNonghwalDetail',
-      getNonghwalLocation: 'getNonghwalLocation',
-      isAuthenticated: 'isAuthenticated'
+      getNonghwalLocation: 'getNonghwalLocation'
     }),
     getPath: function () {
       return this.$route.params.idx
@@ -76,7 +75,7 @@ export default {
   },
   created () {
     this.fetchData(this.getPath)
-    console.log(this.getNonghwalDetail.image[0])
+    console.log(this.getPath)
   },
   methods: {
     fetchData: function (idx) {

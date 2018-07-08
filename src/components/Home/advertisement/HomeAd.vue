@@ -3,7 +3,7 @@
   <v-layout row justify-center class="ads_layout">
     <v-flex xs12 sm12 md12 lg12 xl12>
   <v-carousel flat interval="4000">
-    <v-carousel-item v-for="item in ads" :key="item.idx" :src="item.img">
+    <v-carousel-item v-for="item in ads" :key="item.idx" src="http://www.paskcw.net/data/file/b02/988263804_YGSqsRAD_B0EDC3A2_C7D8B9D9B6F3B1E2_C6C4B3EBB6F3B8B66-5.jpg">
       <div class="ads_text">
       <div class="white--text ads_theme">농활 테마기획전</div>
       <div class="white--text ads_title">"{{item.title}}"</div>
@@ -17,17 +17,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
     }
   },
-  computed: {
-    ...mapGetters({
-      ads: 'getAds'
-    })
-  }
+  props: ['ads']
+  // computed: {
+  //   ...mapGetters({
+  //     ads: 'getAds'
+  //   })
+  // }
 }
 </script>
 
@@ -51,5 +52,6 @@ export default {
 .ads_title{
   font-size: 2rem;
   font-family: sans-serif;
+  font-weight: bold;
 }
 </style>

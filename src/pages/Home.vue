@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import SearchBar from '../components/Home/search/SearchBar'
 import HomeAd from '../components/Home/advertisement/HomeAd'
 import PopularList from '../components/Home/list/PopularList'
@@ -23,8 +24,17 @@ export default {
     PopularFarm,
     HomeTabList
   },
+  computed: {
+    ...mapGetters({
+      isAuthenticated: 'isAuthenticated'
+    })
+  },
   created () {
-    this.$store.dispatch('getMain')
+    if (!this.isAuthenticated) {
+      this.$store.dispatch('getMain')
+    } else {
+      this.$store.dispatch('getMainLogin')
+    }
   }
 }
 </script>

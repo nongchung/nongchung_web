@@ -4,7 +4,7 @@
       <v-container fluid style="margin-top:-2vw;">
         <v-layout row wrap>
           <!-- 농활카드하나씩 -->
-          <v-flex tag="a" v-for="item in newList" :key="item.idx" xs6 sm4 md4 lg4 xl3 id="card_gutter" @click="goNonghwalDetail(item.idx)">
+          <v-flex tag="a" v-for="item in newList" :key="item.idx" xs6 sm4 md4 lg4 xl3 id="card_gutter" @click="goNonghwalDetail(item.nhIdx)">
             <v-card flat height="21rem">
               <!-- 농활대표사진 -->
               <v-card-media src="http://www.ijejutoday.com/news/photo/201707/203893_161637_1345.jpg" height="50%">
@@ -57,6 +57,9 @@ export default {
       } else if (item.period === '당일치기') {
         return 'lightblue'
       } else { return 'yellow' }
+    },
+    goNonghwalDetail (nhIdx) {
+      this.$router.push({name: 'Detail', params: { idx: nhIdx }})
     }
   }
 }

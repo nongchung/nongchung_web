@@ -22,8 +22,8 @@ export const store = new Vuex.Store({
     popularFarm: [],
     // search state
     searchResult: [],
-    nhDetail: {image: null, nhInfo: null, friendsInfo: null, farmerInfo: null, schedule: null, nearestStartDate: null, allStartDate: null},
-    nhLocation: {location: null, geoLocation: null}
+    nhDetail: {image: [], nhInfo: [], friendsInfo: [], farmerInfo: [], schedule: [], nearestStartDate: [], allStartDate: [], isBooked: []},
+    nhLocation: {location: [], geoLocation: []}
   },
   getters: Object.assign({}, nonghwalGetters),
   actions: Object.assign({}, nonghwalActions),

@@ -13,7 +13,7 @@
         :color="colors[color]"
         class="custom-ripple"
         ripple
-        height="300"
+        height="500"
         @click.native="color = (color + 1) % colors.length"
       >
         <div class="title white--text pl-3 pt-3">{{ colors[color] }}</div>
@@ -59,6 +59,4 @@ export default {
 </script>
 
 <style scoped>
- .custom-ripple
-    user-select: none
 </style>
