@@ -2,16 +2,15 @@
    <div class="header">
      <v-spacer></v-spacer>
      <v-flex xs12>
-
-        <v-card height="260px">
+        <v-card>
        <v-layout row>
           <v-layout>
           <v-card-text style="margin-left:10%">
-            <p class="content" style="margin-top:40px; font-size:30px">{{userInfo.name}}님</p>
+            <p class="content" style="margin-top:20px; font-size:30px"><strong>{{userInfo.name}}</strong>님</p>
             <p class="content" style="font-size:25px">
-              농활청춘과 함께한 {{getTotalHistory.tcount}} 번 {{getTotalHistory.ttime}}시간
+              <strong>총 <span style="color:#FDC948">{{getTotalHistory.tcount}} 건</span> <span style="color:#2CCBB1">{{getTotalHistory.ttime}}시간</span>의 활동을</strong> 농활청춘과 함께했어요.
             </p>
-              <v-btn outline class="content">프로필 편집</v-btn>
+              <v-btn outline class="content" @click="editMyInfo">프로필 편집</v-btn>
               </v-card-text>
           </v-layout>
           <v-layout xs2>
@@ -60,6 +59,9 @@ export default {
     },
     secondtab () {
       if (this.tabnumber === 'tab-2') { return true } else return false
+    },
+    editMyInfo () {
+      this.$router.push('/Myprofile')
     }
   },
   computed: {
