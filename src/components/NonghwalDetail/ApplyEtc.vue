@@ -3,14 +3,14 @@
     <!-- 농활정보 및 신청, 추가기능 -->
     <v-flex px-4 py-2 style="background: white;">
       <v-layout column>
-        <v-flex pa-2 style="font-family:sans-serif;font-size:1.7rem;">20000원</v-flex>
+        <v-flex pa-2 style="font-family:sans-serif;font-size:1.7rem;">{{getNonghwalDetail.nhInfo.price}}원</v-flex>
         <v-flex pa-1 d-flex>
           <v-icon class="mr-3" style="flex: 0 0 auto !important;">assignment</v-icon>
-          <v-select :items="items" label="날짜 선택" solo flat dense style="border: 1px solid grey; height:2.7rem; min-height: initial; font-family:sans-serif !important; flex: 0 0 auto !important;"></v-select>
+          <v-select :items="getallStartDateList" label="날짜선택" solo flat dense style="border: 1px solid grey; width: 80%; height:2.7rem; min-height: initial; font-family:sans-serif !important; flex: 0 0 auto !important;"></v-select>
         </v-flex>
-        <v-flex pa-1><v-icon class="mr-3">place</v-icon>주소</v-flex>
-        <v-flex pa-1><v-icon class="mr-3">person</v-icon>총030명 (최소5명)</v-flex>
-        <v-flex pa-1><v-icon class="mr-3">access_time</v-icon>마감일시</v-flex>
+        <v-flex pa-1><v-icon class="mr-3">place</v-icon>{{getNonghwalDetail.nhInfo.addr}}</v-flex>
+        <v-flex pa-1><v-icon class="mr-3">person</v-icon>인원은 어케할까나</v-flex>
+        <v-flex pa-1><v-icon class="mr-3">access_time</v-icon>{{getallStartDateList[getallStartDateList.length-1]}}</v-flex>
         <v-flex pa-1><v-btn large block color="primary" @click="clickApplyBtn">신청하기</v-btn></v-flex>
         <v-flex px-1 d-flex>
           <v-btn block flat large outline @click="clickBookmarkBtn" :color="isBookedColor" class="mr-2"><v-icon left>favorite</v-icon>30</v-btn>
@@ -85,37 +85,45 @@ export default {
       items: ['Foo', 'Bar', 'Fizz', 'Buzz']
     }
   },
+  props: ['nhIdx'],
   computed: {
     ...mapGetters({
       isAuthenticated: 'isAuthenticated',
       getNonghwalDetail: 'getNonghwalDetail'
     }),
-    getPath: function () {
-      return this.$route.params.idx
+    getisBooked: function () {
+      return this.getNonghwalDetail.nhInfo.isBooked
     },
-    // getisBooked: function () {
-    //   return this.getNonghwalDetail.isBooked
-    // },
     isBookedColor: function () {
-      if (this.isBooked === null) { return 'black' } else { return 'primary' }
+      if (this.getisBooked === 0) { return 'black' } else { return 'primary' }
+    },
+    getallStartDateList: function () {
+      let allStartDateList = []
+      for (let i = 0; i < this.getNonghwalDetail.allStartDate.length; i++) {
+        allStartDateList.push(this.getNonghwalDetail.allStartDate[i].startDate)
+      }
+      return allStartDateList
     }
   },
   methods: {
     clickBookmarkBtn: function () {
       if (this.isAuthenticated) {
-        this.$store.dispatch('addnonghwalBookmark', this.getPath)
+        if (this.getisBooked === 0) { this.$store.dispatch('addnonghwalBookmark', this.nhIdx) } else this.$store.dispatch('deletenonghwalBookmark', this.nhIdx)
       } else {
         alert('로그인기기')
       }
     },
     clickApplyBtn: function () {
-      if (!this.isAuthenticated) {
-        console.log('hihi')
+      if (this.isAuthenticated) {
+        this.$router.push({name: 'Apply'})
+      } else {
+        alert('로그인기기')
       }
     }
   },
   created () {
-    console.log(this.isBooked)
+    console.log(this.getNonghwalDetail.nearestStartDate)
+    console.log(this.getallStartDateList)
   }
 }
 </script>

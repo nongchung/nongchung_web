@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from '@/pages/Home'
 import NonghwalDetail from '@/pages/NonghwalDetail'
 import Search from '@/pages/SearchResult'
+import Apply from '@/pages/Apply'
 
 import Register from '@/pages/Register'
 import Login from '@/pages/Login'
@@ -51,13 +52,17 @@ export default new Router({
   {
     path: '/Detail/:idx',
     name: 'Detail',
-    component: NonghwalDetail,
-    prop: true
+    component: NonghwalDetail
   },
   {
     path: '/Writereview',
     name: 'Writereview',
     component: Writereview
+  },
+  {
+    path: '/Apply',
+    name: 'Apply',
+    component: Apply
   }
   ]
 })

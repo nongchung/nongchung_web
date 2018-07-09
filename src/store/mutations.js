@@ -48,20 +48,20 @@ export const nonghwalMutations = {
     console.log('mainStart!')
   },
   mainSuccess (state, payload) {
-    state.ads = payload.ads
-    state.popularList = payload.populNh
-    state.newList = payload.newNh
-    state.popularFarm = payload.populFarm
+    state.home.ads = payload.ads
+    state.home.popularList = payload.populNh
+    state.home.newList = payload.newNh
+    state.home.popularFarm = payload.populFarm
     console.log('mainSuccess')
   },
   mainloginStart (state) {
     console.log('mainloginStart!')
   },
   mainloginSuccess (state, payload) {
-    state.ads = payload.ads
-    state.popularList = payload.populNh
-    state.newList = payload.newNh
-    state.popularFarm = payload.populFarm
+    state.home.ads = payload.ads
+    state.home.popularList = payload.populNh
+    state.home.newList = payload.newNh
+    state.home.popularFarm = payload.populFarm
     console.log('mainloginSuccess')
   },
   nonghwalDetailStart (state) {
@@ -104,6 +104,14 @@ export const nonghwalMutations = {
     console.log('addnonghwalBookmarkStart')
   },
   addnonghwalBookmarkSuccess (state, payload) {
+    state.nhDetail.nhInfo.isBooked = 1
+    console.log('addnonghwalBookmarkSuccess')
+  },
+  deletenonghwalBookmarkStart (state) {
+    console.log('addnonghwalBookmarkStart')
+  },
+  deletenonghwalBookmarkSuccess (state, payload) {
+    state.nhDetail.nhInfo.isBooked = 0
     console.log('addnonghwalBookmarkSuccess')
   }
 }

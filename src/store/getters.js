@@ -1,16 +1,19 @@
 export const nonghwalGetters = {
   // main getters
   getAds (state) {
-    return state.ads
+    return state.home.ads
   },
   getPopularList (state) {
-    return state.popularList
+    return state.home.popularList
   },
   getNewList (state) {
-    return state.newList
+    return state.home.newList
   },
   getPopularFarm (state) {
-    return state.popularFarm
+    return state.home.popularFarm
+  },
+  getAllHome (state) {
+    return state.home
   },
   // user getters
   isAuthenticated (state) {

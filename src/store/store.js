@@ -16,13 +16,12 @@ export const store = new Vuex.Store({
     userInfo: [],
     myHistory: [],
     myLike: [],
-    // main state
-    ads: [],
-    popularList: [],
-    newList: [],
-    popularFarm: [],
     // search state
     searchResult: [],
+    home: {ads: [],
+      popularList: [],
+      newList: [],
+      popularFarm: []},
     nhDetail: {image: [], nhInfo: [], friendsInfo: [], farmerInfo: [], schedule: [], nearestStartDate: [], allStartDate: [], myScheduleActivity: []},
     nhLocation: {location: [], geoLocation: []}
   },

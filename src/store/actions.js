@@ -162,11 +162,19 @@ export const nonghwalActions = {
       })
   },
   addnonghwalBookmark ({state, commit}, payload) {
-    console.log(payload)
     commit('addnonghwalBookmarkStart')
     axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/bookmark', headers: {token: state.accessToken}, data: { nhIdx: payload } }).then(res => {
       console.log(res.data.message)
       commit('addnonghwalBookmarkSuccess', res.data.message)
+    }).catch(err => {
+      console.log('ERROR! :' + err)
+    })
+  },
+  deletenonghwalBookmark ({state, commit}, payload) {
+    commit('deletenonghwalBookmarkStart')
+    axios({ method: 'DELETE', url: 'http://13.125.216.198:3000/api/bookmark', headers: {token: state.accessToken}, data: { nhIdx: payload } }).then(res => {
+      console.log(res.data.message)
+      commit('deletenonghwalBookmarkSuccess', res.data.message)
     }).catch(err => {
       console.log('ERROR! :' + err)
     })

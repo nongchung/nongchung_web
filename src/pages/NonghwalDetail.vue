@@ -35,7 +35,7 @@
 
       <!-- 오른쪽라인 -->
       <v-flex sm5 md3 lg3 xl2 pl-4>
-        <apply-etc :nhIdx="getPath"></apply-etc>
+        <apply-etc :nhIdx="this.getPath"></apply-etc>
       </v-flex>
       </v-layout>
     </v-tabs-items>
@@ -67,7 +67,8 @@ export default {
   computed: {
     ...mapGetters({
       getNonghwalDetail: 'getNonghwalDetail',
-      getNonghwalLocation: 'getNonghwalLocation'
+      getNonghwalLocation: 'getNonghwalLocation',
+      isAuthenticated: 'isAuthenticated'
     }),
     getPath: function () {
       return this.$route.params.idx
@@ -75,11 +76,10 @@ export default {
   },
   created () {
     this.fetchData(this.getPath)
-    console.log(this.getPath)
   },
   methods: {
     fetchData: function (idx) {
-      this.$store.dispatch('nonghwalDetail', idx)
+      if (!this.isAuthenticated) { this.$store.dispatch('nonghwalDetail', idx) } else { this.$store.dispatch('nonghwalDetailLogin', idx) }
     }
   }
 }
