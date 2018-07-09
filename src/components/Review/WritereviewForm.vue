@@ -8,12 +8,13 @@
         <v-card-media :src="nhDeatail.image[0]" height="151px" width="253px"></v-card-media>
       </v-flex>
       <v-flex>
-      <v-card-text>
+        <h2></h2>
+      <!-- <v-card-text>
         <v-layout column>
         <v-subheader class="pa-0">Where do you live?</v-subheader>
         <v-subheader class="pa-0">Where do you live?</v-subheader>
         </v-layout>
-      </v-card-text>
+      </v-card-text> -->
       </v-flex>
       </v-layout>
     </v-card>
