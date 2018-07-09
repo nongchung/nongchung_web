@@ -2,11 +2,12 @@
    <div class="header">
      <v-spacer></v-spacer>
      <v-flex xs12>
-        <v-card height="200px">
+        <v-card height="180px">
           <v-card-text xs12>
-            <h2 class="content" style="margin-top:40px">후기작성
+            <h2 class="content" style="margin-top:10px">
+              후기작성
                 <v-avatar style="margin-left:50%"
-                  size="104px"
+                  size="103px"
                   color="grey lighten-4">
                 <img :src="userInfo.img" alt="avatar">
               </v-avatar>

@@ -4,7 +4,7 @@
       <!-- <div class="subheading">다녀온 농활 목록</div> -->
       <v-container fluid>
           <v-layout row wrap>
-             <v-flex v-for="item in getMyHistory" :key="item.idx" xs6 sm4 md4 lg4 xl3 id="card_gutter">
+             <v-flex v-for="(item, index) in getMyHistory" :key="item.idx" xs6 sm4 md4 lg4 xl3 id="card_gutter">
             <v-card flat height="40vh">
               <v-card-media :src="item.img" height="50%">
                 <v-spacer></v-spacer>
@@ -24,7 +24,7 @@
                   <v-icon>favorite_border</v-icon>
                 </v-btn>
                 <v-btn flat @click="goNonghwalDetail(item.idx)">상세보기</v-btn>
-                <v-btn flat v-if="item.rState!=0" @click="writeReview(item.idx)">후기작성</v-btn>
+                <v-btn flat v-if="item.rState!=0" @click="writeReview(item.idx, index)">후기작성</v-btn>
                 <v-btn flat v-if="item.rState===0">후기작성 완료</v-btn>
               </v-card-actions>
             </v-card>
@@ -45,7 +45,6 @@ export default {
   },
   computed: {
     ...mapGetters({
-      myHistory: 'getMyhistory',
       isAuthenticated: 'isAuthenticated'
     }),
     getMyHistory () {
@@ -65,9 +64,9 @@ export default {
     goNonghwalDetail (idx) {
       this.$router.push({name: 'Detail', params: { idx: idx }})
     },
-    writeReview (idx) {
+    writeReview (idx, arrindex) {
       // this.$router.push('/Writereview')
-      this.$router.push({name: 'Writereview', params: { idx: idx }})
+      this.$router.push({name: 'Writereview', params: { idx: idx, arrIndex: arrindex }})
     }
   }
 }
