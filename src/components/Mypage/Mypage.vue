@@ -2,19 +2,25 @@
    <div class="header">
      <v-spacer></v-spacer>
      <v-flex xs12>
+
         <v-card height="260px">
-          <v-card-text xs12>
-            <h2 class="content" style="margin-top:40px">{{userInfo.name}}님</h2>
-            <p class="content">
+       <v-layout row>
+          <v-layout>
+          <v-card-text style="margin-left:10%">
+            <p class="content" style="margin-top:40px; font-size:30px">{{userInfo.name}}님</p>
+            <p class="content" style="font-size:25px">
               농활청춘과 함께한 {{getTotalHistory.tcount}} 번 {{getTotalHistory.ttime}}시간
             </p>
               <v-btn outline class="content">프로필 편집</v-btn>
               </v-card-text>
-              <v-avatar style="margin-left:50%"
-                  size="104px"
-                  color="grey lighten-4">
-                <img :src="userInfo.img" alt="avatar">
+          </v-layout>
+          <v-layout xs2>
+              <v-avatar style="margin-left:40%"
+                  size="104px">
+                <img :src="userInfo.img" alt="avatar" style="margin-top:135px">
               </v-avatar>
+          </v-layout>
+       </v-layout>
         </v-card>
          <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="cyan" id="home_tab">
       <v-flex sm1 md1 lg2 xl2></v-flex>
