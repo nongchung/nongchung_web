@@ -20,7 +20,7 @@
           ></v-text-field>
       </v-flex>
       <v-flex xs3 offset-xs4>
-        <v-text-field
+        <v-text-field  @keyup.13="login"
             type="password"
             label="password"
             v-model="password"
@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     login () {
-      console.log(this)
       const { email, password } = this
       this.$store.dispatch('login', {email, password})
     }

@@ -77,8 +77,8 @@ export default {
     },
     submitReview: function () {
       const {rImages, content, star} = this
-      const scheIdx = this.getScheIdx()
-      this.$store.dispatch('writeRivew', {scheIdx, rImages, content, star})
+      const scheIdx = this.getScheIdx
+      this.$store.dispatch('writeReview', {scheIdx, rImages, content, star})
     }
   }
 }

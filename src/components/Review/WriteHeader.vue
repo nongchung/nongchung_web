@@ -28,9 +28,6 @@ export default {
     ...mapGetters({
       userInfo: 'getUserInfo'
     })
-  },
-  created () {
-    console.log(this.userInfo)
   }
 }
 </script>

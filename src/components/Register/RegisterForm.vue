@@ -114,27 +114,16 @@
                                     <v-text-field v-model="password" :append-icon="show4 ? 'visibility_off' : 'visibility'" :rules="passRules" :type="show4 ? 'text' : 'password'" :counter="12" @click:append="show4 = !show4" label="Password" hint="비밀번호는 8자 ~ 12자로, 영문숫자 혼용, 특수문자 11개 를 사용하실 수 있습니다." required></v-text-field>
                                 </v-flex>
                             </v-layout>
-                            <!-- <v-layout row>
-
+                            <v-layout row>
                                 <v-flex xs2>
-
                                     <v-card color="grey lighten-1">
-
                                         <v-card-text>비밀번호 확인</v-card-text>
-
                                     </v-card>
-
                                 </v-flex>
-
-                                <v-flex xs12 sm6> -->
-                                    <!-- <v-text-field v-model="password1" :append-icon="show4 ? 'visibility_off' : 'visibility'" :rules="[rules.required, rules.min]" :type="show4 ? 'text' : 'password'" :counter="12" v-validate="'required|confirmed:password'" data-vv-as="password" label="Password" hint="비밀번호는 8자 ~ 12자로, 영문숫자 혼용, 특수문자 11개 를 사용하실 수 있습니다." required></v-text-field> -->
-                                    <!-- <v-text-field v-model="password" :append-icon="show4 ? 'visibility_off' : 'visibility'" :rules="[rules.required, rules.min, rules.passConfirm]" :type="show4 ? 'text' : 'password'" :counter="12" label="Password" hint="비밀번호는 8자 ~ 12자로, 영문숫자 혼용, 특수문자 11개 를 사용하실 수 있습니다." required></v-text-field> -->
-
-                                    <!-- <v-text-field :append-icon="show4 ? 'visibility_off' : 'visibility'" :rules="[rules]" :type="show4 ? 'text' : 'password'" hint="At least 8 characters" @click:append="show4 = !show4"></v-text-field> -->
-
-                                <!-- </v-flex>
-
-                            </v-layout> -->
+                                <v-flex xs12 sm6>
+                                    <v-text-field v-model="confirmPassword" :append-icon="show4 ? 'visibility_off' : 'visibility'" :rules="[passRules, checkPassword]" :type="show4 ? 'text' : 'password'" :counter="12" v-validate="'required|confirmed:password'" data-vv-as="password" label="confirmPassword" hint="비밀번호는 8자 ~ 12자로, 영문숫자 혼용, 특수문자 11개 를 사용하실 수 있습니다." required></v-text-field>
+                             </v-flex>
+                            </v-layout>
                             <v-layout row>
                                 <v-flex xs2>
                                     <v-card color="grey lighten-1">
@@ -209,7 +198,6 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'RegisterForm',
   data: () => ({
-
     e1: 0,
     valid: true,
     show4: false,
@@ -222,6 +210,7 @@ export default {
     emailAddr: '',
     name: '',
     password: '',
+    confirmPassword: '',
     sex: 1,
     handphone: '',
     birth: '',
@@ -254,7 +243,10 @@ export default {
   computed: {
     ...mapGetters({
       isDup: 'isDupCheck'
-    })
+    }),
+    checkPassword () {
+      return this.password !== this.confirmPassword ? '비밀번호가 일치하지 않습니다.' : true
+    }
   },
   methods: {
     cancel () {
@@ -263,25 +255,19 @@ export default {
         this.$router.push('/')
       }
     },
-
     clear () {
       this.$refs.form.reset()
     },
-
     save (birth) {
       this.$refs.menu.save(birth)
     },
-
     checkAgree () {
       if ((this.agree1 && this.agree2) || this.agree3) {
         this.e1 = 2
       } else {
-        console.log(this.agree1)
-
         alert('약관에 동의하여 주십시오.')
       }
     },
-
     allCheck () {
       this.agree1 = 'success'
 
@@ -308,13 +294,9 @@ export default {
       this.$store.dispatch('dupNickname', {nickname})
     },
     register () {
-    //   console.log(this)
-      console.log(this.isDup[0])
-      console.log(this.isDup[1])
-
       if (this.isDup[0] && this.isDup[1]) {
         const {email, password, nickname, name, sex, handphone, birth} = this
-        this.$store.dispatch('register', {email, password, nickname, name, sex, handphone, birth})
+        this.$store.dispatch('register', {email, password, nickname, name, sex, handphone, birth}).then(this.e1 = 3)
       } else {
         alert('중복체크를 해 주세요')
       }

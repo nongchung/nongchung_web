@@ -36,7 +36,7 @@ export const nonghwalActions = {
     axios.post('http://13.125.216.198:3000/api/signup', { email, password, nickname, name, sex, handphone, birth }).then(res => {
       console.log(res.data.message)
       commit('regSuccess')
-    //   router.push('/Login')
+      //   router.push('/Login')
     }).catch((error) => {
       if (error.response.data.message === 'Null Value') alert('모든 값을 채워주세요')
       else {
@@ -65,7 +65,7 @@ export const nonghwalActions = {
     commit('logoutClear')
     router.push('/')
   },
-  getMyhistory ({state, commit}) {
+  getMyhistory ({ state, commit }) {
     axios.get('http://13.125.216.198:3000/api/activity/complete', {
       headers: {
         token: state.accessToken
@@ -78,7 +78,7 @@ export const nonghwalActions = {
   },
   getLike ({ state, commit }) {
     axios.get('http://13.125.216.198:3000/api/bookmark', {
-      headers: {token: state.accessToken}
+      headers: { token: state.accessToken }
     }).then(res => {
       commit('getLikeSuccess', res.data.bmList)
     }).catch((error) => {
@@ -92,6 +92,16 @@ export const nonghwalActions = {
       }
     }).then(res => {
       commit('getMyInfoSuccess', res.data.data[0])
+    }).catch(err => {
+      console.log(err.message)
+    })
+  },
+  writeReview ({ state, commit }, payload) {
+    axios.post('http://13.125.216.198:3000/api/home/detail/review', {
+      headers: { token: state.accessToken },
+      body: { payload }
+    }).then(res => {
+      commit('writeReviewSuccess', res.data)
     }).catch(err => {
       console.log(err.message)
     })
