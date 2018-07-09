@@ -138,6 +138,18 @@ export const nonghwalActions = {
         console.log('ERROR! :' + err)
       })
   },
+  nonghwalDetailLogin ({ state, commit }, payload) {
+    commit('nonghwalDetailLoginStart')
+    axios.get('http://13.125.216.198:3000/api/home/detail/nh?idx=' + payload, {
+      headers: {token: state.accessToken}
+    })
+      .then(res => {
+        console.log(res.data.message)
+        commit('nonghwalDetailLoginSuccess', res.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
+  },
   nonghwalLocation ({ commit }, payload) {
     commit('nonghwalLocationStart')
     axios.get('http://13.125.216.198:3000/api/home/detail/location?idx=' + payload)
@@ -150,10 +162,9 @@ export const nonghwalActions = {
       })
   },
   addnonghwalBookmark ({state, commit}, payload) {
+    console.log(payload)
     commit('addnonghwalBookmarkStart')
-    axios.post('http://13.125.216.198:3000/api/bookmark', {
-      headers: {token: state.accesToken}, body: {payload}
-    }).then(res => {
+    axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/bookmark', headers: {token: state.accessToken}, data: { nhIdx: payload } }).then(res => {
       console.log(res.data.message)
       commit('addnonghwalBookmarkSuccess', res.data.message)
     }).catch(err => {

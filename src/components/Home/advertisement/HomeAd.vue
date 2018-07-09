@@ -2,12 +2,12 @@
 <!-- <v-container fluid> -->
   <v-layout row justify-center class="ads_layout">
     <v-flex xs12 sm12 md12 lg12 xl12>
-  <v-carousel flat interval="4000">
-    <v-carousel-item v-for="item in ads" :key="item.idx" src="http://www.paskcw.net/data/file/b02/988263804_YGSqsRAD_B0EDC3A2_C7D8B9D9B6F3B1E2_C6C4B3EBB6F3B8B66-5.jpg">
+  <v-carousel hide-delimiters>
+    <v-carousel-item v-for="(item,index) in ads" :key="index" src="../../../../static/ad_ex.png" class="home_ads">
       <div class="ads_text">
-      <div class="white--text ads_theme">농활 테마기획전</div>
-      <div class="white--text ads_title">"{{item.title}}"</div>
-      <div class="white--text ads_title">"{{item.description}}"</div>
+      <div class="black--text ads_theme">농활 테마기획전</div>
+      <div class="black--text ads_title">"{{item.title}}"</div>
+      <div class="black--text ads_title">"{{item.description}}"</div>
       </div>
     </v-carousel-item>
   </v-carousel>
@@ -17,18 +17,23 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      small_items: [
+        {src: 'url("../../../static/home_imagebanner_smallbox_01.png")'},
+        {src: 'url("../../../static/home_imagebanner_smallbox_02.png")'},
+        {src: 'url("../../../static/home_imagebanner_smallbox_03.png")'},
+        {src: 'url("../../../static/home_imagebanner_smallbox_04.png")'}
+      ]
     }
   },
-  props: ['ads']
-  // computed: {
-  //   ...mapGetters({
-  //     ads: 'getAds'
-  //   })
-  // }
+  computed: {
+    ...mapGetters({
+      ads: 'getAds'
+    })
+  }
 }
 </script>
 
@@ -37,9 +42,9 @@ export default {
   padding-top: 5px;
   background-color:white;
 }
-.v-carousel{
+/* .v-carousel{
   height: 40vh;
-}
+} */
 .ads_text{
   margin: 5vh 10vh;
 }

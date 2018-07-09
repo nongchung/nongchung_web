@@ -85,25 +85,25 @@ export default {
       items: ['Foo', 'Bar', 'Fizz', 'Buzz']
     }
   },
-  props: ['isBooked', 'nhIdx'],
   computed: {
     ...mapGetters({
-      isAuthenticated: 'isAuthenticated'
+      isAuthenticated: 'isAuthenticated',
+      getNonghwalDetail: 'getNonghwalDetail'
     }),
     getPath: function () {
       return this.$route.params.idx
     },
+    // getisBooked: function () {
+    //   return this.getNonghwalDetail.isBooked
+    // },
     isBookedColor: function () {
-      if (this.isBooked.length === 0) { return 'black' } else { return 'primary' }
-    },
-    getnhIdx: function () {
-      return this.nhIdx
+      if (this.isBooked === null) { return 'black' } else { return 'primary' }
     }
   },
   methods: {
     clickBookmarkBtn: function () {
-      if (!this.isAuthenticated) {
-        this.$store.dispatch('addnonghwalBookmark', this.getnhIdx())
+      if (this.isAuthenticated) {
+        this.$store.dispatch('addnonghwalBookmark', this.getPath)
       } else {
         alert('로그인기기')
       }

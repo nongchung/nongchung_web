@@ -23,7 +23,7 @@ export const store = new Vuex.Store({
     popularFarm: [],
     // search state
     searchResult: [],
-    nhDetail: {image: [], nhInfo: [], friendsInfo: [], farmerInfo: [], schedule: [], nearestStartDate: [], allStartDate: [], isBooked: []},
+    nhDetail: {image: [], nhInfo: [], friendsInfo: [], farmerInfo: [], schedule: [], nearestStartDate: [], allStartDate: [], myScheduleActivity: []},
     nhLocation: {location: [], geoLocation: []}
   },
   getters: Object.assign({}, nonghwalGetters),

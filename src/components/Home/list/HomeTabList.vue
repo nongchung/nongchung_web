@@ -47,15 +47,6 @@ export default {
         return true
       } else { return false }
     }
-    // firsttab () {
-    //   if (this.tabnumber === 'tab-1') { return true } else return false
-    // },
-    // secondtab () {
-    //   if (this.tabnumber === 'tab-2') { return true } else return false
-    // },
-    // thirdtab () {
-    //   if (this.tabnumber === 'tab-3') { return true } else return false
-    // }
   },
   components: {
     PopularList,

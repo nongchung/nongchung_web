@@ -7,10 +7,11 @@ import Vuex from 'vuex'
 import { store } from './store/store'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-import VueAgile from 'vue-agile'
 import VeeValidate from 'vee-validate'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.use(VueAgile)
+Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.use(VeeValidate)
 Vue.config.productionTip = false
@@ -19,11 +20,8 @@ Vue.use(Vuetify, {
   theme: {
     primary: '#00BFA5',
     secondary: '#BDBDBD',
-    accent: '#26A69A',
-    error: '#FF3D00',
-    warning: '#E0E0E0',
-    info: '#000000',
-    success: '#1DE9B6'
+    success: '#1DE9B6',
+    text: '#4D4D4D'
   }
 })
 /* eslint-disable no-new */

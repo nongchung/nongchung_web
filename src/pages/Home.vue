@@ -9,19 +9,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SearchBar from '../components/Home/search/SearchBar'
 import HomeAd from '../components/Home/advertisement/HomeAd'
-import PopularList from '../components/Home/list/PopularList'
-import NewList from '../components/Home/list/NewList'
-import PopularFarm from '../components/Home/list/PopularFarm'
 import HomeTabList from '../components/Home/list/HomeTabList'
 export default {
   components: {
-    SearchBar,
     HomeAd,
-    PopularList,
-    NewList,
-    PopularFarm,
     HomeTabList
   },
   computed: {
@@ -39,5 +31,26 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.ads_layout{
+  padding-top: 5px;
+  background-color:white;
+}
+/* .v-carousel{
+  height: 40vh;
+} */
+.ads_text{
+  margin: 5vh 10vh;
+}
+.ads_theme{
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: underline;
+  font-family: sans-serif;
+  }
+.ads_title{
+  font-size: 2rem;
+  font-family: sans-serif;
+  font-weight: bold;
+}
 </style>

@@ -62,7 +62,6 @@ export const nonghwalMutations = {
     state.popularList = payload.populNh
     state.newList = payload.newNh
     state.popularFarm = payload.populFarm
-    state.isBooked = payload.isBooked
     console.log('mainloginSuccess')
   },
   nonghwalDetailStart (state) {
@@ -77,6 +76,20 @@ export const nonghwalMutations = {
     state.nhDetail.nearestStartDate = payload.nearestStartDate
     state.nhDetail.allStartDate = payload.allStartDate
     console.log('nonghwalDetailSuccess')
+  },
+  nonghwalDetailLoginStart (state) {
+    console.log('nonghwalDetailLoginStart!')
+  },
+  nonghwalDetailLoginSuccess (state, payload) {
+    state.nhDetail.image = payload.image
+    state.nhDetail.nhInfo = payload.nhInfo
+    state.nhDetail.friendsInfo = payload.friendsInfo
+    state.nhDetail.farmerInfo = payload.farmerInfo
+    state.nhDetail.schedule = payload.schedule
+    state.nhDetail.nearestStartDate = payload.nearestStartDate
+    state.nhDetail.allStartDate = payload.allStartDate
+    state.nhDetail.myScheduleActiviy = payload.myScheduleActiviy
+    console.log('nonghwalDetailLoginSuccess')
   },
   nonghwalLocationStart (state) {
     console.log('nonghwalLocationStart!')

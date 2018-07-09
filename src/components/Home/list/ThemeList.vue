@@ -18,6 +18,16 @@
       >
         <div class="title white--text pl-3 pt-3">{{ colors[color] }}</div>
       </v-card>
+      <v-carousel hide-delimiters>
+    <v-carousel-item src="../../../../static/ad_ex.png" reverse-transition="fade"
+        transition="fade" class="home_ads">
+      <div class="ads_text">
+      <div class="black--text ads_theme">농활 테마기획전</div>
+      <div class="black--text ads_title">dkssu</div>
+      <div class="black--text ads_title">"머야"</div>
+      </div>
+    </v-carousel-item>
+  </v-carousel>
       </v-flex>
   </v-layout>
   </v-container>

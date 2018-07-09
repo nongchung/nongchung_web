@@ -35,7 +35,7 @@
 
       <!-- 오른쪽라인 -->
       <v-flex sm5 md3 lg3 xl2 pl-4>
-        <apply-etc :isBooked="getNonghwalDetail.isBooked" :nhIdx="getPath"></apply-etc>
+        <apply-etc :nhIdx="getPath"></apply-etc>
       </v-flex>
       </v-layout>
     </v-tabs-items>
