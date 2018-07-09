@@ -30,6 +30,14 @@
           label="Solo textarea"
           placeholder="후기를 작성해주세요. 욕설 허위 사실 개인정보 기재할시에 민형사상 처벌을 받을 수 있습니다."
         ></v-textarea>
+        <v-flex xs12 sm6 offset-sm3>
+          <v-flex xs12 sm8 offset-sm2>
+            <div class="dropbox" v-if="!img">
+              <input class="input-image" type="file" :multiple="false" @change="onFileChange" accept="image/*">
+            </div>
+              <img :src="img" v-if="img" alt="">
+          </v-flex>
+        </v-flex>
       </v-flex>
       </v-layout>
       </v-layout>
@@ -79,6 +87,28 @@ export default {
       const {rImages, content, star} = this
       const scheIdx = this.getScheIdx
       this.$store.dispatch('writeReview', {scheIdx, rImages, content, star})
+    },
+    onUploadBoard () {
+      const data = new FormData()
+      data.append('user_idx', 1)
+      data.append('board_title', this.title)
+      data.append('board_content', this.description)
+      data.append('photo', this.file)
+
+      this.$store.dispatch('writeBoard', data)
+    },
+    onFileChange (event) {
+      if (event.target.files[0]['type'].split('/')[0] === 'image') {
+        this.file = event.target.files[0]
+        this.getImage(this.file)
+      }
+    },
+    getImage (file) {
+      const fileReader = new FileReader()
+      fileReader.onload = () => { // fileRoader가 불러왓을때 이미지에 들어갈 속성
+        this.img = fileReader.result
+      }
+      fileReader.readAsDataURL(file) // data 에서 URL을 긁어옴.
     }
   }
 }

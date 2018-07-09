@@ -6,7 +6,10 @@
 
 <script>
 export default {
-
+  name: 'EditMyInfo',
+  created () {
+    console.log('hello')
+  }
 }
 </script>
 
