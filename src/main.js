@@ -18,10 +18,12 @@ Vue.config.productionTip = false
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#00BFA5',
+    primary: '#0ABD9D',
     secondary: '#BDBDBD',
     success: '#1DE9B6',
-    text: '#4D4D4D'
+    text: '#4D4D4D',
+    info: '#0ABD9D',
+    accent: '#0ABD9D'
   }
 })
 /* eslint-disable no-new */
