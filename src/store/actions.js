@@ -45,6 +45,14 @@ export const nonghwalActions = {
       }
     })
   },
+  updateMyInfo ({commit}, {nickname}) {
+    axios.put('http://13.125.216.198:3000/api/mypage/nickname', {nickname}).then(res => {
+      console.log(res.data.message)
+      commit('updateSuccess')
+    }).catch(err => {
+      console.log(err.response.data.message)
+    })
+  },
   login ({ state, commit }, { email, password }) {
     console.log('여기 들어오는뎅?')
     axios.post('http://13.125.216.198:3000/api/signin', {
@@ -100,13 +108,14 @@ export const nonghwalActions = {
     })
   },
   writeReview ({ state, commit }, payload) {
-    axios.post('http://13.125.216.198:3000/api/home/detail/review', {
+    console.log(payload)
+    axios.post('http://13.125.216.198:3000/api/review', {
       headers: { token: state.accessToken },
       body: { payload }
     }).then(res => {
       commit('writeReviewSuccess', res.data)
     }).catch(err => {
-      console.log(err.message)
+      console.log(err.response.data.message)
     })
   },
   search ({ commit }, payload) {
