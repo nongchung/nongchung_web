@@ -46,6 +46,7 @@ export const nonghwalActions = {
     })
   },
   login ({ state, commit }, { email, password }) {
+    console.log('여기 들어오는뎅?')
     axios.post('http://13.125.216.198:3000/api/signin', {
       email,
       password
@@ -53,12 +54,14 @@ export const nonghwalActions = {
       if (res.data.token) {
         commit('loginSuccess', res.data)
         router.push('/')
-      } else {
-        alert('아이디 또는 패스워드가 틀렸습니다. 다시 입력해주세요')
       }
     }).catch((error) => {
-      console.log(error)
-      alert('로그인을 다시 시도해주세요')
+      console.log(error.response.data.message)
+      if (error.response.data.message === 'Null Value') {
+        alert('아이디 또는 패스워드가 틀렸습니다. 다시 입력해주세요')
+      } else {
+        alert('로그인을 다시 시도해주세요')
+      }
     })
   },
   logout ({ commit }) {
