@@ -113,5 +113,20 @@ export const nonghwalMutations = {
   deletenonghwalBookmarkSuccess (state, payload) {
     state.nhDetail.nhInfo.isBooked = 0
     console.log('addnonghwalBookmarkSuccess')
+  },
+  userPersonalInfoStart (state) {
+    console.log('userPersonalInfoStart!')
+  },
+  userPersonalInfoSuccess (state, payload) {
+    state.userPersonalInfo = payload[0]
+    console.log('userPersonalInfoSuccess')
+  },
+  nonghwalApplyStart (state) {
+    console.log('nonghwalApplyStart!')
+  },
+  nonghwalApplySuccess (state, payload) {
+    state.nonghwalApplyResult.maxPerson = payload.maxPerson
+    state.nonghwalApplyResult.currentPerson = payload.currentPerson
+    console.log('nonghwalApplySuccess')
   }
 }

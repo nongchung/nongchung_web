@@ -7,7 +7,7 @@
           <v-flex tag="a" v-for="(item, index) in newList" :key="index" xs6 sm4 md4 lg4 xl3 id="card_gutter" @click="goNonghwalDetail(item.nhIdx)">
             <v-card flat height="21rem">
               <!-- 농활대표사진 -->
-              <v-card-media src="http://www.ijejutoday.com/news/photo/201707/203893_161637_1345.jpg" height="50%">
+              <v-card-media :src="item.img" height="50%">
                 <v-spacer></v-spacer>
                 <span class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}</span>
               </v-card-media>

@@ -43,5 +43,11 @@ export const nonghwalGetters = {
   },
   getNonghwalLocation (state) {
     return state.nhLocation
+  },
+  getuserPersonalInfo (state) {
+    return state.userPersonalInfo
+  },
+  getnonghwalApplyResult (state) {
+    return state.nonghwalApplyResult
   }
 }

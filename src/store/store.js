@@ -23,7 +23,9 @@ export const store = new Vuex.Store({
       newList: [],
       popularFarm: []},
     nhDetail: {image: [], nhInfo: [], friendsInfo: [], farmerInfo: [], schedule: [], nearestStartDate: [], allStartDate: [], myScheduleActivity: []},
-    nhLocation: {location: [], geoLocation: []}
+    nhLocation: {location: [], geoLocation: []},
+    userPersonalInfo: [],
+    nonghwalApplyResult: {maxPerson: [], currentPerson: []}
   },
   getters: Object.assign({}, nonghwalGetters),
   actions: Object.assign({}, nonghwalActions),

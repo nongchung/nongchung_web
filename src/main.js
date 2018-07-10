@@ -23,7 +23,8 @@ Vue.use(Vuetify, {
     success: '#1DE9B6',
     text: '#4D4D4D',
     info: '#0ABD9D',
-    accent: '#0ABD9D'
+    accent: '#0ABD9D',
+    warning: '#fbc948'
   }
 })
 /* eslint-disable no-new */

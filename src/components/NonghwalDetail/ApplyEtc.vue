@@ -6,11 +6,11 @@
         <v-flex pa-2 style="font-family:sans-serif;font-size:1.7rem;">{{getNonghwalDetail.nhInfo.price}}원</v-flex>
         <v-flex pa-1 d-flex>
           <v-icon class="mr-3" style="flex: 0 0 auto !important;">assignment</v-icon>
-          <v-select :items="getallStartDateList" label="날짜선택" solo flat dense style="border: 1px solid grey; width: 80%; height:2.7rem; min-height: initial; font-family:sans-serif !important; flex: 0 0 auto !important;"></v-select>
+          <v-select :items="getallStartDateList[0]" v-model="selectedDate" label="날짜선택" solo flat dense style="border: 1px solid grey; width: 80%; height:2.7rem; min-height: initial; font-family:sans-serif !important; flex: 0 0 auto !important;"></v-select>
         </v-flex>
         <v-flex pa-1><v-icon class="mr-3">place</v-icon>{{getNonghwalDetail.nhInfo.addr}}</v-flex>
         <v-flex pa-1><v-icon class="mr-3">person</v-icon>인원은 어케할까나</v-flex>
-        <v-flex pa-1><v-icon class="mr-3">access_time</v-icon>{{getallStartDateList[getallStartDateList.length-1]}}</v-flex>
+        <v-flex pa-1><v-icon class="mr-3">access_time</v-icon>{{getallStartDateList[0][getallStartDateList[0].length-1]}}</v-flex>
         <v-flex pa-1><v-btn large block color="primary" @click="clickApplyBtn">신청하기</v-btn></v-flex>
         <v-flex px-1 d-flex>
           <v-btn block flat large outline @click="clickBookmarkBtn" :color="isBookedColor" class="mr-2"><v-icon left>favorite</v-icon>30</v-btn>
@@ -82,7 +82,8 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz']
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      selectedDate: ''
     }
   },
   props: ['nhIdx'],
@@ -99,10 +100,22 @@ export default {
     },
     getallStartDateList: function () {
       let allStartDateList = []
+      let allSchIdxList = []
       for (let i = 0; i < this.getNonghwalDetail.allStartDate.length; i++) {
         allStartDateList.push(this.getNonghwalDetail.allStartDate[i].startDate)
+        allSchIdxList.push(this.getNonghwalDetail.allStartDate[i].idx)
       }
-      return allStartDateList
+      console.log([allStartDateList, allSchIdxList])
+      return [allStartDateList, allSchIdxList]
+    },
+    searchSchIdx: function () {
+      for (let i = 0; i < this.getNonghwalDetail.allStartDate.length; i++) {
+        if (this.selectedDate === this.getallStartDateList[0][i]) {
+          console.log('스케쥴인덱스찾았다!')
+          console.log(this.getallStartDateList[1][i])
+          return this.getallStartDateList[1][i]
+        }
+      }
     }
   },
   methods: {
@@ -115,12 +128,19 @@ export default {
     },
     clickApplyBtn: function () {
       if (this.isAuthenticated) {
-        this.$router.push({name: 'Apply'})
+        if (this.selectedDate !== '') {
+          this.$router.push({name: 'Apply',
+            params: { selectedDate: this.selectedDate,
+              selectedNh: this.getNonghwalDetail.nhInfo.name,
+              selectedNhAddr: this.getNonghwalDetail.nhInfo.addr,
+              selectedNhImg: this.getNonghwalDetail.image[0],
+              selectedNhSchIdx: this.searchSchIdx,
+              selectedNhIdx: this.nhIdx }})
+        } else { alert('신청날짜를 선택해주세요') }
       } else {
         alert('로그인기기')
       }
-    }
-  },
+    }},
   created () {
     console.log(this.getNonghwalDetail.nearestStartDate)
     console.log(this.getallStartDateList)
