@@ -22,7 +22,7 @@ Vue.component('star-rating', starRate)
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#0ABD9D',
+    primary: '#3470FF',
     secondary: '#BDBDBD',
     success: '#1DE9B6',
     text: '#4D4D4D',
