@@ -5,7 +5,9 @@ const BASEURL = 'http://13.125.216.198:3000/api'
 export const nonghwalActions = {
   dupEmail ({ commit }, payload) {
     const email = payload.email
-    axios.post('http://13.125.216.198:3000/api/dup-email', { email }).then(res => {
+    axios.post(`${BASEURL}/dup-email`, {
+      email
+    }).then(res => {
       // commit('dupCheckSuccess', res)
       if (res.data.message === 'duplication') {
         alert('중복된 이메일입니다. 새로운 이메일을 입력하세요')
@@ -20,7 +22,9 @@ export const nonghwalActions = {
   },
   dupNickname ({ commit }, payload) {
     const nickname = payload.nickname
-    axios.post('http://13.125.216.198:3000/api/dup-nickname', { nickname }).then(res => {
+    axios.post(`${BASEURL}/dup-nickname`, {
+      nickname
+    }).then(res => {
       console.log(res.data.message)
       if (res.data.message === 'duplication') {
         alert('중복된 닉네임입니다. 새로운 닉네임을 입력하세요')
@@ -34,7 +38,15 @@ export const nonghwalActions = {
     })
   },
   register ({ commit }, { email, password, nickname, name, sex, handphone, birth }) {
-    axios.post('http://13.125.216.198:3000/api/signup', { email, password, nickname, name, sex, handphone, birth }).then(res => {
+    axios.post(`${BASEURL}/signup`, {
+      email,
+      password,
+      nickname,
+      name,
+      sex,
+      handphone,
+      birth
+    }).then(res => {
       console.log(res.data.message)
       commit('regSuccess')
       //   router.push('/Login')
@@ -47,7 +59,9 @@ export const nonghwalActions = {
     })
   },
   updateMyInfo ({ commit }, { nickname }) {
-    axios.put('http://13.125.216.198:3000/api/mypage/nickname', { nickname }).then(res => {
+    axios.put(`${BASEURL}/mypage/nickname`, {
+      nickname
+    }).then(res => {
       console.log(res.data.message)
       commit('updateSuccess')
     }).catch(err => {
@@ -55,7 +69,7 @@ export const nonghwalActions = {
     })
   },
   login ({ state, commit }, { email, password }) {
-    axios.post('http://13.125.216.198:3000/api/signin', {
+    axios.post(`${BASEURL}/signin`, {
       email,
       password
     }).then((res) => {
@@ -77,7 +91,7 @@ export const nonghwalActions = {
     router.push('/')
   },
   getMyhistory ({ state, commit }) {
-    axios.get('http://13.125.216.198:3000/api/activity/complete', {
+    axios.get(`${BASEURL}/activity/complete`, {
       headers: {
         token: state.accessToken
       }
@@ -88,7 +102,7 @@ export const nonghwalActions = {
     })
   },
   getLike ({ state, commit }) {
-    axios.get('http://13.125.216.198:3000/api/bookmark', {
+    axios.get(`${BASEURL}/bookmark`, {
       headers: { token: state.accessToken }
     }).then(res => {
       commit('getLikeSuccess', res.data.bmList)
@@ -97,7 +111,7 @@ export const nonghwalActions = {
     })
   },
   getMyInfo ({ state, commit }) {
-    axios.get('http://13.125.216.198:3000/api/mypage', {
+    axios.get(`${BASEURL}/mypage`, {
       headers: {
         token: state.accessToken
       }
@@ -110,7 +124,7 @@ export const nonghwalActions = {
   addReview ({ state, commit }, payload) {
     axios({
       method: 'POST',
-      url: 'http://13.125.216.198:3000/api/review',
+      url: `${BASEURL}/review`,
       headers: {
         token: state.accessToken
       },
