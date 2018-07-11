@@ -68,7 +68,7 @@ export const nonghwalActions = {
       console.log(err.response.data.message)
     })
   },
-  login ({ state, commit }, { email, password }) {
+  login ({ commit }, { email, password }) {
     axios.post(`${BASEURL}/signin`, {
       email,
       password
@@ -138,7 +138,7 @@ export const nonghwalActions = {
       console.log(err.response.data.message)
     })
   },
-  editMyNickname ({ state, commit }, payload) {
+  editMyNickname ({ state }, payload) {
     axios({
       method: 'PUT',
       url: `${BASEURL}/mypage/nickname`,
@@ -181,7 +181,7 @@ export const nonghwalActions = {
       console.log(err.response.data.message)
     })
   },
-  editMyPhoto ({ state, commit }, payload) {
+  editMyPhoto ({ state }, payload) {
     axios({
       method: 'PUT',
       url: `${BASEURL}/mypage/photo`,
