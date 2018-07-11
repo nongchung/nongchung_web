@@ -34,7 +34,7 @@
         <v-flex xs12 sm6 offset-sm3>
           <v-flex xs12 sm8 offset-sm2>
             <div class="dropbox">
-              <input class="input-image" type="file" :multiple="true" @change="onFileChange" accept="image/*">
+              <input class="input-image" type="file" :multiple="true" @change="onFileChangeReview" accept="image/*">
             </div>
               <!-- <img :src="img" v-if="img" alt=""> -->
           </v-flex>
@@ -45,7 +45,6 @@
     </v-card>
     <v-layout justify-center>
       <v-btn color="primary" @click="onUploadBoard">등록완료</v-btn>
-      <!-- <v-btn color="primary" @click="submitReview">등록완료</v-btn> -->
     </v-layout>
     </v-flex>
   </v-layout>
@@ -87,30 +86,18 @@ export default {
       this.allDate = splitStartDate[0] + '년' + splitStartDate[1] + '월' + splitStartDate[2] + '일' + '~' + splitEndDate[2] + '일'
       return this.allDate
     },
-    submitReview: function () {
-      const {rImages, content, star} = this
-      // const scheIdx = this.getScheIdx
-      console.log(star)
-      console.log(rImages[0])
-      console.log(content)
-
-      // this.$store.dispatch('writeReview', {scheIdx, rImages, content, star})
-    },
     onUploadBoard () {
       const data = new FormData()
-      console.log(this.getScheIdx, this.content, this.star)
 
       data.append('scheIdx', this.getScheIdx)
       data.append('content', this.content)
       data.append('star', this.star)
-      // data.append('rImages[]', this.file[0])
       for (let index = 0; index < this.file.length; index++) {
         data.append('rImages[]', this.file)
       }
-      console.log(data.get('rImages[0]'))
-      this.$store.dispatch('writeReview', data)
+      this.$store.dispatch('addReview', data)
     },
-    onFileChange (event) {
+    onFileChangeReview (event) {
       for (let index = 0; index < event.target.files.length; index++) {
         if (event.target.files[index]['type'].split('/')[0] === 'image') {
           this.file[index] = event.target.files[index]

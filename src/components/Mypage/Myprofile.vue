@@ -6,7 +6,7 @@
        <v-layout row>
           <v-layout>
           <v-card-text>
-            <p class="content" style="margin-top:20px; font-size:30px"><strong>{{userInfo.name}}</strong>님</p>
+            <p class="content" style="margin-top:20px; font-size:30px"><strong>{{getPersonalUserInfo.name}}</strong>님</p>
             <p class="content" style="margin-bottom:20px; font-size:20px">회원가입시에 입력한 사용자 정보를 수정할 수 있습니다.</p>
               </v-card-text>
           </v-layout>
@@ -20,7 +20,7 @@
     </v-tabs>
       </v-flex>
       <v-tabs-items v-model="tabnumber">
-      <v-tab-item v-for="i in 2" :id="`tab-${i}`" :key="i" color="white">
+      <v-tab-item v-for="i in 3" :id="`tab-${i}`" :key="i" color="white">
         <v-layout column>
           <edit-my-info-form v-show="firsttab()"></edit-my-info-form>
           <edit-my-pass-form v-show="secondtab()"></edit-my-pass-form>
@@ -57,11 +57,8 @@ export default {
     }
   },
   computed: {
-    userInfo () {
-      return !this.$store.getters.getUserInfo ? false : this.$store.getters.getUserInfo
-    },
-    getTotalHistory () {
-      return !this.$store.getters.getTotalHistory ? false : this.$store.getters.getTotalHistory
+    getPersonalUserInfo () {
+      return !this.$store.getters.getuserPersonalInfo ? false : this.$store.getters.getuserPersonalInfo
     }
   }
 }
@@ -72,7 +69,7 @@ export default {
     width: 100%;
   }
   .content{
-    /* margin-left: 20%; */
+    margin-left: 10%;
   }
   .find {
     text-align:center;

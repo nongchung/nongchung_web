@@ -68,8 +68,8 @@ export default {
   },
   methods: {
     editMyInfo () {
-      this.newNickname =
-      this.$store.dispatch('edit')
+      const nickname = this.newNickname
+      this.$store.dispatch('edit', nickname)
     }
   },
   created () {

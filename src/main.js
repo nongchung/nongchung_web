@@ -10,10 +10,10 @@ import 'vuetify/dist/vuetify.min.css'
 import VeeValidate from 'vee-validate'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import rate from 'vue-rate'
+// import rate from 'vue-rate'
 import starRate from 'vue-star-rating'
 
-Vue.use(rate)
+// Vue.use(rate)
 Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.use(VeeValidate)

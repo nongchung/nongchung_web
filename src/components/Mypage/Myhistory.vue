@@ -30,8 +30,8 @@
                   <v-icon>favorite_border</v-icon>
                 </v-btn>
                 <v-btn outline color="primary" @click="goNonghwalDetail(item.idx)">상세보기</v-btn>
-                <v-btn outline color="primary" v-if="item.rState!=0" @click="writeReview(item.idx, index)">후기작성</v-btn>
-                <v-btn outline color="primary" v-if="item.rState===0" @click="goMyReview(item.ids, index)">내가 작성한 후기보기</v-btn>
+                <v-btn outline color="primary" v-if="item.rState===0" @click="writeReview(item.idx, index)">후기작성</v-btn>
+                <v-btn outline color="primary" v-if="item.rState!=0" @click="goMyReview(item.ids, index)">내 후기보기</v-btn>
             </v-card>
           </v-flex>
         </v-layout>
