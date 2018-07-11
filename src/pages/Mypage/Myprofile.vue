@@ -10,6 +10,10 @@ export default {
   name: 'Myprofile',
   components: {
     EditMyInfo
+  },
+  created () {
+    this.$store.dispatch('userPersonalInfo')
+    // this.$store.dispatch('getMyInfo')
   }
 }
 </script>

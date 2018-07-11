@@ -10,15 +10,19 @@ import 'vuetify/dist/vuetify.min.css'
 import VeeValidate from 'vee-validate'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+// import rate from 'vue-rate'
+import starRate from 'vue-star-rating'
 
+// Vue.use(rate)
 Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.use(VeeValidate)
 Vue.config.productionTip = false
+Vue.component('star-rating', starRate)
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#0ABD9D',
+    primary: '#3470FF',
     secondary: '#BDBDBD',
     success: '#1DE9B6',
     text: '#4D4D4D',

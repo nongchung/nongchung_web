@@ -1,5 +1,6 @@
 import axios from 'axios'
 import router from '../router/index'
+const BASEURL = 'http://13.125.216.198:3000/api'
 
 export const nonghwalActions = {
   dupEmail ({ commit }, payload) {
@@ -43,6 +44,14 @@ export const nonghwalActions = {
         console.log(error.response.data.message)
         alert('잠시후 다시 시도해주세요')
       }
+    })
+  },
+  updateMyInfo ({ commit }, { nickname }) {
+    axios.put('http://13.125.216.198:3000/api/mypage/nickname', { nickname }).then(res => {
+      console.log(res.data.message)
+      commit('updateSuccess')
+    }).catch(err => {
+      console.log(err.response.data.message)
     })
   },
   login ({ state, commit }, { email, password }) {
@@ -99,14 +108,49 @@ export const nonghwalActions = {
       console.log(err.message)
     })
   },
-  writeReview ({ state, commit }, payload) {
-    axios.post('http://13.125.216.198:3000/api/home/detail/review', {
-      headers: { token: state.accessToken },
-      body: { payload }
+  addReview ({ state, commit }, payload) {
+    axios({
+      method: 'POST',
+      url: 'http://13.125.216.198:3000/api/review',
+      headers: {
+        token: state.accessToken
+      },
+      data: payload
     }).then(res => {
-      commit('writeReviewSuccess', res.data)
+      console.log(res.data)
+      commit('addReviewSuccess', res.data)
+      alert('작성이 완료되었습니다')
+      router.push('/')
     }).catch(err => {
-      console.log(err.message)
+      console.log(err.response.data.message)
+    })
+  },
+  editMyNickname ({ state, commit }, payload) {
+    axios({
+      method: 'PUT',
+      url: `${BASEURL}/mypage/nickname`,
+      headers: {
+        token: state.accessToken
+      },
+      data: payload
+    }).then(res => {
+      console.log(res.data.message)
+    }).catch(err => {
+      console.log(err.response.data.message)
+    })
+  },
+  editMyPhoto ({ state, commit }, payload) {
+    axios({
+      method: 'PUT',
+      url: `${BASEURL}/mypage/photo`,
+      headers: {
+        token: state.accessToken
+      },
+      data: payload
+    }).then(res => {
+      console.log(res.data.message)
+    }).catch(err => {
+      console.log(err.response.data.message)
     })
   },
   search ({ commit }, payload) {
@@ -132,7 +176,7 @@ export const nonghwalActions = {
   getMainLogin ({ state, commit }) {
     commit('mainloginStart')
     axios.get('http://13.125.216.198:3000/api/home', {
-      headers: {token: state.accessToken}
+      headers: { token: state.accessToken }
     })
       .then(res => {
         console.log(res.data.message)
@@ -154,7 +198,7 @@ export const nonghwalActions = {
   nonghwalDetailLogin ({ state, commit }, payload) {
     commit('nonghwalDetailLoginStart')
     axios.get('http://13.125.216.198:3000/api/home/detail/nh?idx=' + payload, {
-      headers: {token: state.accessToken}
+      headers: { token: state.accessToken }
     })
       .then(res => {
         console.log(res.data.message)
@@ -174,38 +218,38 @@ export const nonghwalActions = {
         console.log('ERROR! :' + err)
       })
   },
-  addnonghwalBookmark ({state, commit}, payload) {
+  addnonghwalBookmark ({ state, commit }, payload) {
     commit('addnonghwalBookmarkStart')
-    axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/bookmark', headers: {token: state.accessToken}, data: { nhIdx: payload } }).then(res => {
+    axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/bookmark', headers: { token: state.accessToken }, data: { nhIdx: payload } }).then(res => {
       console.log(res.data.message)
       commit('addnonghwalBookmarkSuccess', res.data.message)
     }).catch(err => {
       console.log('ERROR! :' + err)
     })
   },
-  deletenonghwalBookmark ({state, commit}, payload) {
+  deletenonghwalBookmark ({ state, commit }, payload) {
     commit('deletenonghwalBookmarkStart')
-    axios({ method: 'DELETE', url: 'http://13.125.216.198:3000/api/bookmark', headers: {token: state.accessToken}, data: { nhIdx: payload } }).then(res => {
+    axios({ method: 'DELETE', url: 'http://13.125.216.198:3000/api/bookmark', headers: { token: state.accessToken }, data: { nhIdx: payload } }).then(res => {
       console.log(res.data.message)
       commit('deletenonghwalBookmarkSuccess', res.data.message)
     }).catch(err => {
       console.log('ERROR! :' + err)
     })
   },
-  userPersonalInfo ({state, commit}) {
+  userPersonalInfo ({ state, commit }) {
     commit('userPersonalInfoStart')
     axios.get('http://13.125.216.198:3000/api/home/request/user', {
-      headers: {token: state.accessToken}
+      headers: { token: state.accessToken }
     }).then(res => {
       commit('userPersonalInfoSuccess', res.data.data)
     }).catch(err => {
       console.log('ERROR! :' + err)
     })
   },
-  nonghwalApply ({state, commit}, payload) {
+  nonghwalApply ({ state, commit }, payload) {
     console.log(payload)
     commit('nonghwalApplyStart')
-    axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/home/request', headers: {token: state.accessToken}, data: payload }).then(res => {
+    axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/home/request', headers: { token: state.accessToken }, data: payload }).then(res => {
       console.log(res.data.message)
       commit('nonghwalApplySuccess', res.data)
     }).catch(err => {

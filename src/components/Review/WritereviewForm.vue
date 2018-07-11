@@ -21,6 +21,7 @@
         <v-layout column justify-center pa-4>
       <v-flex>
         <v-subheader class="pa-0">별점</v-subheader>
+        <star-rating v-model="star" :increment="0.5" :star-size="30"></star-rating>
       </v-flex>
       <v-layout>
         <v-flex>
@@ -32,10 +33,10 @@
         ></v-textarea>
         <v-flex xs12 sm6 offset-sm3>
           <v-flex xs12 sm8 offset-sm2>
-            <div class="dropbox" v-if="!img">
-              <input class="input-image" type="file" :multiple="false" @change="onFileChange" accept="image/*">
+            <div class="dropbox">
+              <input class="input-image" type="file" :multiple="true" @change="onFileChangeReview" accept="image/*">
             </div>
-              <img :src="img" v-if="img" alt="">
+              <!-- <img :src="img" v-if="img" alt=""> -->
           </v-flex>
         </v-flex>
       </v-flex>
@@ -43,7 +44,7 @@
       </v-layout>
     </v-card>
     <v-layout justify-center>
-      <v-btn color="primary" @click="submitReview">등록완료</v-btn>
+      <v-btn color="primary" @click="onUploadBoard">등록완료</v-btn>
     </v-layout>
     </v-flex>
   </v-layout>
@@ -58,7 +59,9 @@ export default {
       content: '',
       star: 0,
       rImages: [],
-      allDate: ''
+      allDate: '',
+      file: [],
+      img: []
     }
   },
   computed: {
@@ -83,30 +86,30 @@ export default {
       this.allDate = splitStartDate[0] + '년' + splitStartDate[1] + '월' + splitStartDate[2] + '일' + '~' + splitEndDate[2] + '일'
       return this.allDate
     },
-    submitReview: function () {
-      const {rImages, content, star} = this
-      const scheIdx = this.getScheIdx
-      this.$store.dispatch('writeReview', {scheIdx, rImages, content, star})
-    },
     onUploadBoard () {
       const data = new FormData()
-      data.append('user_idx', 1)
-      data.append('board_title', this.title)
-      data.append('board_content', this.description)
-      data.append('photo', this.file)
 
-      this.$store.dispatch('writeBoard', data)
+      data.append('scheIdx', this.getScheIdx)
+      data.append('content', this.content)
+      data.append('star', this.star)
+      for (let index = 0; index < this.file.length; index++) {
+        data.append('rImages', this.file[index])
+        console.log(this.file[index])
+      }
+      this.$store.dispatch('addReview', data)
     },
-    onFileChange (event) {
-      if (event.target.files[0]['type'].split('/')[0] === 'image') {
-        this.file = event.target.files[0]
-        this.getImage(this.file)
+    onFileChangeReview (event) {
+      for (let index = 0; index < event.target.files.length; index++) {
+        if (event.target.files[index]['type'].split('/')[0] === 'image') {
+          this.file[index] = event.target.files[index]
+          this.getImage(this.file[index], index)
+        }
       }
     },
-    getImage (file) {
+    getImage (file, index) {
       const fileReader = new FileReader()
       fileReader.onload = () => { // fileRoader가 불러왓을때 이미지에 들어갈 속성
-        this.img = fileReader.result
+        this.img[index] = fileReader.result
       }
       fileReader.readAsDataURL(file) // data 에서 URL을 긁어옴.
     }

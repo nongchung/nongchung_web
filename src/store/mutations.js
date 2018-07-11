@@ -14,6 +14,10 @@ export const nonghwalMutations = {
   isDupOk (state, payload) {
     console.log(payload)
   },
+  addReviewSuccess (payload) {
+    console.log('addReviewSuccess')
+    console.log(payload)
+  },
   regSuccess (state) {
     console.log('registerSuccess!')
   },
