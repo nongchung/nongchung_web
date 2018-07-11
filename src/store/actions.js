@@ -1,5 +1,6 @@
 import axios from 'axios'
 import router from '../router/index'
+const BASEURL = 'http://13.125.216.198:3000/api'
 
 export const nonghwalActions = {
   dupEmail ({ commit }, payload) {
@@ -120,6 +121,34 @@ export const nonghwalActions = {
       commit('addReviewSuccess', res.data)
       alert('작성이 완료되었습니다')
       router.push('/')
+    }).catch(err => {
+      console.log(err.response.data.message)
+    })
+  },
+  editMyNickname ({ state, commit }, payload) {
+    axios({
+      method: 'PUT',
+      url: `${BASEURL}/mypage/nickname`,
+      headers: {
+        token: state.accessToken
+      },
+      data: payload
+    }).then(res => {
+      console.log(res.data.message)
+    }).catch(err => {
+      console.log(err.response.data.message)
+    })
+  },
+  editMyPhoto ({ state, commit }, payload) {
+    axios({
+      method: 'PUT',
+      url: `${BASEURL}/mypage/photo`,
+      headers: {
+        token: state.accessToken
+      },
+      data: payload
+    }).then(res => {
+      console.log(res.data.message)
     }).catch(err => {
       console.log(err.response.data.message)
     })
