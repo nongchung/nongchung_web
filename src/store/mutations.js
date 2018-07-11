@@ -133,8 +133,12 @@ export const nonghwalMutations = {
     state.nonghwalApplyResult.currentPerson = payload.currentPerson
     console.log('nonghwalApplySuccess')
   },
-  getDetailQnaStart (state, payload) {
-    state.nhDetailQna = payload.data
+  getDetailQnaStart (state) {
+    console.log('nonghwalQnaStart!')
+  },
+  getDetailQnaSuccess (state, payload) {
+    console.log('qnaSuccess')
+    state.nhDetailQna = payload
   },
   nonghwalCancelStart (state) {
     console.log('nonghwalCancelStart!')
@@ -142,6 +146,13 @@ export const nonghwalMutations = {
   nonghwalCancelSuccess (state, payload) {
     alert('선택한 농활이 정상적으로 취소되었습니다!')
     const idx = payload.nhIdx
-    router.push('/Detail/' + idx)
+    router.push('/Detail/' + idx) // 이부분 어케하지?
+  },
+  getnonghwalreview (state, payload) {
+    console.log('getnonghwalreviewSuccess')
+    state.nhReviewList = payload.rvListInfo
+  },
+  getParticipantsStart (state) {
+    console.log('getParticipantsStart')
   }
 }

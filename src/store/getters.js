@@ -52,5 +52,8 @@ export const nonghwalGetters = {
   },
   getDetailQna (state) {
     return state.nhDetailQna
+  },
+  getnonghwalreview (state) {
+    return state.nhReviewList
   }
 }

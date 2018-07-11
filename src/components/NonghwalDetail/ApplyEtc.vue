@@ -7,18 +7,20 @@
         <v-flex pa-1 d-flex>
           <v-icon class="mr-3" style="flex: none !important;">assignment</v-icon>
           <v-menu offset-y max-width="auto">
-          <v-flex slot="activator" lg12 style="border:1px solid black; padding:.5rem;" class="pl-3"><input id="vinput" v-model="selectedDate" placeholder="날짜선택"><v-icon>arrow_drop_down</v-icon></v-flex>
+          <v-flex slot="activator" style="border:1px solid black; padding:.5rem;width:100%;display:flex;justify-content:space-between;" class="pl-3">
+            <input id="vinput" v-model="selectedDate" placeholder="날짜선택">
+          <v-icon text-xs-right>arrow_drop_down</v-icon></v-flex>
           <v-list>
             <div v-for="(item, index) in getNonghwalDetail.allStartDate" :key="index">
         <v-list-tile ripple @click="toggle(index)">
           <v-list-tile-content style="font-size:1rem; ">
             <v-layout column style="width: 100% !important;">
-              <v-flex pt-1 style="display: flex; direction: row; justify-content:space-around;">
+              <v-flex pt-1 style="display: flex; direction: row; justify-content:space-between;">
                 <v-flex>{{item.startDate}}</v-flex>
                 <v-flex text-xs-right>{{item.state? '마감': '참석가능'}}</v-flex>
                 </v-flex>
-              <v-flex style="font-size: .7rem; display: flex; direction: row; justify-content:space-around;" >
-                <v-flex >오전 9시 출발(1박 2일)</v-flex>
+              <v-flex style="font-size: .7rem; display: flex; direction: row; justify-content:space-between;" >
+                <v-flex >(1박 2일)</v-flex>
                 <v-flex text-xs-right>남은 인원({{item.availPerson}})명</v-flex>
                 </v-flex>
             </v-layout>
@@ -46,56 +48,30 @@
     </v-flex>
     <!-- 농부정보 -->
     <v-flex my-3>
-      농부박스
+      농부 정보
       <v-layout pa-3 column style="background: white;">
         <v-flex>
           <v-avatar class="mr-2"
           size="4rem"
           color="grey lighten-4"
         >
-          <img src="http://citizen.edisha.gov.in/Content/assets/stylesheet/img/placeholder-user.png" alt="avatar">
-        </v-avatar>난농부(aaa@aaa.com)
+          <img :src="getNonghwalDetail.farmerInfo.img" alt="avatar">
+        </v-avatar>{{getNonghwalDetail.farmerInfo.name}}
         </v-flex>
-        <v-flex mt-2>농부이메일</v-flex>
-        <v-flex>농부전화번호</v-flex>
-        <v-flex>농부주소</v-flex>
+        <v-flex mt-2><v-icon class="pr-2 pt-1">more_horiz</v-icon>{{getNonghwalDetail.farmerInfo.comment}}</v-flex>
       </v-layout>
     </v-flex>
     <!-- 참석대원 -->
     <v-flex mb-5>
-      참석대원
-      <v-layout pa-3 row style="background: white;">
+      참석 인원
+      <v-layout py-3 px-2 row style="background: white;">
         <!-- v-for 삽입 -->
-        <v-flex mr-3 style="flex: none !important;">
+        <v-flex mx-2 style="flex: none !important;" v-for="(item, t) in this.getNonghwalDetail.friendsInfo" :key="t">
           <v-avatar
-          size="3.5rem"
+          size="3rem"
           color="grey lighten-4"
         >
-          <img src="http://citizen.edisha.gov.in/Content/assets/stylesheet/img/placeholder-user.png" alt="avatar">
-        </v-avatar>
-        </v-flex>
-        <v-flex mr-3 style="flex: none !important;">
-          <v-avatar
-          size="3.5rem"
-          color="grey lighten-4"
-        >
-          <img src="http://citizen.edisha.gov.in/Content/assets/stylesheet/img/placeholder-user.png" alt="avatar">
-        </v-avatar>
-        </v-flex>
-        <v-flex mr-3 style="flex: none !important;">
-          <v-avatar
-          size="3.5rem"
-          color="grey lighten-4"
-        >
-          <img src="http://citizen.edisha.gov.in/Content/assets/stylesheet/img/placeholder-user.png" alt="avatar">
-        </v-avatar>
-        </v-flex>
-        <v-flex mr-3 style="flex: none !important;">
-          <v-avatar
-          size="3.5rem"
-          color="grey lighten-4"
-        >
-          <img src="http://citizen.edisha.gov.in/Content/assets/stylesheet/img/placeholder-user.png" alt="avatar">
+          <img :src="item.img" alt="avatar">
         </v-avatar>
         </v-flex>
       </v-layout>
@@ -108,7 +84,8 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      selectedDate: ''
+      selectedDate: '',
+      participants: null
     }
   },
   props: ['nhIdx'],
@@ -196,9 +173,8 @@ export default {
                 selectedNhAddr: this.getNonghwalDetail.nhInfo.addr,
                 selectedNhImg: this.getNonghwalDetail.image[0] }})
           }
-        }
-        console.log('선택된게 없자녀')
-      } console.log('유저가 아니자녀')
+        } else { alert('신청날짜를 선택해주세요') }
+      } else { alert('로그인을 해주세요.') }
     },
     whatselectedDate: function () {
       let mydatelist = []
@@ -217,6 +193,12 @@ export default {
     toggle: function (index) {
       this.selectedDate = this.getallStartDateList[0][index]
       // return this.getallStartDateList[0][index]
+      this.changeP(index)
+    },
+    async changeP (index) {
+      await this.$store.dispatch('getParticipants', this.getallStartDateList[1][index]).then((res) => {
+        this.participants = res.data.friendsInfo // 그다음은...?
+      })
     }
   },
   created () {

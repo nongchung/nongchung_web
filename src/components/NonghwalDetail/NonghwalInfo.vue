@@ -1,7 +1,7 @@
 <template>
   <v-layout column>
     <!-- 농활이미지 -->
-    <v-flex style="height:20rem; width:100%; background:white; filter: blur(4px);">
+    <v-flex style="height:20rem; width:100%; background:white;">
       <img id="nhdetail_img" :src="nonghwalDetail.image[0]">
     </v-flex>
     <!-- 주의사항 -->

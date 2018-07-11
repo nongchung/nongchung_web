@@ -4,14 +4,14 @@
     <v-flex>
       <v-layout column>
         <v-flex style="font-family:sans-serif; font-weight:bold; color:#4d4d4d;">FAQ</v-flex>
-        <div v-for="(item, index) in faqdata" :key="index" class="my-3">
+        <div v-for="(item, index) in getDetailQna" :key="index" class="my-3">
         <v-flex d-flex>
           <v-flex  py-2 style="font-family:sans-serif; font-weight:bold; color:#4d4d4d; width:5%;">Q</v-flex>
-          <v-flex  py-2 style="font-family:sans-serif; color:#4d4d4d; width:95%;">{{item.q}}</v-flex>
+          <v-flex  py-2 style="font-family:sans-serif; color:#4d4d4d; width:95%;">{{item.title}}</v-flex>
         </v-flex>
         <v-flex d-flex >
         <v-flex style="font-family:sans-serif; font-weight:bold; color:#4d4d4d; width:5%;">A</v-flex>
-        <v-flex style="font-family:sans-serif; color:#4d4d4d; width:95%;" >{{item.a}}</v-flex>
+        <v-flex style="font-family:sans-serif; color:#4d4d4d; width:95%;" >{{item.description}}</v-flex>
         </v-flex>
         </div>
       </v-layout>
@@ -29,10 +29,10 @@
           placeholder="문의 작성 전 확인해주세요! (100자이내)
 해당 게시판에 개인의 연락처를 남기거나 적절하지 않은 문의를 남길 시
 동의없이 삭제될 수 있습니다."
-          :value="userquestion"
+          v-model="userquestion"
         ></v-textarea></v-flex>
         <v-flex text-xs-right>
-        <v-btn style="width:9vw;" color="warning">문의하기</v-btn></v-flex>
+        <v-btn style="width:9vw;" color="warning" @click="sendQna()">문의하기</v-btn></v-flex>
       </v-layout>
     </v-flex>
   </v-layout>
@@ -40,10 +40,9 @@
   <v-layout column>
     <v-expansion-panel>
     <v-expansion-panel-content
-      v-for="(item,i) in desserts"
+      v-for="(item,i) in userquestion"
       :key="i"
-      expand-icon="arrow_drop_down"
-    >
+      expand-icon="arrow_drop_down">
       <div slot="header">{{item.name}}</div>
       <v-card>
         <v-card-text class="grey lighten-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
@@ -59,30 +58,6 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      faqdata: [
-        {q: '신청한 농활은 어디서 확인하나요?', a: '내 활동에 들어가면 탭에서 신청한 농활을 확인할 수 있습니다'},
-        {q: '환불 신청됐는데 언제 환불되나요?', a: '환불 신청한 날로부터 영업일 기준 최대 5일 이내에 환불될 예정입니다'},
-        {q: '두명 신청하고 싶은데 어떻게 하나요?', a: '아쉽지만 현재 아이디 한 개 당 한 분씩 신청이 가능합니다.'}
-      ],
-      desserts: [
-        {
-          value: false,
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: '1%'
-        },
-        {
-          value: false,
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: '1%'
-        }],
       userquestion: ''
     }
   },
@@ -90,7 +65,17 @@ export default {
     ...mapGetters({
       getDetailQna: 'getDetailQna'
     })
-  }
+  },
+  methods: {
+    sendQna () {
+      this.$store.dispatch('sendDetailQna', {idx: this.nhIdx, question: this.userquestion})
+    }
+  },
+  created () {
+    this.$store.dispatch('getDetailQna', this.nhIdx)
+    console.log(this.getDetailQna)
+  },
+  props: ['nhIdx']
 }
 </script>
 
