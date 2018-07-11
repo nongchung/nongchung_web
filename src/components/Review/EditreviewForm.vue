@@ -29,14 +29,12 @@
           solo
           name="input-7-4"
           label="Solo textarea"
-          placeholder="후기를 작성해주세요. 욕설 허위 사실 개인정보 기재할시에 민형사상 처벌을 받을 수 있습니다."
         ></v-textarea>
         <v-flex xs12 sm6 offset-sm3>
           <v-flex xs12 sm8 offset-sm2>
             <div class="dropbox">
               <input class="input-image" type="file" :multiple="true" @change="onFileChangeReview" accept="image/*">
             </div>
-              <!-- <img :src="img" v-if="img" alt=""> -->
           </v-flex>
         </v-flex>
       </v-flex>
@@ -53,7 +51,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  name: 'Writereview',
+  name: 'Editreview',
   data: function () {
     return {
       content: '',

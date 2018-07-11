@@ -5,7 +5,9 @@ const BASEURL = 'http://13.125.216.198:3000/api'
 export const nonghwalActions = {
   dupEmail ({ commit }, payload) {
     const email = payload.email
-    axios.post('http://13.125.216.198:3000/api/dup-email', { email }).then(res => {
+    axios.post(`${BASEURL}/dup-email`, {
+      email
+    }).then(res => {
       // commit('dupCheckSuccess', res)
       if (res.data.message === 'duplication') {
         alert('중복된 이메일입니다. 새로운 이메일을 입력하세요')
@@ -20,7 +22,9 @@ export const nonghwalActions = {
   },
   dupNickname ({ commit }, payload) {
     const nickname = payload.nickname
-    axios.post('http://13.125.216.198:3000/api/dup-nickname', { nickname }).then(res => {
+    axios.post(`${BASEURL}/dup-nickname`, {
+      nickname
+    }).then(res => {
       console.log(res.data.message)
       if (res.data.message === 'duplication') {
         alert('중복된 닉네임입니다. 새로운 닉네임을 입력하세요')
@@ -34,7 +38,15 @@ export const nonghwalActions = {
     })
   },
   register ({ commit }, { email, password, nickname, name, sex, handphone, birth }) {
-    axios.post('http://13.125.216.198:3000/api/signup', { email, password, nickname, name, sex, handphone, birth }).then(res => {
+    axios.post(`${BASEURL}/signup`, {
+      email,
+      password,
+      nickname,
+      name,
+      sex,
+      handphone,
+      birth
+    }).then(res => {
       console.log(res.data.message)
       commit('regSuccess')
       //   router.push('/Login')
@@ -47,16 +59,17 @@ export const nonghwalActions = {
     })
   },
   updateMyInfo ({ commit }, { nickname }) {
-    axios.put('http://13.125.216.198:3000/api/mypage/nickname', { nickname }).then(res => {
+    axios.put(`${BASEURL}/mypage/nickname`, {
+      nickname
+    }).then(res => {
       console.log(res.data.message)
       commit('updateSuccess')
     }).catch(err => {
       console.log(err.response.data.message)
     })
   },
-  login ({ state, commit }, { email, password }) {
-    console.log('여기 들어오는뎅?')
-    axios.post('http://13.125.216.198:3000/api/signin', {
+  login ({ commit }, { email, password }) {
+    axios.post(`${BASEURL}/signin`, {
       email,
       password
     }).then((res) => {
@@ -78,7 +91,7 @@ export const nonghwalActions = {
     router.push('/')
   },
   getMyhistory ({ state, commit }) {
-    axios.get('http://13.125.216.198:3000/api/activity/complete', {
+    axios.get(`${BASEURL}/activity/complete`, {
       headers: {
         token: state.accessToken
       }
@@ -89,7 +102,7 @@ export const nonghwalActions = {
     })
   },
   getLike ({ state, commit }) {
-    axios.get('http://13.125.216.198:3000/api/bookmark', {
+    axios.get(`${BASEURL}/bookmark`, {
       headers: { token: state.accessToken }
     }).then(res => {
       commit('getLikeSuccess', res.data.bmList)
@@ -98,7 +111,7 @@ export const nonghwalActions = {
     })
   },
   getMyInfo ({ state, commit }) {
-    axios.get('http://13.125.216.198:3000/api/mypage', {
+    axios.get(`${BASEURL}/mypage`, {
       headers: {
         token: state.accessToken
       }
@@ -111,7 +124,7 @@ export const nonghwalActions = {
   addReview ({ state, commit }, payload) {
     axios({
       method: 'POST',
-      url: 'http://13.125.216.198:3000/api/review',
+      url: `${BASEURL}/review`,
       headers: {
         token: state.accessToken
       },
@@ -125,7 +138,7 @@ export const nonghwalActions = {
       console.log(err.response.data.message)
     })
   },
-  editMyNickname ({ state, commit }, payload) {
+  editMyNickname ({ state }, payload) {
     axios({
       method: 'PUT',
       url: `${BASEURL}/mypage/nickname`,
@@ -136,10 +149,39 @@ export const nonghwalActions = {
     }).then(res => {
       console.log(res.data.message)
     }).catch(err => {
+      if (err.response.data.message === 'duplicate nickname') {
+        alert('중복된 닉네임입니다.')
+      } else {
+        alert('다시 시도해주세요')
+      }
       console.log(err.response.data.message)
     })
   },
-  editMyPhoto ({ state, commit }, payload) {
+  editMyPassword ({ state, commit }, { oldPasswd, newPasswd }) {
+    axios({
+      method: 'PUT',
+      url: `${BASEURL}/mypage/password`,
+      headers: {
+        token: state.accessToken
+      },
+      data: { password: oldPasswd, newpw: newPasswd }
+    }).then(res => {
+      console.log(res.data.message)
+      alert('변경되었습니다. 다시 로그인해 주시기 바랍니다.')
+      commit('logoutClear')
+      router.push('/')
+    }).catch(err => {
+      if (err.response.data.message === 'Null Value') {
+        alert('모든 값을 채워주세요')
+      } else if (err.response.data.message === 'fail to change PW from client') {
+        alert('기존의 비밀번호가 틀렸습니다.')
+      } else {
+        alert('다시 시도해주세요')
+      }
+      console.log(err.response.data.message)
+    })
+  },
+  editMyPhoto ({ state }, payload) {
     axios({
       method: 'PUT',
       url: `${BASEURL}/mypage/photo`,
@@ -153,6 +195,7 @@ export const nonghwalActions = {
       console.log(err.response.data.message)
     })
   },
+
   search ({ commit }, payload) {
     commit('searchStart')
     axios.get('http://13.125.216.198:3000/api/home/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent)

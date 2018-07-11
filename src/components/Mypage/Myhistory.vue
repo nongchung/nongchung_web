@@ -26,12 +26,11 @@
                   </v-flex>
                 </v-layout>
               </v-card-title>
-              <v-btn icon v-if="!isAuthenticated">
-                  <v-icon>favorite_border</v-icon>
-                </v-btn>
-                <v-btn outline color="primary" @click="goNonghwalDetail(item.idx)">상세보기</v-btn>
+                <v-flex style="margin-left:145px" >
                 <v-btn outline color="primary" v-if="item.rState===0" @click="writeReview(item.idx, index)">후기작성</v-btn>
-                <v-btn outline color="primary" v-if="item.rState!=0" @click="goMyReview(item.ids, index)">내 후기보기</v-btn>
+                <v-btn outline color="primary" v-if="item.rState!=0" @click="editMyReview(item.ids, index)">후기수정</v-btn>
+                </v-flex>
+                <!-- <v-btn outline color="primary" @click="goNonghwalDetail(item.idx)">상세보기</v-btn> -->
             </v-card>
           </v-flex>
         </v-layout>
@@ -73,8 +72,8 @@ export default {
       // this.$router.push('/Writereview')
       this.$router.push({name: 'Writereview', params: { idx: idx, arrIndex: arrindex }})
     },
-    goMyReview (idx, arrindex) {
-      this.$router.push({name: 'Myreview', params: {idx: idx, arrIndex: arrindex}})
+    editMyReview (idx, arrindex) {
+      this.$router.push({name: 'Editreview', params: {idx: idx, arrIndex: arrindex}})
     }
   }
 }

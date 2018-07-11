@@ -11,13 +11,14 @@ import Login from '@/pages/Login'
 import Mypage from '@/pages/Mypage/Mypage'
 import Myprofile from '@/pages/Mypage/Myprofile'
 import Writereview from '@/pages/Review/Writereview'
+import Editreview from '@/pages/Review/Editreview'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   scrollBhavior () {
-    return {x: 0, y: 0}
+    return { x: 0, y: 0 }
   },
   routes: [{
     path: '/',
@@ -58,6 +59,11 @@ export default new Router({
     path: '/Writereview',
     name: 'Writereview',
     component: Writereview
+  },
+  {
+    path: '/Editreview',
+    name: 'Editreview',
+    component: Editreview
   },
   {
     path: '/Apply/:nhIdx/:schIdx/:selectedDate/:selectedNhName/:selectedNhAddr/:selectedNhImg',
