@@ -79,8 +79,8 @@ export default {
   },
   methods: {
     makeAllDate: function () {
-      const splitEndDate = this.myHistory[this.getPath].endDate.split('-')
-      const splitStartDate = this.myHistory[this.getPath].startDate.split('-')
+      const splitEndDate = this.myHistory[this.getPath].endDate.split('.')
+      const splitStartDate = this.myHistory[this.getPath].startDate.split('.')
       this.allDate = splitStartDate[0] + '년' + splitStartDate[1] + '월' + splitStartDate[2] + '일' + '~' + splitEndDate[2] + '일'
       return this.allDate
     },
