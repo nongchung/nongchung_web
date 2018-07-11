@@ -34,7 +34,7 @@
       </v-flex>
 
       <!-- 오른쪽라인 -->
-      <v-flex sm5 md3 lg3 xl2 pl-4>
+      <v-flex sm5 md4 lg3 xl2 pl-4>
         <apply-etc :nhIdx="this.getPath"></apply-etc>
       </v-flex>
       </v-layout>
@@ -54,7 +54,7 @@ export default {
     return {
       tabnumber: '',
       tabname: [
-        '농활정보', 'Q&A', '농활후기'
+        '농활정보', 'Q & A', '농활후기'
       ]
     }
   },
@@ -79,7 +79,9 @@ export default {
   },
   methods: {
     fetchData: function (idx) {
-      if (!this.isAuthenticated) { this.$store.dispatch('nonghwalDetail', idx) } else { this.$store.dispatch('nonghwalDetailLogin', idx) }
+      if (!this.isAuthenticated) { this.$store.dispatch('nonghwalDetail', idx) } else {
+        this.$store.dispatch('nonghwalDetailLogin', idx)
+      }
     }
   }
 }

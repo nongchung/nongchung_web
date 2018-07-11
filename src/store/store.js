@@ -22,10 +22,11 @@ export const store = new Vuex.Store({
       popularList: [],
       newList: [],
       popularFarm: []},
-    nhDetail: {image: [], nhInfo: [], friendsInfo: [], farmerInfo: [], schedule: [], nearestStartDate: [], allStartDate: [], myScheduleActivity: []},
+    nhDetail: {image: [], nhInfo: [], friendsInfo: [], farmerInfo: [], schedule: [], nearestStartDate: [], allStartDate: [], myScheduleActivities: []},
     nhLocation: {location: [], geoLocation: []},
     userPersonalInfo: [],
-    nonghwalApplyResult: {maxPerson: [], currentPerson: []}
+    nonghwalApplyResult: {maxPerson: [], currentPerson: []},
+    nhDetailQna: []
   },
   getters: Object.assign({}, nonghwalGetters),
   actions: Object.assign({}, nonghwalActions),

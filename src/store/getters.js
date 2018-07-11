@@ -49,5 +49,8 @@ export const nonghwalGetters = {
   },
   getnonghwalApplyResult (state) {
     return state.nonghwalApplyResult
+  },
+  getDetailQna (state) {
+    return state.nhDetailQna
   }
 }

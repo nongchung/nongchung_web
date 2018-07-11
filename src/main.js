@@ -24,7 +24,7 @@ Vue.use(Vuetify, {
     text: '#4D4D4D',
     info: '#0ABD9D',
     accent: '#0ABD9D',
-    warning: '#fbc948'
+    warning: '#ffb92e'
   }
 })
 /* eslint-disable no-new */

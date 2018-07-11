@@ -69,29 +69,29 @@
                <v-form ref="form1" v-model="valid1" lazy-validation>
                  <!-- 이름 -->
     <v-text-field
-      v-model="name" :rules="nameRules" :counter="10" label="이름" placeholder="김청춘" required
+      :value="this.userPersonalInfo.name" :rules="nameRules" :counter="10" label="이름" placeholder="김청춘" required
     ></v-text-field>
     <!-- 생일선택 -->
     <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40"
     lazy transition="scale-transition" offset-y full-width min-width="20vw">
-    <v-text-field slot="activator" v-model="date" label="생년월일" readonly required
+    <v-text-field slot="activator" :value="getuserBirth" label="생년월일" readonly required
     :rules="[v => !!v || '생일을 선택하세요!']"></v-text-field>
-    <v-date-picker ref="picker" v-model="date" :max="new Date().toISOString().substr(0, 10)"
+    <v-date-picker ref="picker" :value="getuserBirth" :max="new Date().toISOString().substr(0, 10)"
       min="1940-01-01" @change="save"></v-date-picker>
      </v-menu>
     <!-- 성별 선택 -->
     <v-layout column>
     <v-flex style=" font-size:.8rem; color:grey;" text-xs-left>성별</v-flex>
-  <v-radio-group v-model="sex" row style="margin-top: 0; height: 2.7rem;">
+  <v-radio-group :value="this.userPersonalInfo.sex.toString()" row style="margin-top: 0; height: 2.7rem;">
       <v-radio label="여자" value="2" ></v-radio>
       <v-radio label="남자" value="1"></v-radio>
     </v-radio-group>
     </v-layout>
     <v-text-field
-      v-model="email" :rules="emailRules" label="이메일" placeholder="chungchhon@naver.com" required
+      :value="this.userPersonalInfo.mail" :rules="emailRules" label="이메일" placeholder="chungchhon@naver.com" required
     ></v-text-field>
     <v-text-field
-      v-model="hp" :rules="hpRules" label="전화번호" placeholder="-포함 입력" required
+      :value="this.userPersonalInfo.hp" :rules="hpRules" label="전화번호" placeholder="-포함 입력" required
     ></v-text-field>
   </v-form>
              </v-flex>
@@ -192,10 +192,7 @@ export default {
       e1: 0,
       // step1데이터
       item: 'url("../../static/ad_ex.png")',
-      date: '',
       menu: false,
-      name: '',
-      email: '',
       nameRules: [
         v => !!v || '이름을 입력해주세요!',
         v => (v && v.length <= 10) || '이름은 10글자 미만이어야 합니다.'
@@ -204,12 +201,10 @@ export default {
         v => !!v || '이메일을 입력해주세요!',
         v => /.+@.+/.test(v) || '유효한 이메일 주소를 입력해주세요!'
       ],
-      hp: '',
       hpRules: [
         v => !!v || '전화번호를 입력해주세요',
         v => /^\d+[-]\d+[-]\d+$/.test(v) || '유효한 전화번호를 입력해주세요!'
       ],
-      sex: '',
       valid1: true,
       // step2데이터
       checkbox: false,
@@ -232,7 +227,7 @@ export default {
       return this.$route.params.selectedDate
     },
     getSelectedNh: function () {
-      return this.$route.params.selectedNh
+      return this.$route.params.selectedNhName
     },
     getSelectedNhAddr: function () {
       return this.$route.params.selectedNhAddr
@@ -241,10 +236,13 @@ export default {
       return this.$route.params.selectedNhImg
     },
     getschIdx: function () {
-      return this.$route.params.selectedNhSchIdx
+      return this.$route.params.schIdx
     },
     getnhIdx: function () {
-      return this.$route.params.selectedNhIdx
+      return this.$route.params.nhIdx
+    },
+    getuserBirth () {
+      return this.userPersonalInfo.birthYear + '-' + this.userPersonalInfo.birthMonth + '-' + this.userPersonalInfo.birthDay
     }
   },
   methods: {
@@ -261,47 +259,30 @@ export default {
     submit (nhIdx, schIdx) {
       if (this.$refs.form2.validate()) {
         this.$store.dispatch('nonghwalApply', {nhIdx: nhIdx, schIdx: schIdx}).then(() => {
-          this.e1 = 3
+          if (this.nonghwalApplyResult.message === 'Success To Request For Application') {
+            this.e1 = 3
+          } else if (this.nonghwalApplyResult.message === 'No token') {
+            alert('로그인이 필요합니다.')
+          } else if (this.nonghwalApplyResult.message === 'Null Value') {
+            alert('농활 또는 농활스케줄 오류')
+          } else if (this.nonghwalApplyResult.message === 'Invalid nhIdxnd schIdx') {
+            alert('유효하지 않은 농활 또는 농활스케줄입니다.')
+          } else if (this.nonghwalApplyResult.message === 'Invalid schIdx') {
+            alert('신청불가능한 농활 스케줄입니다.')
+          } else if (this.nonghwalApplyResult.message === 'Duplicate To Time') {
+            alert('이미 신청한 농활 스케줄입니다.')
+          } else if (this.nonghwalApplyResult.message === 'Fail To Request For Application, No Available Person Number') {
+            alert('여석이 없습니다. 다른 농활을 신청해주세요.')
+          } else { alert('서버에러입니다.') }
         })
       }
     },
-
-    // .then(msg => {
-    //   console.log(msg)
-    //   this.e1 = 3
-    // if (msg == 'Success To Request For Application') { this.e1 = 3 } else {
-    //   alert('신청오류')
-    //   this.$router.push({name: 'Home'})
-    // }
-    // })
     accountTransfer: function () {
       alert('계좌이체 했겠죠?ㅎㅎ 안했다면 양심 쑤레기~')
     },
     // 유저정보통신
     fetchuserData: function () {
-      return this.$store.dispatch('userPersonalInfo').then(() => {
-        console.log(this.userPersonalInfo)
-        this.putuserName()
-        this.putuserBirth()
-        this.putuserSex()
-        this.putuserPh()
-        this.putuserEmail()
-      })
-    },
-    putuserName () {
-      this.name = this.userPersonalInfo.name
-    },
-    putuserBirth () {
-      this.date = this.userPersonalInfo.birthYear + '-' + this.userPersonalInfo.birthMonth + '-' + this.userPersonalInfo.birthDay
-    },
-    putuserSex () {
-      this.sex = this.userPersonalInfo.sex.toString()
-    },
-    putuserPh () {
-      this.hp = this.userPersonalInfo.hp
-    },
-    putuserEmail () {
-      this.email = this.userPersonalInfo.mail
+      return this.$store.dispatch('userPersonalInfo')
     }
   },
   watch: {

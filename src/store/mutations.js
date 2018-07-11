@@ -88,7 +88,7 @@ export const nonghwalMutations = {
     state.nhDetail.schedule = payload.schedule
     state.nhDetail.nearestStartDate = payload.nearestStartDate
     state.nhDetail.allStartDate = payload.allStartDate
-    state.nhDetail.myScheduleActiviy = payload.myScheduleActiviy
+    state.nhDetail.myScheduleActivities = payload.myScheduleActivities
     console.log('nonghwalDetailLoginSuccess')
   },
   nonghwalLocationStart (state) {
@@ -125,8 +125,18 @@ export const nonghwalMutations = {
     console.log('nonghwalApplyStart!')
   },
   nonghwalApplySuccess (state, payload) {
+    state.nonghwalApplyResult.message = payload.message
     state.nonghwalApplyResult.maxPerson = payload.maxPerson
     state.nonghwalApplyResult.currentPerson = payload.currentPerson
     console.log('nonghwalApplySuccess')
+  },
+  nonghwalApplyFail (state, payload) {
+    state.nonghwalApplyResult.message = payload
+    state.nonghwalApplyResult.maxPerson = null
+    state.nonghwalApplyResult.currentPerson = null
+    console.log('nonghwalApplyFail')
+  },
+  getDetailQnaStart (state, payload) {
+    state.nhDetailQna = payload.data
   }
 }

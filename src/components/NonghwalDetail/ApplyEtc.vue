@@ -5,13 +5,39 @@
       <v-layout column>
         <v-flex pa-2 style="font-family:sans-serif;font-size:1.7rem;">{{getNonghwalDetail.nhInfo.price}}원</v-flex>
         <v-flex pa-1 d-flex>
-          <v-icon class="mr-3" style="flex: 0 0 auto !important;">assignment</v-icon>
-          <v-select :items="getallStartDateList[0]" v-model="selectedDate" label="날짜선택" solo flat dense style="border: 1px solid grey; width: 80%; height:2.7rem; min-height: initial; font-family:sans-serif !important; flex: 0 0 auto !important;"></v-select>
+          <v-icon class="mr-3" style="flex: none !important;">assignment</v-icon>
+          <v-menu offset-y max-width="auto">
+          <v-flex slot="activator" lg12 style="border:1px solid black; padding:.5rem;" class="pl-3">{{this.selectedDate}}<v-icon>arrow_drop_down</v-icon></v-flex>
+          <v-list>
+            <div v-for="(item, index) in getNonghwalDetail.allStartDate" :key="index">
+        <v-list-tile ripple @click="toggle(index)">
+          <v-list-tile-content style="font-size:1rem; ">
+            <v-layout column style="width: 100% !important;">
+              <v-flex pt-1 style="display: flex; direction: row; justify-content:space-around;">
+                <v-flex>{{item.startDate}}</v-flex>
+                <v-flex text-xs-right>{{item.state? '마감': '참석가능'}}</v-flex>
+                </v-flex>
+              <v-flex style="font-size: .7rem; display: flex; direction: row; justify-content:space-around;" >
+                <v-flex >오전 9시 출발(1박 2일)</v-flex>
+                <v-flex text-xs-right>남은 인원({{item.availPerson}})명</v-flex>
+                </v-flex>
+            </v-layout>
+            </v-list-tile-content>
+        </v-list-tile>
+        <v-divider
+              v-if="index + 1 < getNonghwalDetail.allStartDate.length"
+              :key="index"  ></v-divider>
+        </div>
+      </v-list>
+    </v-menu>
+          <!-- <v-select :items="getallStartDateList[0]" v-model="selectedDate" label="날짜선택" solo flat dense style="border: 1px solid grey; width: 80%; height:2.7rem; min-height: initial; font-family:sans-serif !important; flex: 0 0 auto !important;"></v-select> -->
         </v-flex>
         <v-flex pa-1><v-icon class="mr-3">place</v-icon>{{getNonghwalDetail.nhInfo.addr}}</v-flex>
         <v-flex pa-1><v-icon class="mr-3">person</v-icon>인원은 어케할까나</v-flex>
-        <v-flex pa-1><v-icon class="mr-3">access_time</v-icon>{{getallStartDateList[0][getallStartDateList[0].length-1]}}</v-flex>
-        <v-flex pa-1><v-btn large block color="primary" @click="clickApplyBtn">신청하기</v-btn></v-flex>
+        <v-flex pa-1><v-icon class="mr-3">access_time</v-icon>
+        {{getallStartDateList[0][getallStartDateList[0].length-1]}}
+        </v-flex>
+        <v-flex pa-1><v-btn large block color="primary" @click="clickApplyBtn">{{applycancelBtn}}</v-btn></v-flex>
         <v-flex px-1 d-flex>
           <v-btn block flat large outline @click="clickBookmarkBtn" :color="isBookedColor" class="mr-2"><v-icon left>favorite</v-icon>30</v-btn>
           <v-btn block flat large outline>공유하기</v-btn>
@@ -82,8 +108,9 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      selectedDate: ''
+      selectedDate: '날짜 선택',
+      apply: '신청하기',
+      cancel: '취소하기'
     }
   },
   props: ['nhIdx'],
@@ -105,7 +132,7 @@ export default {
         allStartDateList.push(this.getNonghwalDetail.allStartDate[i].startDate)
         allSchIdxList.push(this.getNonghwalDetail.allStartDate[i].idx)
       }
-      console.log([allStartDateList, allSchIdxList])
+      // console.log([allStartDateList, allSchIdxList])
       return [allStartDateList, allSchIdxList]
     },
     searchSchIdx: function () {
@@ -115,6 +142,28 @@ export default {
           console.log(this.getallStartDateList[1][i])
           return this.getallStartDateList[1][i]
         }
+      }
+    },
+    canApply: function () {
+      if (this.isAuthenticated) {
+        if (this.getNonghwalDetail.myScheduleActivities.length > 0) {
+          for (let i = 0; i < this.getNonghwalDetail.myScheduleActivities.length; i++) {
+            if (this.getallStartDateList[1].indexOf(this.getNonghwalDetail.myScheduleActivities[i]) !== -1) {
+              return false
+            } else {
+              return true
+            }
+          }
+        } else { return true }
+      } else {
+        return false
+      }
+    },
+    applycancelBtn: function () {
+      if (this.canApply) {
+        return this.apply
+      } else {
+        return this.cancel
       }
     }
   },
@@ -128,22 +177,30 @@ export default {
     },
     clickApplyBtn: function () {
       if (this.isAuthenticated) {
-        if (this.selectedDate !== '') {
+        if (this.selectedDate !== '날짜 선택') {
           this.$router.push({name: 'Apply',
-            params: { selectedDate: this.selectedDate,
-              selectedNh: this.getNonghwalDetail.nhInfo.name,
+            params: { nhIdx: this.nhIdx,
+              schIdx: this.searchSchIdx,
+              selectedDate: this.selectedDate,
+              selectedNhName: this.getNonghwalDetail.nhInfo.name,
               selectedNhAddr: this.getNonghwalDetail.nhInfo.addr,
-              selectedNhImg: this.getNonghwalDetail.image[0],
-              selectedNhSchIdx: this.searchSchIdx,
-              selectedNhIdx: this.nhIdx }})
+              selectedNhImg: this.getNonghwalDetail.image[0] }})
         } else { alert('신청날짜를 선택해주세요') }
       } else {
         alert('로그인기기')
       }
-    }},
+    },
+    toggle: function (index) {
+      this.selectedDate = this.getallStartDateList[0][index]
+      return this.getallStartDateList[0][index]
+    }
+  },
   created () {
-    console.log(this.getNonghwalDetail.nearestStartDate)
-    console.log(this.getallStartDateList)
+    // console.log(this.getNonghwalDetail.nearestStartDate)
+    console.log(this.getallStartDateList[1])
+    console.log(this.getNonghwalDetail.myScheduleActivities)
+    // console.log(this.getallStartDateList)
+    // console.log(this.getNonghwalDetail.allStartDate.length)
   }
 }
 </script>

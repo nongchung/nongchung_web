@@ -210,10 +210,18 @@ export const nonghwalActions = {
       commit('nonghwalApplySuccess', res.data)
     }).catch(err => {
       console.log('ERROR! :' + err.message)
-      if (err.response.data.message) {
-        alert('신청오류')
-        router.push('/')
-      }
+      console.log(err.response.data.message)
+      commit('nonghwalApplyFail', err.response.data.message)
+    })
+  },
+  getDetailQna ({state, commit}, payload) {
+    console.log(payload)
+    commit('getDetailQnaStart')
+    axios.get('http://13.125.216.198:3000/api/home/detail/qna?idx=' + payload).then(res => {
+      console.log(res.data.message)
+      commit('getDetailQnaSuccess', res.data)
+    }).catch(err => {
+      console.log('ERROR! :' + err.message)
     })
   }
 }
