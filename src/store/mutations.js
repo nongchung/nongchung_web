@@ -129,18 +129,19 @@ export const nonghwalMutations = {
     console.log('nonghwalApplyStart!')
   },
   nonghwalApplySuccess (state, payload) {
-    state.nonghwalApplyResult.message = payload.message
     state.nonghwalApplyResult.maxPerson = payload.maxPerson
     state.nonghwalApplyResult.currentPerson = payload.currentPerson
     console.log('nonghwalApplySuccess')
   },
-  nonghwalApplyFail (state, payload) {
-    state.nonghwalApplyResult.message = payload
-    state.nonghwalApplyResult.maxPerson = null
-    state.nonghwalApplyResult.currentPerson = null
-    console.log('nonghwalApplyFail')
-  },
   getDetailQnaStart (state, payload) {
     state.nhDetailQna = payload.data
+  },
+  nonghwalCancelStart (state) {
+    console.log('nonghwalCancelStart!')
+  },
+  nonghwalCancelSuccess (state, payload) {
+    alert('선택한 농활이 정상적으로 취소되었습니다!')
+    const idx = payload.nhIdx
+    router.push('/Detail/' + idx)
   }
 }

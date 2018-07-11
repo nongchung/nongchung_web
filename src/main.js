@@ -10,10 +10,8 @@ import 'vuetify/dist/vuetify.min.css'
 import VeeValidate from 'vee-validate'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-// import rate from 'vue-rate'
 import starRate from 'vue-star-rating'
 
-// Vue.use(rate)
 Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.use(VeeValidate)
@@ -24,11 +22,11 @@ Vue.use(Vuetify, {
   theme: {
     primary: '#3470FF',
     secondary: '#BDBDBD',
-    success: '#1DE9B6',
+    success: '#F25620',
     text: '#4D4D4D',
-    info: '#0ABD9D',
-    accent: '#0ABD9D',
-    warning: '#ffb92e'
+    info: '#3470FF',
+    accent: '#3470FF',
+    warning: '#FFAF00'
   }
 })
 /* eslint-disable no-new */

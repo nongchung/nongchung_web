@@ -246,19 +246,35 @@ export const nonghwalActions = {
       console.log('ERROR! :' + err)
     })
   },
-  nonghwalApply ({ state, commit }, payload) {
-    console.log(payload)
-    commit('nonghwalApplyStart')
-    axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/home/request', headers: { token: state.accessToken }, data: payload }).then(res => {
-      console.log(res.data.message)
-      commit('nonghwalApplySuccess', res.data)
-    }).catch(err => {
-      console.log('ERROR! :' + err.message)
-      console.log(err.response.data.message)
-      commit('nonghwalApplyFail', err.response.data.message)
+  // nonghwalApply ({ state, commit }, payload) {
+  //   console.log(payload)
+  //   commit('nonghwalApplyStart')
+  //   axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/home/request', headers: { token: state.accessToken }, data: payload }).then(res => {
+  //     console.log(res.data.message)
+  //     commit('nonghwalApplySuccess', res.data)
+  //   }).catch(err => {
+  //     console.log('ERROR! :' + err.message)
+  //     console.log(err.response.data.message)
+  //     commit('nonghwalApplyFail', err.response.data.message)
+  //   })
+  // },
+  nonghwalApply ({state, commit}, payload) {
+    return new Promise((resolve, reject) => {
+      axios(
+        { method: 'POST',
+          url: 'http://13.125.216.198:3000/api/home/request',
+          headers: { token: state.accessToken },
+          data: payload }).then(res => {
+        console.log(res.data.message)
+        commit('nonghwalApplySuccess', res.data)
+        resolve(res.data.message)
+      }).catch(err => {
+        // console.log(err.response.data.message)
+        reject(err.response.data.message)
+      })
     })
   },
-  getDetailQna ({state, commit}, payload) {
+  getDetailQna ({commit}, payload) {
     console.log(payload)
     commit('getDetailQnaStart')
     axios.get('http://13.125.216.198:3000/api/home/detail/qna?idx=' + payload).then(res => {
@@ -267,5 +283,16 @@ export const nonghwalActions = {
     }).catch(err => {
       console.log('ERROR! :' + err.message)
     })
+  },
+  nonghwalCancel ({state, commit}, payload) {
+    console.log(payload)
+    commit('nonghwalCancelStart')
+    axios({ method: 'PUT', url: 'http://13.125.216.198:3000/api/home/request', headers: { token: state.accessToken }, data: payload })
+      .then(res => {
+        console.log(res.data.message)
+        commit('nonghwalCancelSuccess', payload)
+      }).catch(err => {
+        console.log('ERROR! :' + err.message)
+      })
   }
 }

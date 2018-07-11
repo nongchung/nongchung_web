@@ -7,7 +7,7 @@
         <v-flex pa-1 d-flex>
           <v-icon class="mr-3" style="flex: none !important;">assignment</v-icon>
           <v-menu offset-y max-width="auto">
-          <v-flex slot="activator" lg12 style="border:1px solid black; padding:.5rem;" class="pl-3">{{this.selectedDate}}<v-icon>arrow_drop_down</v-icon></v-flex>
+          <v-flex slot="activator" lg12 style="border:1px solid black; padding:.5rem;" class="pl-3"><input id="vinput" v-model="selectedDate" placeholder="날짜선택"><v-icon>arrow_drop_down</v-icon></v-flex>
           <v-list>
             <div v-for="(item, index) in getNonghwalDetail.allStartDate" :key="index">
         <v-list-tile ripple @click="toggle(index)">
@@ -37,7 +37,7 @@
         <v-flex pa-1><v-icon class="mr-3">access_time</v-icon>
         {{getallStartDateList[0][getallStartDateList[0].length-1]}}
         </v-flex>
-        <v-flex pa-1><v-btn large block color="primary" @click="clickApplyBtn">{{applycancelBtn}}</v-btn></v-flex>
+        <v-flex pa-1><v-btn large block color="primary" @click="clickApplyBtn">{{applycancel? '신청하기':'취소하기'}}</v-btn></v-flex>
         <v-flex px-1 d-flex>
           <v-btn block flat large outline @click="clickBookmarkBtn" :color="isBookedColor" class="mr-2"><v-icon left>favorite</v-icon>30</v-btn>
           <v-btn block flat large outline>공유하기</v-btn>
@@ -108,9 +108,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      selectedDate: '날짜 선택',
-      apply: '신청하기',
-      cancel: '취소하기'
+      selectedDate: ''
     }
   },
   props: ['nhIdx'],
@@ -144,30 +142,39 @@ export default {
         }
       }
     },
-    canApply: function () {
+    applycancel: function () {
       if (this.isAuthenticated) {
         if (this.getNonghwalDetail.myScheduleActivities.length > 0) {
-          for (let i = 0; i < this.getNonghwalDetail.myScheduleActivities.length; i++) {
-            if (this.getallStartDateList[1].indexOf(this.getNonghwalDetail.myScheduleActivities[i]) !== -1) {
-              return false
+          if (this.selectedDate !== '') {
+            if (this.ismyDate()) {
+              return false // 취소
             } else {
-              return true
+              return true // 신청
             }
-          }
+          } else { return true }
         } else { return true }
-      } else {
-        return false
-      }
-    },
-    applycancelBtn: function () {
-      if (this.canApply) {
-        return this.apply
-      } else {
-        return this.cancel
-      }
+      } else { return true }
     }
   },
   methods: {
+    hasApply: function () {
+      if (this.getNonghwalDetail.myScheduleActivities.length > 0) {
+        return true
+      } else { return false } // 신청한 것이 없다.
+    },
+    setDate: function () {
+      if (this.isAuthenticated) { // 유저임
+        if (this.hasApply()) { // 신청한 것이 있음
+          let mylist = this.whatselectedDate() // 신청한 것임
+          console.log(mylist)
+          this.selectedDate = mylist[0]
+        } else { // 신청한 것이 없음
+          this.selectedDate = ''
+        }
+      } else { // 유저가 아님
+        this.selectedDate = ''
+      }
+    },
     clickBookmarkBtn: function () {
       if (this.isAuthenticated) {
         if (this.getisBooked === 0) { this.$store.dispatch('addnonghwalBookmark', this.nhIdx) } else this.$store.dispatch('deletenonghwalBookmark', this.nhIdx)
@@ -176,32 +183,46 @@ export default {
       }
     },
     clickApplyBtn: function () {
-      if (this.isAuthenticated) {
-        if (this.selectedDate !== '날짜 선택') {
-          this.$router.push({name: 'Apply',
-            params: { nhIdx: this.nhIdx,
-              schIdx: this.searchSchIdx,
-              selectedDate: this.selectedDate,
-              selectedNhName: this.getNonghwalDetail.nhInfo.name,
-              selectedNhAddr: this.getNonghwalDetail.nhInfo.addr,
-              selectedNhImg: this.getNonghwalDetail.image[0] }})
-        } else { alert('신청날짜를 선택해주세요') }
-      } else {
-        alert('로그인기기')
+      if (this.isAuthenticated) { // 유저임
+        if (this.selectedDate !== '') { // 선택된 것이 있음
+          if (this.ismyDate()) { // 내가 선택한 것임
+            this.$store.dispatch('nonghwalCancel', {nhIdx: this.nhIdx, schIdx: this.searchSchIdx})
+          } else {
+            this.$router.push({name: 'Apply',
+              params: { nhIdx: this.nhIdx,
+                schIdx: this.searchSchIdx,
+                selectedDate: this.selectedDate,
+                selectedNhName: this.getNonghwalDetail.nhInfo.name,
+                selectedNhAddr: this.getNonghwalDetail.nhInfo.addr,
+                selectedNhImg: this.getNonghwalDetail.image[0] }})
+          }
+        }
+        console.log('선택된게 없자녀')
+      } console.log('유저가 아니자녀')
+    },
+    whatselectedDate: function () {
+      let mydatelist = []
+      for (let i = 0; i < this.getNonghwalDetail.myScheduleActivities.length; i++) {
+        if (this.getallStartDateList[1].indexOf(this.getNonghwalDetail.myScheduleActivities[i]) !== -1) {
+          let num = this.getallStartDateList[1].indexOf(this.getNonghwalDetail.myScheduleActivities[i])
+          mydatelist.push(this.getallStartDateList[0][num])
+        }
+      } return mydatelist
+    },
+    ismyDate: function () {
+      for (let i = 0; i < this.whatselectedDate().length; i++) {
+        if (this.selectedDate === this.whatselectedDate()[i]) { return true } else { return false }
       }
     },
     toggle: function (index) {
       this.selectedDate = this.getallStartDateList[0][index]
-      return this.getallStartDateList[0][index]
+      // return this.getallStartDateList[0][index]
     }
   },
   created () {
-    // console.log(this.getNonghwalDetail.nearestStartDate)
-    console.log(this.getallStartDateList[1])
-    console.log(this.getNonghwalDetail.myScheduleActivities)
-    // console.log(this.getallStartDateList)
-    // console.log(this.getNonghwalDetail.allStartDate.length)
+    this.setDate()
   }
+
 }
 </script>
 
@@ -212,7 +233,8 @@ export default {
 .v-input__control{
   height: 30px !important;
 } */
-.v-input__slot{
-  min-height: initial !important;
+.vinput, .vinput:focus{
+  outline: none !important;
+  border: none !important;
 }
 </style>

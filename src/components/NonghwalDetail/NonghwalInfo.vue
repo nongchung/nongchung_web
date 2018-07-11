@@ -25,8 +25,7 @@
 import { mapGetters } from 'vuex'
 export default {
   data () {
-    return {
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz']}
+    return {}
   },
   computed: {
     ...mapGetters({
