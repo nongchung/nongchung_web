@@ -55,7 +55,6 @@ export const nonghwalActions = {
     })
   },
   login ({ state, commit }, { email, password }) {
-    console.log('여기 들어오는뎅?')
     axios.post('http://13.125.216.198:3000/api/signin', {
       email,
       password
@@ -136,6 +135,35 @@ export const nonghwalActions = {
     }).then(res => {
       console.log(res.data.message)
     }).catch(err => {
+      if (err.response.data.message === 'duplicate nickname') {
+        alert('중복된 닉네임입니다.')
+      } else {
+        alert('다시 시도해주세요')
+      }
+      console.log(err.response.data.message)
+    })
+  },
+  editMyPassword ({ state, commit }, { oldPasswd, newPasswd }) {
+    axios({
+      method: 'PUT',
+      url: `${BASEURL}/mypage/password`,
+      headers: {
+        token: state.accessToken
+      },
+      data: { password: oldPasswd, newpw: newPasswd }
+    }).then(res => {
+      console.log(res.data.message)
+      alert('변경되었습니다. 다시 로그인해 주시기 바랍니다.')
+      commit('logoutClear')
+      router.push('/')
+    }).catch(err => {
+      if (err.response.data.message === 'Null Value') {
+        alert('모든 값을 채워주세요')
+      } else if (err.response.data.message === 'fail to change PW from client') {
+        alert('기존의 비밀번호가 틀렸습니다.')
+      } else {
+        alert('다시 시도해주세요')
+      }
       console.log(err.response.data.message)
     })
   },
@@ -153,6 +181,7 @@ export const nonghwalActions = {
       console.log(err.response.data.message)
     })
   },
+
   search ({ commit }, payload) {
     commit('searchStart')
     axios.get('http://13.125.216.198:3000/api/home/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent)

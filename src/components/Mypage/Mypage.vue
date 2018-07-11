@@ -8,7 +8,7 @@
           <v-card-text style="margin-left:10%">
             <p class="content" style="margin-top:20px; font-size:30px"><strong>{{userInfo.name}}</strong>님</p>
             <p class="content" style="font-size:25px">
-              <strong>총 <span style="color:#FDC948">{{getTotalHistory.tcount}} 건</span> <span style="color:#2CCBB1">{{getTotalHistory.ttime}}시간</span>의 활동을</strong> 농활청춘과 함께했어요.
+              <strong>총 <span style="color:#FDC948">{{getTotalHistory.tcount}} 건</span> <span style="color:#3470FF">{{getTotalHistory.ttime}}시간</span>의 활동을</strong> 농활청춘과 함께했어요.
             </p>
               <v-btn outline class="content" @click="editMyInfo">프로필 편집</v-btn>
               </v-card-text>

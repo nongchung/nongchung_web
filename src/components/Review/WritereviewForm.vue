@@ -94,7 +94,6 @@ export default {
       data.append('star', this.star)
       for (let index = 0; index < this.file.length; index++) {
         data.append('rImages', this.file[index])
-        console.log(this.file[index])
       }
       this.$store.dispatch('addReview', data)
     },
