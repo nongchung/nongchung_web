@@ -92,7 +92,7 @@ export const nonghwalMutations = {
     state.nhDetail.schedule = payload.schedule
     state.nhDetail.nearestStartDate = payload.nearestStartDate
     state.nhDetail.allStartDate = payload.allStartDate
-    state.nhDetail.myScheduleActiviy = payload.myScheduleActiviy
+    state.nhDetail.myScheduleActivities = payload.myScheduleActivities
     console.log('nonghwalDetailLoginSuccess')
   },
   nonghwalLocationStart (state) {
@@ -132,5 +132,27 @@ export const nonghwalMutations = {
     state.nonghwalApplyResult.maxPerson = payload.maxPerson
     state.nonghwalApplyResult.currentPerson = payload.currentPerson
     console.log('nonghwalApplySuccess')
+  },
+  getDetailQnaStart (state) {
+    console.log('nonghwalQnaStart!')
+  },
+  getDetailQnaSuccess (state, payload) {
+    console.log('qnaSuccess')
+    state.nhDetailQna = payload
+  },
+  nonghwalCancelStart (state) {
+    console.log('nonghwalCancelStart!')
+  },
+  nonghwalCancelSuccess (state, payload) {
+    alert('선택한 농활이 정상적으로 취소되었습니다!')
+    const idx = payload.nhIdx
+    router.push('/Detail/' + idx) // 이부분 어케하지?
+  },
+  getnonghwalreview (state, payload) {
+    console.log('getnonghwalreviewSuccess')
+    state.nhReviewList = payload.rvListInfo
+  },
+  getParticipantsStart (state) {
+    console.log('getParticipantsStart')
   }
 }

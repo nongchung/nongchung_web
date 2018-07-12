@@ -8,8 +8,8 @@
       <v-stepper-step :complete="e1 > 1" step="1" mt-3 class="apply_step_header">
       </v-stepper-step>
           <v-flex>STEP 01</v-flex>
-          <v-avatar size="5.5rem" class="my-2">
-          <img src="../../static/ad_ex.png" alt="Avatar">
+          <v-avatar size="6rem" class="my-2">
+          <img :src="step1img" alt="Avatar">
           </v-avatar>
           <v-flex>정보입력</v-flex>
       </v-layout>
@@ -18,8 +18,8 @@
       <v-stepper-step :complete="e1 > 2" step="2" mt-3 class="apply_step_header">
       </v-stepper-step>
           <v-flex>STEP 02</v-flex>
-          <v-avatar size="5.5rem" class="my-2">
-          <img src="../../static/ad_ex.png" alt="Avatar">
+          <v-avatar size="6rem" class="my-2">
+          <img :src="step2img" alt="Avatar">
           </v-avatar>
           <v-flex>결제예약</v-flex>
       </v-layout>
@@ -28,8 +28,8 @@
       <v-stepper-step step="3" mt-3 class="apply_step_header">
       </v-stepper-step>
           <v-flex>STEP 03</v-flex>
-          <v-avatar size="5.5rem" class="my-2">
-          <img src="../../static/ad_ex.png" alt="Avatar">
+          <v-avatar size="6rem" class="my-2">
+          <img :src="step3img" alt="Avatar">
           </v-avatar>
           <v-flex>결제완료</v-flex>
       </v-layout>
@@ -40,8 +40,8 @@
       <!-- step1 -->
       <v-stepper-content step="1" style="padding: 0;">
        <v-layout column>
-         <v-flex style="background: #CEEFEA; height:3rem;" text-xs-center>
-           <v-flex style="margin-top: .7rem; color: #0ABD9D; font-family: sans-serif; font-weight: bold;">농활정보</v-flex>
+         <v-flex style="background: #E9EFFF; height:3rem;" text-xs-center>
+           <v-flex style="margin-top: .7rem; color: #3470FF; font-family: sans-serif; font-weight: bold;">농활정보</v-flex>
            </v-flex>
          <v-flex pa-4>
            <v-layout>
@@ -56,42 +56,42 @@
              </v-flex>
            </v-layout>
          </v-flex>
-         <v-flex style="background: #CEEFEA; height:3rem;" text-xs-center>
-           <v-flex style="margin-top: .7rem; color: #0ABD9D; font-family: sans-serif; font-weight: bold;">대원정보</v-flex>
+         <v-flex style="background: #E9EFFF; height:3rem;" text-xs-center>
+           <v-flex style="margin-top: .7rem; font-family: sans-serif; color: #3470FF; font-weight: bold;">대원정보</v-flex>
            </v-flex>
          <v-flex pa-4>
            <v-layout row>
-             <v-flex sm3 ml-2>
-               <v-avatar size="6rem"><img :src="userPersonalInfo.img" alt="Avatar"></v-avatar>
+             <v-flex xs4 sm3 ml-3>
+               <v-avatar size="8rem"><img :src="userPersonalInfo.img" alt="Avatar"></v-avatar>
              </v-flex>
-             <v-flex sm7 ml-5>
+             <v-flex xs6 sm7 ml-5>
                <!-- 신청자폼 시작 -->
                <v-form ref="form1" v-model="valid1" lazy-validation>
                  <!-- 이름 -->
     <v-text-field
-      v-model="name" :rules="nameRules" :counter="10" label="이름" placeholder="김청춘" required
+      :value="this.userPersonalInfo.name" :rules="nameRules" :counter="10" label="이름" placeholder="김청춘" required
     ></v-text-field>
     <!-- 생일선택 -->
     <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40"
     lazy transition="scale-transition" offset-y full-width min-width="20vw">
-    <v-text-field slot="activator" v-model="date" label="생년월일" readonly required
+    <v-text-field slot="activator" :value="getuserBirth" label="생년월일" readonly required
     :rules="[v => !!v || '생일을 선택하세요!']"></v-text-field>
-    <v-date-picker ref="picker" v-model="date" :max="new Date().toISOString().substr(0, 10)"
+    <v-date-picker ref="picker" :value="getuserBirth" :max="new Date().toISOString().substr(0, 10)"
       min="1940-01-01" @change="save"></v-date-picker>
      </v-menu>
     <!-- 성별 선택 -->
     <v-layout column>
     <v-flex style=" font-size:.8rem; color:grey;" text-xs-left>성별</v-flex>
-  <v-radio-group v-model="sex" row style="margin-top: 0; height: 2.7rem;">
+  <v-radio-group :value="this.userPersonalInfo.sex.toString()" row style="margin-top: 0; height: 2.7rem;">
       <v-radio label="여자" value="2" ></v-radio>
       <v-radio label="남자" value="1"></v-radio>
     </v-radio-group>
     </v-layout>
     <v-text-field
-      v-model="email" :rules="emailRules" label="이메일" placeholder="chungchhon@naver.com" required
+      :value="this.userPersonalInfo.mail" :rules="emailRules" label="이메일" placeholder="chungchhon@naver.com" required
     ></v-text-field>
     <v-text-field
-      v-model="hp" :rules="hpRules" label="전화번호" placeholder="-포함 입력" required
+      :value="this.userPersonalInfo.hp" :rules="hpRules" label="전화번호" placeholder="-포함 입력" required
     ></v-text-field>
   </v-form>
              </v-flex>
@@ -103,8 +103,8 @@
 <!-- step2 -->
       <v-stepper-content step="2" style="padding:0;">
        <v-layout column>
-         <v-flex style="background: #CEEFEA; height:3rem;" text-xs-center>
-           <v-flex style="margin-top: .7rem; color: #0ABD9D; font-family: sans-serif; font-weight: bold;">결제 정보</v-flex>
+         <v-flex style="background: #E9EFFF; height:3rem;" text-xs-center>
+           <v-flex style="margin-top: .7rem; color: #3470FF; font-family: sans-serif; font-weight: bold;">결제 정보</v-flex>
            </v-flex>
            <v-flex style="padding-top: 2vh; padding: 2vh 3vw; padding-bottom: 1vh;">
              <v-layout column text-xs-left>
@@ -119,7 +119,7 @@
                </v-flex>
              </v-layout>
            </v-flex>
-           <v-flex style="background: #CEEFEA; padding: 2vh 3vw;">
+           <v-flex style="background: #E9EFFF; padding: 2vh 3vw;">
              <v-layout column>
                <v-flex style="display:flex;" pa-1>
                <v-flex text-xs-left>농활가격</v-flex>
@@ -129,8 +129,8 @@
                <v-flex text-xs-left>수수료</v-flex>
                <v-flex text-xs-right >0원</v-flex>
                </v-flex>
-               <v-divider style="background-color: #0ABD9D;"></v-divider>
-               <v-flex style="display:flex; padding-top:1vh; padding-left: .3vw; padding-right: .3vw; color:#0ABD9D;" >
+               <v-divider style="background-color:#3470FF;"></v-divider>
+               <v-flex style="display:flex; padding-top:1vh; padding-left: .3vw; padding-right: .3vw; color:#3470FF;" >
                <v-flex text-xs-left>최종 가격</v-flex>
                <v-flex text-xs-right >20000원</v-flex>
                </v-flex>
@@ -179,7 +179,7 @@
   </v-form>
   <v-btn v-if="e1==2" class="mt-3" color="primary" @click="submit(getnhIdx, getschIdx)" :disabled="!valid2">참가신청</v-btn>
   <v-btn v-if="e1==2" class="mt-3" color="primary" outline flat @click="e1 = 1">뒤로가기</v-btn>
-  <v-btn v-if="e1==3" class="mt-3" color="warning" @click="this.$router.push('/')">홈으로</v-btn>
+  <v-btn v-if="e1==3" class="mt-3" color="warning" @click="goHome()">홈으로</v-btn>
   </v-flex>
   </v-layout>
 </template>
@@ -189,13 +189,18 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
+      // step이미지
+      stepimg: [
+        {focus: require('../../static/process1@2x.png'),
+          blur: require('../../static/process1_uncheck@2x.png') },
+        {focus: require('../../static/process2@2x.png'),
+          blur: require('../../static/process2_uncheck@2x.png') },
+        {focus: require('../../static/process3@2x.png'),
+          blur: require('../../static/process3_uncheck@2x.png') }
+      ],
       e1: 0,
       // step1데이터
-      item: 'url("../../static/ad_ex.png")',
-      date: '',
       menu: false,
-      name: '',
-      email: '',
       nameRules: [
         v => !!v || '이름을 입력해주세요!',
         v => (v && v.length <= 10) || '이름은 10글자 미만이어야 합니다.'
@@ -204,12 +209,10 @@ export default {
         v => !!v || '이메일을 입력해주세요!',
         v => /.+@.+/.test(v) || '유효한 이메일 주소를 입력해주세요!'
       ],
-      hp: '',
       hpRules: [
         v => !!v || '전화번호를 입력해주세요',
         v => /^\d+[-]\d+[-]\d+$/.test(v) || '유효한 전화번호를 입력해주세요!'
       ],
-      sex: '',
       valid1: true,
       // step2데이터
       checkbox: false,
@@ -222,6 +225,15 @@ export default {
       isAuthenticated: 'isAuthenticated',
       nonghwalApplyResult: 'getnonghwalApplyResult'
     }),
+    step1img: function () {
+      if (this.e1 === 1) { return this.stepimg[0].focus } else { return this.stepimg[0].blur }
+    },
+    step2img: function () {
+      if (this.e1 === 2) { return this.stepimg[1].focus } else { return this.stepimg[1].blur }
+    },
+    step3img: function () {
+      if (this.e1 === 3) { return this.stepimg[2].focus } else { return this.stepimg[2].blur }
+    },
     checkboxErrors () {
       const errors = []
       if (!this.$v.checkbox.$dirty) return errors
@@ -232,7 +244,7 @@ export default {
       return this.$route.params.selectedDate
     },
     getSelectedNh: function () {
-      return this.$route.params.selectedNh
+      return this.$route.params.selectedNhName
     },
     getSelectedNhAddr: function () {
       return this.$route.params.selectedNhAddr
@@ -241,10 +253,13 @@ export default {
       return this.$route.params.selectedNhImg
     },
     getschIdx: function () {
-      return this.$route.params.selectedNhSchIdx
+      return this.$route.params.schIdx
     },
     getnhIdx: function () {
-      return this.$route.params.selectedNhIdx
+      return this.$route.params.nhIdx
+    },
+    getuserBirth () {
+      return this.userPersonalInfo.birthYear + '-' + this.userPersonalInfo.birthMonth + '-' + this.userPersonalInfo.birthDay
     }
   },
   methods: {
@@ -260,48 +275,39 @@ export default {
     // step2메소드
     submit (nhIdx, schIdx) {
       if (this.$refs.form2.validate()) {
-        this.$store.dispatch('nonghwalApply', {nhIdx: nhIdx, schIdx: schIdx}).then(() => {
-          this.e1 = 3
-        })
+        this.callaction(nhIdx, schIdx)
       }
     },
-
-    // .then(msg => {
-    //   console.log(msg)
-    //   this.e1 = 3
-    // if (msg == 'Success To Request For Application') { this.e1 = 3 } else {
-    //   alert('신청오류')
-    //   this.$router.push({name: 'Home'})
-    // }
-    // })
+    async callaction (nhIdx, schIdx) {
+      await this.$store.dispatch('nonghwalApply', {nhIdx: nhIdx, schIdx: schIdx})
+        .then((msg) => {
+          this.e1 = 3
+        }).catch((err) => {
+          console.log(err)
+          if (err === 'No token') {
+            alert('로그인이 필요합니다.')
+          } else if (err === 'Null Value') {
+            alert('농활 또는 농활스케줄 오류')
+          } else if (err === 'Invalid nhIdxnd schIdx') {
+            alert('유효하지 않은 농활 또는 농활스케줄입니다.')
+          } else if (err === 'Invalid schIdx') {
+            alert('신청불가능한 농활 스케줄입니다.')
+          } else if (err === 'Duplicate To Time') {
+            alert('이미 신청한 농활 스케줄과 중복됩니다.')
+          } else if (err === 'Fail To Request For Application, No Available Person Number') {
+            alert('여석이 없습니다. 다른 농활을 신청해주세요.')
+          } else { alert('서버에러입니다.') }
+        })
+    },
     accountTransfer: function () {
       alert('계좌이체 했겠죠?ㅎㅎ 안했다면 양심 쑤레기~')
     },
     // 유저정보통신
     fetchuserData: function () {
-      return this.$store.dispatch('userPersonalInfo').then(() => {
-        console.log(this.userPersonalInfo)
-        this.putuserName()
-        this.putuserBirth()
-        this.putuserSex()
-        this.putuserPh()
-        this.putuserEmail()
-      })
+      return this.$store.dispatch('userPersonalInfo')
     },
-    putuserName () {
-      this.name = this.userPersonalInfo.name
-    },
-    putuserBirth () {
-      this.date = this.userPersonalInfo.birthYear + '-' + this.userPersonalInfo.birthMonth + '-' + this.userPersonalInfo.birthDay
-    },
-    putuserSex () {
-      this.sex = this.userPersonalInfo.sex.toString()
-    },
-    putuserPh () {
-      this.hp = this.userPersonalInfo.hp
-    },
-    putuserEmail () {
-      this.email = this.userPersonalInfo.mail
+    goHome: function () {
+      this.$router.push('/')
     }
   },
   watch: {

@@ -66,7 +66,7 @@ export default new Router({
     component: Editreview
   },
   {
-    path: '/Apply',
+    path: '/Apply/:nhIdx/:schIdx/:selectedDate/:selectedNhName/:selectedNhAddr/:selectedNhImg',
     name: 'Apply',
     component: Apply
   }

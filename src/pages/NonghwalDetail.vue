@@ -2,13 +2,15 @@
       <v-layout column>
       <!-- 농활이미지와 농활제목 -->
       <v-flex lg12 text-sm-center>
-        <div style="background-size:100%; height:25vh; padding-top:8vh;" v-bind:style="{ backgroundImage: 'url(' + getNonghwalDetail.image[0] + ')' }">
+        <div class="bgBlur" style="background-size:100%; height:20vh; padding-top:5.5vh;" v-bind:style="{ backgroundImage: 'url(' + getNonghwalDetail.image[0] + ')' }">
+          <div class="content">
           <div style="font-family:sans-serif; font-size:1.7rem; font-weight:700;">{{getNonghwalDetail.nhInfo.description}}</div>
           <div style="font-family:sans-serif; font-size:2.7rem; font-weight:900;">{{getNonghwalDetail.nhInfo.name}}</div>
+          </div>
         </div>
       </v-flex>
       <!-- 탭바 -->
-      <v-flex lg12>
+      <v-flex lg12 style="">
     <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="primary" height="60vh" id="detail_tab">
       <v-flex sm1 md1 lg2 xl2></v-flex>
       <v-tab :ripple="false" v-for="i in 3" :key="i" :href="`#tab-${i}`">
@@ -25,16 +27,16 @@
       </v-tab-item>
       <v-tab-item id="tab-2" color="white">
           <!-- Q&A -->
-          <nonghwal-qanda></nonghwal-qanda>
+          <nonghwal-qanda :nhIdx="this.getPath"></nonghwal-qanda>
       </v-tab-item>
       <v-tab-item id="tab-3" color="white">
           <!-- 농활후기 -->
-          <nonghwal-review></nonghwal-review>
+          <nonghwal-review :nhIdx="this.getPath"></nonghwal-review>
       </v-tab-item>
       </v-flex>
 
       <!-- 오른쪽라인 -->
-      <v-flex sm5 md3 lg3 xl2 pl-4>
+      <v-flex pl-4 style="flex:0 0 auto;" id="right_line">
         <apply-etc :nhIdx="this.getPath"></apply-etc>
       </v-flex>
       </v-layout>
@@ -54,7 +56,7 @@ export default {
     return {
       tabnumber: '',
       tabname: [
-        '농활정보', 'Q&A', '농활후기'
+        '농활정보', 'Q & A', '농활후기'
       ]
     }
   },
@@ -79,7 +81,9 @@ export default {
   },
   methods: {
     fetchData: function (idx) {
-      if (!this.isAuthenticated) { this.$store.dispatch('nonghwalDetail', idx) } else { this.$store.dispatch('nonghwalDetailLogin', idx) }
+      if (!this.isAuthenticated) { this.$store.dispatch('nonghwalDetail', idx) } else {
+        this.$store.dispatch('nonghwalDetailLogin', idx)
+      }
     }
   }
 }
@@ -95,4 +99,37 @@ export default {
 .v-text-field.v-text-field--enclosed .v-text-field__details{
   margin-bottom: -40px !important;
 }
+.bgBlur:before {
+  content: '';
+  position: absolute;
+  top: 0; left:0; right:0; bottom:0;
+  background: inherit;
+  z-index:-1;
+  filter: blur(8px);
+  -webkit-filter: blur(6px);
+  -moz-filter: blur(6px);
+  -o-filter: blur(6px);
+  filter:url(#blur);
+}
+
+@media (min-width:961px) and (max-width:1260px){
+  #right_line{
+    max-width: 30vw !important;
+    /* -webkit-box-flex: unset !important; */
+  }
+}
+@media (min-width:601px) and (max-width:960px){
+  #right_line{
+    max-width: 40vw !important;
+    /* -webkit-box-flex: unset !important; */
+  }
+  }
+@media (min-width:1261px) and (max-width:1960px){
+  #right_line{
+    max-width: 20vw !important;
+    width: 20vw !important;
+    /* -webkit-box-flex: unset !important; */
+  }
+  }
+
 </style>

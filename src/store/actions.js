@@ -305,18 +305,99 @@ export const nonghwalActions = {
       console.log('ERROR! :' + err)
     })
   },
-  nonghwalApply ({ state, commit }, payload) {
+  // nonghwalApply ({ state, commit }, payload) {
+  //   console.log(payload)
+  //   commit('nonghwalApplyStart')
+  //   axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/home/request', headers: { token: state.accessToken }, data: payload }).then(res => {
+  //     console.log(res.data.message)
+  //     commit('nonghwalApplySuccess', res.data)
+  //   }).catch(err => {
+  //     console.log('ERROR! :' + err.message)
+  //     console.log(err.response.data.message)
+  //     commit('nonghwalApplyFail', err.response.data.message)
+  //   })
+  // },
+  nonghwalApply ({state, commit}, payload) {
+    return new Promise((resolve, reject) => {
+      axios(
+        { method: 'POST',
+          url: 'http://13.125.216.198:3000/api/home/request',
+          headers: { token: state.accessToken },
+          data: payload }).then(res => {
+        console.log(res.data.message)
+        commit('nonghwalApplySuccess', res.data)
+        resolve(res.data.message)
+      }).catch(err => {
+        // console.log(err.response.data.message)
+        reject(err.response.data.message)
+      })
+    })
+  },
+  getDetailQna ({commit}, payload) {
     console.log(payload)
-    commit('nonghwalApplyStart')
-    axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/home/request', headers: { token: state.accessToken }, data: payload }).then(res => {
+    commit('getDetailQnaStart')
+    axios.get('http://13.125.216.198:3000/api/home/detail/qna?idx=' + payload).then(res => {
       console.log(res.data.message)
-      commit('nonghwalApplySuccess', res.data)
+      commit('getDetailQnaSuccess', res.data.data)
     }).catch(err => {
       console.log('ERROR! :' + err.message)
-      if (err.response.data.message) {
-        alert('신청오류')
-        router.push('/')
+    })
+  },
+  nonghwalCancel ({state, commit}, payload) {
+    // console.log(payload)
+    commit('nonghwalCancelStart')
+    axios({ method: 'PUT', url: 'http://13.125.216.198:3000/api/home/request', headers: { token: state.accessToken }, data: payload })
+      .then(res => {
+        console.log(res.data.message)
+        commit('nonghwalCancelSuccess', payload)
+      }).catch(err => {
+        console.log('ERROR! :' + err.message)
+      })
+  },
+  sendDetailQna ({commit}, payload) {
+    axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/home/detail/qna', data: payload
+    }).then(res => {
+      console.log(res.data.message)
+      if (res.data.message) {
+        alert('소중한 문의 감사드립니다. 문의 수집 후 FAQ에 반영하도록 하겠습니다.')
       }
+    }).catch(err => {
+      console.log('ERROR! :' + err.message)
+      console.log(err.response.data.message)
+      alert('문의가 제출되지 않았습니다.')
+    })
+  },
+  // getReview ({commit}, payload) {
+  //   axios.get('http://13.125.216.198:3000/api/review?nhIdx=' + payload)
+  //     .then(res => {
+  //       console.log(res.data)
+  //       commit('getnonghwalreview', res.data)
+  //     }).catch(err => {
+  //       console.log('ERROR! :' + err.message)
+  //     })
+  // },
+  getReview ({commit}, payload) {
+    return new Promise((resolve, reject) => {
+      axios.get('http://13.125.216.198:3000/api/review?nhIdx=' + payload)
+        .then(res => {
+          console.log(res.data.message)
+          commit('getnonghwalreview', res.data)
+          resolve(res.data.message)
+        }).catch(err => {
+          reject(err.response.data.message)
+        })
+    })
+  },
+  getParticipants ({commit}, payload) {
+    return new Promise((resolve, reject) => {
+      commit('getParticipantsStart')
+      axios.get('http://13.125.216.198:3000/api/home/request/schedule?idx=' + payload)
+        .then(res => {
+          console.log(res.data.message)
+          resolve(res.data)
+        }).catch(err => {
+          console.log(err)
+        })
     })
   }
 }

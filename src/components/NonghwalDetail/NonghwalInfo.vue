@@ -1,11 +1,11 @@
 <template>
   <v-layout column>
     <!-- 농활이미지 -->
-    <v-flex style="height:23rem; width:100%; background:white;">
+    <v-flex style="height:20rem; width:100%; background:white;">
       <img id="nhdetail_img" :src="nonghwalDetail.image[0]">
     </v-flex>
     <!-- 주의사항 -->
-    <v-flex my-4 pa-3 style="background:#bcbcbc; font-family:sans-serif; font-size:.8rem;">
+    <v-flex my-4 pa-3 style="background:#bcbcbc; font-family:sans-serif; font-size:.8rem; border-radius: 15px;">
       <div>최소인원이 농활신청 마감일까지 100% 모이지 않으면 농활은 자동으로 취소되고 결제해주신 금액은 자동 환불됩니다.
               <br>새롭고 재미있는 경험을 농활을 통해 얻어보세요!
               <br>
@@ -25,8 +25,7 @@
 import { mapGetters } from 'vuex'
 export default {
   data () {
-    return {
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz']}
+    return {}
   },
   computed: {
     ...mapGetters({
