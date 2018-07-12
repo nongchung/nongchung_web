@@ -38,6 +38,7 @@
             <v-flex v-for="(item, index) in img" :key="index">
               <img class="reviewImg" :src="item" v-if="img" alt="">
             </v-flex>
+              <!-- <img class="reviewImg" :src="img" v-if="img" alt=""> -->
           </v-flex>
         </v-flex>
       </v-flex>
@@ -45,7 +46,7 @@
       </v-layout>
     </v-card>
     <v-layout justify-center>
-      <v-btn color="primary" @click="onUploadBoard">등록완료</v-btn>
+      <v-btn color="primary" @click="updateReview">등록완료</v-btn>
     </v-layout>
     </v-flex>
   </v-layout>
@@ -88,7 +89,7 @@ export default {
       this.allDate = splitStartDate[0] + '년' + splitStartDate[1] + '월' + splitStartDate[2] + '일' + '~' + splitEndDate[2] + '일'
       return this.allDate
     },
-    onUploadBoard () {
+    updateReview () {
       const data = new FormData()
 
       data.append('scheIdx', this.getScheIdx)
@@ -97,7 +98,7 @@ export default {
       for (let index = 0; index < this.file.length; index++) {
         data.append('rImages', this.file[index])
       }
-      this.$store.dispatch('addReview', data)
+      this.$store.dispatch('updateReview', data)
     },
     onFileChangeReview (event) {
       for (let index = 0; index < event.target.files.length; index++) {
@@ -111,9 +112,8 @@ export default {
       const fileReader = new FileReader()
       fileReader.onload = () => { // fileRoader가 불러왓을때 이미지에 들어갈 속성
         this.img[index] = fileReader.result
-        console.log(index)
+        this.$forceUpdate()
       }
-      console.log(this.img)
       fileReader.readAsDataURL(file) // data 에서 URL을 긁어옴.
     },
     async fetchData () {
