@@ -1,6 +1,6 @@
 <template>
-  <v-toolbar app flat fixed color="white">
-      <v-toolbar-title id="toolbar_title" style="margin-right: 1vw;">
+  <v-toolbar color="white" style="box-shadow:none">
+      <v-toolbar-title id="toolbar_title">
         <!-- <router-link to="/" tag="a" class="hidden-sm-and-up">
                 <img src="../assets/logo_ex.png" height="30px" style="margin-top: 10px;">농활청춘
       </router-link> -->
@@ -9,8 +9,19 @@
       농활청춘
       </router-link>
       </v-toolbar-title>
+      <!-- <v-toolbar-items slot="extension"><search-condition></search-condition></v-toolbar-items> -->
       <v-layout class="hidden-xs-only">
-          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#1" color="grey lighten-1" active-class="black" style="padding-left: 20px !important;">
+        <v-flex sm3 md4 lg4>
+      <v-text-field
+        append-icon="search"
+        class="search_bar ml-3"
+        placeholder="농활 검색"
+        solo
+        @focus="SearchView"
+        @keyup.enter="deliveryNB()"
+        v-model="searchcontent"
+      ></v-text-field></v-flex>
+          <!-- <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#1" color="grey lighten-1" active-class="black" style="padding-left: 20px !important;">
             농활청춘소개
           </v-btn>
           <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#2" color="grey lighten-1" active-class="black">
@@ -18,24 +29,11 @@
           </v-btn>
           <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#3" color="grey lighten-1" active-class="black">
             이용안내
-          </v-btn>
+          </v-btn> -->
       <v-spacer></v-spacer>
-      <v-flex sm3 md2 lg2>
-      <v-text-field
-        append-icon="search"
-        class="search_bar mx-3"
-        flat
-        placeholder="농활 검색"
-        solo
-        color="black"
-        autofocus
-        v-if="searchbar"
-        @blur="searchicon=true, searchbar=false"
-      ></v-text-field></v-flex>
-          <v-btn top :ripple="false" flat class="toolbar_list" color="grey lighten-1" active-class="black"
-          v-if="searchicon" @click="searchicon=false, searchbar=true">
+          <!-- <v-btn top :ripple="false" flat class="toolbar_list" color="grey lighten-1" active-class="black" router to="/search">
             <v-icon>search</v-icon>
-          </v-btn>
+          </v-btn> -->
           <v-btn top :ripple="false" flat class="toolbar_list" exact router to="/login" color="grey lighten-1" active-class="black"
           v-if="!isAuthenticated">
             로그인
@@ -54,18 +52,18 @@
           </v-btn></v-layout>
           <v-spacer class="hidden-sm-and-up"></v-spacer>
           <v-icon @click="navdrawer=!navdrawer" class="hidden-sm-and-up">menu</v-icon>
-
     </v-toolbar>
 </template>
 
 <script>
+import { eventBus } from '../main.js'
 import { mapGetters } from 'vuex'
+import SearchCondition from '../components/Search/SearchBar'
 export default {
   data () {
     return {
-      searchicon: true,
-      searchbar: false,
-      navdrawer: false
+      navdrawer: false,
+      searchcontent: ''
     }
   },
   computed: {
@@ -79,7 +77,22 @@ export default {
       if (isOut) {
         this.$store.dispatch('logout')
       }
+    },
+    SearchView () {
+      this.$router.push('/search')
+    },
+    noSearchView () {
+      // this.$emit('searchbarNoClick')
+      // this.
+    },
+    deliveryNB: function () {
+      // console.log(this.searchcontent)
+      // console.log(eventBus)
+      eventBus.$emit('goSearchBar', this.searchcontent)
     }
+  },
+  components: {
+    SearchCondition
   }
 }
 </script>
@@ -107,26 +120,15 @@ export default {
       margin-top: 1rem;
       font-weight:800;
     }
-    /* .application.theme--light{
-      background: #fff !important;
-    } */
-    /* .v-input-slot:before{
-      color: transparent !important;
-    }
-    .v-text-field__slot{
-      border-bottom-color: white !important;
-    }
-    .v-input__is-focus{
-      caret-color: black;
-    } */
     .search_bar, .search_bar:active{
-      font-size: .9rem !important;
-      border-bottom: 1px solid black !important;
-      height: 40px !important;
-      margin-top: 23px !important;
-    }
+      font-size: 1rem !important;
+      margin-top: 8px !important;
+          }
     a{
       text-decoration: none;
       color:darkblue;
     }
+    /* .v-text-field.v-text-field--solo .v-input__control{
+      min-height: 30px !important;
+    } */
 </style>

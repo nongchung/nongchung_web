@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import Home from '@/pages/Home'
 import NonghwalDetail from '@/pages/NonghwalDetail'
-import Search from '@/pages/SearchResult'
+import Search from '@/pages/Search'
 import Apply from '@/pages/Apply'
 
 import Register from '@/pages/Register'

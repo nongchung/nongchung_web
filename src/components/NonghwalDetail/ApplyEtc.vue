@@ -193,13 +193,13 @@ export default {
     toggle: function (index) {
       this.selectedDate = this.getallStartDateList[0][index]
       // return this.getallStartDateList[0][index]
-      this.changeP(index)
-    },
-    async changeP (index) {
-      await this.$store.dispatch('getParticipants', this.getallStartDateList[1][index]).then((res) => {
-        this.participants = res.data.friendsInfo // 그다음은...?
-      })
     }
+    // ,
+    // async changeP (index) {
+    //   await this.$store.dispatch('getParticipants', this.getallStartDateList[1][index]).then((res) => {
+    //     this.participants = res.data.friendsInfo // 그다음은...?
+    //   })
+    // }
   },
   created () {
     this.setDate()

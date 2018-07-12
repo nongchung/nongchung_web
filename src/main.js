@@ -18,6 +18,8 @@ Vue.use(VeeValidate)
 Vue.config.productionTip = false
 Vue.component('star-rating', starRate)
 
+export const eventBus = new Vue()
+
 Vue.use(Vuetify, {
   theme: {
     primary: '#3470FF',
@@ -38,3 +40,5 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+Vue.prototype.$EventBus = new Vue()

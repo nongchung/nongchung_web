@@ -154,5 +154,12 @@ export const nonghwalMutations = {
   },
   getParticipantsStart (state) {
     console.log('getParticipantsStart')
+  },
+  regionListStart (state) {
+    console.log('regionListStart!')
+  },
+  regionListSuccess (state, payload) {
+    state.nhRegionList = payload
+    console.log('regionListSuccess')
   }
 }

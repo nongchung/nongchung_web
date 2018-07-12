@@ -195,10 +195,9 @@ export const nonghwalActions = {
       console.log(err.response.data.message)
     })
   },
-
   search ({ commit }, payload) {
     commit('searchStart')
-    axios.get('http://13.125.216.198:3000/api/home/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent)
+    axios.get('http://13.125.216.198:3000/api/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent + '&area=' + payload.area)
       .then(res => {
         console.log(res.data.message)
         commit('searchSuccess', res.data.data)
@@ -383,5 +382,15 @@ export const nonghwalActions = {
           console.log(err)
         })
     })
+  },
+  regionList ({ commit }, payload) {
+    commit('regionListStart')
+    axios.get('http://13.125.216.198:3000/api/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent + '&area=' + payload.area)
+      .then(res => {
+        console.log(res.data.message)
+        commit('regionListSuccess', res.data.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
   }
 }

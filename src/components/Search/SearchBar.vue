@@ -1,11 +1,12 @@
 <template>
-  <v-layout row justify-center style="height: 70px; margin:0 2vw;">
+<v-toolbar color="white" height="50px">
+  <v-layout row justify-center style="margin-top:-5px;">
     <!-- 인원 -->
-    <v-flex xs12 sm11 md10 lg8 xl8 mt-4>
-      <v-layout row>
+    <v-flex xs12 sm11 md10 lg9 xl8>
+      <v-layout row py-3>
         <span>
           <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" transition="slide-y-transition" bottom>
-            <v-btn slot="activator" :color="this.pushPerson" depressed @click="clickPerson()">
+            <v-btn slot="activator" outline :color="this.pushPerson" depressed @click="clickPerson()">
               {{personValue}}
             </v-btn>
             <v-card>
@@ -26,7 +27,7 @@
               </v-list>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" small depressed @click="menu = false" style="min-width:55px; font-size: .7rem;">Close</v-btn>
+                <v-btn color="primary" small depressed @click="personClose()" style="min-width:55px; font-size: .7rem;">Close</v-btn>
               </v-card-actions>
             </v-card>
           </v-menu>
@@ -38,7 +39,7 @@
         <!-- 지역 -->
         <span>
           <v-menu v-model="menu2" :close-on-content-click="false" :nudge-width="200" transition="slide-y-transition" bottom>
-            <v-btn slot="activator" :color="this.pushRegion" depressed>
+            <v-btn slot="activator" outline :color="this.pushRegion" depressed>
               {{regionValue}}
             </v-btn>
             <v-card>
@@ -52,7 +53,7 @@
               </v-layout>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                  <v-btn color="primary" small depressed @click="menu2=false" style="min-width:55px; font-size: .7rem;">Close</v-btn>
+                  <v-btn color="primary" small depressed @click="regionsClose()" style="min-width:55px; font-size: .7rem;">Close</v-btn>
               </v-card-actions>
             </v-card>
           </v-menu>
@@ -65,21 +66,19 @@
         <span sm3>
           <VueHotelDatepicker style="height:0; width: 10px;" :ref="dpkr16.datePickerId" :datePickerId="dpkr16.datePickerId" :autoClose="dpkr16.autoClose"
             :separator="separator" v-on:updateDateRange="updateDateRange" />
-          <v-btn depressed :color="this.pushDate" @click="toggle(dpkr16.datePickerId)">
+          <v-btn depressed outline :color="this.pushDate" @click="toggle(dpkr16.datePickerId)">
             {{dateValue}}
           </v-btn>
           <a tag="button" @click="clearDate(dpkr16.datePickerId)" v-show="dpkr16.value" style="color:grey; margin-left:-3px;">
             <i class="fas fa-times-circle"></i>
           </a>
         </span>
+        <!-- <span style="padding:1rem 1rem;">적용</span> -->
         <v-spacer></v-spacer>
-        <v-flex sm4>
-          <v-text-field solo-inverted flat append-icon="search" color="black"></v-text-field>
-        </v-flex>
       </v-layout>
     </v-flex>
   </v-layout>
-
+</v-toolbar>
 </template>
 
 <script>
@@ -122,28 +121,30 @@ export default {
          {name: '전라남도', value: 13},
          {name: '전라북도', value: 14},
          {name: '제주도', value: 15}
-       ],
-      regionTransfer: []
+       ]
     }
   },
   computed: {
     dateValue: function () {
       if (this.dpkr16.value !== '') {
+        this.parsingDate()
+        this.$emit('getCondition', this.sendCondition())
         return this.dpkr16.value
       } else {
+        // this.$emit('getCondition', this.sendCondition())
         return this.button
       }
     },
     pushDate: function () {
       if (this.dpkr16.value !== '') {
         return 'primary'
-      } else { return 'white' }
+      } else { return 'grey' }
     },
     pushPerson: function () {
-      if (this.person === '' || this.person === 0) { return 'white' } else { return 'primary' }
+      if (this.person === '' || this.person === 0) { return 'grey' } else { return 'primary' }
     },
     pushRegion: function () {
-      if (this.region !== '') { return 'primary' } else { return 'white' }
+      if (this.region !== '') { return 'primary' } else { return 'grey' }
     },
     personValue: function () {
       if (this.person === '') {
@@ -167,25 +168,45 @@ export default {
         this.regionre(re)
         return re
       }
+    },
+    transfer () {
+      let regionTransfer = []
+      if (this.regionSelected.length > 0) {
+        for (let j = 0; j < this.regionSelected.length; j++) {
+          for (let i = 0; i < this.regions.length; i++) {
+            if (this.regionSelected[j] === this.regions[i].name) {
+              regionTransfer.push(this.regions[i].value)
+            }
+          }
+        }
+        console.log(regionTransfer)
+        return regionTransfer
+      } else { return regionTransfer }
     }
   },
   methods: {
+    personClose: function () {
+      this.menu = false
+      this.$emit('getCondition', this.sendCondition())
+    },
+    sendCondition: function () {
+      return {start: this.start, end: this.end, person: this.person, region: this.transfer}
+    },
+    regionsClose: function () {
+      this.menu2 = false
+      // 에밋
+      this.$emit('getCondition', this.sendCondition())
+    },
+    parsingDate () {
+      if (this.dpkr16.value !== '') {
+        let parseDate = this.dpkr16.value.split('~')
+        this.start = parseDate[0]
+        this.end = parseDate[1]
+        console.log(this.start, this.end)
+      }
+    },
     regionre (re) {
       this.region = re
-    },
-    transfer () {
-      for (let j = 0; j < this.regionSelected.length; j++) {
-        for (let i = 0; i < this.regions.length; i++) {
-          if (this.regionSelected[j] === this.regions[i].name) {
-            this.regionTransfer.push(this.regions[i].value)
-          }
-        }
-      }
-      console.log(this.regionTransfer)
-    },
-    searchGo () {
-      const {start, end, person, scontent} = this
-      this.$store.dispatch('search', {start, end, person, scontent})
     },
     toggle (datePickerId) {
       this.$refs[datePickerId].toggle()
@@ -204,6 +225,10 @@ export default {
     },
     close (datePickerId) {
       this.$refs[datePickerId].close()
+      // console.log('안닫히나?')
+
+      // 에밋
+      // this.$emit('getCondition', this.sendCondition())
     },
     getDatePicker (datePickerId) {
       const hdpkr = this.$refs[datePickerId].getDatePicker()
@@ -229,6 +254,9 @@ export default {
     },
     clearDate: function (datePickerId) {
       this.dpkr16.value = ''
+      this.start = ''
+      this.end = ''
+      this.$emit('getCondition', this.sendCondition())
     },
     personValuePlus: function () {
       this.person += 1
@@ -258,6 +286,10 @@ export default {
     if (DP) {
       DP.style.display = 'none'
     }
+  },
+  updated () {
+    // $EventBus.$emit('this-is-condition', {start: this.dpkr16.value})
+    // this.parsingDate()
   }
 }
 </script>

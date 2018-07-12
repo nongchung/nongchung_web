@@ -1,6 +1,6 @@
 <template>
   <v-layout class="newlist_layout" row justify-center>
-    <v-flex xs12 sm11 md10 lg8 xl8>
+    <v-flex xs12 sm10 md9 lg8 xl8>
       <v-container fluid style="margin-top:-2vw;">
         <v-layout row wrap>
           <!-- 농활카드하나씩 -->

@@ -55,5 +55,8 @@ export const nonghwalGetters = {
   },
   getnonghwalreview (state) {
     return state.nhReviewList
+  },
+  getregionList (state) {
+    return state.nhRegionList
   }
 }

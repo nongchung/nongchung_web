@@ -1,6 +1,6 @@
 <template>
   <v-layout class="popularlist_layout" row justify-center>
-    <v-flex xs12 sm11 md10 lg8 xl8>
+    <v-flex xs12 sm11 md10 lg9 xl8>
       <v-container fluid style="margin-top:-2vw;">
         <v-layout row wrap>
           <!-- 농활카드하나씩 -->
@@ -39,8 +39,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      backgroundColor: 'black',
-      whatlist: 'popul'
+      backgroundColor: 'black'
     }
   },
   computed: {
