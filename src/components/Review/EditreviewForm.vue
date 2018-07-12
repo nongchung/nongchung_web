@@ -35,6 +35,9 @@
             <div class="dropbox">
               <input class="input-image" type="file" :multiple="true" @change="onFileChangeReview" accept="image/*">
             </div>
+            <v-flex v-for="(item, index) in img" :key="index">
+              <img class="reviewImg" :src="item" v-if="img" alt="">
+            </v-flex>
           </v-flex>
         </v-flex>
       </v-flex>
@@ -59,7 +62,8 @@ export default {
       rImages: [],
       allDate: '',
       file: [],
-      img: []
+      img: [],
+      beforeImage: 1
     }
   },
   computed: {
@@ -74,8 +78,8 @@ export default {
     })
   },
   created () {
-    console.log(this.getPath)
     this.makeAllDate()
+    this.fetchData()
   },
   methods: {
     makeAllDate: function () {
@@ -107,8 +111,17 @@ export default {
       const fileReader = new FileReader()
       fileReader.onload = () => { // fileRoader가 불러왓을때 이미지에 들어갈 속성
         this.img[index] = fileReader.result
+        console.log(index)
       }
+      console.log(this.img)
       fileReader.readAsDataURL(file) // data 에서 URL을 긁어옴.
+    },
+    async fetchData () {
+      const result = await this.$store.dispatch('getMyReview', this.getScheIdx)
+      this.star = result.data.star
+      this.content = result.data.content
+      this.img = result.data.img
+      this.rIdx = result.data.rIdx
     }
   }
 }
@@ -124,4 +137,8 @@ export default {
  .titleFont {
    color: #2BCAB0;
  }
+ .reviewImg{
+     width: 200px;
+    height: 200px;
+  }
 </style>

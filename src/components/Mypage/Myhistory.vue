@@ -28,7 +28,7 @@
               </v-card-title>
                 <v-flex style="margin-left:145px" >
                 <v-btn outline color="primary" v-if="item.rState===0" @click="writeReview(item.idx, index)">후기작성</v-btn>
-                <v-btn outline color="primary" v-if="item.rState!=0" @click="editMyReview(item.ids, index)">후기수정</v-btn>
+                <v-btn outline color="primary" v-if="item.rState!=0" @click="editMyReview(item.idx, index)">후기수정</v-btn>
                 </v-flex>
                 <!-- <v-btn outline color="primary" @click="goNonghwalDetail(item.idx)">상세보기</v-btn> -->
             </v-card>

@@ -61,7 +61,7 @@ export default new Router({
     component: Writereview
   },
   {
-    path: '/Editreview',
+    path: '/Editreview/:idx',
     name: 'Editreview',
     component: Editreview
   },

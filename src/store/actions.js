@@ -110,6 +110,22 @@ export const nonghwalActions = {
       console.log(error)
     })
   },
+  getMyReview ({state, commit}, payload) {
+    return new Promise((resolve, reject) => {
+      console.log('ohohohoh')
+      axios.get(`${BASEURL}/activity/review/${payload}`, {
+        headers: {
+          token: state.accessToken
+        }
+      }).then(res => {
+        console.log(res.data.message)
+        resolve(res.data)
+      }).catch(err => {
+        console.log(err)
+        reject(err)
+      })
+    })
+  },
   getMyInfo ({ state, commit }) {
     axios.get(`${BASEURL}/mypage`, {
       headers: {
