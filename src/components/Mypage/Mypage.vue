@@ -33,6 +33,7 @@
         <v-layout column>
           <myhistory v-show="firsttab()"></myhistory>
           <mylike v-show="secondtab()"></mylike>
+          <myactivity v-show="thirdtab()"></myactivity>
         </v-layout>
       </v-tab-item>
     </v-tabs-items>
@@ -42,6 +43,7 @@
 <script>
 import Mylike from './Mylike'
 import Myhistory from './Myhistory'
+import Myactivity from './Myactivity'
 
 export default {
   name: 'Mypage',
@@ -49,7 +51,7 @@ export default {
     return {
       tabnumber: '',
       tabname: [
-        '다녀온 농활', '찜한 농활'
+        '다녀온 농활', '찜한 농활', '내 활동 신청내역'
       ]
     }
   },
@@ -59,6 +61,9 @@ export default {
     },
     secondtab () {
       if (this.tabnumber === 'tab-2') { return true } else return false
+    },
+    thirdtab () {
+      if (this.tabnumber === 'tab-3') { return true } else return false
     },
     editMyInfo () {
       this.$router.push('/Myprofile')
@@ -74,7 +79,8 @@ export default {
   },
   components: {
     Myhistory,
-    Mylike
+    Mylike,
+    Myactivity
   }
 }
 </script>

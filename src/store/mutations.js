@@ -30,6 +30,9 @@ export const nonghwalMutations = {
     state.accessToken = null
     delete localStorage.accessToken
   },
+  getMyactivitySuccess (state, payload) {
+    state.myActivity = payload.data
+  },
   getMyInfoSuccess (state, payload) {
     state.userInfo = payload
   },

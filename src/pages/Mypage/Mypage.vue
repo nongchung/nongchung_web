@@ -16,6 +16,7 @@ export default {
     this.$store.dispatch('getLike')
     this.$store.dispatch('getMyhistory')
     this.$store.dispatch('getMyInfo')
+    this.$store.dispatch('getMyactivity')
   }
 }
 </script>

@@ -90,6 +90,17 @@ export const nonghwalActions = {
     commit('logoutClear')
     router.push('/')
   },
+  getMyactivity ({state, commit}) {
+    axios.get(`${BASEURL}/activity`, {
+      headers: {
+        token: state.accessToken
+      }
+    }).then(res => {
+      commit('getMyactivitySuccess', res.data)
+    }).catch(err => {
+      console.log(err.message)
+    })
+  },
   getMyhistory ({ state, commit }) {
     axios.get(`${BASEURL}/activity/complete`, {
       headers: {

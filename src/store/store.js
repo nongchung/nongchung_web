@@ -14,6 +14,7 @@ export const store = new Vuex.Store({
     isDup: [null, null],
     // userInfo: [],
     userInfo: [],
+    myActivity: [],
     myHistory: [],
     myLike: [],
     // search state

@@ -26,6 +26,9 @@ export const nonghwalGetters = {
   getTotalHistory (state) {
     return state.totalHistory
   },
+  getMyActivity (state) {
+    return state.myActivity
+  },
   getMyHistory (state) {
     return state.myHistory
   },
