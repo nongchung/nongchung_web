@@ -164,5 +164,9 @@ export const nonghwalMutations = {
   regionListSuccess (state, payload) {
     state.nhRegionList = payload
     console.log('regionListSuccess')
+  },
+  getThemeNH (state, payload) {
+    state.themeData = payload
+    console.log(state.themeData)
   }
 }

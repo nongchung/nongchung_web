@@ -226,13 +226,13 @@ export default {
       nonghwalApplyResult: 'getnonghwalApplyResult'
     }),
     step1img: function () {
-      if (this.e1 == 1) { return this.stepimg[0].focus } else { return this.stepimg[0].blur }
+      if (this.e1 === 1) { return this.stepimg[0].focus } else { return this.stepimg[0].blur }
     },
     step2img: function () {
-      if (this.e1 == 2) { return this.stepimg[1].focus } else { return this.stepimg[1].blur }
+      if (this.e1 === 2) { return this.stepimg[1].focus } else { return this.stepimg[1].blur }
     },
     step3img: function () {
-      if (this.e1 == 3) { return this.stepimg[2].focus } else { return this.stepimg[2].blur }
+      if (this.e1 === 3) { return this.stepimg[2].focus } else { return this.stepimg[2].blur }
     },
     checkboxErrors () {
       const errors = []

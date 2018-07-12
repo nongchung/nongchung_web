@@ -61,5 +61,8 @@ export const nonghwalGetters = {
   },
   getregionList (state) {
     return state.nhRegionList
+  },
+  getThemeData (state) {
+    return state.themeData
   }
 }

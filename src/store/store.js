@@ -29,7 +29,8 @@ export const store = new Vuex.Store({
     nonghwalApplyResult: {maxPerson: [], currentPerson: []},
     nhDetailQna: [],
     nhReviewList: [],
-    nhRegionList: []
+    nhRegionList: [],
+    themeData: []
   },
   getters: Object.assign({}, nonghwalGetters),
   actions: Object.assign({}, nonghwalActions),

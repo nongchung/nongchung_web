@@ -440,5 +440,12 @@ export const nonghwalActions = {
       }).catch(err => {
         console.log('ERROR! :' + err)
       })
+  },
+  getThemeNH ({commit}, payload) {
+    axios.get(`${BASEURL}/home/theme/${payload}`).then(res => {
+      commit('getThemeNH', res.data)
+    }).catch(err => {
+      console.log(err)
+    })
   }
 }
