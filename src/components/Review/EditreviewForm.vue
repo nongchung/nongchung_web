@@ -38,7 +38,6 @@
             <v-flex v-for="(item, index) in img" :key="index">
               <img class="reviewImg" :src="item" v-if="img" alt="">
             </v-flex>
-              <!-- <img class="reviewImg" :src="img" v-if="img" alt=""> -->
           </v-flex>
         </v-flex>
       </v-flex>
@@ -92,12 +91,16 @@ export default {
     updateReview () {
       const data = new FormData()
 
-      data.append('scheIdx', this.getScheIdx)
+      data.append('rIdx', this.getScheIdx)
       data.append('content', this.content)
       data.append('star', this.star)
+      // console.log(this.result.data.img)
+      // if (this.beforeImage === 0) {
       for (let index = 0; index < this.file.length; index++) {
         data.append('rImages', this.file[index])
       }
+      // }
+
       this.$store.dispatch('updateReview', data)
     },
     onFileChangeReview (event) {
@@ -107,6 +110,8 @@ export default {
           this.getImage(this.file[index], index)
         }
       }
+      this.beforeImage = 0
+      console.log(this.file)
     },
     getImage (file, index) {
       const fileReader = new FileReader()
@@ -122,6 +127,7 @@ export default {
       this.content = result.data.content
       this.img = result.data.img
       this.rIdx = result.data.rIdx
+      console.log(this.rIdx)
     }
   }
 }

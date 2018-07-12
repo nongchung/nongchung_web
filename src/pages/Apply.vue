@@ -72,19 +72,12 @@
       v-model="userName" :rules="nameRules" :counter="10" label="이름" placeholder="김청춘" required
     ></v-text-field>
     <!-- 생일선택 -->
-    <v-menu ref="menu" :close-on-content-click="false" v-model="menu" :nudge-right="40"
-    lazy transition="scale-transition" offset-y full-width min-width="20vw">
-    <v-text-field slot="activator"  label="생년월일" readonly required
-    :rules="[v => !!v || '생일을 선택하세요!']"></v-text-field>
-    <v-date-picker ref="picker" :value="getuserBirth" :max="new Date().toISOString().substr(0, 10)"
-      min="1940-01-01" @change="save"></v-date-picker>
-     </v-menu>
     <!-- 성별 선택 -->
     <v-layout column>
     <v-flex style=" font-size:.8rem; color:grey;" text-xs-left>성별</v-flex>
-  <v-radio-group v-model="userSex" :checked="userSex" row style="margin-top: 0; height: 2.7rem;">
-      <v-radio label="여자" value="2" ></v-radio>
-      <v-radio label="남자" value="1"></v-radio>
+  <v-radio-group v-model="userSex" row style="margin-top: 0; height: 2.7rem;">
+      <v-radio label="여자" value=2 ></v-radio>
+      <v-radio label="남자" value=1></v-radio>
     </v-radio-group>
     </v-layout>
     <v-text-field
@@ -286,14 +279,13 @@ export default {
     },
     async fetchUserInfo () {
       const result = await this.$store.dispatch('userPersonalInfo')
-      console.log(result)
-
       this.userName = result.data[0].name
       this.userMail = result.data[0].mail
       this.userSex = result.data[0].sex
+      console.log(this.userSex)
       this.userImg = result.data[0].img
       this.userHP = result.data[0].hp
-      this.userBirth = result.data[0].birthYear + '-' + result.data[0].birthMonth + '-' + result[0].birthDay
+      this.userBirth = result.data[0].birthYear + '-' + result.data[0].birthMonth + '-' + result.data[0].birthDay
     },
     async callaction (nhIdx, schIdx) {
       await this.$store.dispatch('nonghwalApply', {nhIdx: nhIdx, schIdx: schIdx})
