@@ -82,7 +82,7 @@
     <!-- 성별 선택 -->
     <v-layout column>
     <v-flex style=" font-size:.8rem; color:grey;" text-xs-left>성별</v-flex>
-  <v-radio-group :value="this.userPersonalInfo.sex.toString()" row style="margin-top: 0; height: 2.7rem;">
+  <v-radio-group :value="this.userPersonalInfo.sex" row style="margin-top: 0; height: 2.7rem;">
       <v-radio label="여자" value="2" ></v-radio>
       <v-radio label="남자" value="1"></v-radio>
     </v-radio-group>

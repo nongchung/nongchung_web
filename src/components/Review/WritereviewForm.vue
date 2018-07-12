@@ -36,7 +36,9 @@
             <div class="dropbox">
               <input class="input-image" type="file" :multiple="true" @change="onFileChangeReview" accept="image/*">
             </div>
-              <!-- <img :src="img" v-if="img" alt=""> -->
+              <v-flex v-for="(item, index) in img" :key="index">
+              <img class="reviewImg" :src="item" v-if="img" alt="">
+            </v-flex>
           </v-flex>
         </v-flex>
       </v-flex>

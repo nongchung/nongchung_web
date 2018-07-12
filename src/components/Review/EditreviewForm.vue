@@ -35,6 +35,9 @@
             <div class="dropbox">
               <input class="input-image" type="file" :multiple="true" @change="onFileChangeReview" accept="image/*">
             </div>
+            <v-flex v-for="(item, index) in img" :key="index">
+              <img class="reviewImg" :src="item" v-if="img" alt="">
+            </v-flex>
           </v-flex>
         </v-flex>
       </v-flex>
@@ -42,7 +45,7 @@
       </v-layout>
     </v-card>
     <v-layout justify-center>
-      <v-btn color="primary" @click="onUploadBoard">등록완료</v-btn>
+      <v-btn color="primary" @click="updateReview">등록완료</v-btn>
     </v-layout>
     </v-flex>
   </v-layout>
@@ -59,7 +62,8 @@ export default {
       rImages: [],
       allDate: '',
       file: [],
-      img: []
+      img: [],
+      beforeImage: 1
     }
   },
   computed: {
@@ -74,8 +78,8 @@ export default {
     })
   },
   created () {
-    console.log(this.getPath)
     this.makeAllDate()
+    this.fetchData()
   },
   methods: {
     makeAllDate: function () {
@@ -84,16 +88,20 @@ export default {
       this.allDate = splitStartDate[0] + '년' + splitStartDate[1] + '월' + splitStartDate[2] + '일' + '~' + splitEndDate[2] + '일'
       return this.allDate
     },
-    onUploadBoard () {
+    updateReview () {
       const data = new FormData()
 
-      data.append('scheIdx', this.getScheIdx)
+      data.append('rIdx', this.getScheIdx)
       data.append('content', this.content)
       data.append('star', this.star)
+      // console.log(this.result.data.img)
+      // if (this.beforeImage === 0) {
       for (let index = 0; index < this.file.length; index++) {
         data.append('rImages', this.file[index])
       }
-      this.$store.dispatch('addReview', data)
+      // }
+
+      this.$store.dispatch('updateReview', data)
     },
     onFileChangeReview (event) {
       for (let index = 0; index < event.target.files.length; index++) {
@@ -102,13 +110,24 @@ export default {
           this.getImage(this.file[index], index)
         }
       }
+      this.beforeImage = 0
+      console.log(this.file)
     },
     getImage (file, index) {
       const fileReader = new FileReader()
       fileReader.onload = () => { // fileRoader가 불러왓을때 이미지에 들어갈 속성
         this.img[index] = fileReader.result
+        this.$forceUpdate()
       }
       fileReader.readAsDataURL(file) // data 에서 URL을 긁어옴.
+    },
+    async fetchData () {
+      const result = await this.$store.dispatch('getMyReview', this.getScheIdx)
+      this.star = result.data.star
+      this.content = result.data.content
+      this.img = result.data.img
+      this.rIdx = result.data.rIdx
+      console.log(this.rIdx)
     }
   }
 }
@@ -124,4 +143,8 @@ export default {
  .titleFont {
    color: #2BCAB0;
  }
+ .reviewImg{
+     width: 200px;
+    height: 200px;
+  }
 </style>

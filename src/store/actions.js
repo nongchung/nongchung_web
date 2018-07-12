@@ -90,6 +90,17 @@ export const nonghwalActions = {
     commit('logoutClear')
     router.push('/')
   },
+  getMyactivity ({state, commit}) {
+    axios.get(`${BASEURL}/activity`, {
+      headers: {
+        token: state.accessToken
+      }
+    }).then(res => {
+      commit('getMyactivitySuccess', res.data)
+    }).catch(err => {
+      console.log(err.message)
+    })
+  },
   getMyhistory ({ state, commit }) {
     axios.get(`${BASEURL}/activity/complete`, {
       headers: {
@@ -108,6 +119,22 @@ export const nonghwalActions = {
       commit('getLikeSuccess', res.data.bmList)
     }).catch((error) => {
       console.log(error)
+    })
+  },
+  getMyReview ({ state, commit }, payload) {
+    return new Promise((resolve, reject) => {
+      console.log('ohohohoh')
+      axios.get(`${BASEURL}/activity/review/${payload}`, {
+        headers: {
+          token: state.accessToken
+        }
+      }).then(res => {
+        console.log(res.data.message)
+        resolve(res.data)
+      }).catch(err => {
+        console.log(err)
+        reject(err)
+      })
     })
   },
   getMyInfo ({ state, commit }) {
@@ -133,6 +160,23 @@ export const nonghwalActions = {
       console.log(res.data)
       commit('addReviewSuccess', res.data)
       alert('작성이 완료되었습니다')
+      router.push('/')
+    }).catch(err => {
+      console.log(err.response.data.message)
+    })
+  },
+  updateReview ({ state, commit }, payload) {
+    console.log(payload)
+    axios({
+      method: 'PUT',
+      url: `${BASEURL}/activity/review`,
+      headers: {
+        token: state.accessToken
+      },
+      data: payload
+    }).then(res => {
+      console.log(res.data.message)
+      alert('수정이 완료되었습니다')
       router.push('/')
     }).catch(err => {
       console.log(err.response.data.message)
@@ -300,13 +344,14 @@ export const nonghwalActions = {
   //     commit('nonghwalApplyFail', err.response.data.message)
   //   })
   // },
-  nonghwalApply ({state, commit}, payload) {
+  nonghwalApply ({ state, commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios(
-        { method: 'POST',
-          url: 'http://13.125.216.198:3000/api/home/request',
-          headers: { token: state.accessToken },
-          data: payload }).then(res => {
+      axios({
+        method: 'POST',
+        url: 'http://13.125.216.198:3000/api/home/request',
+        headers: { token: state.accessToken },
+        data: payload
+      }).then(res => {
         console.log(res.data.message)
         commit('nonghwalApplySuccess', res.data)
         resolve(res.data.message)
@@ -316,7 +361,7 @@ export const nonghwalActions = {
       })
     })
   },
-  getDetailQna ({commit}, payload) {
+  getDetailQna ({ commit }, payload) {
     console.log(payload)
     commit('getDetailQnaStart')
     axios.get('http://13.125.216.198:3000/api/home/detail/qna?idx=' + payload).then(res => {
@@ -326,7 +371,7 @@ export const nonghwalActions = {
       console.log('ERROR! :' + err.message)
     })
   },
-  nonghwalCancel ({state, commit}, payload) {
+  nonghwalCancel ({ state, commit }, payload) {
     // console.log(payload)
     commit('nonghwalCancelStart')
     axios({ method: 'PUT', url: 'http://13.125.216.198:3000/api/home/request', headers: { token: state.accessToken }, data: payload })
@@ -337,8 +382,11 @@ export const nonghwalActions = {
         console.log('ERROR! :' + err.message)
       })
   },
-  sendDetailQna ({commit}, payload) {
-    axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/home/detail/qna', data: payload
+  sendDetailQna ({ commit }, payload) {
+    axios({
+      method: 'POST',
+      url: 'http://13.125.216.198:3000/api/home/detail/qna',
+      data: payload
     }).then(res => {
       console.log(res.data.message)
       if (res.data.message) {
@@ -359,7 +407,7 @@ export const nonghwalActions = {
   //       console.log('ERROR! :' + err.message)
   //     })
   // },
-  getReview ({commit}, payload) {
+  getReview ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       axios.get('http://13.125.216.198:3000/api/review?nhIdx=' + payload)
         .then(res => {
@@ -371,7 +419,7 @@ export const nonghwalActions = {
         })
     })
   },
-  getParticipants ({commit}, payload) {
+  getParticipants ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       commit('getParticipantsStart')
       axios.get('http://13.125.216.198:3000/api/home/request/schedule?idx=' + payload)

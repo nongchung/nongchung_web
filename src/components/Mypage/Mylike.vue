@@ -73,7 +73,7 @@ export default {
 /* .application.theme--light{
       background: #fff !important;
     } */
-.myHistory_layout{
+.myLike_layout{
   padding: 15px 0;
 }
 .container{
