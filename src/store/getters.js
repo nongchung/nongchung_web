@@ -70,5 +70,8 @@ export const nonghwalGetters = {
   },
   getThemeData (state) {
     return state.themeData
+  },
+  getFarmInfo (state) {
+    return state.farmInfo
   }
 }

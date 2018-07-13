@@ -13,6 +13,7 @@ import Mypage from '@/pages/Mypage/Mypage'
 import Myprofile from '@/pages/Mypage/Myprofile'
 import Writereview from '@/pages/Review/Writereview'
 import Editreview from '@/pages/Review/Editreview'
+import FarmInfo from '@/pages/Nhpage/FarmInfo'
 
 Vue.use(Router)
 
@@ -75,6 +76,11 @@ export default new Router({
     path: '/About',
     name: 'About',
     component: About
+  },
+  {
+    path: '/FarmInfo/:idx',
+    name: 'FarmInfo',
+    component: FarmInfo
   }
   ]
 })

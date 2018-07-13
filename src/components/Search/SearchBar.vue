@@ -89,14 +89,9 @@ export default {
     return {
       menu: false,
       separator: ' ~ ',
-      keyword: '',
-      startDate: '',
-      endDate: '',
-      dpkr16: {
-        value: '',
-        datePickerId: 'datePickerId',
-        autoClose: false
-      },
+      keyword: null,
+      startDate: null,
+      endDate: null,
       person: null,
       region: '',
       regions:
@@ -117,7 +112,7 @@ export default {
          {name: '전라북도', value: 14},
          {name: '제주도', value: 15}
        ],
-      regionSelected: []
+      regionSelected: [17]
     }
   },
   watch: {
@@ -150,8 +145,11 @@ export default {
       this.$refs.menu.save(Date)
     },
     search () {
-      const {keyword, startDate, endDate, person, regionSelected} = this
-      this.$store.dispatch('getSearchResult', {keyword, startDate, endDate, person, regionSelected})
+      // const {keyword, startDate, endDate, person, regionSelected} = this
+      // console.log(regionSelected)
+
+      // this.$store.dispatch('getSearchResult', {regionSelected})
+      // this.$store.dispatch('getSearchResult', {keyword, startDate, endDate, person, regionSelected})
     },
     personValuePlus: function () {
       this.person += 1

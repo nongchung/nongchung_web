@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
     myActivity: [],
     myHistory: [],
     myLike: [],
+    farmInfo: [],
     // search state
     searchResult: [],
     home: {ads: [],

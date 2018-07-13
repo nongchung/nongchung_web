@@ -283,6 +283,7 @@ export const nonghwalActions = {
   },
   nonghwalDetailLogin ({ state, commit }, payload) {
     commit('nonghwalDetailLoginStart')
+    console.log(payload)
     axios.get(`${BASEURL}/home/detail/nh?idx=${payload}`, {
       headers: { token: state.accessToken }
     })
@@ -501,13 +502,24 @@ export const nonghwalActions = {
       console.log(err)
     })
   },
-  getSearchResult ({commit}, {keyword, startDate, endDate, person, region}) {
-    console.log(`${BASEURL}/search?end=${endDate}&start=${startDate}&person=${person}&scontent=${keyword}&area=${region}`)
+  getSearchResult ({commit}, {keyword, startDate, endDate, person, regionSelected}) {
+    console.log(regionSelected)
 
-    axios.get(`${BASEURL}/search?end=&start=&person=&scontent=감&area=17`).then(res => {
-    // axios.get(`${BASEURL}/search?end=${endDate}&start=${startDate}&person=${person}&scontent=${keyword}&area=${region}`).then(res => {
+    console.log(`${BASEURL}/search?end=${endDate}&start=${startDate}&person=${person}&scontent=${keyword}&area=${regionSelected}`)
+
+    // axios.get(`${BASEURL}/search?end=&start=&person=&scontent=&area=`).then(res => {
+    axios.get(`${BASEURL}/search?end=${endDate}&start=${startDate}&person=${person}&scontent=${keyword}&area=${regionSelected}`).then(res => {
       console.log(res.data)
       commit('getSearchResultSuccess', res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+  getFarmInfo ({commit}, payload) {
+    console.log(payload)
+    axios.get(`${BASEURL}/home/detail/farm?idx=${payload}`).then(res => {
+      console.log(res.data)
+      commit('getFarmInfoSuccess', res.data)
     }).catch(err => {
       console.log(err)
     })
