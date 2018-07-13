@@ -30,6 +30,7 @@ export const store = new Vuex.Store({
     nhDetailQna: [],
     nhReviewList: [],
     nhRegionList: [],
+    hasMoreList: {popul: [], new: []},
     themeData: []
   },
   getters: Object.assign({}, nonghwalGetters),

@@ -62,6 +62,12 @@ export const nonghwalGetters = {
   getregionList (state) {
     return state.nhRegionList
   },
+  getisEndPopul (state) {
+    return state.hasMoreList.popul
+  },
+  getisEndNew (state) {
+    return state.hasMoreList.new
+  },
   getThemeData (state) {
     return state.themeData
   }

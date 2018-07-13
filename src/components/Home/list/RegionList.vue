@@ -6,7 +6,7 @@
     <v-flex style="flex-grow:5;font-size:3.5rem; font-weight:900;display:flex;flex-direction:column;">
       <v-flex>지역별 <br>원하는 농활을<br> 찾아봐요!</v-flex>
       <!-- 사람이미지 -->
-      <v-flex text-xs-right pr-5><img src="../../../../static/Chungcheongbookdo.png" style="height:20vw;"></v-flex>
+      <v-flex text-xs-right pr-5><img :src="manImageSrc" style="height:20vw;"></v-flex>
       </v-flex>
     <v-flex style="flex-grow:1;" >
     <korea-region v-on:idOfRegion="getRegionId"></korea-region>
@@ -66,14 +66,41 @@ export default {
     ...mapGetters({
       regionList: 'getregionList',
       isAuthenticated: 'isAuthenticated'
-    })
+    }),
+    manImageSrc: function () {
+      let num = this.area
+      switch (num) {
+        case 0: return require('../../../../static/Seoul.png')
+        case 1: return require('../../../../static/Busan.png')
+        case 2: return require('../../../../static/Daegu.png')
+        case 3: return require('../../../../static/Incheon.png')
+        case 4: return require('../../../../static/Kwangju.png')
+        case 5: return require('../../../../static/Daejeon.png')
+        case 6: return require('../../../../static/Ulsan.png')
+        case 7: return require('../../../../static/Kyunggido.png')
+        case 8: return require('../../../../static/Kwangwondo.png')
+        case 9: return require('../../../../static/Chungcheongnamdon.png')
+        case 10: return require('../../../../static/Chungcheongbookdo.png')
+        case 11: return require('../../../../static/Kyungsangnamdo.png')
+        case 12: return require('../../../../static/Kyungsangbookdo.png')
+        case 13: return require('../../../../static/Jeonranamdo.png')
+        case 14: return require('../../../../static/Jeonrabookdo.png')
+        case 15: return require('../../../../static/Jejudo.png')
+        case 16: return require('../../../../static/Sejeong.png')
+        default: return require('../../../../static/ad_ex.png')
+      }
+    }
   },
   methods: {
     getRegionId: function (v) {
       let vv = Number(v)
       if (this.area !== vv) {
         this.area = vv
-        this.$store.dispatch('regionList', {scontent: '', start: '', end: '', person: '', area: '[' + this.area + ']'})
+        if (!this.isAuthenticated) {
+          this.$store.dispatch('regionList', {scontent: '', start: '', end: '', person: '', area: '[' + this.area + ']'})
+        } else {
+          this.$store.dispatch('regionListLogin', {scontent: '', start: '', end: '', person: '', area: '[' + this.area + ']'})
+        }
       }
     },
     getColorPeriod (item) {
@@ -90,8 +117,11 @@ export default {
     }
   },
   created () {
-    console.log([17])
-    this.$store.dispatch('regionList', {scontent: '', start: '', end: '', person: '', area: '[17]'})
+    if (!this.isAuthenticated) {
+      this.$store.dispatch('regionList', {scontent: '', start: '', end: '', person: '', area: '[17]'})
+    } else {
+      this.$store.dispatch('regionListLogin', {scontent: '', start: '', end: '', person: '', area: '[17]'})
+    }
   }
 }
 </script>

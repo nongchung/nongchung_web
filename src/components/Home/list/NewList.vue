@@ -29,6 +29,7 @@
             </v-card>
           </v-flex>
         </v-layout>
+        <v-btn color="white" v-if="isEndNew==0||isEndNew==[]" style="margin-left:1.8vw; margin-right:1.8vw;width:95%;box-shadow:none;margin-top:.5rem;" @click="morePlist()">더보기 +</v-btn>
       </v-container>
     </v-flex>
   </v-layout>
@@ -40,27 +41,37 @@ export default {
   data () {
     return {
       backgroundColor: 'black',
-      whatlist: 'new'
+      morecount: 1
     }
   },
   computed: {
     ...mapGetters({
       newList: 'getNewList',
-      isAuthenticated: 'isAuthenticated'
+      isAuthenticated: 'isAuthenticated',
+      isEndNew: 'getisEndNew'
     })
   },
   methods: {
     getColorPeriod (item) {
-      if (item.period === '1박2일') {
-        return 'lightgreen'
-      } else if (item.period === '2박3일') {
-        return 'palevioletred'
-      } else if (item.period === '당일치기') {
-        return 'lightblue'
-      } else { return 'yellow' }
+      if (item.period === '1박 2일') {
+        return '#2CCBB1'
+      } else if (item.period === '2박 3일') {
+        return '#3470FF'
+      } else if (item.period === '당일 치기') {
+        return '#00BE44'
+      } else { return '#E9EFFF' }
     },
     goNonghwalDetail (nhIdx) {
       this.$router.push({name: 'Detail', params: { idx: nhIdx }})
+    },
+    morePlist () {
+      if (this.isAuthenticated) {
+        this.$store.dispatch('moreNewLogin', (this.morecount) * 6)
+        this.morecount++
+      } else {
+        this.$store.dispatch('moreNew', (this.morecount) * 6)
+        this.morecount++
+      }
     }
   }
 }

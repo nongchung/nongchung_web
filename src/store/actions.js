@@ -441,6 +441,59 @@ export const nonghwalActions = {
         console.log('ERROR! :' + err)
       })
   },
+  regionListLogin ({ state, commit }, payload) {
+    commit('regionListLoginStart')
+    axios.get('http://13.125.216.198:3000/api/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent + '&area=' + payload.area,
+      {headers: { token: state.accessToken }})
+      .then(res => {
+        console.log(res.data.message)
+        commit('regionListLoginSuccess', res.data.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
+  },
+  morePopulLogin ({ state, commit }, payload) {
+    commit('morePopulLoginStart')
+    axios.get('http://13.125.216.198:3000/api/home/more/morePopul?idx=' + payload,
+      {headers: { token: state.accessToken }})
+      .then(res => {
+        console.log(res.data.message)
+        commit('morePopulLoginSuccess', res.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
+  },
+  morePopul ({ commit }, payload) {
+    commit('morePopulStart')
+    axios.get('http://13.125.216.198:3000/api/home/more/morePopul?idx=' + payload)
+      .then(res => {
+        console.log(res.data.message)
+        commit('morePopulSuccess', res.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
+  },
+  moreNewLogin ({ state, commit }, payload) {
+    commit('moreNewLoginStart')
+    axios.get('http://13.125.216.198:3000/api/home/more/moreNew?idx=' + payload,
+      {headers: { token: state.accessToken }})
+      .then(res => {
+        console.log(res.data.message)
+        commit('moreNewLoginSuccess', res.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
+  },
+  moreNew ({ commit }, payload) {
+    commit('moreNewStart')
+    axios.get('http://13.125.216.198:3000/api/home/more/moreNew?idx=' + payload)
+      .then(res => {
+        console.log(res.data.message)
+        commit('moreNewSuccess', res.data)
+      }).catch(err => {
+        console.log('ERROR! :' + err)
+      })
+  },
   getThemeNH ({commit}, payload) {
     axios.get(`${BASEURL}/home/theme/${payload}`).then(res => {
       commit('getThemeNH', res.data)

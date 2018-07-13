@@ -29,6 +29,7 @@
             </v-card>
           </v-flex>
         </v-layout>
+        <v-btn color="white" v-if="isEndPopul==0||isEndPopul==[]" style="margin-left:1.8vw; margin-right:1.8vw;width:95%;box-shadow:none;margin-top:.5rem;" @click="morePlist()">더보기 +</v-btn>
       </v-container>
     </v-flex>
   </v-layout>
@@ -39,27 +40,40 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      backgroundColor: 'black'
+      backgroundColor: 'black',
+      morecount: 1
     }
   },
   computed: {
     ...mapGetters({
       popularList: 'getPopularList',
-      isAuthenticated: 'isAuthenticated'
+      isAuthenticated: 'isAuthenticated',
+      isEndPopul: 'getisEndPopul'
     })
   },
   methods: {
     getColorPeriod (item) {
       if (item.period === '1박 2일') {
-        return 'lightgreen'
+        return '#2CCBB1'
       } else if (item.period === '2박 3일') {
-        return 'palevioletred'
+        return '#3470FF'
       } else if (item.period === '당일 치기') {
-        return 'lightblue'
-      } else { return 'yellow' }
+        return '#00BE44'
+      } else { return '#E9EFFF' }
     },
     goNonghwalDetail (nhIdx) {
       this.$router.push({name: 'Detail', params: { idx: nhIdx }})
+    },
+    morePlist () {
+      if (this.isAuthenticated) {
+        this.$store.dispatch('morePopulLogin', (this.morecount) * 6)
+        this.morecount++
+        // console.log(this.isEndPopul)
+      } else {
+        this.$store.dispatch('morePopul', (this.morecount) * 6)
+        this.morecount++
+        // console.log(this.isEndPopul)
+      }
     }
   }
 }
