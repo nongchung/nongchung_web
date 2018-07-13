@@ -67,5 +67,8 @@ export const nonghwalGetters = {
   },
   getisEndNew (state) {
     return state.hasMoreList.new
+  },
+  getThemeData (state) {
+    return state.themeData
   }
 }

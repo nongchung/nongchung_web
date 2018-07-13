@@ -122,10 +122,10 @@ export default {
  .title {
    /* background-color: #2BCAB0;
    opacity: 0.1; */
-   background: #2BCAB0;
-   background: rgba(43, 202, 176, 0.1)
+   background: #3470FF;
+   background: rgba(52, 112, 255, 0.1)
  }
  .titleFont {
-   color: #2BCAB0;
+   color: #3470FF;
  }
 </style>

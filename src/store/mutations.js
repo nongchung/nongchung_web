@@ -205,5 +205,9 @@ export const nonghwalMutations = {
     state.home.newList = state.home.newList.concat(payload.data)
     state.hasMoreList.new = payload.isEnd
     console.log('moreNewSuccess')
+  },
+  getThemeNH (state, payload) {
+    state.themeData = payload
+    console.log(state.themeData)
   }
 }
