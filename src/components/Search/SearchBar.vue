@@ -44,7 +44,9 @@
                 </v-list-tile>
               </v-list>
             </v-card>
-            <v-btn slot="activator" outline :color="this.pushRegion" depressed>
+            <v-list-tile-title>지역</v-list-tile-title>
+            <v-card flat>
+            <v-btn outline :color="this.pushRegion" depressed>
               {{regionValue}}
             </v-btn>
             <v-card>
@@ -56,10 +58,21 @@
                 <v-checkbox height="1.2rem" v-model="regionSelected" v-for="(k,b) in regions.slice(8,16)" :key="b" :label="k.name" :value="k.name"></v-checkbox>
               </v-layout>
               </v-layout>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                  <v-btn color="primary" small depressed @click="regionsClose()" style="min-width:55px; font-size: .7rem;">Close</v-btn>
-              </v-card-actions>
+            </v-card>
+            </v-card>
+            <v-list-tile-title>날짜</v-list-tile-title>
+            <v-card flat>
+              <v-flex xs12 sm6>
+                <!-- <v-menu ref="menu" :close-on-content-click="true" v-model="menu" :nudge-right="40" lazy transition="scale-transition" offset-y full-width min-width="290px"> -->
+                    <v-text-field slot="activator" v-model="startDate" label="Birthday date" prepend-icon="event" readonly></v-text-field>
+                    <v-date-picker ref="picker" v-model="startDate" :max="new Date().toISOString().substr(0, 10)" min="1950-01-01" @change="save"></v-date-picker>
+                <!-- </v-menu> -->
+            </v-flex>
+            -
+            <v-flex xs12 sm6>
+                    <v-text-field slot="activator" v-model="endDate" label="Birthday date" prepend-icon="event" readonly></v-text-field>
+                    <v-date-picker ref="picker" v-model="endDate" :max="new Date().toISOString().substr(0, 10)" min="1950-01-01" @change="save"></v-date-picker>
+            </v-flex>
             </v-card>
       </v-menu>
         </span>
@@ -74,10 +87,18 @@ export default {
   name: 'SearchBar',
   data () {
     return {
+      menu: false,
+      separator: ' ~ ',
       keyword: '',
       startDate: '',
       endDate: '',
+      dpkr16: {
+        value: '',
+        datePickerId: 'datePickerId',
+        autoClose: false
+      },
       person: null,
+      region: '',
       regions:
        [{name: '서울특별시', value: 0},
          {name: '부산광역시', value: 1},
@@ -99,17 +120,12 @@ export default {
       regionSelected: []
     }
   },
-  methods: {
-    search () {
-      const {keyword, startDate, endDate, person, regionSelected} = this
-      this.$store.dispatch('getSearchResult', {keyword, startDate, endDate, person, regionSelected})
-    },
-    personValuePlus: function () {
-      this.person += 1
-    },
-    personValueMinus: function () {
-      if (this.person > 0) { this.person -= 1 }
-    },
+  watch: {
+    menu (val) {
+      val && this.$nextTick(() => (this.$refs.picker.activePicker = 'YEAR'))
+    }
+  },
+  computed: {
     pushRegion: function () {
       if (this.region !== '') { return 'primary' } else { return 'grey' }
     },
@@ -126,6 +142,25 @@ export default {
         this.regionre(re)
         return re
       }
+    }
+
+  },
+  methods: {
+    save (Date) {
+      this.$refs.menu.save(Date)
+    },
+    search () {
+      const {keyword, startDate, endDate, person, regionSelected} = this
+      this.$store.dispatch('getSearchResult', {keyword, startDate, endDate, person, regionSelected})
+    },
+    personValuePlus: function () {
+      this.person += 1
+    },
+    personValueMinus: function () {
+      if (this.person > 0) { this.person -= 1 }
+    },
+    regionre (re) {
+      this.region = re
     }
   }
 }
