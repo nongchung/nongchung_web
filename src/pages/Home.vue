@@ -46,11 +46,9 @@ export default {
   font-size: 1rem;
   font-weight: 900;
   text-decoration: underline;
-  font-family: sans-serif;
   }
 .ads_title{
   font-size: 2rem;
-  font-family: sans-serif;
   font-weight: bold;
 }
 </style>

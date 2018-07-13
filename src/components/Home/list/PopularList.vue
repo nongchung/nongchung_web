@@ -2,7 +2,7 @@
   <v-layout class="popularlist_layout" row justify-center>
     <v-flex xs12 sm11 md10 lg9 xl8>
       <v-container fluid style="margin-top:-2vw;">
-        <v-layout row wrap>
+        <v-layout row wrap px-5 mt-4>
           <!-- 농활카드하나씩 -->
           <v-flex tag="a" v-for="(item,index) in popularList" :key="index" xs6 sm4 md4 lg4 xl3 id="card_gutter" @click="goNonghwalDetail(item.nhIdx)">
             <v-card flat height="21rem">
@@ -12,11 +12,11 @@
                 <span class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}</span>
               </v-card-media>
               <!-- 농부사진 -->
-              <v-avatar class="mr-4" style="float:right; margin-top:-10%;" size="4rem" color="grey lighten-4">
+              <!-- <v-avatar class="mr-4" style="float:right; margin-top:-10%;" size="4rem" color="grey lighten-4">
                 <img src="http://citizen.edisha.gov.in/Content/assets/stylesheet/img/placeholder-user.png" alt="avatar">
-              </v-avatar>
+              </v-avatar> -->
               <!-- 농활정보 -->
-              <v-card-title primary-title class="pb-0" style="width:100%; padding-top:1px; padding-bottom:5px;">
+              <v-card-title primary-title class="pb-0 pt-4" style="width:100%; padding-top:1px; padding-bottom:5px;">
                 <v-layout column>
                   <v-flex class="card_title">{{item.name}}</v-flex>
                   <v-flex>{{item.addr}}</v-flex>
@@ -88,20 +88,17 @@ export default {
 }
 .card_title{
   font-size: 1.3rem;
-  font-family: sans-serif;
   font-weight: bold;
 }
 .card_detail{
-  font-family:sans-serif;
   color:gray;
 }
 .card_tip{
   height: 1.9rem;
   padding: .25rem;
   color: white;
-  font-family: sans-serif;
 }
 #card_gutter{
-  padding: 1.8vw !important;
+  padding: 1.2vw !important;
 }
 </style>

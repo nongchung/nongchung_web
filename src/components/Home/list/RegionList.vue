@@ -135,18 +135,15 @@ export default {
 }
 .card_title{
   font-size: 1.3rem;
-  font-family: sans-serif;
   font-weight: bold;
 }
 .card_detail{
-  font-family:sans-serif;
   color:gray;
 }
 .card_tip{
   height: 1.9rem;
   padding: .25rem;
   color: white;
-  font-family: sans-serif;
 }
 #card_gutter{
   padding: 1.8vw !important;

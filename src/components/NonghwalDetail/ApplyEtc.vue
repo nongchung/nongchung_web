@@ -3,7 +3,7 @@
     <!-- 농활정보 및 신청, 추가기능 -->
     <v-flex px-4 py-2 style="background: white;">
       <v-layout column>
-        <v-flex pa-2 style="font-family:sans-serif;font-size:1.7rem;">{{getNonghwalDetail.nhInfo.price}}원</v-flex>
+        <v-flex pa-2 style="font-size:1.7rem;">{{getNonghwalDetail.nhInfo.price}}원</v-flex>
         <v-flex pa-1 d-flex>
           <v-icon class="mr-3" style="flex: none !important;">assignment</v-icon>
           <v-menu offset-y max-width="auto">
@@ -99,7 +99,7 @@ export default {
       return this.getNonghwalDetail.nhInfo.isBooked
     },
     isBookedColor: function () {
-      if (this.getisBooked === 0) { return 'black' } else { return 'primary' }
+      if (this.getisBooked === 1) { return 'primary' } else { return 'black' }
     },
     getallStartDateList: function () {
       let allStartDateList = []
@@ -204,6 +204,7 @@ export default {
   },
   created () {
     this.setDate()
+    console.log(this.getisBooked)
   }
 
 }

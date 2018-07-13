@@ -91,7 +91,6 @@ export default {
 }
 .card_title{
   font-size: 1.3rem;
-  font-family: sans-serif;
   font-weight: 700;
 }
 .card_tip{

@@ -4,8 +4,8 @@
       <v-flex lg12 text-sm-center>
         <div class="bgBlur" style="background-size:100%; height:20vh; padding-top:5.5vh;" v-bind:style="{ backgroundImage: 'url(' + getNonghwalDetail.image[0] + ')' }">
           <div>
-          <div style="font-family:sans-serif; font-size:1.7rem; font-weight:700;">{{getNonghwalDetail.nhInfo.description}}</div>
-          <div style="font-family:sans-serif; font-size:2.7rem; font-weight:900;">{{getNonghwalDetail.nhInfo.name}}</div>
+          <div style="font-size:1.7rem; font-weight:700;">{{getNonghwalDetail.nhInfo.description}}</div>
+          <div style="font-size:2.7rem; font-weight:900;">{{getNonghwalDetail.nhInfo.name}}</div>
           </div>
         </div>
       </v-flex>
@@ -91,7 +91,6 @@ export default {
 
 <style scoped>
 #detail_tab{
-  font-family: sans-serif !important;
   border-bottom: 2px inset;
   border-bottom-color: rgba(0,0,0,.08);
   /* box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12) !important; */

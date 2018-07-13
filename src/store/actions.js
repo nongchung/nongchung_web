@@ -241,7 +241,7 @@ export const nonghwalActions = {
   },
   search ({ commit }, payload) {
     commit('searchStart')
-    axios.get('http://13.125.216.198:3000/api/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent + '&area=' + payload.area)
+    axios.get(`${BASEURL}/search?start=${payload.start}&end=${payload.end}&person=${payload.person}&scontent=${payload.scontent}&area=${payload.area}`)
       .then(res => {
         console.log(res.data.message)
         commit('searchSuccess', res.data.data)
@@ -251,7 +251,7 @@ export const nonghwalActions = {
   },
   getMain ({ commit }) {
     commit('mainStart')
-    axios.get('http://13.125.216.198:3000/api/home')
+    axios.get(`${BASEURL}/home`)
       .then(res => {
         console.log(res.data.message)
         commit('mainSuccess', res.data)
@@ -261,7 +261,7 @@ export const nonghwalActions = {
   },
   getMainLogin ({ state, commit }) {
     commit('mainloginStart')
-    axios.get('http://13.125.216.198:3000/api/home', {
+    axios.get(`${BASEURL}/home`, {
       headers: { token: state.accessToken }
     })
       .then(res => {
@@ -273,7 +273,7 @@ export const nonghwalActions = {
   },
   nonghwalDetail ({ commit }, payload) {
     commit('nonghwalDetailStart')
-    axios.get('http://13.125.216.198:3000/api/home/detail/nh?idx=' + payload)
+    axios.get(`${BASEURL}/home/detail/nh?idx=${payload}`)
       .then(res => {
         console.log(res.data.message)
         commit('nonghwalDetailSuccess', res.data)
@@ -283,7 +283,7 @@ export const nonghwalActions = {
   },
   nonghwalDetailLogin ({ state, commit }, payload) {
     commit('nonghwalDetailLoginStart')
-    axios.get('http://13.125.216.198:3000/api/home/detail/nh?idx=' + payload, {
+    axios.get(`${BASEURL}/home/detail/nh?idx=${payload}`, {
       headers: { token: state.accessToken }
     })
       .then(res => {
@@ -295,7 +295,7 @@ export const nonghwalActions = {
   },
   nonghwalLocation ({ commit }, payload) {
     commit('nonghwalLocationStart')
-    axios.get('http://13.125.216.198:3000/api/home/detail/location?idx=' + payload)
+    axios.get(`${BASEURL}/home/detail/location?idx=${payload}`)
       .then(res => {
         console.log(res.data.message)
         console.log(res.data)
@@ -306,7 +306,7 @@ export const nonghwalActions = {
   },
   addnonghwalBookmark ({ state, commit }, payload) {
     commit('addnonghwalBookmarkStart')
-    axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/bookmark', headers: { token: state.accessToken }, data: { nhIdx: payload } }).then(res => {
+    axios({ method: 'POST', url: `${BASEURL}/bookmark`, headers: { token: state.accessToken }, data: { nhIdx: payload } }).then(res => {
       console.log(res.data.message)
       commit('addnonghwalBookmarkSuccess', res.data.message)
     }).catch(err => {
@@ -315,7 +315,7 @@ export const nonghwalActions = {
   },
   deletenonghwalBookmark ({ state, commit }, payload) {
     commit('deletenonghwalBookmarkStart')
-    axios({ method: 'DELETE', url: 'http://13.125.216.198:3000/api/bookmark', headers: { token: state.accessToken }, data: { nhIdx: payload } }).then(res => {
+    axios({ method: 'DELETE', url: `${BASEURL}/bookmark`, headers: { token: state.accessToken }, data: { nhIdx: payload } }).then(res => {
       console.log(res.data.message)
       commit('deletenonghwalBookmarkSuccess', res.data.message)
     }).catch(err => {
@@ -324,7 +324,7 @@ export const nonghwalActions = {
   },
   userPersonalInfo ({ state, commit }) {
     commit('userPersonalInfoStart')
-    axios.get('http://13.125.216.198:3000/api/home/request/user', {
+    axios.get(`${BASEURL}/home/request/user`, {
       headers: { token: state.accessToken }
     }).then(res => {
       commit('userPersonalInfoSuccess', res.data.data)
@@ -348,7 +348,7 @@ export const nonghwalActions = {
     return new Promise((resolve, reject) => {
       axios({
         method: 'POST',
-        url: 'http://13.125.216.198:3000/api/home/request',
+        url: `${BASEURL}/home/request`,
         headers: { token: state.accessToken },
         data: payload
       }).then(res => {
@@ -364,7 +364,7 @@ export const nonghwalActions = {
   getDetailQna ({ commit }, payload) {
     console.log(payload)
     commit('getDetailQnaStart')
-    axios.get('http://13.125.216.198:3000/api/home/detail/qna?idx=' + payload).then(res => {
+    axios.get(`${BASEURL}/home/detail/qna?idx=${payload}`).then(res => {
       console.log(res.data.message)
       commit('getDetailQnaSuccess', res.data.data)
     }).catch(err => {
@@ -374,7 +374,7 @@ export const nonghwalActions = {
   nonghwalCancel ({ state, commit }, payload) {
     // console.log(payload)
     commit('nonghwalCancelStart')
-    axios({ method: 'PUT', url: 'http://13.125.216.198:3000/api/home/request', headers: { token: state.accessToken }, data: payload })
+    axios({ method: 'PUT', url: `${BASEURL}/home/request`, headers: { token: state.accessToken }, data: payload })
       .then(res => {
         console.log(res.data.message)
         commit('nonghwalCancelSuccess', payload)
@@ -385,7 +385,7 @@ export const nonghwalActions = {
   sendDetailQna ({ commit }, payload) {
     axios({
       method: 'POST',
-      url: 'http://13.125.216.198:3000/api/home/detail/qna',
+      url: `${BASEURL}/home/detail/qna`,
       data: payload
     }).then(res => {
       console.log(res.data.message)
@@ -409,7 +409,7 @@ export const nonghwalActions = {
   // },
   getReview ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.get('http://13.125.216.198:3000/api/review?nhIdx=' + payload)
+      axios.get(`${BASEURL}/review?nhIdx=${payload}`)
         .then(res => {
           console.log(res.data.message)
           commit('getnonghwalreview', res.data)
@@ -422,7 +422,7 @@ export const nonghwalActions = {
   getParticipants ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       commit('getParticipantsStart')
-      axios.get('http://13.125.216.198:3000/api/home/request/schedule?idx=' + payload)
+      axios.get(`${BASEURL}/home/request/schedule?idx=${payload}`)
         .then(res => {
           console.log(res.data.message)
           resolve(res.data)
@@ -433,7 +433,7 @@ export const nonghwalActions = {
   },
   regionList ({ commit }, payload) {
     commit('regionListStart')
-    axios.get('http://13.125.216.198:3000/api/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent + '&area=' + payload.area)
+    axios.get(`${BASEURL}/search?start=${payload.start}&end=${payload.end}&person=${payload.person}&scontent=${payload.scontent}&area=${payload.area}`)
       .then(res => {
         console.log(res.data.message)
         commit('regionListSuccess', res.data.data)
@@ -443,7 +443,7 @@ export const nonghwalActions = {
   },
   regionListLogin ({ state, commit }, payload) {
     commit('regionListLoginStart')
-    axios.get('http://13.125.216.198:3000/api/search?' + 'start=' + payload.start + '&end=' + payload.end + '&person=' + payload.person + '&scontent=' + payload.scontent + '&area=' + payload.area,
+    axios.get(`${BASEURL}/search?start=${payload.start}&end=${payload.end}&person=${payload.person}&scontent=${payload.scontent}&area=${payload.area}`,
       {headers: { token: state.accessToken }})
       .then(res => {
         console.log(res.data.message)
@@ -454,7 +454,7 @@ export const nonghwalActions = {
   },
   morePopulLogin ({ state, commit }, payload) {
     commit('morePopulLoginStart')
-    axios.get('http://13.125.216.198:3000/api/home/more/morePopul?idx=' + payload,
+    axios.get(`${BASEURL}/home/more/morePopul?idx=${payload}`,
       {headers: { token: state.accessToken }})
       .then(res => {
         console.log(res.data.message)
@@ -465,7 +465,7 @@ export const nonghwalActions = {
   },
   morePopul ({ commit }, payload) {
     commit('morePopulStart')
-    axios.get('http://13.125.216.198:3000/api/home/more/morePopul?idx=' + payload)
+    axios.get(`${BASEURL}/home/more/morePopul?idx=${payload}`)
       .then(res => {
         console.log(res.data.message)
         commit('morePopulSuccess', res.data)
@@ -475,7 +475,7 @@ export const nonghwalActions = {
   },
   moreNewLogin ({ state, commit }, payload) {
     commit('moreNewLoginStart')
-    axios.get('http://13.125.216.198:3000/api/home/more/moreNew?idx=' + payload,
+    axios.get(`${BASEURL}/home/more/moreNew?idx=${payload}`,
       {headers: { token: state.accessToken }})
       .then(res => {
         console.log(res.data.message)
@@ -486,7 +486,7 @@ export const nonghwalActions = {
   },
   moreNew ({ commit }, payload) {
     commit('moreNewStart')
-    axios.get('http://13.125.216.198:3000/api/home/more/moreNew?idx=' + payload)
+    axios.get(`${BASEURL}/home/more/moreNew?idx=${payload}`)
       .then(res => {
         console.log(res.data.message)
         commit('moreNewSuccess', res.data)

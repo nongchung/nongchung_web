@@ -4,10 +4,12 @@
     <v-flex xs12 sm12 md12 lg12 xl12>
   <v-carousel hide-delimiters style="height: 35vh;" v-if="ads.length>0">
     <v-carousel-item v-for="(item,index) in ads" :key="index" :src="item.img">
-      <div class="ads_text">
-      <div class="black--text ads_theme">농활 테마기획전</div>
-      <div class="black--text ads_title">"{{item.title}}"</div>
-      </div>
+      <v-layout row justify-center>
+      <v-flex xs12 sm11 md10 lg9 xl8 px-5 class="ads_text">
+      <div class="white--text ads_theme">농활 테마기획전</div>
+      <div class="white--text ads_title">"{{item.title}}"</div>
+      </v-flex>
+      </v-layout>
     </v-carousel-item>
   </v-carousel>
   </v-flex>
@@ -48,17 +50,17 @@ export default {
   height: 40vh;
 } */
 .ads_text{
-  margin: 5vh 10vh;
+  margin-top: 5vh;
+  margin-left: 2vw;
+  font-weight: 900;
 }
 .ads_theme{
   font-size: 1rem;
   font-weight: 900;
   text-decoration: underline;
-  font-family: sans-serif;
   }
 .ads_title{
   font-size: 2rem;
-  font-family: sans-serif;
   font-weight: bold;
 }
 </style>
