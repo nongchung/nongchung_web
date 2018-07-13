@@ -7,7 +7,6 @@
       <div class="ads_text">
       <div class="black--text ads_theme">농활 테마기획전</div>
       <div class="black--text ads_title">"{{item.title}}"</div>
-      <div class="black--text ads_title">"{{item.description}}"</div>
       </div>
     </v-carousel-item>
   </v-carousel>
@@ -21,7 +20,13 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      img: require('../../../../static/ad1.jpeg')
+      img: require('../../../../static/ad1.jpeg'),
+      ads: [
+        {img: '../../../../static/ads1.png', title: '화끈하게 농활하고 시원하게 물놀이 어때?'},
+        {img: '../../../../static/ads2.png', title: '아! 좋다좋아! 수박이 박수! 같이 농활합시다!'},
+        {img: '../../../../static/ads3.png', title: '신선한 우유는 어디에서? 여기에서!'},
+        {img: '../../../../static/ads4.png', title: '님도보고 귤도따고! 같이 귤따러 갈래?'}
+      ]
     }
   },
   computed: {

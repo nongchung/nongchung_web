@@ -502,7 +502,10 @@ export const nonghwalActions = {
     })
   },
   getSearchResult ({commit}, {keyword, startDate, endDate, person, region}) {
-    axios.get(`${BASEURL}/search?end=${endDate}&start=${startDate}&person=${person}&scontent=${keyword}&area=${region}`).then(res => {
+    console.log(`${BASEURL}/search?end=${endDate}&start=${startDate}&person=${person}&scontent=${keyword}&area=${region}`)
+
+    axios.get(`${BASEURL}/search?end=&start=&person=&scontent=감&area=17`).then(res => {
+    // axios.get(`${BASEURL}/search?end=${endDate}&start=${startDate}&person=${person}&scontent=${keyword}&area=${region}`).then(res => {
       console.log(res.data)
       commit('getSearchResultSuccess', res.data)
     }).catch(err => {
