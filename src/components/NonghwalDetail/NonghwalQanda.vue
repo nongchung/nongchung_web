@@ -3,32 +3,32 @@
   <v-layout pa-4 column style="background:white; border: .1px solid #cccccc;">
     <v-flex>
       <v-layout column>
-        <v-flex style="font-family:sans-serif; font-weight:bold; color:#4d4d4d;">FAQ</v-flex>
-        <div v-for="(item, index) in getDetailQna" :key="index" class="my-3">
+        <v-flex style="font-weight:bold; color:#4d4d4d;">FAQ</v-flex>
+        <v-flex v-for="(item, index) in qna" :key="index" class="my-3">
         <v-flex d-flex>
-          <v-flex  py-2 style="font-family:sans-serif; font-weight:bold; color:#4d4d4d; width:5%;">Q</v-flex>
-          <v-flex  py-2 style="font-family:sans-serif; color:#4d4d4d; width:95%;">{{item.title}}</v-flex>
+          <v-flex style="font-weight:bold; color:#4d4d4d; width:5%;">Q</v-flex>
+          <v-flex style="color:#4d4d4d; width:95%;">{{item.q}}</v-flex>
         </v-flex>
-        <v-flex d-flex >
-        <v-flex style="font-family:sans-serif; font-weight:bold; color:#4d4d4d; width:5%;">A</v-flex>
-        <v-flex style="font-family:sans-serif; color:#4d4d4d; width:95%;" >{{item.description}}</v-flex>
+        <v-flex d-flex class="pt-2">
+        <v-flex style="font-weight:bold; color:#4d4d4d; width:5%;">A</v-flex>
+        <v-flex style="color:#4d4d4d; width:95%; white-space: pre;" >{{item.a}}</v-flex>
         </v-flex>
-        </div>
+        </v-flex>
       </v-layout>
     </v-flex>
     <v-divider></v-divider>
     <v-flex>
       <v-layout my-3 column>
-        <v-flex style="font-family:sans-serif; font-weight:bold; color:#4d4d4d;">Q &#38; A</v-flex>
+        <v-flex style="font-weight:bold; color:#4d4d4d;">Q &#38; A</v-flex>
         <v-flex class="my-3" style="border: .1px solid #cccccc; height: 15vh;">
         <v-textarea
-        style="padding: .5rem .5rem;"
+        style="padding: .5rem .5rem;font-size:1rem;"
           solo
           flat
-          name="input-7-4"
-          placeholder="문의 작성 전 확인해주세요! (100자이내)
-해당 게시판에 개인의 연락처를 남기거나 적절하지 않은 문의를 남길 시
-동의없이 삭제될 수 있습니다."
+          placeholder="문의 작성 전 확인해주세요!
+수집된 문의는 담당자에게 전달되며,
+정리된 상태로 FAQ에 업로드됩니다.
+긴급한 문의는 (담당자)010-3240-0736로 직접 전화 부탁드립니다!"
           v-model="userquestion"
         ></v-textarea></v-flex>
         <v-flex text-xs-right>
@@ -58,7 +58,14 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      userquestion: ''
+      userquestion: '',
+      qna: [
+        {q: '서리해도 되나요?', a: '안됩니다. 서리하면 잡혀가요. '},
+        {q: '새참도 제공해주시나요?', a: '맛있는 새참이 기다리고 있습니다. 어서 농활 신청하러 와주세요~! '},
+        {q: '친구랑 같이 가고 싶은데 한번에 두명 신청 안되나요?', a: '안됩니다. 개별 신청이 원칙입니다. ㅠㅠ!'},
+        {q: '결제가 되지 않아요.', a: '결제가 되지 않을시 (담당자)010-6577-9381 또는 카카오 친구로 연락주세요.'},
+        {q: '환불은 어떻게 되나요? ', a: '1. 출발 3일전까지 환불하셔야 100% 환불이 가능합니다.\n2. 출발 2일전과 1일 2일 전은 40%만 환불 가능합니다.\n3. 당일최소는 환불 불가능합니다.'},
+        {q: '우천시에는 농활 어떻게 하나요? ', a: '강수량에 따라 취소될수도 있습니다. \n취소되면 연락을 드리고 환불처리 해드리며, 환불은 3일이내 처리됩니다.'}]
     }
   },
   computed: {
@@ -72,8 +79,8 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('getDetailQna', this.nhIdx)
-    console.log(this.getDetailQna)
+    // this.$store.dispatch('getDetailQna', this.nhIdx)
+    // console.log(this.getDetailQna)
   },
   props: ['nhIdx']
 }
