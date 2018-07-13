@@ -55,6 +55,7 @@ export const nonghwalMutations = {
     console.log('mainStart!')
   },
   mainSuccess (state, payload) {
+    // state.home = payload
     state.home.ads = payload.ads
     state.home.popularList = payload.populNh
     state.home.newList = payload.newNh
@@ -65,6 +66,7 @@ export const nonghwalMutations = {
     console.log('mainloginStart!')
   },
   mainloginSuccess (state, payload) {
+    // state.home = payload
     state.home.ads = payload.ads
     state.home.popularList = payload.populNh
     state.home.newList = payload.newNh
@@ -164,5 +166,44 @@ export const nonghwalMutations = {
   regionListSuccess (state, payload) {
     state.nhRegionList = payload
     console.log('regionListSuccess')
+  },
+  regionListLoginStart (state) {
+    console.log('regionListLoginStart!')
+  },
+  regionListLoginSuccess (state, payload) {
+    state.nhRegionList = payload
+    console.log('regionListLoginSuccess')
+  },
+  morePopulLoginStart (state) {
+    console.log('morePopulLoginStart!')
+  },
+  morePopulLoginSuccess (state, payload) {
+    state.home.popularList = state.home.popularList.concat(payload.data)
+    state.hasMoreList.popul = payload.isEnd
+    console.log('morePopulLoginSuccess')
+  },
+  morePopulStart (state) {
+    console.log('morePopulStart!')
+  },
+  morePopulSuccess (state, payload) {
+    state.home.popularList = state.home.popularList.concat(payload.data)
+    state.hasMoreList.popul = payload.isEnd
+    console.log('morePopulSuccess')
+  },
+  moreNewLoginStart (state) {
+    console.log('moreNewLoginStart')
+  },
+  moreNewLoginSuccess (state, payload) {
+    state.home.newList = state.home.newList.concat(payload.data)
+    state.hasMoreList.new = payload.isEnd
+    console.log('moreNewLoginSuccess')
+  },
+  moreNewStart (state) {
+    console.log('moreNewStart')
+  },
+  moreNewSuccess (state, payload) {
+    state.home.newList = state.home.newList.concat(payload.data)
+    state.hasMoreList.new = payload.isEnd
+    console.log('moreNewSuccess')
   }
 }

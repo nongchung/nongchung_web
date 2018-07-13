@@ -2,8 +2,8 @@
 <!-- <v-container fluid> -->
   <v-layout row justify-center class="ads_layout">
     <v-flex xs12 sm12 md12 lg12 xl12>
-  <v-carousel hide-delimiters style="height: 35vh;">
-    <v-carousel-item v-for="(item,index) in ads" :key="index" src="../../../../static/ad_ex.png">
+  <v-carousel hide-delimiters style="height: 35vh;" v-if="ads.length>0">
+    <v-carousel-item v-for="(item,index) in ads" :key="index" :src="item.img">
       <div class="ads_text">
       <div class="black--text ads_theme">농활 테마기획전</div>
       <div class="black--text ads_title">"{{item.title}}"</div>
@@ -21,18 +21,15 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      small_items: [
-        {src: 'url("../../../static/home_imagebanner_smallbox_01.png")'},
-        {src: 'url("../../../static/home_imagebanner_smallbox_02.png")'},
-        {src: 'url("../../../static/home_imagebanner_smallbox_03.png")'},
-        {src: 'url("../../../static/home_imagebanner_smallbox_04.png")'}
-      ]
+      img: require('../../../../static/ad1.jpeg')
     }
   },
   computed: {
     ...mapGetters({
       ads: 'getAds'
     })
+  },
+  created () {
   }
 }
 </script>

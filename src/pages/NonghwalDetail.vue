@@ -3,7 +3,7 @@
       <!-- 농활이미지와 농활제목 -->
       <v-flex lg12 text-sm-center>
         <div class="bgBlur" style="background-size:100%; height:20vh; padding-top:5.5vh;" v-bind:style="{ backgroundImage: 'url(' + getNonghwalDetail.image[0] + ')' }">
-          <div class="content">
+          <div>
           <div style="font-family:sans-serif; font-size:1.7rem; font-weight:700;">{{getNonghwalDetail.nhInfo.description}}</div>
           <div style="font-family:sans-serif; font-size:2.7rem; font-weight:900;">{{getNonghwalDetail.nhInfo.name}}</div>
           </div>
