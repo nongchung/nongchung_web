@@ -11,7 +11,17 @@
       </v-toolbar-title>
       <!-- <v-toolbar-items slot="extension"><search-condition></search-condition></v-toolbar-items> -->
       <v-layout class="hidden-xs-only">
-          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#1" color="grey lighten-1" active-class="black" style="padding-left: 20px !important;">
+        <v-flex sm3 md4 lg4>
+      <v-text-field
+        append-icon="search"
+        class="search_bar ml-3"
+        placeholder="농활 검색"
+        solo
+        @focus="SearchView"
+        @keyup.enter="deliveryNB()"
+        v-model="searchcontent"
+      ></v-text-field></v-flex>
+          <!-- <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#1" color="grey lighten-1" active-class="black" style="padding-left: 20px !important;">
             농활청춘소개
           </v-btn>
           <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#2" color="grey lighten-1" active-class="black">
@@ -19,11 +29,11 @@
           </v-btn>
           <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#3" color="grey lighten-1" active-class="black">
             이용안내
-          </v-btn>
+          </v-btn> -->
       <v-spacer></v-spacer>
-          <v-btn top :ripple="false" flat class="toolbar_list" color="grey lighten-1" active-class="black" router to="/search">
+          <!-- <v-btn top :ripple="false" flat class="toolbar_list" color="grey lighten-1" active-class="black" router to="/search">
             <v-icon>search</v-icon>
-          </v-btn>
+          </v-btn> -->
           <v-btn top :ripple="false" flat class="toolbar_list" exact router to="/login" color="grey lighten-1" active-class="black"
           v-if="!isAuthenticated">
             로그인
