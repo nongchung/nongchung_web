@@ -76,7 +76,6 @@ export default {
     margin-top: 10px;
   }
   #home_tab{
-  font-family: sans-serif !important;
   border-bottom: 2px inset;
   border-bottom-color: rgba(0,0,0,.08);
   /* box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12) !important; */

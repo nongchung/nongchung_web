@@ -5,7 +5,7 @@
       <img id="nhdetail_img" :src="nonghwalDetail.image[0]">
     </v-flex>
     <!-- 주의사항 -->
-    <v-flex my-4 pa-3 style="background:#bcbcbc; font-family:sans-serif; font-size:.8rem; border-radius: 15px;">
+    <v-flex my-4 pa-3 style="background:#bcbcbc; font-size:.8rem; border-radius: 15px;">
       <div><strong>&lt;환불규정&gt;</strong>
               <br>1. 농활 신청취소는 농활 신청기간 중에만 가능합니다. 꼭 유의해주세요!
               <br>2. 농활 신청기간 종료시 확정 농활 참여인원으로 간주되며, 취소할 수 없습니다.

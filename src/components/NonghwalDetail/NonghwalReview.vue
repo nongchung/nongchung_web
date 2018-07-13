@@ -3,7 +3,7 @@
     <v-layout column style="background:white; border: .1px solid #cccccc;">
       <v-flex pt-4 pb-2 px-4>
         <v-layout column>
-          <v-flex style="font-family:sans-serif; font-weight:bold; color:#4d4d4d;">농활후기</v-flex>
+          <v-flex style="font-weight:bold; color:#4d4d4d;">농활후기</v-flex>
           <v-layout mt-2 py-1 row>
             <v-flex style="font-size:3rem;flex:initial;font-weight:bold;">{{averageStar}}</v-flex>
             <v-flex ml-4 pt-2 style="display:flex;flex-direction:column;flex:initial;">
@@ -26,8 +26,8 @@
               <img src="../../../static/ad_ex.png">
             </v-avatar>
             <v-flex style="display:flex;flex-direction:column;flex:0 0 auto;">
-              <v-flex px-4 style="font-family:sans-serif; font-weight:bold; color:#4d4d4d;">{{item.name}}</v-flex>
-              <v-flex px-4 style="font-family:sans-serif; color:#4d4d4d;">{{item.startDate}} 참여</v-flex>
+              <v-flex px-4 style="font-weight:bold; color:#4d4d4d;">{{item.name}}</v-flex>
+              <v-flex px-4 style="color:#4d4d4d;">{{item.startDate}} 참여</v-flex>
             </v-flex>
           </v-layout>
           <v-flex my-2 pt-1>

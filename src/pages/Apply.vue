@@ -41,7 +41,7 @@
       <v-stepper-content step="1" style="padding: 0;">
        <v-layout column>
          <v-flex style="background: #E9EFFF; height:3rem;" text-xs-center>
-           <v-flex style="margin-top: .7rem; color: #3470FF; font-family: sans-serif; font-weight: bold;">농활정보</v-flex>
+           <v-flex style="margin-top: .7rem; color: #3470FF;font-weight: bold;">농활정보</v-flex>
            </v-flex>
          <v-flex pa-4>
            <v-layout>
@@ -57,7 +57,7 @@
            </v-layout>
          </v-flex>
          <v-flex style="background: #E9EFFF; height:3rem;" text-xs-center>
-           <v-flex style="margin-top: .7rem; font-family: sans-serif; color: #3470FF; font-weight: bold;">대원정보</v-flex>
+           <v-flex style="margin-top: .7rem;color: #3470FF; font-weight: bold;">대원정보</v-flex>
            </v-flex>
          <v-flex pa-4>
            <v-layout row>
@@ -104,7 +104,7 @@
       <v-stepper-content step="2" style="padding:0;">
        <v-layout column>
          <v-flex style="background: #E9EFFF; height:3rem;" text-xs-center>
-           <v-flex style="margin-top: .7rem; color: #3470FF; font-family: sans-serif; font-weight: bold;">결제 정보</v-flex>
+           <v-flex style="margin-top: .7rem; color: #3470FF;font-weight: bold;">결제 정보</v-flex>
            </v-flex>
            <v-flex style="padding-top: 2vh; padding: 2vh 3vw; padding-bottom: 1vh;">
              <v-layout column text-xs-left>
@@ -151,8 +151,8 @@
       <v-stepper-content step="3" style="padding:0;">
         <v-layout column>
          <v-flex style="background: #CEEFEA;" text-xs-center>
-           <v-flex style="margin-top: 2rem; color: black; font-family: sans-serif; font-weight: bold;font-size:1.5rem;">{{this.userPersonalInfo.name}}님</v-flex>
-          <v-flex style="margin: 2rem 0; color: black; font-family: sans-serif; font-size:1rem;">조금만 기다려주세요! 곧 신나는 농활을 경험할 수 있습니다.</v-flex>
+           <v-flex style="margin-top: 2rem; color: black;font-weight: bold;font-size:1.5rem;">{{this.userPersonalInfo.name}}님</v-flex>
+          <v-flex style="margin: 2rem 0; color: black;font-size:1rem;">조금만 기다려주세요! 곧 신나는 농활을 경험할 수 있습니다.</v-flex>
            </v-flex>
            <v-flex>
           <ul>
