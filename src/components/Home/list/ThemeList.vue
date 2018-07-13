@@ -15,7 +15,11 @@
         class="custom-ripple"
         width="700px"
         height="500px">
-        <v-icon @click="beforeTheme">fas fa-arrow-circle-left</v-icon>
+        <v-icon style="margin-left:15px" @click="beforeTheme">fas fa-arrow-circle-left</v-icon>
+        <div class="ads_text">
+      <div class="white--text ads_theme">농활 테마기획전</div>
+      <div class="white--text ads_title">서울 경기 지역 과일 농장</div>
+      </div>
         <v-icon @click="afterTheme">fas fa-arrow-circle-right</v-icon>
       </v-card-media>
       </v-flex>
@@ -65,13 +69,12 @@ export default {
     return {
       themeIndex: 0,
       themeButton: ['힐링 농활', '맛있는 농활', '과일 농활', '그린 투어리즘', '오직 8월에만'],
-      themeImage: '../../../../static/ad_ex.png',
+      themeImage: '../../../../static/theme1.png',
       themeImageArr: [
-        '../../../../static/ad_ex.png',
-        '../../../../static/Kyunggido.png',
-        '../../../../static/Kwangju.png',
-        '../../../../static/Jejudo.png',
-        '../../../../static/Incheon.png'
+        '../../../../static/theme1.png',
+        '../../../../static/theme2.png',
+        '../../../../static/theme3.png',
+        '../../../../static/theme4.png'
       ],
       color: 0,
       colors: [
@@ -157,5 +160,27 @@ export default {
 }
 #card_gutter{
   padding: 1.8vw !important;
+}
+.ads_layout{
+  padding-top: 5px;
+  background-color:white;
+}
+/* .v-carousel{
+  height: 40vh;
+} */
+.ads_text{
+  margin: 5vh 10vh;
+  margin-left: 5vh;
+}
+.ads_theme{
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: underline;
+  font-family: sans-serif;
+  }
+.ads_title{
+  font-size: 2rem;
+  font-family: sans-serif;
+  font-weight: bold;
 }
 </style>
