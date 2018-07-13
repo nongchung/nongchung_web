@@ -209,5 +209,9 @@ export const nonghwalMutations = {
   getThemeNH (state, payload) {
     state.themeData = payload
     console.log(state.themeData)
+  },
+  getSearchResultSuccess (state, payload) {
+    state.searchResult = payload
+    console.log(state.searchResult)
   }
 }

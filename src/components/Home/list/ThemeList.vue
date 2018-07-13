@@ -74,29 +74,8 @@ export default {
         '../../../../static/theme1.png',
         '../../../../static/theme2.png',
         '../../../../static/theme3.png',
-        '../../../../static/theme4.png'
-      ],
-      color: 0,
-      colors: [
-        'red',
-        'pink',
-        'purple',
-        'deep-purple',
-        'indigo',
-        'blue',
-        'light-blue',
-        'cyan',
-        'teal',
-        'green',
-        'light-green',
-        'lime',
-        'yellow',
-        'amber',
-        'orange',
-        'deep-orange',
-        'brown',
-        'blue-grey',
-        'grey'
+        '../../../../static/theme4.png',
+        '../../../../static/theme5.jpeg'
       ]
     }
   },

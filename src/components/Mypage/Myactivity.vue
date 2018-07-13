@@ -5,14 +5,13 @@
         <v-layout row wrap>
           <!-- 농활카드하나씩 -->
           <v-flex tag="a" v-for="(item,index) in myAcitivityLog" :key="index" xs6 sm4 md4 lg4 xl3 id="card_gutter" @click="goNonghwalDetail(item.idx)">
-            <v-card flat height="26rem">
+            <v-card flat height="50rem">
               <!-- 농활대표사진 -->
               <v-card-media :src="item.img" height="50%">
                 <v-spacer></v-spacer>
                 <span class="card_tip" v-bind:style="{ backgroundColor: '#FFAF00' }" v-if="item.state===0 || item.state===1">신청중</span>
                 <span class="card_tip" v-bind:style="{ backgroundColor: getColorSate(item) }">{{stateVal[item.state]}}</span>
                 <span class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}</span>
-                <!-- <span class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}</span> -->
               </v-card-media>
               <!-- 농부사진 -->
               <v-avatar class="mr-4" style="float:right; margin-top:-10%;" size="4rem" color="grey lighten-4">
@@ -32,6 +31,9 @@
                   </v-flex>
                 </v-layout>
               </v-card-title>
+              <v-flex style="margin-left:145px" >
+                <v-btn outline color="primary" v-if="item.state===0 || item.state===1" @click="writeReview(item.idx, index)">신청취소</v-btn>
+                </v-flex>
               <v-btn icon v-if="!isAuthenticated">
                   <v-icon>favorite_border</v-icon>
                 </v-btn>
