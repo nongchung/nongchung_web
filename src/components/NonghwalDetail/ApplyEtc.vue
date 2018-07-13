@@ -59,7 +59,7 @@
         </v-avatar>{{getNonghwalDetail.farmerInfo.name}}
         </v-flex>
         <v-flex mt-2><v-icon class="pr-2 pt-1">more_horiz</v-icon>{{getNonghwalDetail.farmerInfo.comment}}</v-flex>
-        <v-fex><v-btn>농장 프로필 보기</v-btn></v-fex>
+        <v-flex><v-btn>농장 프로필 보기</v-btn></v-flex>
       </v-layout>
     </v-flex>
     <!-- 참석대원 -->

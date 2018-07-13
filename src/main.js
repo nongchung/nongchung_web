@@ -11,6 +11,14 @@ import VeeValidate from 'vee-validate'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import starRate from 'vue-star-rating'
+import * as VueGoogleMaps from 'vue2-google-maps'
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBtXiCWRiR8vE2nLF_DKv5WZDYz4glfKTI',
+    libraries: 'places' // necessary for places input
+  }
+})
 
 Vue.use(ElementUI)
 Vue.use(Vuex)
@@ -22,13 +30,14 @@ export const eventBus = new Vue()
 
 Vue.use(Vuetify, {
   theme: {
-    primary: '#3470FF',
-    secondary: '#BDBDBD',
-    success: '#F25620',
+    primary: '#3470FF', // 파랑
+    secondary: '#EFEFEF', // 옅은회식
+    success: '#00BD43', // 초록
     text: '#4D4D4D',
-    info: '#3470FF',
-    accent: '#3470FF',
-    warning: '#FFAF00'
+    info: '#E9EFFF', // 옅은파랑
+    accent: '#3470FF', // 파랑
+    warning: '#FFAF00', // 노랑
+    error: '#F25620' // 주황(빨강)
   }
 })
 /* eslint-disable no-new */
