@@ -29,7 +29,7 @@
       <v-container fluid style="margin-top:-2vw;">
         <v-layout row wrap>
           <!-- 농활카드하나씩 -->
-          <v-flex tag="a" v-for="(item, index) in themeData.data" :key="index" xs6 sm4 md4 lg4 xl3 id="card_gutter" @click="goNonghwalDetail(item.nhIdx)">
+          <v-flex tag="a" v-for="(item, index) in themeData.data" :key="index" xs6 sm4 md4 lg4 xl4 id="card_gutter" @click="goNonghwalDetail(item.nhIdx)">
             <v-card flat height="21rem">
               <!-- 농활대표사진 -->
               <v-card-media :src="item.fImg" height="50%">

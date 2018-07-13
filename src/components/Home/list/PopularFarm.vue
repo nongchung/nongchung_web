@@ -4,7 +4,7 @@
   <div class="subheading">인기 농장</div>
     <v-container fluid grid-list-xl>
     <v-layout row wrap class="popularfarm_layout_content">
-      <v-flex v-for="item in popularFarm" :key="item.name" xs6 sm4 md4 lg4 xl3 class="card_gutter">
+      <v-flex v-for="item in popularFarm" :key="item.name" xs6 sm4 md4 lg4 xl4 class="card_gutter">
         <v-card flat ripple>
           <v-card-media src="http://media.graytvinc.com/images/810*569/Potato+Farm1.jpg" height="150px">
         <v-card-title>

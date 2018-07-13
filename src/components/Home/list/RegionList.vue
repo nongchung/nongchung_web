@@ -17,7 +17,7 @@
       <v-container fluid style="margin-top:-2vw;">
         <v-layout row wrap>
           <!-- 농활카드하나씩 -->
-          <v-flex tag="a" v-for="(item,index) in regionList" :key="index" xs6 sm4 md4 lg4 xl3 id="card_gutter" @click="goNonghwalDetail(item.nhIdx)">
+          <v-flex tag="a" v-for="(item,index) in regionList" :key="index" xs6 sm4 md4 lg4 xl4 id="card_gutter" @click="goNonghwalDetail(item.idx)">
             <v-card flat height="21rem">
               <!-- 농활대표사진 -->
               <v-card-media :src="item.img" height="50%">
@@ -87,7 +87,7 @@ export default {
         case 14: return require('../../../../static/Jeonrabookdo.png')
         case 15: return require('../../../../static/Jejudo.png')
         case 16: return require('../../../../static/Sejeong.png')
-        default: return require('../../../../static/ad_ex.png')
+        default: return require('../../../../static/korea_ic.png')
       }
     }
   },
@@ -108,7 +108,7 @@ export default {
         return '#2CCBB1'
       } else if (item.period === '2박 3일') {
         return '#3470FF'
-      } else if (item.period === '당일치기') {
+      } else if (item.period === '당일 치기') {
         return '#00BE44'
       } else { return '#E9EFFF' }
     },

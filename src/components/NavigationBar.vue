@@ -9,18 +9,13 @@
       농활청춘
       </router-link>
       </v-toolbar-title>
+
       <!-- <v-toolbar-items slot="extension"><search-condition></search-condition></v-toolbar-items> -->
       <v-layout class="hidden-xs-only">
-          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#1" color="grey lighten-1" active-class="black" style="padding-left: 20px !important;">
+        <v-spacer></v-spacer>
+          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="/about" color="grey lighten-1" active-class="black" style="padding-left: 20px !important;">
             농활청춘소개
           </v-btn>
-          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#2" color="grey lighten-1" active-class="black">
-            포인트샵
-          </v-btn>
-          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="#3" color="grey lighten-1" active-class="black">
-            이용안내
-          </v-btn>
-      <v-spacer></v-spacer>
           <v-btn top :ripple="false" flat class="toolbar_list" color="grey lighten-1" active-class="black" router to="/search">
             <v-icon>search</v-icon>
           </v-btn>

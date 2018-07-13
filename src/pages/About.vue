@@ -1,5 +1,10 @@
 <template>
-  <div>농활청춘에 대해서.... 히릿!</div>
+  <v-layout row justify-center>
+    <v-flex xs12 sm12 md10 lg8 xl8>
+      <img class="hidden-xs-only" src="../../static/nh_info.png" width="100%">
+      <img class="hidden-sm-and-up mt-4" src="../../static/nh_info_m.png" width="100%">
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

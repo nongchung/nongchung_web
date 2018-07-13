@@ -5,6 +5,7 @@ import Home from '@/pages/Home'
 import NonghwalDetail from '@/pages/NonghwalDetail'
 import Search from '@/pages/Search'
 import Apply from '@/pages/Apply'
+import About from '@/pages/About'
 
 import Register from '@/pages/Register'
 import Login from '@/pages/Login'
@@ -69,6 +70,11 @@ export default new Router({
     path: '/Apply/:nhIdx/:schIdx/:selectedDate/:selectedNhName/:selectedNhAddr/:selectedNhImg',
     name: 'Apply',
     component: Apply
+  },
+  {
+    path: '/About',
+    name: 'About',
+    component: About
   }
   ]
 })
