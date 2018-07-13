@@ -500,5 +500,13 @@ export const nonghwalActions = {
     }).catch(err => {
       console.log(err)
     })
+  },
+  getSearchResult ({commit}, {keyword, startDate, endDate, person, region}) {
+    axios.get(`${BASEURL}/search?end=${endDate}&start=${startDate}&person=${person}&scontent=${keyword}&area=${region}`).then(res => {
+      console.log(res.data)
+      commit('getSearchResultSuccess', res.data)
+    }).catch(err => {
+      console.log(err)
+    })
   }
 }
