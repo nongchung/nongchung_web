@@ -167,7 +167,7 @@ export default {
 <style scoped>
   #toolbar_title {
     font-weight: 900;
-    font-size: 3rem;
+    font-size: 2.5rem;
     /* margin-top: 9px; */
     overflow: visible;
   }
