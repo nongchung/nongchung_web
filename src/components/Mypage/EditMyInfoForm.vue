@@ -32,7 +32,7 @@
       </v-flex>
       <v-flex xs3 offset-xs4>
           닉네임
-         <v-text-field
+         <v-text-field class="mt-2"
             v-model="newNickname"
             placeholder="바꿀 닉네임을 입력하세요"
             solo
@@ -40,25 +40,22 @@
       </v-flex>
       <v-flex xs3 offset-xs4 :readonly="true">
           이름
-          <v-text-field
+          <v-text-field class="mt-2"
             v-model="getPersonalUserInfo.name"
-            label="name"
             disabled
           ></v-text-field>
         </v-flex>
       <v-flex xs3 offset-xs4 :readonly="true">
           이메일
-          <v-text-field
+          <v-text-field class="mt-2"
             v-model="getPersonalUserInfo.mail"
-            label="mail"
             disabled
           ></v-text-field>
         </v-flex>
       <v-flex xs3 offset-xs4 :readonly="true">
           핸드폰번호
-          <v-text-field
+          <v-text-field class="mt-2"
             v-model="getPersonalUserInfo.hp"
-            label="HP"
             disabled
           ></v-text-field>
         </v-flex>

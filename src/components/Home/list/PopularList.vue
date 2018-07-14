@@ -17,7 +17,7 @@
               >
                 <v-icon>favorite</v-icon>
               </v-btn></v-flex><v-spacer></v-spacer>
-                <v-flex style="flex: 0 0 auto;"><span class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}</span>
+                <v-flex style="flex: 0 0 auto;margin:0;max-width:4rem;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
                 </v-flex>
               </v-layout>
                 </v-card-media>
@@ -30,7 +30,7 @@
                 <v-layout column>
                   <v-flex class="card_title">{{item.name}}</v-flex>
                   <v-flex pt-1>{{item.addr}}</v-flex>
-                  <v-flex mt-4>
+                  <v-flex mt-3>
                     <span class="card_detail" style="font-size:1.2rem; font-weight:900;">{{item.price}}원</span>
                     <span class="card_detail">(1박기준)</span>
                   </v-flex>

@@ -10,8 +10,6 @@
       <v-flex ml-2 style="padding-top:.2rem;">농활청춘</v-flex></v-layout>
       </router-link>
       </v-toolbar-title>
-
-      <!-- <v-toolbar-items slot="extension"><search-condition></search-condition></v-toolbar-items> -->
       <v-layout class="hidden-xs-only">
         <v-spacer></v-spacer>
           <v-btn top :ripple="false" flat class="toolbar_list" color="grey lighten-1" active-class="black" router to="/search">
@@ -37,7 +35,64 @@
             로그아웃
           </v-btn></v-layout>
           <v-spacer class="hidden-sm-and-up"></v-spacer>
-          <v-icon @click="navdrawer=!navdrawer" class="hidden-sm-and-up">menu</v-icon>
+          <!-- <v-icon @click="drawer=!drawer" class="hidden-sm-and-up">menu</v-icon> -->
+<v-menu>
+            <v-btn slot="activator" flat><v-icon @click="drawer=!drawer" class="hidden-sm-and-up">menu</v-icon></v-btn>
+
+      <v-list class="pt-0 hidden-sm-and-up" dense v-model="drawer">
+
+        <v-list-tile @click="goAbout()">
+          <v-list-tile-action>
+            <v-icon>help_outline</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>About</v-list-tile-title>
+          </v-list-tile-content>
+          <v-divider></v-divider>
+        </v-list-tile>
+        <v-list-tile @click="goSearch()">
+          <v-list-tile-action>
+            <v-icon>search</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>Search</v-list-tile-title>
+          </v-list-tile-content>
+          <v-divider></v-divider>
+        </v-list-tile>
+        <v-list-tile  v-if="!isAuthenticated" @click="goLogin()">
+          <v-list-tile-action>
+            <v-icon>person</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>Login</v-list-tile-title>
+          </v-list-tile-content>
+          <v-divider></v-divider>
+        </v-list-tile>
+        <v-list-tile  v-if="isAuthenticated" @click="goMypage()">
+          <v-list-tile-action>
+            <v-icon>person</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>Mypage</v-list-tile-title>
+          </v-list-tile-content>
+          <v-divider></v-divider>
+        </v-list-tile>
+        <v-list-tile v-if="isAuthenticated" @click="logout()">
+          <v-list-tile-action>
+            <v-icon>input</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>Logout</v-list-tile-title>
+          </v-list-tile-content>
+          <v-divider></v-divider>
+        </v-list-tile>
+      </v-list>
+      </v-menu>
     </v-toolbar>
 </template>
 
@@ -49,7 +104,8 @@ export default {
   data () {
     return {
       navdrawer: false,
-      searchcontent: ''
+      searchcontent: '',
+      drawer: null
     }
   },
   computed: {
@@ -58,6 +114,18 @@ export default {
     ])
   },
   methods: {
+    goAbout () {
+      this.$router.push('/about')
+    },
+    goLogin () {
+      this.$router.push('/login')
+    },
+    goSearch () {
+      this.$router.push('/search')
+    },
+    goMypage () {
+      this.$router.push('/mypage')
+    },
     logout () {
       const isOut = confirm('로그아웃 하시겠습니까?')
       if (isOut) {

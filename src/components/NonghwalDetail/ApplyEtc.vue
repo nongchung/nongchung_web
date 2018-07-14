@@ -77,7 +77,6 @@
           <v-flex v-if="getNonghwalDetail.friendsInfo.length>=4">
             {{getNonghwalDetail.friendsInfo.length-4}}
           </v-flex>
-
         </v-avatar>
         </v-flex>
 

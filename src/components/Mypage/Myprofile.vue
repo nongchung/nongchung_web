@@ -12,10 +12,10 @@
           </v-layout>
        </v-layout>
         </v-card>
-         <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="cyan" id="home_tab">
+         <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="primary" id="home_tab">
       <v-flex sm1 md1 lg2 xl2></v-flex>
       <v-tab :ripple="false" v-for="i in 3" :key="i" :href="`#tab-${i}`">
-        <span style="font-size:1.2rem; font-family:san-serif; font-weight:700;">{{tabname[i-1]}}</span>
+        <span style="font-size:1.2rem; font-weight:800;" class="mx-2">{{tabname[i-1]}}</span>
       </v-tab>
     </v-tabs>
       </v-flex>
