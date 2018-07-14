@@ -26,7 +26,7 @@
   <v-layout>
     <!-- <v-flex>
       <v-container fluid style="margin-top:-2vw;"> -->
-        <v-layout row wrap>
+        <v-layout row wrap mt-3>
           <!-- 농활카드하나씩 -->
           <v-flex tag="a" v-for="(item, index) in themeData.data" :key="index" xs6 sm4 md4 lg4 xl4 id="card_gutter" @click.capture="goNonghwalDetail(item.nhIdx)">
             <v-card flat height="23rem" style="outline: .2px solid #e4e4e4; ">
@@ -55,7 +55,7 @@
                 <v-layout column>
                   <v-flex class="card_title">{{item.name}}</v-flex>
                   <v-flex pt-1>{{item.addr}}</v-flex>
-                  <v-flex mt-4>
+                  <v-flex mt-3>
                     <span class="card_detail" style="font-size:1.2rem; font-weight:900;">{{item.price}}원</span>
                     <span class="card_detail">(1박기준)</span>
                   </v-flex>

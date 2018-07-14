@@ -4,8 +4,8 @@
       <v-flex lg12 text-sm-center>
         <div class="bgBlur" style="background-size:100%; height:20vh; padding-top:5.5vh;" v-bind:style="{ backgroundImage: 'url(' + getNonghwalDetail.image[0] + ')' }">
           <div>
-          <div style="font-size:1.7rem; font-weight:700;color:white;">{{getNonghwalDetail.nhInfo.description}}</div>
-          <div style="font-size:2.7rem; font-weight:900;color:white;">{{getNonghwalDetail.nhInfo.name}}</div>
+          <div style="font-size:1.7rem; font-weight:700;color:white;text-shadow: 0px 0 #000, 0 1px #000, 1px 0 #000, 0 0px #000;">{{getNonghwalDetail.nhInfo.description}}</div>
+          <div style="font-size:2.7rem; font-weight:900;color:white;text-shadow: 0px 0 #000, 0 1px #000, 1px 0 #000, 0 0px #000;">{{getNonghwalDetail.nhInfo.name}}</div>
           </div>
         </div>
       </v-flex>

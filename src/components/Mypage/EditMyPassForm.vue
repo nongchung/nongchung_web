@@ -1,38 +1,36 @@
 <template>
-   <div class="header">
-     <v-spacer></v-spacer>
-      <v-flex xs3 offset-xs4 style="margin-top:40px">
-          기존 비빌번호 입력
-         <v-text-field
-            flat
+   <v-layout row justify-center>
+     <v-flex xs10 sm8 md4 lg3 xl3>
+       <v-layout column>
+      <v-flex style="margin-top:40px">
+          기존 비밀번호 입력
+         <v-text-field class="mt-2"
             v-model="oldPasswd"
             label="기존 비밀번호를 입력하세요."
-            outline
+            solo
             type="password"
             required
           ></v-text-field>
       </v-flex>
-      <v-flex xs3 offset-xs4>
+      <v-flex>
         새 비밀번호 입력
-         <v-text-field
-            flat
+         <v-text-field class="mt-2"
             type="password"
             v-model="newPasswd"
             placeholder="새로운 비밀번호를 입력하세요."
-            outline
+            solo
             :rules="[passRules, checkNewPassword]"
             :counter="10"
             required
           ></v-text-field>
       </v-flex>
-      <v-flex xs3 offset-xs4>
+      <v-flex>
           새 비밀번호 확인
-         <v-text-field
+         <v-text-field class="mt-2"
             type="password"
-            flat
             v-model="confirmPassword"
             placeholder="새로운 비밀번호 확인"
-            outline
+            solo
             :rules="[passRules, checkPassword]"
             :counter="10"
             v-validate="'required|confirmed:password'"
@@ -40,15 +38,16 @@
           ></v-text-field>
           <!-- <v-text-field :counter="12" v-validate="'required|confirmed:password'" data-vv-as="password" label="confirmPassword" hint="비밀번호는 8자 ~ 12자로, 영문숫자 혼용, 특수문자 11개 를 사용하실 수 있습니다." required></v-text-field> -->
 
-        <br>
-        *비밀번호는 8자 이상 10자 이하의 영문과 숫자 조합으로 가능합니다.
+        <span style="font-size:.8rem;color:#bdbdbd;" class="mb-3">*비밀번호는 8자 이상 10자 이하의 영문과 숫자 조합으로 가능합니다.</span>
         <br>
       </v-flex>
-      <v-flex xs3 offset-xs4>
+      <v-flex>
         <v-btn @click="goMain">취소</v-btn>
         <v-btn @click="editMyPass" color="primary" dark>수정하기</v-btn>
       </v-flex>
-   </div>
+      </v-layout>
+      </v-flex>
+   </v-layout>
 </template>
 
 <script>

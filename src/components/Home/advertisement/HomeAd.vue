@@ -23,12 +23,11 @@
 export default {
   data () {
     return {
-      img: require('../../../../static/ad1.jpeg'),
       ads: [
-        {img: '../../../../static/ads1.png', title: '화끈하게 농활하고\n 시원하게 물놀이 어때?'},
-        {img: '../../../../static/ads2.png', title: '아! 좋다좋아! 수박이 박수! 같이 농활합시다!'},
-        {img: '../../../../static/ads3.png', title: '신선한 우유는 어디에서? 여기에서!'},
-        {img: '../../../../static/ads4.png', title: '님도보고 귤도따고! 같이 귤따러 갈래?'}
+        {img: '../../../../static/ads1.jpeg', title: '화끈하게 농활하고 시원하게 물놀이 어때?'},
+        {img: '../../../../static/ads2.jpeg', title: '아! 좋다좋아! 수박이 박수! 같이 농활합시다!'},
+        {img: '../../../../static/ads3.jpeg', title: '신선한 우유는 어디에서? 여기에서!'},
+        {img: '../../../../static/ads4.jpeg', title: '님도보고 귤도따고! 같이 귤따러 갈래?'}
       ]
     }
   }

@@ -10,9 +10,9 @@
           <v-card-text style="padding:0;">
             <p style="margin-top:20px; font-size:30px"><strong>{{userInfo.name}}</strong>님</p>
             <p style="font-size:25px">
-              <strong>총 <span style="color:#FDC948">{{getTotalHistory.tcount}} 건</span> <span style="color:#3470FF">{{getTotalHistory.ttime}}시간</span>의 활동을</strong> 농활청춘과 함께했어요.
+              <strong>총 <span style="color:#FDC948">{{getTotalHistory.tcount}}건</span>&nbsp; <span style="color:#3470FF">{{getTotalHistory.ttime}}시간</span>의 활동을</strong> 농활청춘과 함께했어요.
             </p>
-              <v-btn outline @click="editMyInfo">프로필 편집</v-btn>
+              <v-btn color="gray" outline @click="editMyInfo">프로필 편집</v-btn>
               </v-card-text>
           </v-flex>
           <v-flex style="flex: 0 0 auto;">
@@ -27,7 +27,7 @@
          <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="primary" id="home_tab">
       <v-flex sm1 md2 lg2 xl2></v-flex>
       <v-tab :ripple="false" v-for="i in 3" :key="i" :href="`#tab-${i}`">
-        <span style="font-size:1.2rem;font-weight:800;">{{tabname[i-1]}}</span>
+        <span style="font-size:1rem;font-weight:800;" class="mx-2">{{tabname[i-1]}}</span>
       </v-tab>
     </v-tabs>
       <!-- </v-flex> -->

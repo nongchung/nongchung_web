@@ -87,7 +87,6 @@
         <v-flex v-if="getNonghwalDetail.friendsInfo.length<=3">
              {{getNonghwalDetail.friendsInfo.length}}명
           </v-flex>
-
         </v-avatar>
         </v-flex>
 

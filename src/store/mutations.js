@@ -65,6 +65,7 @@ export const nonghwalMutations = {
     console.log('mainloginStart!')
   },
   mainloginSuccess (state, payload) {
+    console.log(payload)
     // state.home = payload
     state.home.ads = payload.ads
     state.home.popularList = payload.populNh
