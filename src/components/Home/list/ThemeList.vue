@@ -33,14 +33,6 @@
               <!-- 농활대표사진 -->
               <v-card-media :src="item.fImg" height="57%">
                 <v-layout row align-end class="text-xs-left">
-                  <!-- <v-flex text-xs-right><v-btn v-if="isAuthenticated"
-                :style="{color: item.isBooked ? '#F25620' : 'white'}"
-                icon
-                @click="clickHeart(item)"
-                class="heart"
-              >
-                <v-icon>favorite</v-icon>
-              </v-btn></v-flex> -->
                 <v-flex style="flex: 0 0 auto;margin:0;background:#FFAF00;" v-show="item.newState" class="card_tip">new</v-flex>
                 <v-flex style="flex: 0 0 auto;margin:0;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
                 </v-flex>

@@ -15,10 +15,10 @@
               <v-btn color="gray" outline @click="editMyInfo">프로필 편집</v-btn>
               </v-card-text>
           </v-flex>
-          <v-flex style="flex: 0 0 auto;">
+          <v-flex style="flex: 0 0 auto;" class="mr-4">
               <v-avatar
-                  size="104px">
-                <img :src="userInfo.img" alt="avatar" style="margin-top:135px">
+                  size="7rem">
+                <img :src="userInfo.img" alt="avatar" style="margin-top:60px">
               </v-avatar>
           </v-flex>
           </v-flex>
