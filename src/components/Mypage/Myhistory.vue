@@ -8,15 +8,17 @@
             <v-card flat height="23rem" style="outline: .2px solid #e4e4e4;">
               <!-- 농활대표사진 -->
               <v-card-media :src="item.img" height="57%">
-                <v-spacer></v-spacer>
-                <span class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}</span>
-              </v-card-media>
+                <v-layout row align-end class="text-xs-left">
+                <v-flex style="flex: 0 0 auto;margin:0;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
+                </v-flex>
+              </v-layout>
+                 </v-card-media>
               <!-- 농부사진 -->
               <!-- <v-avatar class="mr-4" style="float:right; margin-top:-10%;" size="4rem" color="grey lighten-4">
                 <img src="http://citizen.edisha.gov.in/Content/assets/stylesheet/img/placeholder-user.png" alt="avatar">
               </v-avatar> -->
               <!-- 농활정보 -->
-              <v-card-title primary-title class="pb-0 pt-4" style="width:100%;">
+              <v-card-title primary-title class="pb-0 pt-3" style="width:100%;">
                 <v-layout column>
                   <v-flex class="card_title">{{item.name}}</v-flex>
                   <v-flex>{{item.addr}}</v-flex>
@@ -95,7 +97,8 @@ export default {
   font-weight: 700;
 }
 .card_tip{
-  height: 1.3rem;
+  height: 1.9rem;
+  padding: .25rem;
   color: white;
 }
 #card_gutter{

@@ -1,8 +1,8 @@
 <template>
-<div>
+<v-layout column>
    <farm-header></farm-header>
    <farm-content></farm-content>
-</div>
+</v-layout>
 </template>
 
 <script>
