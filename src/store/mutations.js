@@ -55,7 +55,6 @@ export const nonghwalMutations = {
     console.log('mainStart!')
   },
   mainSuccess (state, payload) {
-    // state.home = payload
     state.home.ads = payload.ads
     state.home.popularList = payload.populNh
     state.home.newList = payload.newNh
@@ -211,7 +210,10 @@ export const nonghwalMutations = {
     console.log(state.themeData)
   },
   getSearchResultSuccess (state, payload) {
-    state.searchResult = payload
+    state.searchResult = payload.data
     console.log(state.searchResult)
+  },
+  getFarmInfoSuccess (state, payload) {
+    state.farmInfo = payload
   }
 }

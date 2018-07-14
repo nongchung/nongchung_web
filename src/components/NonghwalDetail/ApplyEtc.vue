@@ -59,7 +59,7 @@
         </v-avatar>{{getNonghwalDetail.farmerInfo.name}}
         </v-flex>
         <v-flex mt-2><v-icon class="pr-2 pt-1">more_horiz</v-icon>{{getNonghwalDetail.farmerInfo.comment}}</v-flex>
-        <v-flex><v-btn>농장 프로필 보기</v-btn></v-flex>
+        <v-flex><v-btn @click="goNongbooDetail(getNonghwalDetail.farmerInfo.farmIdx)">농장 프로필 보기</v-btn></v-flex>
       </v-layout>
     </v-flex>
     <!-- 참석대원 -->
@@ -202,6 +202,9 @@ export default {
     toggle: function (index) {
       this.selectedDate = this.getallStartDateList[0][index]
       // return this.getallStartDateList[0][index]
+    },
+    goNongbooDetail: function (idx) {
+      this.$router.push({name: 'FarmInfo', params: {idx: idx}})
     }
     // ,
     // async changeP (index) {
@@ -213,6 +216,7 @@ export default {
   created () {
     this.setDate()
     console.log(this.getisBooked)
+    console.log(this.getNonghwalDetail.friendsInfo)
   }
 
 }
