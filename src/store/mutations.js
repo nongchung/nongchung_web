@@ -117,11 +117,11 @@ export const nonghwalMutations = {
     console.log('addnonghwalBookmarkSuccess')
   },
   deletenonghwalBookmarkStart (state) {
-    console.log('addnonghwalBookmarkStart')
+    console.log('deletenonghwalBookmarkStart')
   },
   deletenonghwalBookmarkSuccess (state, payload) {
     state.nhDetail.nhInfo.isBooked = 0
-    console.log('addnonghwalBookmarkSuccess')
+    console.log('deletenonghwalBookmarkSuccess')
   },
   userPersonalInfoStart (state) {
     console.log('userPersonalInfoStart!')

@@ -66,7 +66,7 @@ export default {
   methods: {
     getColorPeriod (item) {
       if (item.period === '1박2일') {
-        return 'lightgreen'
+        return '#025F76'
       } else if (item.period === '2박3일') {
         return 'palevioletred'
       } else if (item.period === '당일치기') {

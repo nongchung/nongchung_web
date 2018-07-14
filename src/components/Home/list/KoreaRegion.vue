@@ -81,7 +81,7 @@
          <text id="제주" class="cls-10" transform="translate(-3407.952 16076.881)"><tspan x="0" y="0">제주</tspan></text>
 
     </g>
-    <g id="6" @click="clickRegion($event)">
+    <g id="6" @click="clickRegion($event)" >
     <path id="ulsan" data-name="패스 4913" class="cls-1" d="M207.546,170.771s-22.241-1.922-35.146-5.217-12.081-1.1-12.081-1.1-4.119,1.373,0,10.434-13.454,24.437-13.454,24.437-5.492,3.295,1.1,5.766c0,0,9.336,3.295,13.454,10.983,0,0,7.139,3.295,9.61,8.787a15.787,15.787,0,0,0,12.081,7.963s12.356,0,12.631-16.749S202.6,204,202.6,204,222.922,178.46,207.546,170.771Z" transform="translate(-3216.647 15597.925)"/>
         <text id="울산" class="cls-9" transform="translate(-3052.66 15794.717)"><tspan x="0" y="0">울산</tspan></text>
 
@@ -107,14 +107,14 @@ export default {
 .korea_map{
   width: 25vw;
 }
-path{
+path, text{
   cursor: pointer;
 }
 text{
   font-weight: 900;
 }
 
-#kyungnam:hover{
+#kyungnam:hover,{
   fill:#6CA85E;
 }
 #busan:hover{
@@ -162,7 +162,7 @@ text{
 #jeju:hover{
   fill:#F47E20;
 }
-#ulsan:hover{
+#ulsan:hover {
   fill:#35B161;
 }
 .cls-1, .cls-2 {

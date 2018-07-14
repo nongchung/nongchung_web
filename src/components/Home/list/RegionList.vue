@@ -4,9 +4,9 @@
   <v-layout column mt-4>
     <v-flex style="display:flex;flex-direction:row;">
     <v-flex style="flex-grow:5;font-size:3.5rem; font-weight:900;display:flex;flex-direction:column;">
-      <v-flex>지역별 <br>원하는 농활을<br> 찾아봐요!</v-flex>
+      <v-flex pl-4>지역별 <br>원하는 농활을<br> 찾아봐요!</v-flex>
       <!-- 사람이미지 -->
-      <v-flex text-xs-right pr-5><img :src="manImageSrc" style="height:20vw;"></v-flex>
+      <v-flex text-xs-right pr-5><img :src="manImageSrc" width="40%"></v-flex>
       </v-flex>
     <v-flex style="flex-grow:1;" >
     <korea-region v-on:idOfRegion="getRegionId"></korea-region>
@@ -105,7 +105,7 @@ export default {
     },
     getColorPeriod (item) {
       if (item.period === '1박 2일') {
-        return '#2CCBB1'
+        return '#025F76'
       } else if (item.period === '2박 3일') {
         return '#3470FF'
       } else if (item.period === '당일 치기') {

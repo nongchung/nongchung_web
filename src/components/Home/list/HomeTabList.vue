@@ -2,7 +2,7 @@
   <div>
     <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="primary" height="60vh" id="home_tab">
       <v-flex sm1 md2 lg2 xl2></v-flex>
-      <v-tab :ripple="false" v-for="i in 4" :key="i" :href="`#tab-${i}`">
+      <v-tab :ripple="false" v-for="i in 4" :key="i" :href="`#tab-${i}`" >
         <span style="font-size:1.1rem; font-weight:900;">{{tabname[i-1]}}</span>
       </v-tab>
     </v-tabs>
@@ -45,6 +45,8 @@ export default {
     AllList,
     RegionList,
     ThemeList
+  },
+  computed: {
   }
 }
 </script>
@@ -55,8 +57,7 @@ export default {
   border-bottom-color: rgba(0,0,0,.08);
   /* box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12) !important; */
 }
-.plaese{
-  color: cyan !important;
-  font-weight: 700;
+#tabtab:active{
+  color: #3470FF;
 }
 </style>

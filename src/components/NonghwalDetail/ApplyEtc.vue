@@ -67,14 +67,20 @@
       참석 인원
       <v-layout py-3 px-2 row style="background: white;">
         <!-- v-for 삽입 -->
-        <v-flex mx-2 style="flex: none !important;" v-for="(item, t) in this.getNonghwalDetail.friendsInfo" :key="t">
+        <v-flex mx-2 style="flex: none !important;" v-for="(item, t) in getNonghwalDetail.friendsInfo" :key="t">
           <v-avatar
           size="3rem"
           color="grey lighten-4"
         >
-          <img :src="item.img" alt="avatar">
+          <img :src="item.img" v-if="getNonghwalDetail.friendsInfo.length<4" alt="avatar">
+          <img :src="item.img" v-if="getNonghwalDetail.friendsInfo.length>=4&&t<4" alt="avatar">
+          <v-flex v-if="getNonghwalDetail.friendsInfo.length>=4">
+            {{getNonghwalDetail.friendsInfo.length-4}}
+          </v-flex>
+
         </v-avatar>
         </v-flex>
+
       </v-layout>
     </v-flex>
   </v-layout>
@@ -155,7 +161,9 @@ export default {
     },
     clickBookmarkBtn: function () {
       if (this.isAuthenticated) {
-        if (this.getisBooked === 0) { this.$store.dispatch('addnonghwalBookmark', this.nhIdx) } else this.$store.dispatch('deletenonghwalBookmark', this.nhIdx)
+        if (this.getisBooked === 0) {
+          this.$store.dispatch('addnonghwalBookmark', this.nhIdx)
+        } else this.$store.dispatch('deletenonghwalBookmark', this.nhIdx)
       } else {
         alert('로그인기기')
       }

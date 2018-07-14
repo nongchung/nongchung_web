@@ -5,19 +5,20 @@
                 <img src="../assets/logo_ex.png" height="30px" style="margin-top: 10px;">농활청춘
       </router-link> -->
         <router-link to="/" tag="a" >
-                <img src="../assets/logo_ex.png" height="35px" style="margin-top: 10px;">
-      농활청춘
+        <v-layout style="padding-top:1rem;">
+      <v-flex style="padding-top:.5rem;"><img src="../../static/logo@2x.png" height="40vh"></v-flex>
+      <v-flex ml-2 style="padding-top:.2rem;">농활청춘</v-flex></v-layout>
       </router-link>
       </v-toolbar-title>
 
       <!-- <v-toolbar-items slot="extension"><search-condition></search-condition></v-toolbar-items> -->
       <v-layout class="hidden-xs-only">
         <v-spacer></v-spacer>
-          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="/about" color="grey lighten-1" active-class="black" style="padding-left: 20px !important;">
-            농활청춘소개
-          </v-btn>
           <v-btn top :ripple="false" flat class="toolbar_list" color="grey lighten-1" active-class="black" router to="/search">
             <v-icon>search</v-icon>
+          </v-btn>
+          <v-btn top :ripple="false" flat class="toolbar_list" exact router to="/about" color="grey lighten-1" active-class="black" style="padding-left: 20px !important;">
+            농활청춘소개
           </v-btn>
           <v-btn top :ripple="false" flat class="toolbar_list" exact router to="/login" color="grey lighten-1" active-class="black"
           v-if="!isAuthenticated">
@@ -85,7 +86,7 @@ export default {
 <style scoped>
  #toolbar_title{
       font-weight: 900;
-      font-size: 2.3rem;
+      font-size: 3rem;
       /* margin-top: 9px; */
       overflow: visible;
     }
@@ -111,7 +112,7 @@ export default {
           }
     a{
       text-decoration: none;
-      color:darkblue;
+      color:black;
     }
     /* .v-text-field.v-text-field--solo .v-input__control{
       min-height: 30px !important;

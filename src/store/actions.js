@@ -276,6 +276,7 @@ export const nonghwalActions = {
     axios.get(`${BASEURL}/home/detail/nh?idx=${payload}`)
       .then(res => {
         console.log(res.data.message)
+        console.log(res.data)
         commit('nonghwalDetailSuccess', res.data)
       }).catch(err => {
         console.log('ERROR! :' + err)

@@ -1,33 +1,36 @@
 <template>
-   <div class="header">
-     <v-spacer></v-spacer>
-     <v-flex xs12>
-        <v-card>
-       <v-layout row>
-          <v-layout>
-          <v-card-text style="margin-left:10%">
-            <p class="content" style="margin-top:20px; font-size:30px"><strong>{{userInfo.name}}</strong>님</p>
-            <p class="content" style="font-size:25px">
+   <v-layout row justify-center>
+     <!-- <v-flex xs12 sm11 md10 lg9 xl8> -->
+     <v-layout column>
+     <!-- <v-flex> -->
+        <!-- <v-card> -->
+       <v-layout row  justify-center style="background:white;">
+         <v-flex xs12 sm11 md10 lg9 xl8 mt-4 style="display:flex;justify-content:space-between;padding:0 4vw;">
+          <v-flex style="flex: 0 0 auto;">
+          <v-card-text style="padding:0;">
+            <p style="margin-top:20px; font-size:30px"><strong>{{userInfo.name}}</strong>님</p>
+            <p style="font-size:25px">
               <strong>총 <span style="color:#FDC948">{{getTotalHistory.tcount}} 건</span> <span style="color:#3470FF">{{getTotalHistory.ttime}}시간</span>의 활동을</strong> 농활청춘과 함께했어요.
             </p>
-              <v-btn outline class="content" @click="editMyInfo">프로필 편집</v-btn>
+              <v-btn outline @click="editMyInfo">프로필 편집</v-btn>
               </v-card-text>
-          </v-layout>
-          <v-layout xs2>
-              <v-avatar style="margin-left:40%"
+          </v-flex>
+          <v-flex style="flex: 0 0 auto;">
+              <v-avatar
                   size="104px">
                 <img :src="userInfo.img" alt="avatar" style="margin-top:135px">
               </v-avatar>
-          </v-layout>
+          </v-flex>
+          </v-flex>
        </v-layout>
-        </v-card>
+        <!-- </v-card> -->
          <v-tabs slot="extension" v-model="tabnumber" color="white" slider-color="primary" id="home_tab">
-      <v-flex sm1 md1 lg2 xl2></v-flex>
+      <v-flex sm1 md2 lg2 xl2></v-flex>
       <v-tab :ripple="false" v-for="i in 3" :key="i" :href="`#tab-${i}`">
-        <span style="font-size:1.2rem; font-family:san-serif; font-weight:700;">{{tabname[i-1]}}</span>
+        <span style="font-size:1.2rem;font-weight:800;">{{tabname[i-1]}}</span>
       </v-tab>
     </v-tabs>
-      </v-flex>
+      <!-- </v-flex> -->
       <v-tabs-items v-model="tabnumber">
       <v-tab-item v-for="i in 3" :id="`tab-${i}`" :key="i" color="white">
         <v-layout column>
@@ -37,7 +40,9 @@
         </v-layout>
       </v-tab-item>
     </v-tabs-items>
-   </div>
+    </v-layout>
+    <!-- </v-flex> -->
+   </v-layout>
 </template>
 
 <script>
@@ -86,9 +91,6 @@ export default {
 </script>
 
 <style scope>
-.header {
-    width: 100%;
-  }
   .content{
     margin-left: 20%;
   }

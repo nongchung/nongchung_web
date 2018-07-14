@@ -1,7 +1,6 @@
 <template>
   <v-app>
-    <navigation-bar v-on:searchbarClick="searchbarClickEvent"></navigation-bar>
-        <hr v-show="searchcondition" style="border-bottom:.3px solid #dbd9d9;">
+    <navigation-bar></navigation-bar>
     <v-content>
       <router-view/>
     </v-content>
@@ -19,13 +18,7 @@ export default {
     FooterBar
   },
   data () {
-    return { searchcondition: false }
-  },
-  methods: {
-    searchbarClickEvent: function () {
-      this.searchcondition = true
-      console.log(this.searchcondition)
-    }
+    return { }
   }
 }
 </script>

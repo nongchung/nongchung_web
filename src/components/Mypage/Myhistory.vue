@@ -5,9 +5,9 @@
         <v-layout row wrap>
           <!-- 농활카드하나씩 -->
           <v-flex tag="a" v-for="(item,index) in getMyHistory" :key="index" xs6 sm4 md4 lg4 xl4 id="card_gutter">
-            <v-card flat height="25rem">
+            <v-card flat height="23rem" style="outline: .2px solid #e4e4e4;">
               <!-- 농활대표사진 -->
-              <v-card-media :src="item.img" height="50%">
+              <v-card-media :src="item.img" height="57%">
                 <v-spacer></v-spacer>
                 <span class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}</span>
               </v-card-media>
@@ -59,7 +59,7 @@ export default {
   methods: {
     getColorPeriod (item) {
       if (item.period === '1박 2일') {
-        return '#2CCBB1'
+        return '#025F76'
       } else if (item.period === '2박 3일') {
         return '#3470FF'
       } else if (item.period === '당일 치기') {
@@ -99,6 +99,6 @@ export default {
   color: white;
 }
 #card_gutter{
-  padding: 1.8vw !important;
+  padding: 1.2vw !important;
 }
 </style>

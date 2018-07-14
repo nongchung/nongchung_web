@@ -2,7 +2,7 @@
   <v-layout column>
     <!-- 농활이미지 -->
     <v-flex style="height:20rem; width:100%; background:white;">
-      <img id="nhdetail_img" :src="nonghwalDetail.image[0]">
+      <img id="nhdetail_img" :src="nonghwalDetail.image[0]" width="100%">
     </v-flex>
     <!-- 주의사항 -->
     <v-flex my-4 pa-3 style="background:#bcbcbc; font-size:.8rem; border-radius: 15px;">

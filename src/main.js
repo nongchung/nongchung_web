@@ -12,6 +12,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import starRate from 'vue-star-rating'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import '@mdi/font/css/materialdesignicons.css'
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -40,6 +41,7 @@ Vue.use(Vuetify, {
     error: '#F25620' // 주황(빨강)
   }
 })
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
