@@ -4,7 +4,7 @@
       <v-container fluid style="margin-top: 0vw;">
         <v-layout row wrap>
           <!-- 농활카드하나씩 -->
-          <v-flex tag="a" v-for="(item,index) in myAcitivityLog" :key="index" xs6 sm4 md4 lg4 xl4 id="card_gutter" @click="goNonghwalDetail(item.idx)">
+          <v-flex tag="a" v-for="(item,index) in myAcitivityLog" :key="index" xs6 sm4 md4 lg4 xl4 id="card_gutter" @click="goNonghwalDetail(item.nhidx)">
             <v-card flat height="23rem">
               <!-- 농활대표사진 -->
               <v-card-media :src="item.img" height="50%">
@@ -24,7 +24,7 @@
                   </v-flex>
                   <v-flex style="display:flex;">
                     <v-flex class="px-0">{{getPeriod(item)}}</v-flex>
-                   <v-flex ml-2 style="margin-top:-1rem;"><v-btn small outline color="primary" v-if="item.state===0 || item.state===1" @click="unApply(item.idx, item.nhIdx)">신청취소</v-btn></v-flex>
+                   <v-flex ml-2 style="margin-top:-1rem;"><v-btn small outline color="primary" v-if="item.state===0 || item.state===1" @click="unApply(item.idx, item.nhidx)">신청취소</v-btn></v-flex>
                   </v-flex>
                 </v-layout>
               </v-card-title>
@@ -82,6 +82,8 @@ export default {
       this.$router.push({name: 'Detail', params: { idx: idx }})
     },
     unApply (idx, nhIdx) {
+      console.log(idx, nhIdx)
+
       this.$store.dispatch('nonghwalCancel', {nhIdx: nhIdx, schIdx: idx})
     }
   }
