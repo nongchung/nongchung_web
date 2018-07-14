@@ -52,6 +52,9 @@ export default {
       } else if (item.period === '당일치기') {
         return 'lightblue'
       } else { return 'yellow' }
+    },
+    goNonghwalDetail (idx) {
+      this.$router.push({name: 'Detail', params: { idx: idx }})
     }
   }
 }

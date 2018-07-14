@@ -101,7 +101,7 @@ export default {
       start: '1950-01-01',
       end: '2500-01-01',
       scontent: '',
-      person: 1,
+      person: '',
       dpkr16: {
         value: '',
         datePickerId: 'datePickerId',
@@ -203,7 +203,7 @@ export default {
     },
     personClose: function () {
       this.menu = false
-      this.$emit('getCondition', this.sendCondition())
+    //   this.$emit('getCondition', this.sendCondition())
     },
     sendCondition: function () {
       console.log(this.transfer)
@@ -216,7 +216,7 @@ export default {
     regionsClose: function () {
       this.menu2 = false
       // 에밋
-      this.$emit('getCondition', this.sendCondition())
+    //   this.$emit('getCondition', this.sendCondition())
     },
     parsingDate () {
       if (this.dpkr16.value !== '') {
