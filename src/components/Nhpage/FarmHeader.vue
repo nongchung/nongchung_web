@@ -14,8 +14,8 @@
               <!-- <v-btn outline class="content" @click="editMyInfo">프로필 편집</v-btn> -->
               </v-card-text>
           </v-layout>
-          <v-layout xs2>
-              <v-avatar style="margin-left:40%"
+          <v-layout xs2 style="margin-left:20%">
+              <v-avatar style="margin-left:20%"
                   size="104px">
                 <img :src="farmInfo.nhInfo[0].farmImg" alt="avatar" style="margin-top:135px">
               </v-avatar>

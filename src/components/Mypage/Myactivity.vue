@@ -32,7 +32,7 @@
                 </v-layout>
               </v-card-title>
               <v-flex style="margin-left:145px" >
-                <v-btn outline color="primary" v-if="item.state===0 || item.state===1" @click="writeReview(item.idx, index)">신청취소</v-btn>
+                <v-btn outline color="primary" v-if="item.state===0 || item.state===1" @click="unApply(item.idx, item.nhIdx)">신청취소</v-btn>
                 </v-flex>
               <v-btn icon v-if="!isAuthenticated">
                   <v-icon>favorite_border</v-icon>
@@ -91,6 +91,9 @@ export default {
     },
     goNonghwalDetail (idx) {
       this.$router.push({name: 'Detail', params: { idx: idx }})
+    },
+    unApply (idx, nhIdx) {
+      this.$store.dispatch('nonghwalCancel', {nhIdx: nhIdx, schIdx: idx})
     }
   }
 }

@@ -113,7 +113,7 @@ export default {
 
 @media (min-width:961px) and (max-width:1260px){
   #right_line{
-    max-width: 30vw !important;
+    /* max-width: 30vw !important; */
     /* -webkit-box-flex: unset !important; */
   }
 }
@@ -125,8 +125,8 @@ export default {
   }
 @media (min-width:1261px) and (max-width:1960px){
   #right_line{
-    max-width: 20vw !important;
-    width: 20vw !important;
+    /* max-width: 20vw !important; */
+    width: 30vw !important;
     /* -webkit-box-flex: unset !important; */
   }
   }

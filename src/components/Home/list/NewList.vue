@@ -28,7 +28,7 @@
               <!-- 농활정보 -->
               <v-card-title primary-title class="pb-0 pt-3" style="width:100%; padding-top:1px; padding-bottom:5px;" >
                 <v-layout column>
-                  <v-flex class="card_title">{{item.name}}</v-flex>
+                  <div class="card_title" style="text-overflow: ellipsis;">{{item.name}}</div>
                   <v-flex pt-1>{{item.addr}}</v-flex>
                   <v-flex mt-4>
                     <span class="card_detail" style="font-size:1.2rem; font-weight:900;">{{item.price}}원</span>
