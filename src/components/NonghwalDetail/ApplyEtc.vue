@@ -41,7 +41,7 @@
         </v-flex>
         <v-flex pa-1><v-btn large block color="primary" style="font-weight:900" @click="clickApplyBtn">{{applycancel? '신청하기':'취소하기'}}</v-btn></v-flex>
         <v-flex px-1 d-flex>
-          <v-btn block flat large outline @click="clickBookmarkBtn" color="detailBtn" class="mr-2"><v-icon left>favorite</v-icon>30</v-btn>
+          <v-btn block flat large outline @click="clickBookmarkBtn" :color="isBookedColor" class="mr-2"><v-icon>favorite</v-icon></v-btn>
           <v-btn block flat large outline color="detailBtn">공유하기</v-btn>
         </v-flex>
       </v-layout>
@@ -59,7 +59,7 @@
         </v-avatar>{{getNonghwalDetail.farmerInfo.name}}
         </v-flex>
         <v-flex mt-2><v-icon class="pr-2 pt-1">more_horiz</v-icon>{{getNonghwalDetail.farmerInfo.comment}}</v-flex>
-        <v-flex><v-btn outline color="primary" @click="goNongbooDetail(getNonghwalDetail.farmerInfo.farmIdx)">농장 프로필 보기</v-btn></v-flex>
+        <v-flex text-xs-center mt-2><v-btn outline color="primary" @click="goNongbooDetail(getNonghwalDetail.farmerInfo.farmIdx)">농장 프로필 보기</v-btn></v-flex>
       </v-layout>
     </v-flex>
     <!-- 참석대원 -->
@@ -114,7 +114,7 @@ export default {
       return this.getNonghwalDetail.nhInfo.isBooked
     },
     isBookedColor: function () {
-      if (this.getisBooked === 1) { return 'primary' } else { return 'black' }
+      if (this.getisBooked === 1) { return 'error' } else { return 'detailBtn' }
     },
     getallStartDateList: function () {
       let allStartDateList = []
