@@ -1,5 +1,5 @@
 <template>
-<v-layout row justify-center>
+<v-layout row justify-center style="background-color:white">
   <v-flex md10 lg8 xl8>
   <v-layout column mt-4>
     <v-flex style="display:flex;flex-direction:row;">
