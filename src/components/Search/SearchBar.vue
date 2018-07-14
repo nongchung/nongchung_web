@@ -6,6 +6,7 @@
       <v-layout row py-3>
           <span>
           <v-text-field
+            style="margin-top:8px"
             label="Search Keyword"
             v-model="keyword"
             key

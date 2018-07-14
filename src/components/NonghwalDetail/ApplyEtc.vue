@@ -3,12 +3,12 @@
     <!-- 농활정보 및 신청, 추가기능 -->
     <v-flex px-4 py-2 style="background: white;">
       <v-layout column>
-        <v-flex pa-2 style="font-size:1.7rem;">{{getNonghwalDetail.nhInfo.price}}원</v-flex>
+        <v-flex pa-2 style="font-size:1.7rem; font-weight:900"><span style="color:#326CF7">{{getNonghwalDetail.nhInfo.price}}</span>원</v-flex>
         <v-flex pa-1 d-flex>
           <v-icon class="mr-3" style="flex: none !important;">assignment</v-icon>
           <v-menu offset-y max-width="auto">
           <v-flex slot="activator" style="border:1px solid black; padding:.5rem;width:100%;display:flex;justify-content:space-between;" class="pl-3">
-            <input id="vinput" v-model="selectedDate" placeholder="날짜선택">
+            <input id="vinput" :color="detailBtn" v-model="selectedDate" placeholder="날짜선택">
           <v-icon text-xs-right>arrow_drop_down</v-icon></v-flex>
           <v-list>
             <div v-for="(item, index) in getNonghwalDetail.allStartDate" :key="index">
@@ -34,22 +34,22 @@
     </v-menu>
           <!-- <v-select :items="getallStartDateList[0]" v-model="selectedDate" label="날짜선택" solo flat dense style="border: 1px solid grey; width: 80%; height:2.7rem; min-height: initial; font-family:sans-serif !important; flex: 0 0 auto !important;"></v-select> -->
         </v-flex>
-        <v-flex pa-1><v-icon class="mr-3">place</v-icon>{{getNonghwalDetail.nhInfo.addr}}</v-flex>
-        <v-flex pa-1><v-icon class="mr-3">person</v-icon>인원은 어케할까나</v-flex>
+        <v-flex pa-1><v-icon class="mr-3" >place</v-icon>{{getNonghwalDetail.nhInfo.addr}}</v-flex>
+        <v-flex pa-1><v-icon class="mr-3">person</v-icon>최소인원 5명</v-flex>
         <v-flex pa-1><v-icon class="mr-3">access_time</v-icon>
         {{getallStartDateList[0][getallStartDateList[0].length-1]}}
         </v-flex>
-        <v-flex pa-1><v-btn large block color="primary" @click="clickApplyBtn">{{applycancel? '신청하기':'취소하기'}}</v-btn></v-flex>
+        <v-flex pa-1><v-btn large block color="primary" style="font-weight:900" @click="clickApplyBtn">{{applycancel? '신청하기':'취소하기'}}</v-btn></v-flex>
         <v-flex px-1 d-flex>
-          <v-btn block flat large outline @click="clickBookmarkBtn" :color="isBookedColor" class="mr-2"><v-icon left>favorite</v-icon>30</v-btn>
-          <v-btn block flat large outline>공유하기</v-btn>
+          <v-btn block flat large outline @click="clickBookmarkBtn" :color="isBookedColor" class="mr-2"><v-icon>favorite</v-icon></v-btn>
+          <v-btn block flat large outline color="detailBtn">공유하기</v-btn>
         </v-flex>
       </v-layout>
     </v-flex>
     <!-- 농부정보 -->
     <v-flex my-3>
       농부 정보
-      <v-layout pa-3 column style="background: white;">
+      <v-layout mt-2 pa-3 column style="background: white;" justify-center>
         <v-flex>
           <v-avatar class="mr-2"
           size="4rem"
@@ -59,7 +59,7 @@
         </v-avatar>{{getNonghwalDetail.farmerInfo.name}}
         </v-flex>
         <v-flex mt-2><v-icon class="pr-2 pt-1">more_horiz</v-icon>{{getNonghwalDetail.farmerInfo.comment}}</v-flex>
-        <v-flex><v-btn @click="goNongbooDetail(getNonghwalDetail.farmerInfo.farmIdx)">농장 프로필 보기</v-btn></v-flex>
+        <v-flex text-xs-center mt-2><v-btn outline color="primary" @click="goNongbooDetail(getNonghwalDetail.farmerInfo.farmIdx)">농장 프로필 보기</v-btn></v-flex>
       </v-layout>
     </v-flex>
     <!-- 참석대원 -->
@@ -68,14 +68,24 @@
       <v-layout py-3 px-2 row style="background: white;">
         <!-- v-for 삽입 -->
         <v-flex mx-2 style="flex: none !important;" v-for="(item, t) in getNonghwalDetail.friendsInfo" :key="t">
+          <v-avatar v-if="t<3"
+          size="3rem"
+          color="grey lighten-4"
+        >
+          <img :src="item.img" alt="avatar">
+
+        </v-avatar>
+        </v-flex>
+        <v-flex mx-2 style="flex: none !important;">
           <v-avatar
           size="3rem"
           color="grey lighten-4"
         >
-          <img :src="item.img" v-if="getNonghwalDetail.friendsInfo.length<4" alt="avatar">
-          <img :src="item.img" v-if="getNonghwalDetail.friendsInfo.length>=4&&t<4" alt="avatar">
-          <v-flex v-if="getNonghwalDetail.friendsInfo.length>=4">
-            {{getNonghwalDetail.friendsInfo.length-4}}
+        <v-flex v-if="getNonghwalDetail.friendsInfo.length>3">
+             + {{getNonghwalDetail.friendsInfo.length-3}}명
+          </v-flex>
+        <v-flex v-if="getNonghwalDetail.friendsInfo.length<=3">
+             {{getNonghwalDetail.friendsInfo.length}}명
           </v-flex>
         </v-avatar>
         </v-flex>
@@ -104,7 +114,7 @@ export default {
       return this.getNonghwalDetail.nhInfo.isBooked
     },
     isBookedColor: function () {
-      if (this.getisBooked === 1) { return 'primary' } else { return 'black' }
+      if (this.getisBooked === 1) { return 'error' } else { return 'detailBtn' }
     },
     getallStartDateList: function () {
       let allStartDateList = []

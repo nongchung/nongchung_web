@@ -4,8 +4,8 @@
       <v-flex lg12 text-sm-center>
         <div class="bgBlur" style="background-size:100%; height:20vh; padding-top:5.5vh;" v-bind:style="{ backgroundImage: 'url(' + getNonghwalDetail.image[0] + ')' }">
           <div>
-          <div style="font-size:1.7rem; font-weight:700;color:white;text-shadow: 0px 0 #000, 0 1px #000, 1px 0 #000, 0 0px #000;">{{getNonghwalDetail.nhInfo.description}}</div>
-          <div style="font-size:2.7rem; font-weight:900;color:white;text-shadow: 0px 0 #000, 0 1px #000, 1px 0 #000, 0 0px #000;">{{getNonghwalDetail.nhInfo.name}}</div>
+          <div style="font-size:1.0rem; font-weight:700;color:white;text-shadow: 0px 0 #000, 0 1px #000, 1px 0 #000, 0 0px #000;">{{getNonghwalDetail.nhInfo.description}}</div>
+          <div style="font-size:2.0rem; font-weight:900;color:white;text-shadow: 0px 0 #000, 0 1px #000, 1px 0 #000, 0 0px #000;">{{getNonghwalDetail.nhInfo.name}}</div>
           </div>
         </div>
       </v-flex>
@@ -113,7 +113,7 @@ export default {
 
 @media (min-width:961px) and (max-width:1260px){
   #right_line{
-    max-width: 30vw !important;
+    /* max-width: 30vw !important; */
     /* -webkit-box-flex: unset !important; */
   }
 }
@@ -125,8 +125,8 @@ export default {
   }
 @media (min-width:1261px) and (max-width:1960px){
   #right_line{
-    max-width: 20vw !important;
-    width: 20vw !important;
+    /* max-width: 20vw !important; */
+    width: 30vw !important;
     /* -webkit-box-flex: unset !important; */
   }
   }
