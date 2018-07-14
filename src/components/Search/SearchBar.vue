@@ -12,7 +12,7 @@
           >
           </v-text-field>
         </span>
-            <v-icon @click="search()">search</v-icon>
+            <!-- <v-icon @click="search()">search</v-icon> -->
         <span>
           <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" transition="slide-y-transition" bottom>
             <v-btn slot="activator" outline :color="this.pushPerson" depressed @click="clickPerson()">
@@ -82,6 +82,7 @@
             <i class="fas fa-times-circle"></i>
           </a>
         </span>
+            <v-icon @click="search()">search</v-icon>
         <!-- <span style="padding:1rem 1rem;">적용</span> -->
         <v-spacer></v-spacer>
       </v-layout>
@@ -114,7 +115,7 @@ export default {
       menu2: false,
       button3: '지역',
       region: '',
-      regionSelected: [17],
+      regionSelected: [],
       regions:
        [{name: '서울특별시', value: 0},
          {name: '부산광역시', value: 1},
@@ -196,12 +197,21 @@ export default {
     }
   },
   methods: {
+    search () {
+      console.log(this.sendCondition())
+      this.$store.dispatch('getSearchResult', this.sendCondition())
+    },
     personClose: function () {
       this.menu = false
       this.$emit('getCondition', this.sendCondition())
     },
     sendCondition: function () {
-      return {start: this.start, end: this.end, person: this.person, region: this.transfer}
+      console.log(this.transfer)
+      if (this.transfer === []) {
+        return {start: this.start, end: this.end, person: this.person, region: [17]}
+      } else {
+        return {scontent: this.keyword, start: this.start, end: this.end, person: this.person, region: this.transfer}
+      }
     },
     regionsClose: function () {
       this.menu2 = false

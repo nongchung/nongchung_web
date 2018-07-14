@@ -72,7 +72,12 @@
           size="3rem"
           color="grey lighten-4"
         >
-          <img :src="item.img" alt="avatar">
+          <img :src="item.img" v-if="this.getNonghwalDetail.friendsInfo.length<4" alt="avatar">
+          <img :src="item.img" v-if="this.getNonghwalDetail.friendsInfo.length>=4&&t<4" alt="avatar">
+          <v-flex v-if="this.getNonghwalDetail.friendsInfo.length>=4">
+            {{this.getNonghwalDetail.friendsInfo.length-4}}
+          </v-flex>
+
         </v-avatar>
         </v-flex>
       </v-layout>
@@ -208,6 +213,7 @@ export default {
   created () {
     this.setDate()
     console.log(this.getisBooked)
+    console.log(this.getNonghwalDetail.friendsInfo.length)
   }
 
 }

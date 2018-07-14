@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -30,14 +30,14 @@ export default {
         {img: '../../../../static/ads4.png', title: '님도보고 귤도따고! 같이 귤따러 갈래?'}
       ]
     }
-  },
-  computed: {
-    ...mapGetters({
-      ads: 'getAds'
-    })
-  },
-  created () {
   }
+  // computed: {
+  //   ...mapGetters({
+  //     ads: 'getAds'
+  //   })
+  // },
+  // created () {
+  // }
 }
 </script>
 

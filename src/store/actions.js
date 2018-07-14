@@ -502,13 +502,14 @@ export const nonghwalActions = {
       console.log(err)
     })
   },
-  getSearchResult ({commit}, {keyword, startDate, endDate, person, regionSelected}) {
-    console.log(regionSelected)
+  getSearchResult ({commit}, payload) {
+  // getSearchResult ({commit}, {keyword, startDate, endDate, person, regionSelected}) {
+    console.log(payload)
 
-    console.log(`${BASEURL}/search?end=${endDate}&start=${startDate}&person=${person}&scontent=${keyword}&area=${regionSelected}`)
+    console.log(`${BASEURL}/search?end=${payload.end}&start=${payload.start}&person=${payload.person}&scontent=${payload.scontent}&area=${payload.region}`)
 
     // axios.get(`${BASEURL}/search?end=&start=&person=&scontent=&area=`).then(res => {
-    axios.get(`${BASEURL}/search?end=${endDate}&start=${startDate}&person=${person}&scontent=${keyword}&area=${regionSelected}`).then(res => {
+    axios.get(`${BASEURL}/search?end=${payload.end}&start=${payload.start}&person=${payload.person}&scontent=${payload.scontent}&area=[${payload.region}]`).then(res => {
       console.log(res.data)
       commit('getSearchResultSuccess', res.data)
     }).catch(err => {
