@@ -9,6 +9,7 @@
             style="margin-top:8px"
             label="Search Keyword"
             v-model="keyword"
+             v-on:keyup.13="search()"
             key
           >
           </v-text-field>
