@@ -49,7 +49,7 @@
                         </v-textarea>
                     </v-flex>
                     <v-flex xs12>
-                        <v-checkbox v-model="agree1" label="이용약관에 동의합니다." color="success" value="success" hide-details></v-checkbox>
+                        <v-checkbox v-model="agree1" label="이용약관에 동의합니다." color="primary" value="primary" hide-details></v-checkbox>
                     </v-flex>
                     <v-flex xs12>
                         <v-card>
@@ -75,10 +75,10 @@
                         </v-textarea>
                     </v-flex>
                     <v-flex xs12>
-                        <v-checkbox v-model="agree2" label="회원가입에 동의합니다." color="success" value="success" hide-details></v-checkbox>
+                        <v-checkbox v-model="agree2" label="회원가입에 동의합니다." color="primary" value="primary" hide-details></v-checkbox>
                     </v-flex>
                     <v-flex xs12>
-                        <v-checkbox v-model="agree3" label="전체 동의" color="success" value="success" hide-details @click="allCheck"></v-checkbox>
+                        <v-checkbox v-model="agree3" label="전체 동의" color="primary" value="primary" hide-details @click="allCheck"></v-checkbox>
                     </v-flex>
                 </v-card>
                 <v-btn color="primary" @click="checkAgree">
@@ -89,11 +89,11 @@
 
             <!-- 회원정보 입력 회원가입 두번째 페이지 -->
             <v-stepper-content step="2">
-                <v-card class="mb-5" color="lighten-1" height="680px">
+                <v-card class="mb-5" color="lighten-1">
                     <v-form ref="form" v-model="valid" lazy-validation>
                         <v-container fluid>
                             <v-layout row justify-center style="margin-left:110px">
-                                <v-flex xs2>
+                                <v-flex xs3>
                                     <v-card color="registerBtn">
                                         <v-card-text>닉네임</v-card-text>
                                     </v-card>
@@ -101,12 +101,12 @@
                                 <v-flex xs6>
                                     <v-text-field v-model="nickname" :rules="nameRules" :counter="10" label="Nickname" required></v-text-field>
                                 </v-flex>
-                                <v-flex xs3>
+                                <v-flex xs2>
                                     <v-btn @click="dupCheckNickname">중복확인</v-btn>
                                 </v-flex>
                             </v-layout>
                                 <v-layout row justify-center style="margin-left:110px">
-                                <v-flex xs2>
+                                <v-flex xs3>
                                     <v-card color="registerBtn">
                                         <v-card-text>이메일</v-card-text>
                                     </v-card>
@@ -120,7 +120,7 @@
                                 <v-flex xs2>
                                     <v-select @change="inputAddr" v-model="select" :items="items" :rules="[v => !!v || 'Item is required']" label="이메일 주소 선택" required></v-select>
                                 </v-flex>
-                                <v-flex xs3>
+                                <v-flex xs2>
                                     <v-btn @click="validateMail">중복확인</v-btn>
                                 </v-flex>
                             </v-layout>

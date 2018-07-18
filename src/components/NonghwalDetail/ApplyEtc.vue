@@ -182,6 +182,7 @@ export default {
         if (this.selectedDate !== '') { // 선택된 것이 있음
           if (this.ismyDate()) { // 내가 선택한 것임
             this.$store.dispatch('nonghwalCancel', {nhIdx: this.nhIdx, schIdx: this.searchSchIdx})
+            this.$router.push('/')
           } else {
             this.$router.push({name: 'Apply',
               params: { nhIdx: this.nhIdx,

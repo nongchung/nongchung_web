@@ -37,7 +37,7 @@
     </v-flex>
   </v-layout>
 
-  <v-layout column>
+  <!-- <v-layout column>
     <v-expansion-panel>
     <v-expansion-panel-content
       v-for="(item,i) in userquestion"
@@ -49,7 +49,7 @@
       </v-card>
     </v-expansion-panel-content>
   </v-expansion-panel>
-        </v-layout>
+        </v-layout> -->
   </v-layout>
 </template>
 

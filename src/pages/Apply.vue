@@ -154,15 +154,10 @@
            <v-flex style="margin-top: 2rem; color: black;font-weight: bold;font-size:1.5rem;">{{this.userPersonalInfo.name}}님</v-flex>
           <v-flex style="margin: 2rem 0; color: black;font-size:1rem;">조금만 기다려주세요! 곧 신나는 농활을 경험할 수 있습니다.</v-flex>
            </v-flex>
-           <v-flex>
-          <ul>
-
-            <li>문의사항은.......로 연락주세요</li>
-            <li>문의사항은.......로 연락주세요</li>
-            <li>문의사항은.......로 연락주세요</li>
-            <li>문의사항은.......로 연락주세요</li>
-
-  </ul></v-flex>
+           <v-flex style="display:flex;flex-direction:column">
+             <v-flex>전체{{nonghwalApplyResult.maxPerson}}명 중 현재 {{nonghwalApplyResult.currentPerson}}명이 신청했습니다.</v-flex>
+             <v-flex></v-flex>
+          </v-flex>
         </v-layout>
       </v-stepper-content>
     </v-stepper-items>
@@ -286,17 +281,26 @@ export default {
           console.log(err)
           if (err === 'No token') {
             alert('로그인이 필요합니다.')
+            this.$router.push('/')
           } else if (err === 'Null Value') {
             alert('농활 또는 농활스케줄 오류')
+            this.$router.push('/')
           } else if (err === 'Invalid nhIdxnd schIdx') {
             alert('유효하지 않은 농활 또는 농활스케줄입니다.')
+            this.$router.push('/')
           } else if (err === 'Invalid schIdx') {
             alert('신청불가능한 농활 스케줄입니다.')
+            this.$router.push('/')
           } else if (err === 'Duplicate To Time') {
             alert('이미 신청한 농활 스케줄과 중복됩니다.')
+            this.$router.push('/')
           } else if (err === 'Fail To Request For Application, No Available Person Number') {
             alert('여석이 없습니다. 다른 농활을 신청해주세요.')
-          } else { alert('서버에러입니다.') }
+            this.$router.push('/')
+          } else {
+            alert('서버에러입니다.')
+            this.$router.push('/')
+          }
         })
     },
     accountTransfer: function () {

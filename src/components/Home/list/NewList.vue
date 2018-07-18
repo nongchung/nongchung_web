@@ -17,7 +17,7 @@
               >
                 <v-icon>favorite</v-icon>
               </v-btn></v-flex><v-spacer></v-spacer>
-                <v-flex style="flex: 0 0 auto;margin:0;max-width:4rem;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
+                <v-flex style="flex: 0 0 auto;margin:0;max-width:4.5rem;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
                 </v-flex>
               </v-layout>
               </v-card-media>

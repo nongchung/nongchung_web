@@ -114,7 +114,7 @@ text{
   font-weight: 900;
 }
 
-#kyungnam:hover,{
+#kyungnam:hover{
   fill:#6CA85E;
 }
 #busan:hover{
