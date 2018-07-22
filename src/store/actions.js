@@ -334,18 +334,6 @@ export const nonghwalActions = {
       console.log('ERROR! :' + err)
     })
   },
-  // nonghwalApply ({ state, commit }, payload) {
-  //   console.log(payload)
-  //   commit('nonghwalApplyStart')
-  //   axios({ method: 'POST', url: 'http://13.125.216.198:3000/api/home/request', headers: { token: state.accessToken }, data: payload }).then(res => {
-  //     console.log(res.data.message)
-  //     commit('nonghwalApplySuccess', res.data)
-  //   }).catch(err => {
-  //     console.log('ERROR! :' + err.message)
-  //     console.log(err.response.data.message)
-  //     commit('nonghwalApplyFail', err.response.data.message)
-  //   })
-  // },
   nonghwalApply ({ state, commit }, payload) {
     return new Promise((resolve, reject) => {
       axios({
@@ -400,15 +388,6 @@ export const nonghwalActions = {
       alert('문의가 제출되지 않았습니다.')
     })
   },
-  // getReview ({commit}, payload) {
-  //   axios.get('http://13.125.216.198:3000/api/review?nhIdx=' + payload)
-  //     .then(res => {
-  //       console.log(res.data)
-  //       commit('getnonghwalreview', res.data)
-  //     }).catch(err => {
-  //       console.log('ERROR! :' + err.message)
-  //     })
-  // },
   getReview ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       axios.get(`${BASEURL}/review?nhIdx=${payload}`)

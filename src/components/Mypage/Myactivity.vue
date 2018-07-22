@@ -42,7 +42,7 @@ export default {
     return {
       backgroundColor: 'black',
       stateVal: [
-        '입금대기', '입금완료', '왼료', '취소', '확정'
+        '입금대기', '입금완료', '완료', '취소', '확정'
       ]
     }
   },

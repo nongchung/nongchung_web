@@ -63,6 +63,7 @@ export default {
       allDate: '',
       file: [],
       img: [],
+      rIdx: 0,
       beforeImage: 1
     }
   },
@@ -91,15 +92,12 @@ export default {
     updateReview () {
       const data = new FormData()
 
-      data.append('rIdx', this.getScheIdx)
+      data.append('rIdx', this.rIdx)
       data.append('content', this.content)
       data.append('star', this.star)
-      // console.log(this.result.data.img)
-      // if (this.beforeImage === 0) {
       for (let index = 0; index < this.file.length; index++) {
         data.append('rImages', this.file[index])
       }
-      // }
 
       this.$store.dispatch('updateReview', data)
     },
@@ -111,7 +109,6 @@ export default {
         }
       }
       this.beforeImage = 0
-      console.log(this.file)
     },
     getImage (file, index) {
       const fileReader = new FileReader()
@@ -123,11 +120,12 @@ export default {
     },
     async fetchData () {
       const result = await this.$store.dispatch('getMyReview', this.getScheIdx)
+      console.log(result)
+
       this.star = result.data.star
       this.content = result.data.content
       this.img = result.data.img
       this.rIdx = result.data.rIdx
-      console.log(this.rIdx)
     }
   }
 }
