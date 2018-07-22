@@ -21,11 +21,6 @@
                 </v-flex>
               </v-layout>
                 </v-card-media>
-              <!-- 농부사진 -->
-              <!-- <v-avatar class="mr-4" style="float:right; margin-top:-10%;" size="4rem" color="grey lighten-4">
-                <img src="http://citizen.edisha.gov.in/Content/assets/stylesheet/img/placeholder-user.png" alt="avatar">
-              </v-avatar> -->
-              <!-- 농활정보 -->
               <v-card-title primary-title class="pb-0 pt-4" style="width:100%; padding-top:1px; padding-bottom:5px;">
                 <v-layout column>
                   <v-flex class="card_title">{{item.name}}</v-flex>
@@ -79,10 +74,10 @@ export default {
     clickHeart (item) {
       if (this.isAuthenticated) {
         if (item.isBooked === 0) {
-          this.$store.dispatch('addnonghwalBookmark', item.nhIdx)
+          this.$store.dispatch('addnonghwalBookmark', item.idx)
           item.isBooked = 1
         } else {
-          this.$store.dispatch('deletenonghwalBookmark', item.nhIdx)
+          this.$store.dispatch('deletenonghwalBookmark', item.idx)
           item.isBooked = 0
         }
       }
@@ -92,9 +87,6 @@ export default {
 </script>
 
 <style scoped>
-/* .application.theme--light{
-      background: #fff !important;
-    } */
 .myLike_layout{
   padding: 15px 0;
 }
