@@ -17,8 +17,9 @@
               >
                 <v-icon>favorite</v-icon>
               </v-btn></v-flex><v-spacer></v-spacer>
-                <v-flex style="flex: 0 0 auto;margin:0;max-width:4.5rem;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
-                </v-flex>
+                <v-layout row align-end class="text-xs-left">
+                <v-flex style="flex: 0 0 auto;margin:0;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
+                </v-flex></v-layout>
               </v-layout>
                 </v-card-media>
               <!-- 농부사진 -->
@@ -28,7 +29,7 @@
               <!-- 농활정보 -->
               <v-card-title primary-title class="pb-0 pt-3" style="width:100%; padding-top:1px; padding-bottom:5px;">
                 <v-layout column>
-                  <v-flex class="card_title" style="text-overflow: ellipsis;">{{item.name}}</v-flex>
+                  <v-flex class="card_title">{{item.name}}</v-flex>
                   <v-flex pt-1>{{item.addr}}</v-flex>
                   <v-flex mt-3>
                     <span class="card_detail" style="font-size:1.2rem; font-weight:900;">{{item.price}}원</span>
@@ -112,6 +113,9 @@ export default {
 .card_title{
   font-size: 1.3rem;
   font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .card_detail{
   color:gray;

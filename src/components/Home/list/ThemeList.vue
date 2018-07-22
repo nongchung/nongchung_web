@@ -152,6 +152,9 @@ export default {
 .card_title{
   font-size: 1.3rem;
   font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .card_tip{
   height: 1.9rem;

@@ -20,7 +20,7 @@
         <v-layout row wrap>
           <!-- 농활카드하나씩 -->
           <v-flex tag="a" v-for="(item,index) in regionList" :key="index" xs6 sm4 md4 lg4 xl4 id="card_gutter" @click="goNonghwalDetail(item.idx)">
-            <v-card flat height="23rem">
+            <v-card flat height="23rem" style="outline: .2px solid #e4e4e4;">
               <!-- 농활대표사진 -->
               <v-card-media :src="item.img" height="57%">
                 <v-layout column >
@@ -32,8 +32,9 @@
               >
                 <v-icon>favorite</v-icon>
               </v-btn></v-flex><v-spacer></v-spacer>
-                <v-flex style="flex: 0 0 auto;margin:0;max-width:4rem;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
-                </v-flex>
+                <v-layout row align-end class="text-xs-left">
+                <v-flex style="flex: 0 0 auto;margin:0;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
+                </v-flex></v-layout>
               </v-layout>
                 </v-card-media>
               <!-- 농부사진 -->
@@ -44,7 +45,7 @@
               <v-card-title primary-title class="pb-0 pt-3" style="width:100%; padding-top:1px; padding-bottom:5px;">
                 <v-layout column>
                   <v-flex class="card_title">{{item.name}}</v-flex>
-                  <v-flex>{{item.addr}}</v-flex>
+                  <v-flex pt-1>{{item.addr}}</v-flex>
                   <v-flex mt-3>
                     <span class="card_detail" style="font-size:1.2rem; font-weight:900;">{{item.price}}원</span>
                     <span class="card_detail">(1박기준)</span>
@@ -147,17 +148,20 @@ export default {
 }
 .card_title{
   font-size: 1.3rem;
-  font-weight: bold;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .card_detail{
   color:gray;
 }
 .card_tip{
-  height: 1.9rem;
-  padding: .25rem;
+  height: 2rem;
+  padding: .3rem;
   color: white;
 }
 #card_gutter{
-  padding: 1.8vw !important;
+  padding: 1.2vw !important;
 }
 </style>

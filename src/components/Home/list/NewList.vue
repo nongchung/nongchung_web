@@ -8,7 +8,7 @@
             <v-card flat height="23rem" style="outline: .2px solid #e4e4e4;">
               <!-- 농활대표사진 -->
               <v-card-media :src="item.img" height="57%">
-                <v-layout column >
+                <v-layout column>
                   <v-flex text-xs-right><v-btn v-if="isAuthenticated"
                 :style="{color: item.isBooked ? '#F25620' : 'white'}"
                 icon
@@ -17,8 +17,9 @@
               >
                 <v-icon>favorite</v-icon>
               </v-btn></v-flex><v-spacer></v-spacer>
-                <v-flex style="flex: 0 0 auto;margin:0;max-width:4.5rem;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
-                </v-flex>
+              <v-layout row align-end class="text-xs-left">
+                <v-flex style="flex: 0 0 auto;margin:0;" class="card_tip" v-bind:style="{ backgroundColor: getColorPeriod(item) }">{{item.period}}
+                </v-flex></v-layout>
               </v-layout>
               </v-card-media>
               <!-- 농부사진 -->
@@ -110,6 +111,9 @@ export default {
 .card_title{
   font-size: 1.3rem;
   font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .card_detail{
   color:gray;
