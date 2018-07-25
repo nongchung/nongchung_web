@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import SearchBar from '../components/Search/SearchBar_new'
+import SearchBar from '../components/Search/SearchBar'
 import SearchResult from '../components/Search/SearchResult'
 export default {
   name: 'Search',
