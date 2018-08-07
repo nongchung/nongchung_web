@@ -29,6 +29,8 @@ Vue.component('star-rating', starRate)
 
 export const eventBus = new Vue()
 
+// Vue.prototype.$eventBus = new Vue()
+
 Vue.use(Vuetify, {
   theme: {
     primary: '#3470FF', // 파랑
@@ -54,4 +56,4 @@ new Vue({
   template: '<App/>'
 })
 
-Vue.prototype.$EventBus = new Vue()
+// Vue.prototype.$EventBus = new Vue()

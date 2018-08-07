@@ -51,6 +51,14 @@ export const nonghwalMutations = {
     router.push('/Search')
     console.log('searchSucess')
   },
+  searchLoginStart (state) {
+    console.log('searchLoginStart!')
+  },
+  searchLoginSuccess (state, payload) {
+    state.searchResult = payload
+    router.push('/Search')
+    console.log('searchLoginSucess')
+  },
   mainStart (state) {
     console.log('mainStart!')
   },

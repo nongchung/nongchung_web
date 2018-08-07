@@ -95,13 +95,7 @@
 </template>
 
 <script>
-import {
-  eventBus
-} from '../main.js'
-import {
-  mapGetters
-} from 'vuex'
-import SearchCondition from '../components/Search/SearchBar'
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -141,25 +135,7 @@ export default {
       if (isOut) {
         this.$store.dispatch('logout')
       }
-    },
-    SearchView () {
-      this.$router.push('/search')
-    },
-    noSearchView () {
-      // this.$emit('searchbarNoClick')
-      // this.
-    },
-    deliveryNB: function () {
-      // console.log(this.searchcontent)
-      // console.log(eventBus)
-      eventBus.$emit('goSearchBar', this.searchcontent)
     }
-  },
-  created () {
-    console.log(this.getPath)
-  },
-  components: {
-    SearchCondition
   }
 }
 </script>

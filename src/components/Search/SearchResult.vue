@@ -45,12 +45,18 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
+import { eventBus } from '../../main.js'
 export default {
-  name: 'SearchResult',
+  data () {
+    return {
+      search_condition: null
+    }
+  },
   computed: {
     ...mapGetters({
-      searchResult: 'getSearchResult'
+      searchResult: 'getSearchResult',
+      isAuthenticated: 'isAuthenticated'
     })
   },
   methods: {
@@ -76,7 +82,22 @@ export default {
           item.isBooked = 0
         }
       }
+    },
+    gotSearchCondition (data) {
+      console.log(data)
+      if (!this.isAuthenticated) {
+        console.log('검사안통과')
+        this.$store.dispatch('search', data)
+      } else {
+        console.log('검사통과')
+        this.$store.dispatch('searchLogin', data)
+      }
     }
+  },
+  created () {
+    eventBus.$on('sendSearchCondition', (value) => {
+      this.gotSearchCondition(value)
+    })
   }
 }
 </script>
