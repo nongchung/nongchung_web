@@ -16,7 +16,7 @@ import '@mdi/font/css/materialdesignicons.css'
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBtXiCWRiR8vE2nLF_DKv5WZDYz4glfKTI',
+    key: 'AIzaSyCEiuxi8BYgykg8nCCWr0RLnGw2Hs5bBhU',
     libraries: 'places' // necessary for places input
   }
 })
