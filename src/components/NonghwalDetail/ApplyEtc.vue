@@ -56,10 +56,12 @@
           color="grey lighten-4"
         >
           <img :src="getNonghwalDetail.farmerInfo.img" alt="avatar">
-        </v-avatar>{{getNonghwalDetail.farmerInfo.name}}
+        </v-avatar> 
+          <span class="farmerName">{{getNonghwalDetail.farmerInfo.name}} 농부</span>
         </v-flex>
-        <v-flex mt-2><v-icon class="pr-2 pt-1">more_horiz</v-icon>{{getNonghwalDetail.farmerInfo.comment}}</v-flex>
-        <v-flex text-xs-center mt-2><v-btn outline color="primary" @click="goNongbooDetail(getNonghwalDetail.farmerInfo.farmIdx)">농장 프로필 보기</v-btn></v-flex>
+        <v-flex style="max-width:330px; font-size:1.2rem;" mt-4>{{getNonghwalDetail.farmerInfo.comment}}</v-flex>
+        <!-- <v-flex mt-2><v-icon class="pr-2 pt-1">more_horiz</v-icon>{{getNonghwalDetail.farmerInfo.comment}}</v-flex> -->
+        <v-flex text-xs-center mt-2><v-btn flat color="primary" @click="goNongbooDetail(getNonghwalDetail.farmerInfo.farmIdx)">농장 프로필 보기</v-btn></v-flex>
       </v-layout>
     </v-flex>
     <!-- 참석대원 -->
@@ -339,6 +341,10 @@ export default {
 }
 .womanText {
   text-align: center;
+}
+.farmerName {
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 /* .v-text-field__details{
   height: 3px !important;
