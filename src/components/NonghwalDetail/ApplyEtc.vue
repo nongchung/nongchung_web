@@ -64,44 +64,68 @@
     </v-flex>
     <!-- 참석대원 -->
     <v-flex mb-5>
-      참석 인원
-      <v-layout py-3 px-2 row style="background: white;">
-        <!-- v-for 삽입 -->
-        <v-flex mx-2 style="flex: none !important;" v-for="(item, t) in getNonghwalDetail.friendsInfo" :key="t">
-          <v-avatar v-if="t<3"
-          size="3rem"
-          color="grey lighten-4"
-        >
-          <img :src="item.img" alt="avatar">
-
-        </v-avatar>
-        </v-flex>
-        <v-flex mx-2 style="flex: none !important;">
-          <v-avatar
-          size="3rem"
-          color="grey lighten-4"
-        >
-        <v-flex v-if="getNonghwalDetail.friendsInfo.length>3">
-             + {{getNonghwalDetail.friendsInfo.length-3}}명
+      참석 대원
+      <v-layout mt-2 py-3 px-2 row style="background: white;">
+        <v-flex>
+          <v-layout column>
+          <v-layout row>
+          <v-layout column>
+            <v-flex class="attendTitle">
+              평균연령
+            </v-flex>
+            <v-flex class="attendText">
+              {{getNonghwalDetail.friendsInfo[0].ageAverage}}
+            </v-flex>
+          </v-layout>
+          <v-layout column>
+            <v-flex class="attendTitle">
+              총 신청 인원
+            </v-flex>
+            <v-flex style="text-align:center">
+              <span class="attendText">{{getNonghwalDetail.friendsInfo[0].attendCount}}</span>
+              <span class="attendText2">/{{getNonghwalDetail.friendsInfo[0].personLimit}}</span>
+            </v-flex>
+          </v-layout>
+          </v-layout>
+          <v-flex style="margin-top:5%">
+            <v-layout>
+              <v-layout column>
+                <v-flex class="womanText">
+                <img src="../../../static/attendPerson_woman.png" width="15px;">
+                <p class="sexPercent1">{{getSexPercent[1]}}%</p>
+                </v-flex>
+              </v-layout>
+              <v-layout>
+              <div class="charts" style="width:200px; margin:0 auto">
+                <div class="charts__chart chart--sm chart--p100 chart--hover" style="border-radius:9px; background-color:#7EA4FF !important;">
+                  <div class="charts__chart chart--sm chart--hover" v-bind:style="{ width: getSexPercent[1] + '% !important' }" style="border-radius:9px; background-color:#FFAF93 !important;" >
+                  </div><!-- /.charts__chart -->
+                </div><!-- /.charts__chart -->
+              </div><!-- /.charts -->
+              </v-layout>
+              <v-layout column>
+                <v-flex class="womanText">
+                <img src="../../../static/attendPerson_man.png" width="15px;">
+                <p class="sexPercent2">{{getSexPercent[0]}}%</p>
+                </v-flex>
+              </v-layout>
+            </v-layout>
           </v-flex>
-        <v-flex v-if="getNonghwalDetail.friendsInfo.length<=3">
-             {{getNonghwalDetail.friendsInfo.length}}명
-          </v-flex>
-        </v-avatar>
+          </v-layout>
         </v-flex>
-
       </v-layout>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 export default {
   data () {
     return {
       selectedDate: '',
-      participants: null
+      participants: null,
+      sexPercent: []
     }
   },
   props: ['nhIdx'],
@@ -114,7 +138,11 @@ export default {
       return this.getNonghwalDetail.nhInfo.isBooked
     },
     isBookedColor: function () {
-      if (this.getisBooked === 1) { return 'error' } else { return 'detailBtn' }
+      if (this.getisBooked === 1) {
+        return 'error';
+      } else {
+        return 'detailBtn';
+      }
     },
     getallStartDateList: function () {
       let allStartDateList = []
@@ -144,28 +172,47 @@ export default {
             } else {
               return true // 신청
             }
-          } else { return true }
-        } else { return true }
-      } else { return true }
+          } else {
+            return true
+          }
+        } else {
+          return true
+        }
+      } else {
+        return true
+      }
+    },
+    getSexPercent: function () {
+      const manCount = this.getNonghwalDetail.friendsInfo[0].manCount
+      const attendCount = this.getNonghwalDetail.friendsInfo[0].attendCount
+      this.sexPercent[0] = Math.round(manCount * 100 / attendCount)
+      this.sexPercent[1] = 100 - this.sexPercent[0]
+      return this.sexPercent
     }
   },
   methods: {
     hasApply: function () {
       if (this.getNonghwalDetail.myScheduleActivities.length > 0) {
         return true
-      } else { return false } // 신청한 것이 없다.
+      } else {
+        return false
+      } // 신청한 것이 없다.
     },
     setDate: function () {
-      if (this.isAuthenticated) { // 유저임
-        if (this.hasApply()) { // 신청한 것이 있음
+      if (this.isAuthenticated) {
+        // 유저임
+        if (this.hasApply()) {
+          // 신청한 것이 있음
           let mylist = this.whatselectedDate() // 신청한 것임
           console.log(mylist)
           this.selectedDate = mylist[0]
-        } else { // 신청한 것이 없음
-          this.selectedDate = ''
+        } else {
+          // 신청한 것이 없음
+          this.selectedDate = '';
         }
-      } else { // 유저가 아님
-        this.selectedDate = ''
+      } else {
+        // 유저가 아님
+        this.selectedDate = '';
       }
     },
     clickBookmarkBtn: function () {
@@ -178,35 +225,64 @@ export default {
       }
     },
     clickApplyBtn: function () {
-      if (this.isAuthenticated) { // 유저임
-        if (this.selectedDate !== '') { // 선택된 것이 있음
-          if (this.ismyDate()) { // 내가 선택한 것임
-            this.$store.dispatch('nonghwalCancel', {nhIdx: this.nhIdx, schIdx: this.searchSchIdx})
+      if (this.isAuthenticated) {
+        // 유저임
+        if (this.selectedDate !== '') {
+          // 선택된 것이 있음
+          if (this.ismyDate()) {
+            // 내가 선택한 것임
+            this.$store.dispatch('nonghwalCancel', {
+              nhIdx: this.nhIdx,
+              schIdx: this.searchSchIdx
+            })
             this.$router.push('/')
           } else {
-            this.$router.push({name: 'Apply',
-              params: { nhIdx: this.nhIdx,
+            this.$router.push({
+              name: 'Apply',
+              params: {
+                nhIdx: this.nhIdx,
                 schIdx: this.searchSchIdx,
                 selectedDate: this.selectedDate,
                 selectedNhName: this.getNonghwalDetail.nhInfo.name,
                 selectedNhAddr: this.getNonghwalDetail.nhInfo.addr,
-                selectedNhImg: this.getNonghwalDetail.image[0] }})
+                selectedNhImg: this.getNonghwalDetail.image[0]
+              }
+            })
           }
-        } else { alert('신청날짜를 선택해주세요') }
-      } else { alert('로그인을 해주세요.') }
+        } else {
+          alert('신청날짜를 선택해주세요')
+        }
+      } else {
+        alert('로그인을 해주세요.')
+      }
     },
     whatselectedDate: function () {
       let mydatelist = []
-      for (let i = 0; i < this.getNonghwalDetail.myScheduleActivities.length; i++) {
-        if (this.getallStartDateList[1].indexOf(this.getNonghwalDetail.myScheduleActivities[i]) !== -1) {
-          let num = this.getallStartDateList[1].indexOf(this.getNonghwalDetail.myScheduleActivities[i])
+      for (
+        let i = 0;
+        i < this.getNonghwalDetail.myScheduleActivities.length;
+        i++
+      ) {
+        if (
+          this.getallStartDateList[1].indexOf(
+            this.getNonghwalDetail.myScheduleActivities[i]
+          ) !== -1
+        ) {
+          let num = this.getallStartDateList[1].indexOf(
+            this.getNonghwalDetail.myScheduleActivities[i]
+          )
           mydatelist.push(this.getallStartDateList[0][num])
         }
-      } return mydatelist
+      }
+      return mydatelist
     },
     ismyDate: function () {
       for (let i = 0; i < this.whatselectedDate().length; i++) {
-        if (this.selectedDate === this.whatselectedDate()[i]) { return true } else { return false }
+        if (this.selectedDate === this.whatselectedDate()[i]) {
+          return true
+        } else {
+          return false
+        }
       }
     },
     toggle: function (index) {
@@ -214,7 +290,7 @@ export default {
       // return this.getallStartDateList[0][index]
     },
     goNongbooDetail: function (idx) {
-      this.$router.push({name: 'FarmInfo', params: {idx: idx}})
+      this.$router.push({ name: 'FarmInfo', params: { idx: idx } })
     }
     // ,
     // async changeP (index) {
@@ -228,18 +304,43 @@ export default {
     console.log(this.getisBooked)
     console.log(this.getNonghwalDetail.friendsInfo)
   }
-
 }
 </script>
 
 <style scoped>
+.attendTitle {
+  text-align: center;
+  font-size: 1.3rem;
+}
+.attendText {
+  text-align: center;
+  font-size: 3.6rem;
+  font-weight: bold;
+}
+.attendText2 {
+  font-size: 2.2rem;
+}
+.sexPercent1 {
+  color: #f25620;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.sexPercent2 {
+  color: #326cf7;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.womanText {
+  text-align: center;
+}
 /* .v-text-field__details{
   height: 3px !important;
 }
 .v-input__control{
   height: 30px !important;
 } */
-.vinput, .vinput:focus{
+.vinput,
+.vinput:focus {
   outline: none !important;
   border: none !important;
 }
