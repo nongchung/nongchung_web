@@ -183,11 +183,18 @@ export default {
       }
     },
     getSexPercent: function () {
-      const manCount = this.getNonghwalDetail.friendsInfo[0].manCount
-      const attendCount = this.getNonghwalDetail.friendsInfo[0].attendCount
-      this.sexPercent[0] = Math.round(manCount * 100 / attendCount)
-      this.sexPercent[1] = 100 - this.sexPercent[0]
-      return this.sexPercent
+      if(this.getNonghwalDetail.friendsInfo[0].manCount) {
+        const manCount = this.getNonghwalDetail.friendsInfo[0].manCount
+        const attendCount = this.getNonghwalDetail.friendsInfo[0].attendCount
+        this.sexPercent[0] = Math.round(manCount * 100 / attendCount)
+        this.sexPercent[1] = 100 - this.sexPercent[0]
+        return this.sexPercent
+      }
+      else {
+        this.sexPercent[0] = 0
+        this.sexPercent[1] = 0
+        return this.sexPercent
+      }
     }
   },
   methods: {
