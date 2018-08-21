@@ -1,8 +1,8 @@
 <template>
 <!-- <v-container fluid> -->
     <v-layout column>
-        <home-ad></home-ad>
-        <home-tab-list></home-tab-list>
+      <home-ad></home-ad>
+      <home-tab-list></home-tab-list>
     </v-layout>
     <!-- </v-container> -->
 </template>
@@ -51,4 +51,5 @@ export default {
   font-size: 2rem;
   font-weight: bold;
 }
+
 </style>

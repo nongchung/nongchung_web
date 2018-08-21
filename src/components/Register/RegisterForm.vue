@@ -94,7 +94,7 @@
                         <v-container fluid>
                             <v-layout row justify-center style="margin-left:110px">
                                 <v-flex xs3>
-                                    <v-card color="registerBtn">
+                                    <v-card color="registerbtn">
                                         <v-card-text>닉네임</v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -107,7 +107,7 @@
                             </v-layout>
                                 <v-layout row justify-center style="margin-left:110px">
                                 <v-flex xs3>
-                                    <v-card color="registerBtn">
+                                    <v-card color="registerbtn">
                                         <v-card-text>이메일</v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -126,7 +126,7 @@
                             </v-layout>
                             <v-layout row justify-center>
                                 <v-flex xs2>
-                                    <v-card color="registerBtn">
+                                    <v-card color="registerbtn">
                                         <v-card-text>비밀번호</v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -136,7 +136,7 @@
                             </v-layout>
                             <v-layout row justify-center>
                                 <v-flex xs2>
-                                    <v-card color="registerBtn">
+                                    <v-card color="registerbtn">
                                         <v-card-text>비밀번호 확인</v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -146,7 +146,7 @@
                             </v-layout>
                             <v-layout row justify-center>
                                 <v-flex xs2>
-                                    <v-card color="registerBtn">
+                                    <v-card color="registerbtn">
                                         <v-card-text>이름</v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -156,7 +156,7 @@
                             </v-layout>
                            <v-layout row justify-center>
                                 <v-flex xs2>
-                                    <v-card color="registerBtn">
+                                    <v-card color="registerbtn">
                                         <v-card-text>휴대폰 번호</v-card-text>
                                     </v-card>
                                 </v-flex>
@@ -166,7 +166,7 @@
                             </v-layout>
                            <v-layout row justify-center>
                                 <v-flex xs2>
-                                    <v-card color="registerBtn">
+                                    <v-card color="registerbtn">
 
                                         <v-card-text>성별</v-card-text>
 
@@ -181,7 +181,7 @@
                             </v-layout>
                             <v-layout row justify-center>
                                 <v-flex xs2>
-                                    <v-card color="registerBtn">
+                                    <v-card color="registerbtn">
                                         <v-card-text>생년월일</v-card-text>
                                     </v-card>
                                 </v-flex>

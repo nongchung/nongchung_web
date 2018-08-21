@@ -8,7 +8,7 @@
           <v-icon class="mr-3" style="flex: none !important;">assignment</v-icon>
           <v-menu offset-y max-width="auto">
           <v-flex slot="activator" style="border:1px solid black; padding:.5rem;width:100%;display:flex;justify-content:space-between;" class="pl-3">
-            <input id="vinput" :color="detailBtn" v-model="selectedDate" placeholder="날짜선택">
+            <input id="vinput" :color="detailbtn" v-model="selectedDate" placeholder="날짜선택">
           <v-icon text-xs-right>arrow_drop_down</v-icon></v-flex>
           <v-list>
             <div v-for="(item, index) in getNonghwalDetail.allStartDate" :key="index">
@@ -42,24 +42,24 @@
         <v-flex pa-1><v-btn large block color="primary" style="font-weight:900" @click="clickApplyBtn">{{applycancel? '신청하기':'취소하기'}}</v-btn></v-flex>
         <v-flex px-1 d-flex>
           <v-btn block flat large outline @click="clickBookmarkBtn" :color="isBookedColor" class="mr-2"><v-icon>favorite</v-icon></v-btn>
-          <v-btn block flat large outline color="detailBtn">공유하기</v-btn>
+          <v-btn block flat large outline color="detailbtn">공유하기</v-btn>
         </v-flex>
       </v-layout>
     </v-flex>
     <!-- 농부정보 -->
     <v-flex my-3>
       농부 정보
-      <v-layout mt-2 pa-3 column style="background: white;" justify-center>
+      <v-layout mt-2 pa-3 px-4 column style="background: white;" justify-center>
         <v-flex>
           <v-avatar class="mr-2"
           size="4rem"
           color="grey lighten-4"
         >
           <img :src="getNonghwalDetail.farmerInfo.img" alt="avatar">
-        </v-avatar> 
+        </v-avatar>
           <span class="farmerName">{{getNonghwalDetail.farmerInfo.name}} 농부</span>
         </v-flex>
-        <v-flex style="max-width:330px; font-size:1.2rem;" mt-4>{{getNonghwalDetail.farmerInfo.comment}}</v-flex>
+        <v-flex style="max-width:330px; font-size:1rem;" mt-3>{{getNonghwalDetail.farmerInfo.comment}}</v-flex>
         <!-- <v-flex mt-2><v-icon class="pr-2 pt-1">more_horiz</v-icon>{{getNonghwalDetail.farmerInfo.comment}}</v-flex> -->
         <v-flex text-xs-center mt-2><v-btn flat color="primary" @click="goNongbooDetail(getNonghwalDetail.farmerInfo.farmIdx)">농장 프로필 보기</v-btn></v-flex>
       </v-layout>
@@ -67,9 +67,9 @@
     <!-- 참석대원 -->
     <v-flex mb-5>
       참석 대원
-      <v-layout mt-2 py-3 px-2 row style="background: white;">
+      <v-layout mt-2 pa-3 row style="background: white;">
         <v-flex>
-          <v-layout column>
+          <v-layout column mt-2>
           <v-layout row>
           <v-layout column>
             <v-flex class="attendTitle">
@@ -89,12 +89,12 @@
             </v-flex>
           </v-layout>
           </v-layout>
-          <v-flex style="margin-top:5%">
+          <v-flex mt-2>
             <v-layout>
               <v-layout column>
                 <v-flex class="womanText">
                 <img src="../../../static/attendPerson_woman.png" width="15px;">
-                <p class="sexPercent1">{{getSexPercent[1]}}%</p>
+                <div class="sexPercent1">{{getSexPercent[1]}}%</div>
                 </v-flex>
               </v-layout>
               <v-layout>
@@ -108,7 +108,7 @@
               <v-layout column>
                 <v-flex class="womanText">
                 <img src="../../../static/attendPerson_man.png" width="15px;">
-                <p class="sexPercent2">{{getSexPercent[0]}}%</p>
+                <div class="sexPercent2">{{getSexPercent[0]}}%</div>
                 </v-flex>
               </v-layout>
             </v-layout>
@@ -121,7 +121,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -141,9 +141,9 @@ export default {
     },
     isBookedColor: function () {
       if (this.getisBooked === 1) {
-        return 'error';
+        return 'error'
       } else {
-        return 'detailBtn';
+        return 'detailbtn'
       }
     },
     getallStartDateList: function () {
@@ -185,14 +185,13 @@ export default {
       }
     },
     getSexPercent: function () {
-      if(this.getNonghwalDetail.friendsInfo[0].manCount) {
+      if (this.getNonghwalDetail.friendsInfo[0].manCount) {
         const manCount = this.getNonghwalDetail.friendsInfo[0].manCount
         const attendCount = this.getNonghwalDetail.friendsInfo[0].attendCount
         this.sexPercent[0] = Math.round(manCount * 100 / attendCount)
         this.sexPercent[1] = 100 - this.sexPercent[0]
         return this.sexPercent
-      }
-      else {
+      } else {
         this.sexPercent[0] = 0
         this.sexPercent[1] = 0
         return this.sexPercent
@@ -217,11 +216,11 @@ export default {
           this.selectedDate = mylist[0]
         } else {
           // 신청한 것이 없음
-          this.selectedDate = '';
+          this.selectedDate = ''
         }
       } else {
         // 유저가 아님
-        this.selectedDate = '';
+        this.selectedDate = ''
       }
     },
     clickBookmarkBtn: function () {
@@ -319,12 +318,12 @@ export default {
 <style scoped>
 .attendTitle {
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 .attendText {
   text-align: center;
-  font-size: 3.6rem;
-  font-weight: bold;
+  font-size: 3.5rem;
+  font-weight: 900;
 }
 .attendText2 {
   font-size: 2.2rem;
@@ -343,7 +342,7 @@ export default {
   text-align: center;
 }
 .farmerName {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 /* .v-text-field__details{

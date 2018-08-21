@@ -32,9 +32,8 @@
           v-if="isAuthenticated">
             로그아웃
           </v-btn></v-layout>
-          <v-spacer class="hidden-sm-and-up"></v-spacer>
-          <!-- <v-icon @click="drawer=!drawer" class="hidden-sm-and-up">menu</v-icon> -->
-<v-menu>
+          <!-- <v-spacer class="hidden-sm-and-up"></v-spacer>
+          <v-menu>
             <v-btn slot="activator" flat><v-icon @click="drawer=!drawer" class="hidden-sm-and-up">menu</v-icon></v-btn>
 
       <v-list class="pt-0 hidden-sm-and-up" dense v-model="drawer">
@@ -90,7 +89,7 @@
           <v-divider></v-divider>
         </v-list-tile>
       </v-list>
-      </v-menu>
+      </v-menu> -->
     </v-toolbar>
 </template>
 

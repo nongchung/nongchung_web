@@ -41,8 +41,8 @@ Vue.use(Vuetify, {
     accent: '#3470FF', // 파랑
     warning: '#FFAF00', // 노랑
     error: '#F25620', // 주황(빨강)
-    registerBtn: '#EFEFEF',
-    detailBtn: '#A8A8A8'
+    registerbtn: '#EFEFEF',
+    detailbtn: '#A8A8A8'
   }
 })
 
