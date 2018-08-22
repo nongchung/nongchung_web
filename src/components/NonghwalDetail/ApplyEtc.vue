@@ -185,17 +185,15 @@ export default {
         return true
       }
     },
-    getAvarageAge: function() {
+    getAvarageAge: function () {
       // const averageAge =this.getNonghwalDetail.friendsInfo[0].ageAverage
       // const averageAge =Math.round(24.3, 2)
       const averageAge = this.getNonghwalDetail.friendsInfo[0].ageAverage
-      if(averageAge != 0 && (averageAge*10)%10 != 0) {
+      if (averageAge != 0 && (averageAge * 10) % 10 != 0) {
         return averageAge.toFixed(2)
-      }
-      else {
+      } else {
         return averageAge
       }
-
     },
     getSexPercent: function () {
       if (this.getNonghwalDetail.friendsInfo[0].manCount) {
