@@ -76,7 +76,8 @@
               평균연령
             </v-flex>
             <v-flex class="attendText">
-              {{getNonghwalDetail.friendsInfo[0].ageAverage}}
+              {{getAvarageAge}}
+              <!-- {{getNonghwalDetail.friendsInfo[0].ageAverage}} -->
             </v-flex>
           </v-layout>
           <v-layout column>
@@ -183,6 +184,18 @@ export default {
       } else {
         return true
       }
+    },
+    getAvarageAge: function() {
+      // const averageAge =this.getNonghwalDetail.friendsInfo[0].ageAverage
+      // const averageAge =Math.round(24.3, 2)
+      const averageAge = this.getNonghwalDetail.friendsInfo[0].ageAverage
+      if(averageAge != 0 && (averageAge*10)%10 != 0) {
+        return averageAge.toFixed(2)
+      }
+      else {
+        return averageAge
+      }
+
     },
     getSexPercent: function () {
       if (this.getNonghwalDetail.friendsInfo[0].manCount) {
@@ -311,6 +324,7 @@ export default {
     this.setDate()
     console.log(this.getisBooked)
     console.log(this.getNonghwalDetail.friendsInfo)
+    console.log(this.getAvarageAge)
   }
 }
 </script>

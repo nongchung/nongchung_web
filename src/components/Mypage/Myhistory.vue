@@ -93,8 +93,13 @@ export default {
   padding: 0;
 }
 .card_title{
+  /* font-size: 1.3rem;
+  font-weight: 700; */
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .card_tip{
   height: 1.9rem;
