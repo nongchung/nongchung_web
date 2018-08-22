@@ -10,13 +10,13 @@
       <v-flex mt-5 class="no-flex" id="ios-down"><a href="https://itunes.apple.com/kr/app/%EB%86%8D%ED%99%9C%EC%B2%AD%EC%B6%98/id1414459324?mt=8" target="blank"><img src="../static/mobile_ios_down.png" style="width: 100%;"></a></v-flex>
       <v-flex mt-4 class="no-flex" id="android-down"><a href="https://play.google.com/store/apps/details?id=com.youth.farm_volunteering" target="blank"><img src="../static/mobile_android_down.png" style="width: 100%;"></a></v-flex>
     </v-layout>
-    <footer-bar></footer-bar>
+    <footer-bar class="hidden-xs-only"></footer-bar>
   </v-app>
 </template>
 
 <script>
-import NavigationBar from './components/NavigationBar'
-import FooterBar from './components/Footer'
+import NavigationBar from './components/NavigationBar';
+import FooterBar from './components/Footer';
 export default {
   name: 'App',
   components: {
@@ -24,13 +24,13 @@ export default {
     FooterBar
   },
   data () {
-    return { }
+    return {}
   }
 }
 </script>
 
 <style>
-#mobile{
+#mobile {
   width: 100%;
   height: 400px;
   background-image: url(../static/mobile_bg2.png);
@@ -39,22 +39,23 @@ export default {
   text-align: center;
 }
 
-#mobile .no-flex{
+#mobile .no-flex {
   flex: 0 0 auto;
 }
 
-#mobile .bold-txt{
-  font-weight:900;
+#mobile .bold-txt {
+  font-weight: 900;
   font-size: 2.2rem;
 }
 
-#mobile .regular-txt{
-  font-weight:500;
+#mobile .regular-txt {
+  font-weight: 500;
   font-size: 1.1rem;
   color: #707070;
 }
 
-#ios-down, #android-down{
-    width: 42%;
+#ios-down,
+#android-down {
+  width: 42%;
 }
 </style>
