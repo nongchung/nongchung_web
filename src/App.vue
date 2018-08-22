@@ -10,7 +10,9 @@
       <v-flex mt-5 class="no-flex" id="ios-down"><a href="https://itunes.apple.com/kr/app/%EB%86%8D%ED%99%9C%EC%B2%AD%EC%B6%98/id1414459324?mt=8" target="blank"><img src="../static/mobile_ios_down.png" style="width: 100%;"></a></v-flex>
       <v-flex mt-4 class="no-flex" id="android-down"><a href="https://play.google.com/store/apps/details?id=com.youth.farm_volunteering" target="blank"><img src="../static/mobile_android_down.png" style="width: 100%;"></a></v-flex>
     </v-layout>
+    <v-layout class="hidden-xs-only">
     <footer-bar></footer-bar>
+    </v-layout>
   </v-app>
 </template>
 
