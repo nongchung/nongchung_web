@@ -23,7 +23,8 @@
         <v-layout column ma-4>
           <v-layout row>
             <v-avatar size="3.5rem">
-              <img src="../../../static/ad_ex.png">
+              <img :src="item.uimg">
+              <!-- <img src="../../../static/ad_ex.png"> -->
             </v-avatar>
             <v-flex style="display:flex;flex-direction:column;flex:0 0 auto;">
               <v-flex px-4 style="font-weight:bold; color:#4d4d4d;">{{item.name}}</v-flex>
@@ -31,14 +32,14 @@
             </v-flex>
           </v-layout>
           <v-flex my-2 pt-1>
-            <star-rating style="height:1.5rem;" active-color="#000" :show-rating="false" :increment="0.5" :rating="item.star" :read-only="true"
+            <star-rating style="height:1.5rem;" active-color="#000" :show-rating="false" :increment="0.5" :rating="item.star/2" :read-only="true"
               :star-size="16"></star-rating>
           </v-flex>
           <v-flex mb-2>{{item.content}}</v-flex>
           <v-layout row>
             <v-flex>
               <v-avatar size="5rem" tile class="mr-2" v-for="(img, i) in item.rvImages" :key="i">
-                <img :src="img">
+                <img v-if="img" :src="img">
               </v-avatar>
             </v-flex>
           </v-layout>
@@ -52,7 +53,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 export default {
   data () {
     return {
@@ -67,7 +68,7 @@ export default {
       if (!this.noreview) {
         return this.nonghwalreview.length
       } else {
-        return '0'
+        return '0';
       }
     },
     averageStar: function () {
@@ -77,7 +78,9 @@ export default {
         for (let i = 0; i < this.nonghwalreview.length; i++) {
           sum += this.nonghwalreview[i].star
         }
-        avg = sum / this.nonghwalreview.length
+        console.log(this.nonghwalreview.length)
+
+        avg = sum / this.nonghwalreview.length / 2
         return avg
       } else {
         return 0
@@ -87,9 +90,13 @@ export default {
   props: ['nhIdx'],
   methods: {
     async getAllReview () {
-      await this.$store.dispatch('getReview', this.nhIdx)
-        .then().catch((err) => {
-          if (err === 'No Reviews') { this.noreview = true }
+      await this.$store
+        .dispatch('getReview', this.nhIdx)
+        .then()
+        .catch(err => {
+          if (err === 'No Reviews') {
+            this.noreview = true
+          }
         })
     }
   },
@@ -100,5 +107,4 @@ export default {
 </script>
 
 <style>
-
 </style>

@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 export default {
   name: 'Editreview',
   data: function () {
@@ -86,7 +86,16 @@ export default {
     makeAllDate: function () {
       const splitEndDate = this.myHistory[this.getPath].endDate.split('.')
       const splitStartDate = this.myHistory[this.getPath].startDate.split('.')
-      this.allDate = splitStartDate[0] + '년' + splitStartDate[1] + '월' + splitStartDate[2] + '일' + '~' + splitEndDate[2] + '일'
+      this.allDate =
+        splitStartDate[0] +
+        '년' +
+        splitStartDate[1] +
+        '월' +
+        splitStartDate[2] +
+        '일' +
+        '~' +
+        splitEndDate[2] +
+        '일';
       return this.allDate
     },
     updateReview () {
@@ -94,7 +103,7 @@ export default {
 
       data.append('rIdx', this.rIdx)
       data.append('content', this.content)
-      data.append('star', this.star)
+      data.append('star', this.star * 2)
       for (let index = 0; index < this.file.length; index++) {
         data.append('rImages', this.file[index])
       }
@@ -112,17 +121,18 @@ export default {
     },
     getImage (file, index) {
       const fileReader = new FileReader()
-      fileReader.onload = () => { // fileRoader가 불러왓을때 이미지에 들어갈 속성
+      fileReader.onload = () => {
+        // fileRoader가 불러왓을때 이미지에 들어갈 속성
         this.img[index] = fileReader.result
         this.$forceUpdate()
-      }
+      };
       fileReader.readAsDataURL(file) // data 에서 URL을 긁어옴.
     },
     async fetchData () {
       const result = await this.$store.dispatch('getMyReview', this.getScheIdx)
       console.log(result)
 
-      this.star = result.data.star
+      this.star = result.data.star / 2
       this.content = result.data.content
       this.img = result.data.img
       this.rIdx = result.data.rIdx
@@ -132,17 +142,17 @@ export default {
 </script>
 
 <style>
- .title {
-   /* background-color: #2BCAB0;
+.title {
+  /* background-color: #2BCAB0;
    opacity: 0.1; */
-   background: #3470FF;
-   background: rgba(52, 112, 255, 0.1)
- }
- .titleFont {
-   color: #3470FF;
- }
- .reviewImg{
-     width: 200px;
-    height: 200px;
-  }
+  background: #3470ff;
+  background: rgba(52, 112, 255, 0.1);
+}
+.titleFont {
+  color: #3470ff;
+}
+.reviewImg {
+  width: 200px;
+  height: 200px;
+}
 </style>

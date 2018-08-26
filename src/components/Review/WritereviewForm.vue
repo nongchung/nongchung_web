@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 export default {
   name: 'Writereview',
   data: function () {
@@ -85,15 +85,25 @@ export default {
     makeAllDate: function () {
       const splitEndDate = this.myHistory[this.getPath].endDate.split('.')
       const splitStartDate = this.myHistory[this.getPath].startDate.split('.')
-      this.allDate = splitStartDate[0] + '년' + splitStartDate[1] + '월' + splitStartDate[2] + '일' + '~' + splitEndDate[2] + '일'
+      this.allDate =
+        splitStartDate[0] +
+        '년' +
+        splitStartDate[1] +
+        '월' +
+        splitStartDate[2] +
+        '일' +
+        '~' +
+        splitEndDate[2] +
+        '일';
       return this.allDate
     },
     onUploadBoard () {
       const data = new FormData()
+      console.log(this.star)
 
       data.append('scheIdx', this.getScheIdx)
       data.append('content', this.content)
-      data.append('star', this.star)
+      data.append('star', this.star * 2)
       for (let index = 0; index < this.file.length; index++) {
         data.append('rImages', this.file[index])
       }
@@ -109,9 +119,10 @@ export default {
     },
     getImage (file, index) {
       const fileReader = new FileReader()
-      fileReader.onload = () => { // fileRoader가 불러왓을때 이미지에 들어갈 속성
+      fileReader.onload = () => {
+        // fileRoader가 불러왓을때 이미지에 들어갈 속성
         this.img[index] = fileReader.result
-      }
+      };
       fileReader.readAsDataURL(file) // data 에서 URL을 긁어옴.
     }
   }
@@ -119,13 +130,13 @@ export default {
 </script>
 
 <style>
- .title {
-   /* background-color: #2BCAB0;
+.title {
+  /* background-color: #2BCAB0;
    opacity: 0.1; */
-   background: #3470FF;
-   background: rgba(52, 112, 255, 0.1)
- }
- .titleFont {
-   color: #3470FF;
- }
+  background: #3470ff;
+  background: rgba(52, 112, 255, 0.1);
+}
+.titleFont {
+  color: #3470ff;
+}
 </style>
