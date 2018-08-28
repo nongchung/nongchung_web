@@ -96,6 +96,7 @@ export default {
   },
   created () {
     eventBus.$on('sendSearchCondition', (value) => {
+      console.log('받았습다요.')
       this.gotSearchCondition(value)
     })
   }

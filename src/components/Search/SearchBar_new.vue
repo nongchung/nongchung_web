@@ -5,7 +5,7 @@
       <v-flex xs1 hidden-sm-and-up></v-flex>
   <v-flex xs5 sm4 id="search_box">
       <v-flex style="flex:none;flex-grow:10;">
-        <input type="text" v-model="scontent" style="height:100%;width:100%;" placeholder="농활 검색하기"></v-flex>
+        <input type="text" v-model="scontent" style="height:100%;width:100%;" placeholder="농활 검색하기" @keyup.enter="goFilter"></v-flex>
       <v-flex style="flex:none;flex-grow:1;cursor:pointer;" text-xs-right @click="goFilter">
         <v-icon style="height:100%;">search</v-icon></v-flex>
   </v-flex>
@@ -44,11 +44,12 @@
                     <!-- <v-text-field slot="activator" v-model="start_date" readonly height="0" style="font-size:0px;"></v-text-field> -->
                     <div id="start_date" @click="clickStartDate" slot="activator">
                     <span>{{showStartDate}}</span>
+                    <span style="margin-left: -50px; color: #ccc;" v-show="!showStartDate">날짜선택</span>
                     <span><v-icon size="1.3rem">calendar_today</v-icon></span>
                   </div>
                     <v-date-picker v-model="start_date" no-title scrollable>
                     <v-spacer></v-spacer>
-                    <v-btn flat color="primary" @click="menu2 = false">Cancel</v-btn>
+                    <v-btn color="primary" @click="touchFilter">Today</v-btn>
                     <v-btn flat color="primary" @click="startDateSave">OK</v-btn>
                     </v-date-picker>
                   </v-menu>
@@ -63,11 +64,11 @@
                     <!-- <v-text-field slot="activator" v-model="end_date" readonly height="0" style="font-size:0px;"></v-text-field> -->
                     <div id="end_date" @click="clickEndDate" slot="activator">
                     <span>{{showEndDate}}</span>
+                    <span style="margin-left: -50px; color: #ccc;" v-show="!showEndDate">날짜선택</span>
                     <span><v-icon size="1.3rem">calendar_today</v-icon></span>
                   </div>
                     <v-date-picker v-model="end_date" no-title scrollable :min="start_date">
                     <v-spacer></v-spacer>
-                    <v-btn flat color="primary" @click="menu3 = false">Cancel</v-btn>
                     <v-btn flat color="primary" @click="$refs.menu3.save(end_date)">OK</v-btn>
                     </v-date-picker>
                   </v-menu>
@@ -158,8 +159,8 @@ export default {
          {name: '제주특별자치도', value: 15},
          {name: '세종특별시', value: 16}
        ],
-      start_date: null,
-      end_date: null,
+      start_date: '',
+      end_date: '',
       person: 1,
       region_name: '전국',
       region_value: 17
@@ -211,16 +212,18 @@ export default {
       const SearchCondition = {start: this.start_date, end: this.end_date, person: this.person, scontent: this.scontent, area: '[' + this.region_value + ']'}
       console.log(SearchCondition)
       eventBus.$emit('sendSearchCondition', SearchCondition)
+    },
+    touchFilter () {
+      // 해당 버튼을 click할때 디폴트 날짜 오늘, 내일로 설정되게끔
+      let today = new Date()
+      this.start_date = today.getFullYear() + '-' + ((today.getMonth() + 1) > 9 ? '' : '0') + (today.getMonth() + 1) + '-' + (today.getDate() > 9 ? '' : '0') + today.getDate()
+
+      let nextday = new Date()
+      nextday.setDate(nextday.getDate() + 1)
+      this.end_date = nextday.getFullYear() + '-' + ((nextday.getMonth() + 1) > 9 ? '' : '0') + (nextday.getMonth() + 1) + '-' + (nextday.getDate() > 9 ? '' : '0') + nextday.getDate()
     }
   },
   created () {
-    let today = new Date()
-    this.start_date = today.getFullYear() + '-' + ((today.getMonth() + 1) > 9 ? '' : '0') + (today.getMonth() + 1) + '-' + (today.getDate() > 9 ? '' : '0') + today.getDate()
-
-    let nextday = new Date()
-    nextday.setDate(nextday.getDate() + 1)
-    this.end_date = nextday.getFullYear() + '-' + ((nextday.getMonth() + 1) > 9 ? '' : '0') + (nextday.getMonth() + 1) + '-' + (nextday.getDate() > 9 ? '' : '0') + nextday.getDate()
-
     eventBus.$emit('sendSearchCondition', {start: '', end: '', person: this.person, scontent: this.scontent, area: '[' + this.region_value + ']'})
   }
 }

@@ -243,7 +243,7 @@ export const nonghwalActions = {
     commit('searchStart')
     axios.get(`${BASEURL}/search?start=${payload.start}&end=${payload.end}&person=${payload.person}&scontent=${payload.scontent}&area=${payload.area}`)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         commit('searchSuccess', res.data.data)
       }).catch(err => {
         console.log('ERROR! :' + err)
@@ -254,7 +254,7 @@ export const nonghwalActions = {
     axios.get(`${BASEURL}/search?start=${payload.start}&end=${payload.end}&person=${payload.person}&scontent=${payload.scontent}&area=${payload.area}`,
       {headers: { token: state.accessToken }})
       .then(res => {
-        console.log(res.data.message)
+        // console.log(res.data.data)
         commit('searchLoginSuccess', res.data.data)
       }).catch(err => {
         console.log('ERROR! :' + err)

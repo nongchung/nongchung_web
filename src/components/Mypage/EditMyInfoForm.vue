@@ -59,7 +59,7 @@
             disabled
           ></v-text-field>
         </v-flex>
-      <v-flex xs3 offset-xs4>
+      <v-flex xs5 offset-xs4>
         <v-btn @click="goMain">취소</v-btn>
         <v-btn @click="editMyInfo" color="primary" dark>수정하기</v-btn>
       </v-flex>

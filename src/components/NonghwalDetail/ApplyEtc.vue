@@ -160,8 +160,8 @@ export default {
     searchSchIdx: function () {
       for (let i = 0; i < this.getNonghwalDetail.allStartDate.length; i++) {
         if (this.selectedDate === this.getallStartDateList[0][i]) {
-          console.log('스케쥴인덱스찾았다!')
-          console.log(this.getallStartDateList[1][i])
+          // console.log('스케쥴인덱스찾았다!')
+          // console.log(this.getallStartDateList[1][i])
           return this.getallStartDateList[1][i]
         }
       }
@@ -189,7 +189,7 @@ export default {
       // const averageAge =this.getNonghwalDetail.friendsInfo[0].ageAverage
       // const averageAge =Math.round(24.3, 2)
       const averageAge = this.getNonghwalDetail.friendsInfo[0].ageAverage
-      if (averageAge != 0 && (averageAge * 10) % 10 != 0) {
+      if (averageAge !== 0 && (averageAge * 10) % 10 !== 0) {
         return averageAge.toFixed(2)
       } else {
         return averageAge
@@ -199,8 +199,8 @@ export default {
       if (this.getNonghwalDetail.friendsInfo[0].manCount) {
         const manCount = this.getNonghwalDetail.friendsInfo[0].manCount
         const attendCount = this.getNonghwalDetail.friendsInfo[0].attendCount
-        this.sexPercent[0] = Math.round(manCount * 100 / attendCount)
-        this.sexPercent[1] = 100 - this.sexPercent[0]
+        let tempPercentage = Math.round(manCount * 100 / attendCount)
+        this.setPercentage(tempPercentage)
         return this.sexPercent
       } else {
         this.sexPercent[0] = 0
@@ -210,6 +210,10 @@ export default {
     }
   },
   methods: {
+    setPercentage: function (tempPercentage) {
+      this.sexPercent[0] = tempPercentage
+      this.sexPercent[1] = 100 - this.sexPercent[0]
+    },
     hasApply: function () {
       if (this.getNonghwalDetail.myScheduleActivities.length > 0) {
         return true
