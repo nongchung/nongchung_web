@@ -20,9 +20,9 @@
     <v-flex>
       <v-layout my-3 column>
         <v-flex style="font-weight:bold; color:#4d4d4d;">Q &#38; A</v-flex>
-        <v-flex class="my-3" style="border: .1px solid #cccccc; height: 19vh;">
+        <v-flex class="my-3">
         <v-textarea
-        style="padding: .5rem .5rem;font-size:1rem;"
+        style="padding: .5rem; font-size:1rem; border: .1px solid #cccccc; height:130px;"
           solo
           flat
           placeholder="문의 작성 전 확인해주세요!
